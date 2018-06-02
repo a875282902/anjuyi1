@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "RootViewController.h"
+#import "HttpRequest.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    [self.window setBackgroundColor:[UIColor whiteColor]];
+    
+    [self.window setRootViewController:[[RootViewController alloc] init]];
+    
+    [self.window makeKeyAndVisible];
+    
+    [HttpRequest checkReachabilityStatus:^(NSString *status) {
+       
+        NSLog(@"%@",status);
+    }];
     return YES;
 }
 

@@ -1,0 +1,67 @@
+//
+//  PrefixHeader.pch
+//  anjuyi
+//
+//  Created by 李 on 2018/5/29.
+//  Copyright © 2018年 lsy. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+/**
+ *屏幕宽和高的宏
+ */
+#define KScreenHeight [[UIScreen mainScreen] bounds].size.height
+#define KScreenWidth [[UIScreen mainScreen] bounds].size.width
+
+
+#define KStatusBarHeight [[UIApplication sharedApplication]statusBarFrame].size.height //状态栏高度
+#define KNavBarHeight 44.0
+#define KTabBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49) //底部tabbar高度
+#define KTopHeight (KStatusBarHeight + KNavBarHeight) //整个导航栏高度
+
+#define KViewHeight (KScreenHeight - KTopHeight)//视图的高
+
+//字符串是否为空
+#define KStringIsEmpty(str) ([str isKindOfClass:[NSNull class]] || str == nil || [str length] < 1 ? YES : NO )
+
+//数组是否为空
+#define KArrayIsEmpty(array) (array == nil || [array isKindOfClass:[NSNull class]] || array.count == 0)
+
+/**
+ * kvo path
+ */
+#define keyPath(objc,keyPath) @(((void)objc.keyPath,#keyPath))
+
+/**
+ *RGB
+ */
+#define MDRGBA(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0 blue:(b)/255.0 alpha:a]
+
+// cell高度的适配
+#define MDXFrom6(x) ([[UIScreen mainScreen] bounds].size.width/375.0 *(x))
+#define MDXFrom6Height(x) ([[UIScreen mainScreen] bounds].size.width/375.0 *(x))
+
+
+#ifdef __OBJC__
+
+#import "MBProgressHUD.h"
+#import "HttpRequest.h"
+#import "MJRefresh.h"
+#import "UIImageView+WebCache.h"
+#import "UIImage+Category.h"
+#import "RequestSever.h"
+#import "ViewHelps.h"
+#import "UIColor+Category.h"
+#import "Tools.h"
+
+
+#endif
+
+
+#endif /* PrefixHeader_pch */
