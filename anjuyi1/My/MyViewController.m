@@ -7,6 +7,7 @@
 //
 
 #import "MyViewController.h"
+#import "BaseNaviViewController.h"
 
 #import "SettingViewController.h"
 #import "PersonalViewController.h"//个人主页
@@ -18,8 +19,10 @@
 #import "MyAnswerViewController.h"//我的回答
 #import "MyFriendViewController.h"//关注的好友
 #import "MyTopicViewController.h"//关注的话题
+#import "CollectShopViewController.h"//收藏商品
 
 #import "CustomerServiceViewController.h"//在线客服
+#import "MyCouponsViewController.h"//我的优惠券
 #import "MyWalletViewController.h"//我的钱包
 
 #import "CommentViewController.h"//评论
@@ -41,17 +44,17 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    UIImage *tmpImage = [UIImage imageWithColor:[UIColor colorWithHexString:@"#7dd3d3"]];
     
-    [self setNavigationLeftBarButtonWithImageNamed:@""];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-
+    [self.navigationController.navigationBar setBackgroundImage:tmpImage forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-
+    UIImage *tmpImage = [UIImage imageWithColor:[UIColor whiteColor]];
+    
+    [self.navigationController.navigationBar setBackgroundImage:tmpImage forBarMetrics:UIBarMetricsDefault];
 }
 
 
@@ -61,36 +64,18 @@
     
     [self.view setBackgroundColor:[UIColor colorWithHexString:@"#7dd3d3"]];
     
-    
     [self.view addSubview:self.tmpScrollView];
     
     [self setUpUi];
-    
-    [self.view addSubview:self.navView];
-}
 
-- (UIView *)navView{
+    [self setNavigationDoubleRightBarButtonWithImageNamed:@"my_notice" imageNamed2:@"my_set"];
     
-    if (!_navView) {
-        _navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KTopHeight)];
-        [_navView setBackgroundColor:[UIColor colorWithHexString:@"#7dd3d3"]];
-        
-        UIButton *notice = [Tools creatButton:CGRectMake(KScreenWidth - 90, KStatusBarHeight + 2, 40, 40) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] title:@"" image:@"my_notice"];
-        [notice addTarget:self action:@selector(notice) forControlEvents:(UIControlEventTouchUpInside)];
-        [_navView addSubview:notice];
-        
-        UIButton *setting = [Tools creatButton:CGRectMake(KScreenWidth - 50, KStatusBarHeight + 2, 40, 40) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] title:@"" image:@"my_set"];
-        [setting addTarget:self action:@selector(setting) forControlEvents:(UIControlEventTouchUpInside)];
-        [_navView addSubview:setting];
-        
-    }
-    return _navView;
 }
 
 - (UIScrollView *)tmpScrollView{
     //designer_xq_banner
     if (!_tmpScrollView) {
-        _tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-KTabBarHeight)];
+        _tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, -KTopHeight, KScreenWidth, KScreenHeight-KTabBarHeight)];
         if (@available(iOS 11.0, *)) {
             [_tmpScrollView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
         }
@@ -199,26 +184,30 @@
 
 #pragma mark --  点击事件
 
-- (void)notice{
+- (void)doubleRightButtonTouchUpInside:(UIButton *)sender{
+    [self setNavWrite];
     
+    if (sender.tag == 1) {
+        
+    }
+    else{
+        
+        SettingViewController *controller = [[SettingViewController alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
     
 }
 
-- (void)setting{
-    
-    SettingViewController *controller = [[SettingViewController alloc] init];
-    [self.navigationController pushViewController:controller animated:YES];
-}
 //查看个人主页
 - (void)showPerson{
-    
+    [self setNavWrite];
     PersonalViewController *controller = [[PersonalViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
 //选择项目
 - (void)selectProject:(UITapGestureRecognizer *)sender{
-    
+    [self setNavWrite];
     switch (sender.view.tag) {
 
         case 0:
@@ -263,9 +252,23 @@
             
         }
             break;
+        case 7:
+        {
+            CollectShopViewController *controller = [[CollectShopViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            
+        }
+            break;
         case 8:
         {
             CustomerServiceViewController *controller = [[CustomerServiceViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            
+        }
+            break;
+        case 10:
+        {
+            MyCouponsViewController *controller = [[MyCouponsViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }
@@ -395,6 +398,13 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+- (void)setNavWrite{
+    
+    UIImage *tmpImage = [UIImage imageWithColor:[UIColor whiteColor]];
+    
+    [self.navigationController.navigationBar setBackgroundImage:tmpImage forBarMetrics:UIBarMetricsDefault];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

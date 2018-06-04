@@ -62,6 +62,13 @@
 		0AD0C62220BEE4D6001A20C4 /* DesignerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0C62020BEE4D6001A20C4 /* DesignerTableViewCell.xib */; };
 		0AD0C62520BF7E1E001A20C4 /* ScreeningBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0C62420BF7E1E001A20C4 /* ScreeningBar.m */; };
 		0AD0C62820BF87FF001A20C4 /* ScreeningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0C62720BF87FF001A20C4 /* ScreeningView.m */; };
+		0AFD6CD520C4CB2E00223512 /* CollectShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD6CD420C4CB2E00223512 /* CollectShopViewController.m */; };
+		0AFD6CD920C4D55E00223512 /* CollectShopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD6CD720C4D55E00223512 /* CollectShopTableViewCell.m */; };
+		0AFD6CDA20C4D55E00223512 /* CollectShopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AFD6CD820C4D55E00223512 /* CollectShopTableViewCell.xib */; };
+		0AFD6CE120C4DD0300223512 /* MyCouponsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD6CE020C4DD0300223512 /* MyCouponsViewController.m */; };
+		0AFD6CE520C4DD5900223512 /* MyCouponsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD6CE320C4DD5900223512 /* MyCouponsTableViewCell.m */; };
+		0AFD6CE620C4DD5900223512 /* MyCouponsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AFD6CE420C4DD5900223512 /* MyCouponsTableViewCell.xib */; };
+		0AFD6CE920C4E3B000223512 /* CouponsDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD6CE820C4E3B000223512 /* CouponsDetails.m */; };
 		0AFEE71420BD2F23004FA8FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEE71320BD2F23004FA8FC /* AppDelegate.m */; };
 		0AFEE71D20BD2F23004FA8FC /* anjuyi1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEE71B20BD2F23004FA8FC /* anjuyi1.xcdatamodeld */; };
 		0AFEE71F20BD2F26004FA8FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AFEE71E20BD2F26004FA8FC /* Assets.xcassets */; };
@@ -191,6 +198,18 @@
 		0AD0C62420BF7E1E001A20C4 /* ScreeningBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScreeningBar.m; sourceTree = "<group>"; };
 		0AD0C62620BF87FF001A20C4 /* ScreeningView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreeningView.h; sourceTree = "<group>"; };
 		0AD0C62720BF87FF001A20C4 /* ScreeningView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScreeningView.m; sourceTree = "<group>"; };
+		0AFD6CD320C4CB2E00223512 /* CollectShopViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectShopViewController.h; sourceTree = "<group>"; };
+		0AFD6CD420C4CB2E00223512 /* CollectShopViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectShopViewController.m; sourceTree = "<group>"; };
+		0AFD6CD620C4D55E00223512 /* CollectShopTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectShopTableViewCell.h; sourceTree = "<group>"; };
+		0AFD6CD720C4D55E00223512 /* CollectShopTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectShopTableViewCell.m; sourceTree = "<group>"; };
+		0AFD6CD820C4D55E00223512 /* CollectShopTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectShopTableViewCell.xib; sourceTree = "<group>"; };
+		0AFD6CDF20C4DD0300223512 /* MyCouponsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCouponsViewController.h; sourceTree = "<group>"; };
+		0AFD6CE020C4DD0300223512 /* MyCouponsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCouponsViewController.m; sourceTree = "<group>"; };
+		0AFD6CE220C4DD5900223512 /* MyCouponsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCouponsTableViewCell.h; sourceTree = "<group>"; };
+		0AFD6CE320C4DD5900223512 /* MyCouponsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCouponsTableViewCell.m; sourceTree = "<group>"; };
+		0AFD6CE420C4DD5900223512 /* MyCouponsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCouponsTableViewCell.xib; sourceTree = "<group>"; };
+		0AFD6CE720C4E3B000223512 /* CouponsDetails.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponsDetails.h; sourceTree = "<group>"; };
+		0AFD6CE820C4E3B000223512 /* CouponsDetails.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponsDetails.m; sourceTree = "<group>"; };
 		0AFEE70F20BD2F23004FA8FC /* anjuyi1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = anjuyi1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFEE71220BD2F23004FA8FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0AFEE71320BD2F23004FA8FC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -315,6 +334,8 @@
 				0A7D4FF920C2B735001BFDBF /* TableViewCell */,
 				0A7D503820C42357001BFDBF /* NavTwoTitle.h */,
 				0A7D503920C42357001BFDBF /* NavTwoTitle.m */,
+				0AFD6CE720C4E3B000223512 /* CouponsDetails.h */,
+				0AFD6CE820C4E3B000223512 /* CouponsDetails.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -338,6 +359,12 @@
 				0A7D505B20C43891001BFDBF /* MyFriendTableViewCell.h */,
 				0A7D505C20C43891001BFDBF /* MyFriendTableViewCell.m */,
 				0A7D505D20C43891001BFDBF /* MyFriendTableViewCell.xib */,
+				0AFD6CD620C4D55E00223512 /* CollectShopTableViewCell.h */,
+				0AFD6CD720C4D55E00223512 /* CollectShopTableViewCell.m */,
+				0AFD6CD820C4D55E00223512 /* CollectShopTableViewCell.xib */,
+				0AFD6CE220C4DD5900223512 /* MyCouponsTableViewCell.h */,
+				0AFD6CE320C4DD5900223512 /* MyCouponsTableViewCell.m */,
+				0AFD6CE420C4DD5900223512 /* MyCouponsTableViewCell.xib */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -499,6 +526,24 @@
 				0A7D4FEF20C23462001BFDBF /* ProjectCollectionViewCell.m */,
 			);
 			path = TableVIewCell;
+			sourceTree = "<group>";
+		};
+		0AFD6CD220C4CB1900223512 /* CollectShop */ = {
+			isa = PBXGroup;
+			children = (
+				0AFD6CD320C4CB2E00223512 /* CollectShopViewController.h */,
+				0AFD6CD420C4CB2E00223512 /* CollectShopViewController.m */,
+			);
+			path = CollectShop;
+			sourceTree = "<group>";
+		};
+		0AFD6CDE20C4DCF000223512 /* MyCoupons */ = {
+			isa = PBXGroup;
+			children = (
+				0AFD6CDF20C4DD0300223512 /* MyCouponsViewController.h */,
+				0AFD6CE020C4DD0300223512 /* MyCouponsViewController.m */,
+			);
+			path = MyCoupons;
 			sourceTree = "<group>";
 		};
 		0AFEE70620BD2F23004FA8FC = {
@@ -670,6 +715,8 @@
 		0AFEE75820BD2F50004FA8FC /* My */ = {
 			isa = PBXGroup;
 			children = (
+				0AFD6CDE20C4DCF000223512 /* MyCoupons */,
+				0AFD6CD220C4CB1900223512 /* CollectShop */,
 				0A7D506420C43C87001BFDBF /* CustomerService */,
 				0A7D506020C43C42001BFDBF /* MyTopic */,
 				0A7D505720C437AD001BFDBF /* MyFriend */,
@@ -787,8 +834,10 @@
 				0AC3190E20BDA0100035800F /* HomeTableViewCell.xib in Resources */,
 				0A3D7A2420BE44B4009D949B /* DecorateTableViewCell.xib in Resources */,
 				0A7D500120C2B760001BFDBF /* DistributionTableViewCell.xib in Resources */,
+				0AFD6CE620C4DD5900223512 /* MyCouponsTableViewCell.xib in Resources */,
 				0A7D501F20C2F32F001BFDBF /* pdf.pdf in Resources */,
 				0AD0C62220BEE4D6001A20C4 /* DesignerTableViewCell.xib in Resources */,
+				0AFD6CDA20C4D55E00223512 /* CollectShopTableViewCell.xib in Resources */,
 				0AFEE84020BD30C8004FA8FC /* Podfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -853,12 +902,14 @@
 				0AC3190920BD9DF40035800F /* Tools.m in Sources */,
 				0AD0C62120BEE4D6001A20C4 /* DesignerTableViewCell.m in Sources */,
 				0A7D502A20C39CEE001BFDBF /* MyPhotoViewController.m in Sources */,
+				0AFD6CD920C4D55E00223512 /* CollectShopTableViewCell.m in Sources */,
 				0AD0C62820BF87FF001A20C4 /* ScreeningView.m in Sources */,
 				0A7D501B20C2F141001BFDBF /* ContractDetailsVC.m in Sources */,
 				0A7D505A20C437C5001BFDBF /* MyFriendViewController.m in Sources */,
 				0AFEE71D20BD2F23004FA8FC /* anjuyi1.xcdatamodeld in Sources */,
 				0AFEE76320BD2F50004FA8FC /* RequestSever.m in Sources */,
 				0A7D503E20C42567001BFDBF /* MyColletViewController.m in Sources */,
+				0AFD6CE520C4DD5900223512 /* MyCouponsTableViewCell.m in Sources */,
 				0AFEE77020BD2F50004FA8FC /* PushViewController.m in Sources */,
 				0A7D505E20C43891001BFDBF /* MyFriendTableViewCell.m in Sources */,
 				0AFEE76520BD2F50004FA8FC /* IanScrollView.m in Sources */,
@@ -874,11 +925,13 @@
 				0AFEE76420BD2F50004FA8FC /* Rotating.m in Sources */,
 				0AD0C61820BEB354001A20C4 /* MallTableViewCell.m in Sources */,
 				0AFEE76020BD2F50004FA8FC /* DecorateViewController.m in Sources */,
+				0AFD6CE920C4E3B000223512 /* CouponsDetails.m in Sources */,
 				0AC3190D20BDA0100035800F /* HomeTableViewCell.m in Sources */,
 				0AFEE72520BD2F26004FA8FC /* main.m in Sources */,
 				0A4A97C420BFCFAB009D6594 /* MoreChannel.m in Sources */,
 				0A7D502320C39476001BFDBF /* PersonalViewController.m in Sources */,
 				0A7D500820C2DC08001BFDBF /* CommentViewController.m in Sources */,
+				0AFD6CE120C4DD0300223512 /* MyCouponsViewController.m in Sources */,
 				0A7D504920C42B01001BFDBF /* DraftBoxTableViewCell.m in Sources */,
 				0A3085B820C02B4F00882805 /* MasterViewController.m in Sources */,
 				0A7D506720C43CC7001BFDBF /* CustomerServiceViewController.m in Sources */,
@@ -900,6 +953,7 @@
 				0A7D503A20C42357001BFDBF /* NavTwoTitle.m in Sources */,
 				0A3085BC20C02E1100882805 /* DesignerDetailsVC.m in Sources */,
 				0A5582A220C124B200759E6B /* ProjectListVC.m in Sources */,
+				0AFD6CD520C4CB2E00223512 /* CollectShopViewController.m in Sources */,
 				0AFEE76C20BD2F50004FA8FC /* BaseModel.m in Sources */,
 				0A7D502E20C3A552001BFDBF /* MyWalletViewController.m in Sources */,
 				0A7D500020C2B760001BFDBF /* DistributionTableViewCell.m in Sources */,

@@ -28,13 +28,14 @@
     [super viewWillAppear:animated];
     
     [self setNavigationLeftBarButtonWithImageNamed:@""];
-    [self.navigationController.navigationBar setAlpha:0];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     
     [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar setAlpha:1];
+//    [self.navigationController.navigationBar setAlpha:1];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidLoad {
