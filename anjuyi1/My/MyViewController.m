@@ -7,10 +7,25 @@
 //
 
 #import "MyViewController.h"
+
 #import "SettingViewController.h"
-#import "DistributionViewController.h"//分销统计
+#import "PersonalViewController.h"//个人主页
+
+#import "MyPhotoViewController.h"//我的图片
+#import "MyColletViewController.h"//我的收藏
+#import "DraftBoxViewController.h"//草稿箱
+
+#import "MyAnswerViewController.h"//我的回答
+#import "MyFriendViewController.h"//关注的好友
+#import "MyTopicViewController.h"//关注的话题
+
+#import "CustomerServiceViewController.h"//在线客服
+#import "MyWalletViewController.h"//我的钱包
+
 #import "CommentViewController.h"//评论
 #import "ContractViewController.h"//合同管理
+#import "DistributionViewController.h"//分销统计
+
 
 @interface MyViewController ()<UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -28,15 +43,15 @@
     [super viewWillAppear:animated];
     
     [self setNavigationLeftBarButtonWithImageNamed:@""];
-    
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     
     [super viewWillDisappear:animated];
-    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+
 }
 
 
@@ -186,6 +201,7 @@
 
 - (void)notice{
     
+    
 }
 
 - (void)setting{
@@ -196,13 +212,71 @@
 //查看个人主页
 - (void)showPerson{
     
-    
+    PersonalViewController *controller = [[PersonalViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 //选择项目
 - (void)selectProject:(UITapGestureRecognizer *)sender{
     
     switch (sender.view.tag) {
+
+        case 0:
+        {
+            MyPhotoViewController *controller = [[MyPhotoViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            
+        }
+            break;
+        case 2:
+        {
+            MyColletViewController *controller = [[MyColletViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            
+        }
+            break;
+        case 3:
+        {
+            DraftBoxViewController *controller = [[DraftBoxViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            
+        }
+            break;
+        case 4:
+        {
+            MyAnswerViewController *controller = [[MyAnswerViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            
+        }
+            break;
+        case 5:
+        {
+            MyFriendViewController *controller = [[MyFriendViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            
+        }
+            break;
+        case 6:
+        {
+            MyTopicViewController *controller = [[MyTopicViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            
+        }
+            break;
+        case 8:
+        {
+            CustomerServiceViewController *controller = [[CustomerServiceViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            
+        }
+            break;
+        case 11:
+        {
+            MyWalletViewController *controller = [[MyWalletViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            
+        }
+            break;
         case 13:
         {
             CommentViewController *controller = [[CommentViewController alloc] init];
@@ -231,7 +305,6 @@
 }
 
 - (void)selectLineProject:(UITapGestureRecognizer *)sender{
-    
     
 }
 

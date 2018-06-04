@@ -30,6 +30,26 @@
 		0A7D501220C2EDC6001BFDBF /* ContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D501120C2EDC6001BFDBF /* ContractViewController.m */; };
 		0A7D501B20C2F141001BFDBF /* ContractDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D501A20C2F141001BFDBF /* ContractDetailsVC.m */; };
 		0A7D501F20C2F32F001BFDBF /* pdf.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 0A7D501E20C2F32F001BFDBF /* pdf.pdf */; };
+		0A7D502320C39476001BFDBF /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D502220C39476001BFDBF /* PersonalViewController.m */; };
+		0A7D502720C39CD0001BFDBF /* LSYCollerctionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D502620C39CD0001BFDBF /* LSYCollerctionViewLayout.m */; };
+		0A7D502A20C39CEE001BFDBF /* MyPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D502920C39CEE001BFDBF /* MyPhotoViewController.m */; };
+		0A7D502E20C3A552001BFDBF /* MyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D502D20C3A552001BFDBF /* MyWalletViewController.m */; };
+		0A7D503120C3A6E9001BFDBF /* RechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D503020C3A6E9001BFDBF /* RechargeViewController.m */; };
+		0A7D503420C3A700001BFDBF /* TransactionRecordsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D503320C3A700001BFDBF /* TransactionRecordsVC.m */; };
+		0A7D503720C41B31001BFDBF /* PhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D503620C41B31001BFDBF /* PhotoCollectionViewCell.m */; };
+		0A7D503A20C42357001BFDBF /* NavTwoTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D503920C42357001BFDBF /* NavTwoTitle.m */; };
+		0A7D503E20C42567001BFDBF /* MyColletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D503D20C42567001BFDBF /* MyColletViewController.m */; };
+		0A7D504520C42A66001BFDBF /* DraftBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D504420C42A66001BFDBF /* DraftBoxViewController.m */; };
+		0A7D504920C42B01001BFDBF /* DraftBoxTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D504720C42B01001BFDBF /* DraftBoxTableViewCell.m */; };
+		0A7D504A20C42B01001BFDBF /* DraftBoxTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A7D504820C42B01001BFDBF /* DraftBoxTableViewCell.xib */; };
+		0A7D505120C432A6001BFDBF /* MyAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D505020C432A6001BFDBF /* MyAnswerViewController.m */; };
+		0A7D505520C433CF001BFDBF /* MyAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D505320C433CF001BFDBF /* MyAnswerTableViewCell.m */; };
+		0A7D505620C433CF001BFDBF /* MyAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A7D505420C433CF001BFDBF /* MyAnswerTableViewCell.xib */; };
+		0A7D505A20C437C5001BFDBF /* MyFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D505920C437C5001BFDBF /* MyFriendViewController.m */; };
+		0A7D505E20C43891001BFDBF /* MyFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D505C20C43891001BFDBF /* MyFriendTableViewCell.m */; };
+		0A7D505F20C43891001BFDBF /* MyFriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A7D505D20C43891001BFDBF /* MyFriendTableViewCell.xib */; };
+		0A7D506320C43C62001BFDBF /* MyTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D506220C43C62001BFDBF /* MyTopicViewController.m */; };
+		0A7D506720C43CC7001BFDBF /* CustomerServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D506620C43CC7001BFDBF /* CustomerServiceViewController.m */; };
 		0AC3190120BD88DA0035800F /* SearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3190020BD88DA0035800F /* SearchView.m */; };
 		0AC3190620BD8ED70035800F /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3190520BD8ED70035800F /* HomeModel.m */; };
 		0AC3190920BD9DF40035800F /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3190820BD9DF40035800F /* Tools.m */; };
@@ -113,6 +133,43 @@
 		0A7D501920C2F141001BFDBF /* ContractDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContractDetailsVC.h; sourceTree = "<group>"; };
 		0A7D501A20C2F141001BFDBF /* ContractDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContractDetailsVC.m; sourceTree = "<group>"; };
 		0A7D501E20C2F32F001BFDBF /* pdf.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = pdf.pdf; sourceTree = "<group>"; };
+		0A7D502120C39476001BFDBF /* PersonalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalViewController.h; sourceTree = "<group>"; };
+		0A7D502220C39476001BFDBF /* PersonalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalViewController.m; sourceTree = "<group>"; };
+		0A7D502520C39CD0001BFDBF /* LSYCollerctionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSYCollerctionViewLayout.h; sourceTree = "<group>"; };
+		0A7D502620C39CD0001BFDBF /* LSYCollerctionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSYCollerctionViewLayout.m; sourceTree = "<group>"; };
+		0A7D502820C39CEE001BFDBF /* MyPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPhotoViewController.h; sourceTree = "<group>"; };
+		0A7D502920C39CEE001BFDBF /* MyPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPhotoViewController.m; sourceTree = "<group>"; };
+		0A7D502C20C3A552001BFDBF /* MyWalletViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyWalletViewController.h; sourceTree = "<group>"; };
+		0A7D502D20C3A552001BFDBF /* MyWalletViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyWalletViewController.m; sourceTree = "<group>"; };
+		0A7D502F20C3A6E9001BFDBF /* RechargeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RechargeViewController.h; sourceTree = "<group>"; };
+		0A7D503020C3A6E9001BFDBF /* RechargeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RechargeViewController.m; sourceTree = "<group>"; };
+		0A7D503220C3A700001BFDBF /* TransactionRecordsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionRecordsVC.h; sourceTree = "<group>"; };
+		0A7D503320C3A700001BFDBF /* TransactionRecordsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionRecordsVC.m; sourceTree = "<group>"; };
+		0A7D503520C41B31001BFDBF /* PhotoCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		0A7D503620C41B31001BFDBF /* PhotoCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		0A7D503820C42357001BFDBF /* NavTwoTitle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavTwoTitle.h; sourceTree = "<group>"; };
+		0A7D503920C42357001BFDBF /* NavTwoTitle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavTwoTitle.m; sourceTree = "<group>"; };
+		0A7D503C20C42567001BFDBF /* MyColletViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyColletViewController.h; sourceTree = "<group>"; };
+		0A7D503D20C42567001BFDBF /* MyColletViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyColletViewController.m; sourceTree = "<group>"; };
+		0A7D504320C42A66001BFDBF /* DraftBoxViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DraftBoxViewController.h; sourceTree = "<group>"; };
+		0A7D504420C42A66001BFDBF /* DraftBoxViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DraftBoxViewController.m; sourceTree = "<group>"; };
+		0A7D504620C42B01001BFDBF /* DraftBoxTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DraftBoxTableViewCell.h; sourceTree = "<group>"; };
+		0A7D504720C42B01001BFDBF /* DraftBoxTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DraftBoxTableViewCell.m; sourceTree = "<group>"; };
+		0A7D504820C42B01001BFDBF /* DraftBoxTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DraftBoxTableViewCell.xib; sourceTree = "<group>"; };
+		0A7D504F20C432A6001BFDBF /* MyAnswerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAnswerViewController.h; sourceTree = "<group>"; };
+		0A7D505020C432A6001BFDBF /* MyAnswerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAnswerViewController.m; sourceTree = "<group>"; };
+		0A7D505220C433CF001BFDBF /* MyAnswerTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAnswerTableViewCell.h; sourceTree = "<group>"; };
+		0A7D505320C433CF001BFDBF /* MyAnswerTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAnswerTableViewCell.m; sourceTree = "<group>"; };
+		0A7D505420C433CF001BFDBF /* MyAnswerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyAnswerTableViewCell.xib; sourceTree = "<group>"; };
+		0A7D505820C437C5001BFDBF /* MyFriendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFriendViewController.h; sourceTree = "<group>"; };
+		0A7D505920C437C5001BFDBF /* MyFriendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFriendViewController.m; sourceTree = "<group>"; };
+		0A7D505B20C43891001BFDBF /* MyFriendTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFriendTableViewCell.h; sourceTree = "<group>"; };
+		0A7D505C20C43891001BFDBF /* MyFriendTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFriendTableViewCell.m; sourceTree = "<group>"; };
+		0A7D505D20C43891001BFDBF /* MyFriendTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyFriendTableViewCell.xib; sourceTree = "<group>"; };
+		0A7D506120C43C62001BFDBF /* MyTopicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTopicViewController.h; sourceTree = "<group>"; };
+		0A7D506220C43C62001BFDBF /* MyTopicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTopicViewController.m; sourceTree = "<group>"; };
+		0A7D506520C43CC7001BFDBF /* CustomerServiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerServiceViewController.h; sourceTree = "<group>"; };
+		0A7D506620C43CC7001BFDBF /* CustomerServiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerServiceViewController.m; sourceTree = "<group>"; };
 		0AC318FF20BD88DA0035800F /* SearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchView.h; sourceTree = "<group>"; };
 		0AC3190020BD88DA0035800F /* SearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchView.m; sourceTree = "<group>"; };
 		0AC3190420BD8ED70035800F /* HomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeModel.h; sourceTree = "<group>"; };
@@ -256,6 +313,8 @@
 			isa = PBXGroup;
 			children = (
 				0A7D4FF920C2B735001BFDBF /* TableViewCell */,
+				0A7D503820C42357001BFDBF /* NavTwoTitle.h */,
+				0A7D503920C42357001BFDBF /* NavTwoTitle.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -268,6 +327,17 @@
 				0A7D4FFF20C2B760001BFDBF /* DistributionTableViewCell.xib */,
 				0A7D500920C2DC22001BFDBF /* CommentTableViewCell.h */,
 				0A7D500A20C2DC22001BFDBF /* CommentTableViewCell.m */,
+				0A7D503520C41B31001BFDBF /* PhotoCollectionViewCell.h */,
+				0A7D503620C41B31001BFDBF /* PhotoCollectionViewCell.m */,
+				0A7D504620C42B01001BFDBF /* DraftBoxTableViewCell.h */,
+				0A7D504720C42B01001BFDBF /* DraftBoxTableViewCell.m */,
+				0A7D504820C42B01001BFDBF /* DraftBoxTableViewCell.xib */,
+				0A7D505220C433CF001BFDBF /* MyAnswerTableViewCell.h */,
+				0A7D505320C433CF001BFDBF /* MyAnswerTableViewCell.m */,
+				0A7D505420C433CF001BFDBF /* MyAnswerTableViewCell.xib */,
+				0A7D505B20C43891001BFDBF /* MyFriendTableViewCell.h */,
+				0A7D505C20C43891001BFDBF /* MyFriendTableViewCell.m */,
+				0A7D505D20C43891001BFDBF /* MyFriendTableViewCell.xib */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -293,6 +363,93 @@
 				0A7D501A20C2F141001BFDBF /* ContractDetailsVC.m */,
 			);
 			path = Contract;
+			sourceTree = "<group>";
+		};
+		0A7D502020C39469001BFDBF /* Personal */ = {
+			isa = PBXGroup;
+			children = (
+				0A7D502120C39476001BFDBF /* PersonalViewController.h */,
+				0A7D502220C39476001BFDBF /* PersonalViewController.m */,
+			);
+			path = Personal;
+			sourceTree = "<group>";
+		};
+		0A7D502420C39CB1001BFDBF /* MyPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				0A7D502520C39CD0001BFDBF /* LSYCollerctionViewLayout.h */,
+				0A7D502620C39CD0001BFDBF /* LSYCollerctionViewLayout.m */,
+				0A7D502820C39CEE001BFDBF /* MyPhotoViewController.h */,
+				0A7D502920C39CEE001BFDBF /* MyPhotoViewController.m */,
+			);
+			path = MyPhoto;
+			sourceTree = "<group>";
+		};
+		0A7D502B20C3A533001BFDBF /* MyWallet */ = {
+			isa = PBXGroup;
+			children = (
+				0A7D502C20C3A552001BFDBF /* MyWalletViewController.h */,
+				0A7D502D20C3A552001BFDBF /* MyWalletViewController.m */,
+				0A7D502F20C3A6E9001BFDBF /* RechargeViewController.h */,
+				0A7D503020C3A6E9001BFDBF /* RechargeViewController.m */,
+				0A7D503220C3A700001BFDBF /* TransactionRecordsVC.h */,
+				0A7D503320C3A700001BFDBF /* TransactionRecordsVC.m */,
+			);
+			path = MyWallet;
+			sourceTree = "<group>";
+		};
+		0A7D503B20C42553001BFDBF /* MyCollect */ = {
+			isa = PBXGroup;
+			children = (
+				0A7D503C20C42567001BFDBF /* MyColletViewController.h */,
+				0A7D503D20C42567001BFDBF /* MyColletViewController.m */,
+			);
+			path = MyCollect;
+			sourceTree = "<group>";
+		};
+		0A7D504220C42A51001BFDBF /* DraftBox */ = {
+			isa = PBXGroup;
+			children = (
+				0A7D504320C42A66001BFDBF /* DraftBoxViewController.h */,
+				0A7D504420C42A66001BFDBF /* DraftBoxViewController.m */,
+			);
+			path = DraftBox;
+			sourceTree = "<group>";
+		};
+		0A7D504E20C43296001BFDBF /* MyAnswer */ = {
+			isa = PBXGroup;
+			children = (
+				0A7D504F20C432A6001BFDBF /* MyAnswerViewController.h */,
+				0A7D505020C432A6001BFDBF /* MyAnswerViewController.m */,
+			);
+			path = MyAnswer;
+			sourceTree = "<group>";
+		};
+		0A7D505720C437AD001BFDBF /* MyFriend */ = {
+			isa = PBXGroup;
+			children = (
+				0A7D505820C437C5001BFDBF /* MyFriendViewController.h */,
+				0A7D505920C437C5001BFDBF /* MyFriendViewController.m */,
+			);
+			path = MyFriend;
+			sourceTree = "<group>";
+		};
+		0A7D506020C43C42001BFDBF /* MyTopic */ = {
+			isa = PBXGroup;
+			children = (
+				0A7D506120C43C62001BFDBF /* MyTopicViewController.h */,
+				0A7D506220C43C62001BFDBF /* MyTopicViewController.m */,
+			);
+			path = MyTopic;
+			sourceTree = "<group>";
+		};
+		0A7D506420C43C87001BFDBF /* CustomerService */ = {
+			isa = PBXGroup;
+			children = (
+				0A7D506520C43CC7001BFDBF /* CustomerServiceViewController.h */,
+				0A7D506620C43CC7001BFDBF /* CustomerServiceViewController.m */,
+			);
+			path = CustomerService;
 			sourceTree = "<group>";
 		};
 		0AC318FE20BD88BC0035800F /* Views */ = {
@@ -513,6 +670,15 @@
 		0AFEE75820BD2F50004FA8FC /* My */ = {
 			isa = PBXGroup;
 			children = (
+				0A7D506420C43C87001BFDBF /* CustomerService */,
+				0A7D506020C43C42001BFDBF /* MyTopic */,
+				0A7D505720C437AD001BFDBF /* MyFriend */,
+				0A7D504E20C43296001BFDBF /* MyAnswer */,
+				0A7D504220C42A51001BFDBF /* DraftBox */,
+				0A7D503B20C42553001BFDBF /* MyCollect */,
+				0A7D502B20C3A533001BFDBF /* MyWallet */,
+				0A7D502420C39CB1001BFDBF /* MyPhoto */,
+				0A7D502020C39469001BFDBF /* Personal */,
 				0A7D500F20C2EDA3001BFDBF /* Contract */,
 				0A7D500520C2DBE7001BFDBF /* Comments */,
 				0A7D4FF820C2B72F001BFDBF /* View */,
@@ -613,8 +779,11 @@
 				0AD0C61920BEB354001A20C4 /* MallTableViewCell.xib in Resources */,
 				0AFEE72220BD2F26004FA8FC /* LaunchScreen.storyboard in Resources */,
 				0AFEE76D20BD2F50004FA8FC /* LaunchScreen.storyboard in Resources */,
+				0A7D505F20C43891001BFDBF /* MyFriendTableViewCell.xib in Resources */,
+				0A7D504A20C42B01001BFDBF /* DraftBoxTableViewCell.xib in Resources */,
 				0AFEE71F20BD2F26004FA8FC /* Assets.xcassets in Resources */,
 				0A5582A720C1298000759E6B /* ProjectTableViewCell.xib in Resources */,
+				0A7D505620C433CF001BFDBF /* MyAnswerTableViewCell.xib in Resources */,
 				0AC3190E20BDA0100035800F /* HomeTableViewCell.xib in Resources */,
 				0A3D7A2420BE44B4009D949B /* DecorateTableViewCell.xib in Resources */,
 				0A7D500120C2B760001BFDBF /* DistributionTableViewCell.xib in Resources */,
@@ -673,24 +842,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AC3190120BD88DA0035800F /* SearchView.m in Sources */,
+				0A7D505120C432A6001BFDBF /* MyAnswerViewController.m in Sources */,
 				0A4A97C720BFD200009D6594 /* ChannelButton.m in Sources */,
 				0AFEE76B20BD2F50004FA8FC /* BaseViewController.m in Sources */,
 				0A5582A620C1298000759E6B /* ProjectTableViewCell.m in Sources */,
 				0A7D4FF720C2B723001BFDBF /* DistributionViewController.m in Sources */,
 				0AFEE76120BD2F50004FA8FC /* HttpRequest.m in Sources */,
 				0A7D500E20C2E894001BFDBF /* CommentDetailsVC.m in Sources */,
+				0A7D503120C3A6E9001BFDBF /* RechargeViewController.m in Sources */,
 				0AC3190920BD9DF40035800F /* Tools.m in Sources */,
 				0AD0C62120BEE4D6001A20C4 /* DesignerTableViewCell.m in Sources */,
+				0A7D502A20C39CEE001BFDBF /* MyPhotoViewController.m in Sources */,
 				0AD0C62820BF87FF001A20C4 /* ScreeningView.m in Sources */,
 				0A7D501B20C2F141001BFDBF /* ContractDetailsVC.m in Sources */,
+				0A7D505A20C437C5001BFDBF /* MyFriendViewController.m in Sources */,
 				0AFEE71D20BD2F23004FA8FC /* anjuyi1.xcdatamodeld in Sources */,
 				0AFEE76320BD2F50004FA8FC /* RequestSever.m in Sources */,
+				0A7D503E20C42567001BFDBF /* MyColletViewController.m in Sources */,
 				0AFEE77020BD2F50004FA8FC /* PushViewController.m in Sources */,
+				0A7D505E20C43891001BFDBF /* MyFriendTableViewCell.m in Sources */,
 				0AFEE76520BD2F50004FA8FC /* IanScrollView.m in Sources */,
 				0A7D500B20C2DC22001BFDBF /* CommentTableViewCell.m in Sources */,
+				0A7D504520C42A66001BFDBF /* DraftBoxViewController.m in Sources */,
 				0A3D7A2320BE44B4009D949B /* DecorateTableViewCell.m in Sources */,
 				0A7D501220C2EDC6001BFDBF /* ContractViewController.m in Sources */,
 				0AD0C62520BF7E1E001A20C4 /* ScreeningBar.m in Sources */,
+				0A7D503720C41B31001BFDBF /* PhotoCollectionViewCell.m in Sources */,
 				0AFEE76A20BD2F50004FA8FC /* BaseNaviViewController.m in Sources */,
 				0AFEE76720BD2F50004FA8FC /* HomeViewController.m in Sources */,
 				0AD0C61C20BEE1EC001A20C4 /* DesignerViewController.m in Sources */,
@@ -700,24 +877,33 @@
 				0AC3190D20BDA0100035800F /* HomeTableViewCell.m in Sources */,
 				0AFEE72520BD2F26004FA8FC /* main.m in Sources */,
 				0A4A97C420BFCFAB009D6594 /* MoreChannel.m in Sources */,
+				0A7D502320C39476001BFDBF /* PersonalViewController.m in Sources */,
 				0A7D500820C2DC08001BFDBF /* CommentViewController.m in Sources */,
+				0A7D504920C42B01001BFDBF /* DraftBoxTableViewCell.m in Sources */,
 				0A3085B820C02B4F00882805 /* MasterViewController.m in Sources */,
+				0A7D506720C43CC7001BFDBF /* CustomerServiceViewController.m in Sources */,
 				0A55829F20C11B1D00759E6B /* MasterDetailsVC.m in Sources */,
+				0A7D506320C43C62001BFDBF /* MyTopicViewController.m in Sources */,
+				0A7D503420C3A700001BFDBF /* TransactionRecordsVC.m in Sources */,
 				0AFEE76620BD2F50004FA8FC /* IanScrollImageView.m in Sources */,
 				0A7D4FF320C2A92B001BFDBF /* SettingViewController.m in Sources */,
 				0AFEE71420BD2F23004FA8FC /* AppDelegate.m in Sources */,
 				0A7D500420C2D626001BFDBF /* DistributionDetailsVC.m in Sources */,
 				0AFEE76220BD2F50004FA8FC /* ViewHelps.m in Sources */,
+				0A7D505520C433CF001BFDBF /* MyAnswerTableViewCell.m in Sources */,
 				0A7D4FF020C23462001BFDBF /* ProjectCollectionViewCell.m in Sources */,
 				0AFEE76F20BD2F50004FA8FC /* MyViewController.m in Sources */,
 				0AFEE75E20BD2F50004FA8FC /* MallViewController.m in Sources */,
 				0A5582AA20C1339800759E6B /* ProjectDetailsVC.m in Sources */,
 				0AFEE75F20BD2F50004FA8FC /* UIImage+Category.m in Sources */,
 				0AFEE76920BD2F50004FA8FC /* KBTabbar.m in Sources */,
+				0A7D503A20C42357001BFDBF /* NavTwoTitle.m in Sources */,
 				0A3085BC20C02E1100882805 /* DesignerDetailsVC.m in Sources */,
 				0A5582A220C124B200759E6B /* ProjectListVC.m in Sources */,
 				0AFEE76C20BD2F50004FA8FC /* BaseModel.m in Sources */,
+				0A7D502E20C3A552001BFDBF /* MyWalletViewController.m in Sources */,
 				0A7D500020C2B760001BFDBF /* DistributionTableViewCell.m in Sources */,
+				0A7D502720C39CD0001BFDBF /* LSYCollerctionViewLayout.m in Sources */,
 				0AFEE76820BD2F50004FA8FC /* RootViewController.m in Sources */,
 				0AFEE84320BD334F004FA8FC /* UIColor+Category.m in Sources */,
 				0AC3190620BD8ED70035800F /* HomeModel.m in Sources */,

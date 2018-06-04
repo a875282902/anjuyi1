@@ -59,6 +59,7 @@
 #import "ViewHelps.h"
 #import "UIColor+Category.h"
 #import "Tools.h"
+#import "NavTwoTitle.h"
 
 
 #endif
