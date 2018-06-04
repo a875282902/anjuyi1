@@ -18,6 +18,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self setTitle:@"交易记录"];
+    
+    [self baseForDefaultLeftNavButton];
+    
+    [self setNavigationRightBarButtonWithImageNamed:@"riliico"];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -22,6 +22,7 @@
 #import "CollectShopViewController.h"//收藏商品
 
 #import "CustomerServiceViewController.h"//在线客服
+#import "MyOrderViewController.h"//我的订单
 #import "MyCouponsViewController.h"//我的优惠券
 #import "MyWalletViewController.h"//我的钱包
 
@@ -262,6 +263,13 @@
         case 8:
         {
             CustomerServiceViewController *controller = [[CustomerServiceViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            
+        }
+            break;
+        case 9:
+        {
+            MyOrderViewController *controller = [[MyOrderViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }

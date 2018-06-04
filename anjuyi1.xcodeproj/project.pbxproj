@@ -18,6 +18,12 @@
 		0A5582A620C1298000759E6B /* ProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5582A420C1298000759E6B /* ProjectTableViewCell.m */; };
 		0A5582A720C1298000759E6B /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A5582A520C1298000759E6B /* ProjectTableViewCell.xib */; };
 		0A5582AA20C1339800759E6B /* ProjectDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5582A920C1339800759E6B /* ProjectDetailsVC.m */; };
+		0A5CD81520C592460028F82D /* YZCover.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CD81120C592450028F82D /* YZCover.m */; };
+		0A5CD81620C592460028F82D /* YZPullDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CD81220C592450028F82D /* YZPullDownMenu.m */; };
+		0A5CD81C20C5927F0028F82D /* YZMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CD81820C5927F0028F82D /* YZMenuButton.m */; };
+		0A5CD81D20C5927F0028F82D /* UIView+YZCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CD81B20C5927F0028F82D /* UIView+YZCategory.m */; };
+		0A5CD82120C592C70028F82D /* MyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CD82020C592C70028F82D /* MyOrderViewController.m */; };
+		0A5CD82420C593790028F82D /* DefaultPullDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CD82320C593790028F82D /* DefaultPullDown.m */; };
 		0A7D4FF020C23462001BFDBF /* ProjectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D4FEF20C23462001BFDBF /* ProjectCollectionViewCell.m */; };
 		0A7D4FF320C2A92B001BFDBF /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D4FF220C2A92B001BFDBF /* SettingViewController.m */; };
 		0A7D4FF720C2B723001BFDBF /* DistributionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D4FF620C2B723001BFDBF /* DistributionViewController.m */; };
@@ -118,6 +124,18 @@
 		0A5582A520C1298000759E6B /* ProjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCell.xib; sourceTree = "<group>"; };
 		0A5582A820C1339800759E6B /* ProjectDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectDetailsVC.h; sourceTree = "<group>"; };
 		0A5582A920C1339800759E6B /* ProjectDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailsVC.m; sourceTree = "<group>"; };
+		0A5CD81120C592450028F82D /* YZCover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZCover.m; sourceTree = "<group>"; };
+		0A5CD81220C592450028F82D /* YZPullDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZPullDownMenu.m; sourceTree = "<group>"; };
+		0A5CD81320C592450028F82D /* YZCover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZCover.h; sourceTree = "<group>"; };
+		0A5CD81420C592460028F82D /* YZPullDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZPullDownMenu.h; sourceTree = "<group>"; };
+		0A5CD81820C5927F0028F82D /* YZMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZMenuButton.m; sourceTree = "<group>"; };
+		0A5CD81920C5927F0028F82D /* UIView+YZCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YZCategory.h"; sourceTree = "<group>"; };
+		0A5CD81A20C5927F0028F82D /* YZMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZMenuButton.h; sourceTree = "<group>"; };
+		0A5CD81B20C5927F0028F82D /* UIView+YZCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YZCategory.m"; sourceTree = "<group>"; };
+		0A5CD81F20C592C70028F82D /* MyOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyOrderViewController.h; sourceTree = "<group>"; };
+		0A5CD82020C592C70028F82D /* MyOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyOrderViewController.m; sourceTree = "<group>"; };
+		0A5CD82220C593790028F82D /* DefaultPullDown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultPullDown.h; sourceTree = "<group>"; };
+		0A5CD82320C593790028F82D /* DefaultPullDown.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultPullDown.m; sourceTree = "<group>"; };
 		0A7D4FEE20C23462001BFDBF /* ProjectCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectCollectionViewCell.h; sourceTree = "<group>"; };
 		0A7D4FEF20C23462001BFDBF /* ProjectCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectCollectionViewCell.m; sourceTree = "<group>"; };
 		0A7D4FF120C2A92B001BFDBF /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -315,6 +333,40 @@
 				0A5582A920C1339800759E6B /* ProjectDetailsVC.m */,
 			);
 			path = Master;
+			sourceTree = "<group>";
+		};
+		0A5CD81020C5921D0028F82D /* PullDown */ = {
+			isa = PBXGroup;
+			children = (
+				0A5CD81720C5927F0028F82D /* Category */,
+				0A5CD81320C592450028F82D /* YZCover.h */,
+				0A5CD81120C592450028F82D /* YZCover.m */,
+				0A5CD81420C592460028F82D /* YZPullDownMenu.h */,
+				0A5CD81220C592450028F82D /* YZPullDownMenu.m */,
+				0A5CD82220C593790028F82D /* DefaultPullDown.h */,
+				0A5CD82320C593790028F82D /* DefaultPullDown.m */,
+			);
+			path = PullDown;
+			sourceTree = "<group>";
+		};
+		0A5CD81720C5927F0028F82D /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				0A5CD81820C5927F0028F82D /* YZMenuButton.m */,
+				0A5CD81920C5927F0028F82D /* UIView+YZCategory.h */,
+				0A5CD81A20C5927F0028F82D /* YZMenuButton.h */,
+				0A5CD81B20C5927F0028F82D /* UIView+YZCategory.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		0A5CD81E20C592B60028F82D /* MyOrder */ = {
+			isa = PBXGroup;
+			children = (
+				0A5CD81F20C592C70028F82D /* MyOrderViewController.h */,
+				0A5CD82020C592C70028F82D /* MyOrderViewController.m */,
+			);
+			path = MyOrder;
 			sourceTree = "<group>";
 		};
 		0A7D4FF420C2B6ED001BFDBF /* Distribution */ = {
@@ -626,6 +678,7 @@
 		0AFEE73420BD2F4F004FA8FC /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				0A5CD81020C5921D0028F82D /* PullDown */,
 				0AFEE73E20BD2F4F004FA8FC /* IanScrollView */,
 				0AFEE73620BD2F4F004FA8FC /* HttpRequest */,
 				0AFEE73520BD2F4F004FA8FC /* Rotating.h */,
@@ -715,6 +768,7 @@
 		0AFEE75820BD2F50004FA8FC /* My */ = {
 			isa = PBXGroup;
 			children = (
+				0A5CD81E20C592B60028F82D /* MyOrder */,
 				0AFD6CDE20C4DCF000223512 /* MyCoupons */,
 				0AFD6CD220C4CB1900223512 /* CollectShop */,
 				0A7D506420C43C87001BFDBF /* CustomerService */,
@@ -893,6 +947,7 @@
 				0AC3190120BD88DA0035800F /* SearchView.m in Sources */,
 				0A7D505120C432A6001BFDBF /* MyAnswerViewController.m in Sources */,
 				0A4A97C720BFD200009D6594 /* ChannelButton.m in Sources */,
+				0A5CD82420C593790028F82D /* DefaultPullDown.m in Sources */,
 				0AFEE76B20BD2F50004FA8FC /* BaseViewController.m in Sources */,
 				0A5582A620C1298000759E6B /* ProjectTableViewCell.m in Sources */,
 				0A7D4FF720C2B723001BFDBF /* DistributionViewController.m in Sources */,
@@ -904,10 +959,13 @@
 				0A7D502A20C39CEE001BFDBF /* MyPhotoViewController.m in Sources */,
 				0AFD6CD920C4D55E00223512 /* CollectShopTableViewCell.m in Sources */,
 				0AD0C62820BF87FF001A20C4 /* ScreeningView.m in Sources */,
+				0A5CD81520C592460028F82D /* YZCover.m in Sources */,
 				0A7D501B20C2F141001BFDBF /* ContractDetailsVC.m in Sources */,
+				0A5CD81D20C5927F0028F82D /* UIView+YZCategory.m in Sources */,
 				0A7D505A20C437C5001BFDBF /* MyFriendViewController.m in Sources */,
 				0AFEE71D20BD2F23004FA8FC /* anjuyi1.xcdatamodeld in Sources */,
 				0AFEE76320BD2F50004FA8FC /* RequestSever.m in Sources */,
+				0A5CD81C20C5927F0028F82D /* YZMenuButton.m in Sources */,
 				0A7D503E20C42567001BFDBF /* MyColletViewController.m in Sources */,
 				0AFD6CE520C4DD5900223512 /* MyCouponsTableViewCell.m in Sources */,
 				0AFEE77020BD2F50004FA8FC /* PushViewController.m in Sources */,
@@ -916,6 +974,7 @@
 				0A7D500B20C2DC22001BFDBF /* CommentTableViewCell.m in Sources */,
 				0A7D504520C42A66001BFDBF /* DraftBoxViewController.m in Sources */,
 				0A3D7A2320BE44B4009D949B /* DecorateTableViewCell.m in Sources */,
+				0A5CD81620C592460028F82D /* YZPullDownMenu.m in Sources */,
 				0A7D501220C2EDC6001BFDBF /* ContractViewController.m in Sources */,
 				0AD0C62520BF7E1E001A20C4 /* ScreeningBar.m in Sources */,
 				0A7D503720C41B31001BFDBF /* PhotoCollectionViewCell.m in Sources */,
@@ -949,6 +1008,7 @@
 				0AFEE75E20BD2F50004FA8FC /* MallViewController.m in Sources */,
 				0A5582AA20C1339800759E6B /* ProjectDetailsVC.m in Sources */,
 				0AFEE75F20BD2F50004FA8FC /* UIImage+Category.m in Sources */,
+				0A5CD82120C592C70028F82D /* MyOrderViewController.m in Sources */,
 				0AFEE76920BD2F50004FA8FC /* KBTabbar.m in Sources */,
 				0A7D503A20C42357001BFDBF /* NavTwoTitle.m in Sources */,
 				0A3085BC20C02E1100882805 /* DesignerDetailsVC.m in Sources */,
