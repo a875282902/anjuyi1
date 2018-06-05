@@ -24,6 +24,13 @@
 		0A5CD81D20C5927F0028F82D /* UIView+YZCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CD81B20C5927F0028F82D /* UIView+YZCategory.m */; };
 		0A5CD82120C592C70028F82D /* MyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CD82020C592C70028F82D /* MyOrderViewController.m */; };
 		0A5CD82420C593790028F82D /* DefaultPullDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CD82320C593790028F82D /* DefaultPullDown.m */; };
+		0A5CD83020C61A110028F82D /* MyOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CD82E20C61A110028F82D /* MyOrderTableViewCell.m */; };
+		0A5CD83120C61A110028F82D /* MyOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A5CD82F20C61A110028F82D /* MyOrderTableViewCell.xib */; };
+		0A5CD83420C621430028F82D /* OrderDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CD83320C621430028F82D /* OrderDetailsVC.m */; };
+		0A5CD83820C626880028F82D /* OrderDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CD83620C626880028F82D /* OrderDetailsCell.m */; };
+		0A5CD83920C626880028F82D /* OrderDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A5CD83720C626880028F82D /* OrderDetailsCell.xib */; };
+		0A5CD83C20C664FF0028F82D /* RecordsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CD83B20C664FF0028F82D /* RecordsTableView.m */; };
+		0A5CD84420C67A330028F82D /* SelectTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CD84320C67A330028F82D /* SelectTime.m */; };
 		0A7D4FF020C23462001BFDBF /* ProjectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D4FEF20C23462001BFDBF /* ProjectCollectionViewCell.m */; };
 		0A7D4FF320C2A92B001BFDBF /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D4FF220C2A92B001BFDBF /* SettingViewController.m */; };
 		0A7D4FF720C2B723001BFDBF /* DistributionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D4FF620C2B723001BFDBF /* DistributionViewController.m */; };
@@ -136,6 +143,18 @@
 		0A5CD82020C592C70028F82D /* MyOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyOrderViewController.m; sourceTree = "<group>"; };
 		0A5CD82220C593790028F82D /* DefaultPullDown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultPullDown.h; sourceTree = "<group>"; };
 		0A5CD82320C593790028F82D /* DefaultPullDown.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultPullDown.m; sourceTree = "<group>"; };
+		0A5CD82D20C61A110028F82D /* MyOrderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyOrderTableViewCell.h; sourceTree = "<group>"; };
+		0A5CD82E20C61A110028F82D /* MyOrderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyOrderTableViewCell.m; sourceTree = "<group>"; };
+		0A5CD82F20C61A110028F82D /* MyOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyOrderTableViewCell.xib; sourceTree = "<group>"; };
+		0A5CD83220C621430028F82D /* OrderDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderDetailsVC.h; sourceTree = "<group>"; };
+		0A5CD83320C621430028F82D /* OrderDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderDetailsVC.m; sourceTree = "<group>"; };
+		0A5CD83520C626880028F82D /* OrderDetailsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderDetailsCell.h; sourceTree = "<group>"; };
+		0A5CD83620C626880028F82D /* OrderDetailsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderDetailsCell.m; sourceTree = "<group>"; };
+		0A5CD83720C626880028F82D /* OrderDetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailsCell.xib; sourceTree = "<group>"; };
+		0A5CD83A20C664FF0028F82D /* RecordsTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordsTableView.h; sourceTree = "<group>"; };
+		0A5CD83B20C664FF0028F82D /* RecordsTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordsTableView.m; sourceTree = "<group>"; };
+		0A5CD84220C67A330028F82D /* SelectTime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectTime.h; sourceTree = "<group>"; };
+		0A5CD84320C67A330028F82D /* SelectTime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectTime.m; sourceTree = "<group>"; };
 		0A7D4FEE20C23462001BFDBF /* ProjectCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectCollectionViewCell.h; sourceTree = "<group>"; };
 		0A7D4FEF20C23462001BFDBF /* ProjectCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectCollectionViewCell.m; sourceTree = "<group>"; };
 		0A7D4FF120C2A92B001BFDBF /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -365,6 +384,8 @@
 			children = (
 				0A5CD81F20C592C70028F82D /* MyOrderViewController.h */,
 				0A5CD82020C592C70028F82D /* MyOrderViewController.m */,
+				0A5CD83220C621430028F82D /* OrderDetailsVC.h */,
+				0A5CD83320C621430028F82D /* OrderDetailsVC.m */,
 			);
 			path = MyOrder;
 			sourceTree = "<group>";
@@ -417,6 +438,12 @@
 				0AFD6CE220C4DD5900223512 /* MyCouponsTableViewCell.h */,
 				0AFD6CE320C4DD5900223512 /* MyCouponsTableViewCell.m */,
 				0AFD6CE420C4DD5900223512 /* MyCouponsTableViewCell.xib */,
+				0A5CD82D20C61A110028F82D /* MyOrderTableViewCell.h */,
+				0A5CD82E20C61A110028F82D /* MyOrderTableViewCell.m */,
+				0A5CD82F20C61A110028F82D /* MyOrderTableViewCell.xib */,
+				0A5CD83520C626880028F82D /* OrderDetailsCell.h */,
+				0A5CD83620C626880028F82D /* OrderDetailsCell.m */,
+				0A5CD83720C626880028F82D /* OrderDetailsCell.xib */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -473,6 +500,10 @@
 				0A7D503020C3A6E9001BFDBF /* RechargeViewController.m */,
 				0A7D503220C3A700001BFDBF /* TransactionRecordsVC.h */,
 				0A7D503320C3A700001BFDBF /* TransactionRecordsVC.m */,
+				0A5CD83A20C664FF0028F82D /* RecordsTableView.h */,
+				0A5CD83B20C664FF0028F82D /* RecordsTableView.m */,
+				0A5CD84220C67A330028F82D /* SelectTime.h */,
+				0A5CD84320C67A330028F82D /* SelectTime.m */,
 			);
 			path = MyWallet;
 			sourceTree = "<group>";
@@ -881,6 +912,7 @@
 				0AFEE72220BD2F26004FA8FC /* LaunchScreen.storyboard in Resources */,
 				0AFEE76D20BD2F50004FA8FC /* LaunchScreen.storyboard in Resources */,
 				0A7D505F20C43891001BFDBF /* MyFriendTableViewCell.xib in Resources */,
+				0A5CD83120C61A110028F82D /* MyOrderTableViewCell.xib in Resources */,
 				0A7D504A20C42B01001BFDBF /* DraftBoxTableViewCell.xib in Resources */,
 				0AFEE71F20BD2F26004FA8FC /* Assets.xcassets in Resources */,
 				0A5582A720C1298000759E6B /* ProjectTableViewCell.xib in Resources */,
@@ -889,6 +921,7 @@
 				0A3D7A2420BE44B4009D949B /* DecorateTableViewCell.xib in Resources */,
 				0A7D500120C2B760001BFDBF /* DistributionTableViewCell.xib in Resources */,
 				0AFD6CE620C4DD5900223512 /* MyCouponsTableViewCell.xib in Resources */,
+				0A5CD83920C626880028F82D /* OrderDetailsCell.xib in Resources */,
 				0A7D501F20C2F32F001BFDBF /* pdf.pdf in Resources */,
 				0AD0C62220BEE4D6001A20C4 /* DesignerTableViewCell.xib in Resources */,
 				0AFD6CDA20C4D55E00223512 /* CollectShopTableViewCell.xib in Resources */,
@@ -946,6 +979,7 @@
 			files = (
 				0AC3190120BD88DA0035800F /* SearchView.m in Sources */,
 				0A7D505120C432A6001BFDBF /* MyAnswerViewController.m in Sources */,
+				0A5CD83C20C664FF0028F82D /* RecordsTableView.m in Sources */,
 				0A4A97C720BFD200009D6594 /* ChannelButton.m in Sources */,
 				0A5CD82420C593790028F82D /* DefaultPullDown.m in Sources */,
 				0AFEE76B20BD2F50004FA8FC /* BaseViewController.m in Sources */,
@@ -959,6 +993,7 @@
 				0A7D502A20C39CEE001BFDBF /* MyPhotoViewController.m in Sources */,
 				0AFD6CD920C4D55E00223512 /* CollectShopTableViewCell.m in Sources */,
 				0AD0C62820BF87FF001A20C4 /* ScreeningView.m in Sources */,
+				0A5CD83820C626880028F82D /* OrderDetailsCell.m in Sources */,
 				0A5CD81520C592460028F82D /* YZCover.m in Sources */,
 				0A7D501B20C2F141001BFDBF /* ContractDetailsVC.m in Sources */,
 				0A5CD81D20C5927F0028F82D /* UIView+YZCategory.m in Sources */,
@@ -978,10 +1013,12 @@
 				0A7D501220C2EDC6001BFDBF /* ContractViewController.m in Sources */,
 				0AD0C62520BF7E1E001A20C4 /* ScreeningBar.m in Sources */,
 				0A7D503720C41B31001BFDBF /* PhotoCollectionViewCell.m in Sources */,
+				0A5CD83020C61A110028F82D /* MyOrderTableViewCell.m in Sources */,
 				0AFEE76A20BD2F50004FA8FC /* BaseNaviViewController.m in Sources */,
 				0AFEE76720BD2F50004FA8FC /* HomeViewController.m in Sources */,
 				0AD0C61C20BEE1EC001A20C4 /* DesignerViewController.m in Sources */,
 				0AFEE76420BD2F50004FA8FC /* Rotating.m in Sources */,
+				0A5CD83420C621430028F82D /* OrderDetailsVC.m in Sources */,
 				0AD0C61820BEB354001A20C4 /* MallTableViewCell.m in Sources */,
 				0AFEE76020BD2F50004FA8FC /* DecorateViewController.m in Sources */,
 				0AFD6CE920C4E3B000223512 /* CouponsDetails.m in Sources */,
@@ -1002,6 +1039,7 @@
 				0AFEE71420BD2F23004FA8FC /* AppDelegate.m in Sources */,
 				0A7D500420C2D626001BFDBF /* DistributionDetailsVC.m in Sources */,
 				0AFEE76220BD2F50004FA8FC /* ViewHelps.m in Sources */,
+				0A5CD84420C67A330028F82D /* SelectTime.m in Sources */,
 				0A7D505520C433CF001BFDBF /* MyAnswerTableViewCell.m in Sources */,
 				0A7D4FF020C23462001BFDBF /* ProjectCollectionViewCell.m in Sources */,
 				0AFEE76F20BD2F50004FA8FC /* MyViewController.m in Sources */,

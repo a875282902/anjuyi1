@@ -12,7 +12,7 @@ extern NSString * const YZUpdateMenuTitleNote;
 static NSString * const ID = @"cell";
 
 @interface DefaultPullDown ()
-@property (nonatomic, copy) NSArray *titleArray;
+
 @property (nonatomic, assign) NSInteger selectedCol;
 @end
 
@@ -24,7 +24,6 @@ static NSString * const ID = @"cell";
     
     _selectedCol = 0;
     
-    _titleArray = @[@"综合排序",@"人气排序",@"评分排序",@"评价最多"];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:ID];
     

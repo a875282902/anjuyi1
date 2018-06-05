@@ -10,4 +10,6 @@
 
 @interface DefaultPullDown : UITableViewController
 
+@property (nonatomic, copy) NSArray *titleArray;
+
 @end

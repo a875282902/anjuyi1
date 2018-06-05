@@ -11,6 +11,9 @@
 @interface Tools : NSObject
 
 +(UILabel *)creatLabel:(CGRect)rect font:(UIFont *)font color:(UIColor*)color alignment:(NSTextAlignment)alignment title:(NSString *)title;
++(UILabel *)creatAttributedLabel:(CGRect)rect font:(UIFont *)font color:(UIColor*)color  title:(NSString *)title image:(NSString *)imageName alignment:(NSTextAlignment)alignment;
+
+
 
 + (UIView *)setLineView:(CGRect)rect;
 
@@ -19,5 +22,8 @@
 + (UIImageView *)creatImage:(CGRect)rect image:(NSString *)imageName;
 
 + (UIImageView *)creatImage:(CGRect)rect url:(NSString *)imageUrl image:(NSString *)imageName;
+
+
+
 
 @end

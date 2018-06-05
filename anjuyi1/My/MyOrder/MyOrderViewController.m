@@ -10,7 +10,8 @@
 #import "YZPullDownMenu.h"
 #import "YZMenuButton.h"
 #import "DefaultPullDown.h"
-#import "CollectShopTableViewCell.h"
+#import "MyOrderTableViewCell.h"
+#import "OrderDetailsVC.h"
 
 #define YZScreenW [UIScreen mainScreen].bounds.size.width
 #define YZScreenH [UIScreen mainScreen].bounds.size.height
@@ -82,9 +83,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    CollectShopTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CollectShopTableViewCell"];
+    MyOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrderTableViewCell"];
     if (!cell) {
-        cell = [[CollectShopTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"CollectShopTableViewCell"];
+        cell = [[MyOrderTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"MyOrderTableViewCell"];
     }
     
     [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
@@ -94,15 +95,27 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 100;
+    return 238;
 }
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    OrderDetailsVC *controller = [[OrderDetailsVC alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    
+}
+
 #pragma mark - 添加子控制器
 - (void)setupAllChildViewController
 {
     
     DefaultPullDown *sort = [[DefaultPullDown alloc] init];
+    sort.titleArray = @[@"全部",@"电商",@"租赁",@"安装"];
     DefaultPullDown *sort2 = [[DefaultPullDown alloc] init];
+    sort2.titleArray = @[@"全部",@"待支付",@"待发货",@"待收货",@"待评价",@"订单完成"];
     DefaultPullDown *sort3 = [[DefaultPullDown alloc] init];
+    sort3.titleArray = @[@"全部",@"电商",@"租赁",@"安装"];
     [self addChildViewController:sort];
     [self addChildViewController:sort2];
     [self addChildViewController:sort3];

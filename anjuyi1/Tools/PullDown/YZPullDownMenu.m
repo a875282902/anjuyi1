@@ -111,6 +111,8 @@ NSString * const YZUpdateMenuTitleNote = @"YZUpdateMenuTitleNote";
         _contentView.backgroundColor = [UIColor whiteColor];
         _contentView.frame = CGRectMake(0, 0, self.bounds.size.width/3, 0);
         _contentView.clipsToBounds = YES;
+        [_contentView.layer setBorderWidth:0.4];
+        [_contentView.layer setBackgroundColor:[UIColor colorWithHexString:@"#f6f6f6"].CGColor];
         [self.coverView addSubview:_contentView];
     }
     return _contentView;
