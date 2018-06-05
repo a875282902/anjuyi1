@@ -26,6 +26,7 @@
 #import "MyCouponsViewController.h"//我的优惠券
 #import "MyWalletViewController.h"//我的钱包
 
+#import "IntegralMallViewController.h"//积分商城
 #import "CommentViewController.h"//评论
 #import "ContractViewController.h"//合同管理
 #import "DistributionViewController.h"//分销统计
@@ -284,6 +285,13 @@
         case 11:
         {
             MyWalletViewController *controller = [[MyWalletViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            
+        }
+            break;
+        case 12:
+        {
+            IntegralMallViewController *controller = [[IntegralMallViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }

@@ -45,6 +45,8 @@
     [self.view addSubview:self.tmpTableView];
     
     [self.view addSubview:self.screeningBar];
+    
+    [self.navigationController.view addSubview:self.screeningView];
 }
 
 #pragma mark --  headerView
@@ -103,7 +105,6 @@
     NSLog(@"%ld",index);
     
     if (index == 3) {
-        [self.navigationController.view addSubview:self.screeningView];
         [self.screeningView show];
     }
 }

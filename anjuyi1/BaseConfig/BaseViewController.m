@@ -93,8 +93,21 @@
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     [self.navigationItem setRightBarButtonItem:rightButtonItem];
     
+}
+
+/*设置导航栏右侧的按钮 和点击事件*/
+- (void) setNavigationRightBarButtonWithTitle:(NSString *)title color:(UIColor *)color{
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setFrame:CGRectMake(0, 0, title.length * 16+3, 44)];
+    [rightButton setTitle:title forState:(UIControlStateNormal)];
+    [rightButton setTitleColor:color forState:(UIControlStateNormal)];
+    [rightButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    [rightButton addTarget:self action:@selector(rightButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    [self.navigationItem setRightBarButtonItem:rightButtonItem];
     
 }
+
 
 /*设置导航栏右侧的double按钮 和点击事件*/
 - (void) setNavigationDoubleRightBarButtonWithImageNamed:(NSString *)imageName1 imageNamed2:(NSString *)imageName2{

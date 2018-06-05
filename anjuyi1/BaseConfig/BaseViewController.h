@@ -23,6 +23,9 @@
  */
 - (void) setNavigationRightBarButtonWithImageNamed:(NSString *)imageName;
 - (void) setNavigationDoubleRightBarButtonWithImageNamed:(NSString *)imageName1 imageNamed2:(NSString *)imageName2;
+
+- (void) setNavigationRightBarButtonWithTitle:(NSString *)title color:(UIColor *)color;
+
 - (void) rightButtonTouchUpInside:(id)sender;
 - (void)doubleRightButtonTouchUpInside:(id)sender;
 
