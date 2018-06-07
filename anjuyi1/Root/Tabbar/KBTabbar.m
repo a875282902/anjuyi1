@@ -17,15 +17,12 @@
     if (self) {
         
         [self setBackgroundImage:[UIImage imageWithColor:MDRGBA(254, 255, 255, 1)]];
-        
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setImage:[UIImage imageNamed:@"nav_fb"] forState:UIControlStateNormal];
         btn.bounds = CGRectMake(0, 0, 64, 64);
         self.centerBtn = btn;
         [self addSubview:btn];
-        
- 
-        
+  
     }
     return self;
 }

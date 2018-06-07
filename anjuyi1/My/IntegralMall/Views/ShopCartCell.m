@@ -10,9 +10,40 @@
 
 @implementation ShopCartCell
 
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    
+    if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self = [[[NSBundle mainBundle] loadNibNamed:@"ShopCartCell" owner:self options:nil] lastObject];
+    }
+    return self;
+}
+
+- (IBAction)selectShop:(UIButton *)sender {
+
+    [sender setSelected:!sender.selected];
+
+}
+
+- (IBAction)subtractShopNumber:(UIButton *)sender {
+    
+    if ([self.numTextField.text integerValue] > 1) {
+        [self.numTextField setText:[NSString stringWithFormat:@"%ld",[self.numTextField.text integerValue]-1]];
+    }
+    
+    
+    
+}
+- (IBAction)addShopNumber:(UIButton *)sender {
+    
+     [self.numTextField setText:[NSString stringWithFormat:@"%ld",[self.numTextField.text integerValue]+1]];
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

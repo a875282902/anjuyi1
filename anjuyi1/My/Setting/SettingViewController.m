@@ -7,6 +7,7 @@
 //
 
 #import "SettingViewController.h"
+#import "AddressViewController.h"
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -101,6 +102,19 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return MDXFrom6(50);
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row == 2) {
+        AddressViewController *controller = [[AddressViewController alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    
+    if (indexPath.row == 3) {
+        [self clearCache];
+    }
+    
 }
 
 

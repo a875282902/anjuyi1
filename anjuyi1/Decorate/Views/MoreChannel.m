@@ -28,7 +28,7 @@
     }
     return self;
 }
-- (void)setUpButton:(NSArray *)arr width:(CGFloat)width{
+- (void)setUpButton:(NSArray *)arr width:(CGFloat)width spacing:(CGFloat)spacing{
     
     CGFloat X = 0;
     CGFloat Y = 0;

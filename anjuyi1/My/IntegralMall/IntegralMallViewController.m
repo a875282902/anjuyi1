@@ -13,6 +13,7 @@
 #import "SuspensionButton.h"
 #import "SearchView.h"
 #import "ShopCartViewController.h"//购物车
+#import "GoodsDetailsViewController.h"//商品详情
 
 @interface IntegralMallViewController ()<ScreeningBarDelegate,UITableViewDelegate,UITableViewDataSource,SuspensionButtonDelegate>
 
@@ -37,7 +38,7 @@
     
     [self.view addSubview:self.screeningBar];
     
-    [self.navigationController.view addSubview:self.screeningView];
+    [[UIApplication sharedApplication].keyWindow addSubview:self.screeningView];
     
     [self.view addSubview:self.tmpTableView];
     
@@ -138,6 +139,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return 120;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    GoodsDetailsViewController *controller = [[GoodsDetailsViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    
 }
 
 #pragma mark -- 点击事件
