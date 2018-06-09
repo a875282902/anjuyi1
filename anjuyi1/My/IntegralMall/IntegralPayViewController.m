@@ -8,6 +8,7 @@
 
 #import "IntegralPayViewController.h"
 #import "IntegralPayTableViewCell.h"
+#import "AddressViewController.h"
 
 @interface IntegralPayViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -93,6 +94,7 @@
     
     if (!header) {
         header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, MDXFrom6(85))];
+        [header addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectAddress)]];
         [header setBackgroundColor:[UIColor whiteColor]];
         [header addSubview:[Tools creatAttributedLabel:CGRectMake(MDXFrom6(12), MDXFrom6(14), MDXFrom6(330), MDXFrom6(20)) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#333333"] title:@"收货人：张美华" image:@"order_user" alignment:(NSTextAlignmentLeft)]];
         
@@ -107,6 +109,12 @@
     }
     
     return header;
+}
+
+- (void)selectAddress{
+    
+    AddressViewController *controller = [[AddressViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

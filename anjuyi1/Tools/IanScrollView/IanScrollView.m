@@ -121,6 +121,7 @@
     });
     
     if (!self.withoutPageControl) {
+        
         _pageControl = ({
             UIPageControl *pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0,_scrollView.frame.size.height-22 , _scrollView.frame.size.width, 15)];
             
@@ -135,6 +136,7 @@
             pageControl;
         });
     }
+    
     for (NSInteger i = 0; i < _slideImagesArray.count; i++) {
         IanScrollImageView *slideImage = [[IanScrollImageView alloc] init];
         //        slideImage.contentMode = UIViewContentModeScaleAspectFit;

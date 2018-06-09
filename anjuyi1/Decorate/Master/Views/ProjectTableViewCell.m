@@ -33,6 +33,12 @@
     [self.checkBtn.layer setCornerRadius:2.5];
     
 }
+- (IBAction)subscribeVisit:(UIButton *)sender {
+    
+    [self.delegate subscribeVisitWithCell:self];
+}
+- (IBAction)checkCase:(UIButton *)sender {
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

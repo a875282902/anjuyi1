@@ -8,6 +8,8 @@
 
 #import "SettingViewController.h"
 #import "AddressViewController.h"
+#import "PersonDetailsViewController.h"//个人信息
+#import "AccountSecurityVC.h"//账号安全
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -114,7 +116,14 @@
     if (indexPath.row == 3) {
         [self clearCache];
     }
-    
+    if (indexPath.row == 0) {
+        PersonDetailsViewController *controller = [[PersonDetailsViewController alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    if (indexPath.row == 1) {
+        AccountSecurityVC *controller = [[AccountSecurityVC alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 

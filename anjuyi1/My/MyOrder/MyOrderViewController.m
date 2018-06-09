@@ -133,6 +133,7 @@
 {
     YZMenuButton *button = [YZMenuButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:_titles[index] forState:UIControlStateNormal];
+    [button.titleLabel setFont:[UIFont systemFontOfSize:15]];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor colorWithRed:25 /255.0 green:143/255.0 blue:238/255.0 alpha:1] forState:UIControlStateSelected];
     [button setImage:[UIImage imageNamed:@"标签-向下箭头"] forState:UIControlStateNormal];

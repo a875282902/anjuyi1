@@ -50,7 +50,7 @@ static AddressTableViewCell * defaultCell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -69,6 +69,50 @@ static AddressTableViewCell * defaultCell;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return 170;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    
+    return 100.0f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    
+    static NSString * identy = @"AddressViewControllerfootView";
+    
+    UIView * foot = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identy];
+    if (!foot) {
+        foot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, MDXFrom6(100))];
+        [foot setBackgroundColor:[UIColor whiteColor]];
+        
+        UIButton *btn = [Tools creatButton:CGRectMake(MDXFrom6(15), MDXFrom6(30), KScreenWidth - MDXFrom6(30), MDXFrom6(50)) font:[UIFont systemFontOfSize:16] color:[UIColor whiteColor] title:@"新增地址" image:@""];
+        [btn setBackgroundColor:MDRGBA(255, 181, 0, 1)];
+        [btn.layer setCornerRadius:5];
+        [btn setClipsToBounds:YES];
+        [btn addTarget:self action:@selector(sureSave) forControlEvents:(UIControlEventTouchUpInside)];
+        [foot addSubview:btn];
+        
+    }
+    return foot;
+    
+}
+
+- (void)sureSave{
+    
+    AddAddressViewController *controller = [[AddAddressViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+
+#pragma mark -- scrolldelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat sectionHeaderHeight = MDXFrom6(100);
+    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+    } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+    }
 }
 
 #pragma mark -- addressTableViewCellDelegate

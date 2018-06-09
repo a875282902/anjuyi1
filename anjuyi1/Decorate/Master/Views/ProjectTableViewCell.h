@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ProjectTableViewCellDelegate <NSObject>
+
+- (void)subscribeVisitWithCell:(UITableViewCell *)cell; //声明协议方法
+
+@end
+
 @interface ProjectTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *coverImage;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImgea;
@@ -18,5 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *checkBtn;
 @property (weak, nonatomic) IBOutlet UILabel *viewsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *likeLabel;
+
+@property (nonatomic,weak)id<ProjectTableViewCellDelegate>delegate;
 
 @end

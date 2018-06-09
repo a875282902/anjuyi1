@@ -65,7 +65,7 @@
         X += W+30;
     }
     
-    [self.scrollView setContentSize:CGSizeMake(375, Y+H+10)];
+    [self.scrollView setContentSize:CGSizeMake(self.frame.size.width, Y+H+10)];
 }
 
 - (void)btnDidPress:(UIButton *)sender{

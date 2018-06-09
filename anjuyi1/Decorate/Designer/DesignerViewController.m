@@ -46,7 +46,7 @@
     
     [self.view addSubview:self.screeningBar];
     
-    [self.navigationController.view addSubview:self.screeningView];
+    [[UIApplication sharedApplication].keyWindow addSubview:self.screeningView];
 }
 
 #pragma mark --  headerView

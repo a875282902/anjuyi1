@@ -16,6 +16,7 @@
 - (void) baseForDefaultLeftNavButton; // -- 默认为back的左侧按钮
 
 - (void) setNavigationLeftBarButtonWithImageNamed:(NSString *)imageName;
+- (void) setNavigationLeftBarButtonWithTitle:(NSString *)title color:(UIColor *)color;
 - (void) leftButtonTouchUpInside:(id)sender;
 
 /*

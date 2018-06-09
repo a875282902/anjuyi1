@@ -174,6 +174,8 @@
     [delete addTarget:self action:@selector(deleteOrder) forControlEvents:(UIControlEventTouchUpInside)];
     [foot addSubview:delete];
     
+    
+    
     return foot;
 }
 

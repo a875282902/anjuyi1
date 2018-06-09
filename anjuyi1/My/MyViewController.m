@@ -13,6 +13,7 @@
 #import "PersonalViewController.h"//个人主页
 
 #import "MyPhotoViewController.h"//我的图片
+#import "MyArticleViewController.h"//我的文章
 #import "MyColletViewController.h"//我的收藏
 #import "DraftBoxViewController.h"//草稿箱
 
@@ -30,6 +31,9 @@
 #import "CommentViewController.h"//评论
 #import "ContractViewController.h"//合同管理
 #import "DistributionViewController.h"//分销统计
+
+#import "CraftsmenViewController.h"//工匠汇
+#import "OrderCenterViewController.h"//接单中心
 
 
 @interface MyViewController ()<UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
@@ -132,7 +136,7 @@
                       @"my_line_cus",@"my_order",@"my_coupon",@"my_wallt",
                       @"my_acc",@"my_comment",@"my_pact",@"my_distribution"];
     
-    NSArray *tArr = @[@"我的图片",@"我的整屋",@"我的收藏",@"草稿箱",
+    NSArray *tArr = @[@"我的图片",@"我的文章",@"我的收藏",@"草稿箱",
                       @"我的回答",@"关注的好友",@"关注的话题",@"商品收藏",
                       @"在线客服",@"我的订单",@"我的优惠券",@"我的钱包",
                       @"积分商城",@"我的评论",@"合同管理",@"分销统计"];
@@ -215,6 +219,13 @@
         case 0:
         {
             MyPhotoViewController *controller = [[MyPhotoViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            
+        }
+            break;
+        case 1:
+        {
+            MyArticleViewController *controller = [[MyArticleViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }
@@ -325,6 +336,23 @@
 
 - (void)selectLineProject:(UITapGestureRecognizer *)sender{
     
+    switch (sender.view.tag) {
+        case 0:
+        {
+            CraftsmenViewController *controller = [[CraftsmenViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+            break;
+        case 3:
+        {
+            OrderCenterViewController *controller = [[OrderCenterViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 

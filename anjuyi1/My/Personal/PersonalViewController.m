@@ -280,7 +280,7 @@
         [self.navView setBackgroundColor:MDRGBA(255, 255, 255, scrollView.contentOffset.y/286.5)];
         
         if (scrollView.contentOffset.y > 265) {
-            [shareBtn setImage:[UIImage imageNamed:@"fw"] forState:(UIControlStateNormal)];
+            [shareBtn setImage:[UIImage imageNamed:@"share"] forState:(UIControlStateNormal)];
             [backBtn setImage:[UIImage imageNamed:@"ss_back"] forState:(UIControlStateNormal)];
         }
         else{

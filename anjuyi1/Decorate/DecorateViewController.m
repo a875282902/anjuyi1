@@ -13,6 +13,7 @@
 #import "IanScrollView.h"
 #import "DesignerViewController.h"//设计师
 #import "MasterViewController.h"//工长
+#import "PlaceSupervisorViewController.h"
 
 #define hederHeight MDXFrom6(55)
 
@@ -163,6 +164,14 @@
         case 1:
         {
             MasterViewController *controller = [[MasterViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            
+        }
+            break;
+            
+        case 2:
+        {
+            PlaceSupervisorViewController *controller = [[PlaceSupervisorViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }

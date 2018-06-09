@@ -10,8 +10,9 @@
 #import "ProjectListVC.h"
 #import "ProjectTableViewCell.h"
 #import "ProjectDetailsVC.h"
+#import "SubscribeVisitVC.h"//预约参观
 
-@interface ProjectListVC ()<UITableViewDelegate , UITableViewDataSource>
+@interface ProjectListVC ()<UITableViewDelegate , UITableViewDataSource,ProjectTableViewCellDelegate>
 
 @property (nonatomic,strong) UITableView    * tmpTableView;
 @property (nonatomic,strong) NSMutableArray * dataArr;
@@ -65,7 +66,7 @@
     }
     
     [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
-    
+    [cell setDelegate:self];
 
     
     return cell;
@@ -79,6 +80,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     ProjectDetailsVC *controll = [[ProjectDetailsVC alloc] init];
+    [self.navigationController pushViewController:controll animated:YES];
+}
+
+- (void)subscribeVisitWithCell:(UITableViewCell *)cell{
+    
+    SubscribeVisitVC *controll = [[SubscribeVisitVC alloc] init];
     [self.navigationController pushViewController:controll animated:YES];
 }
 
