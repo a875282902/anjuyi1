@@ -59,7 +59,7 @@
     
     [self.backView addSubview:[Tools setLineView:CGRectMake(0, 79, self.backView.frame.size.width, 1)]];
     
-    self.tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(80, 0, self.backView.frame.size.width, self.backView.frame.size.height - 50 )];
+    self.tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 80, self.backView.frame.size.width, self.backView.frame.size.height - 130 )];
     [self.tmpScrollView setShowsVerticalScrollIndicator:NO];
     [self.tmpScrollView setShowsHorizontalScrollIndicator:NO];
     [self.backView addSubview:self.tmpScrollView];
