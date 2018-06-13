@@ -152,7 +152,13 @@
 		0AFEE76F20BD2F50004FA8FC /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEE75A20BD2F50004FA8FC /* MyViewController.m */; };
 		0AFEE77020BD2F50004FA8FC /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEE75C20BD2F50004FA8FC /* PushViewController.m */; };
 		0AFEE84020BD30C8004FA8FC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0AFEE83F20BD30C8004FA8FC /* Podfile */; };
+		184D07D320D1029A00653D81 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D220D1029A00653D81 /* RegisterViewController.m */; };
+		184D07D620D1171500653D81 /* SetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D520D1171500653D81 /* SetPasswordVC.m */; };
+		184D07D920D11C8D00653D81 /* NSString+Predicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D720D11C8D00653D81 /* NSString+Predicate.m */; };
+		184D07DC20D122D300653D81 /* SetUserNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07DB20D122D300653D81 /* SetUserNameVC.m */; };
+		184D07DF20D1250100653D81 /* ServiceAgreementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07DE20D1250100653D81 /* ServiceAgreementVC.m */; };
 		187C11ED20D0A8E400E8DDC7 /* UIColor+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C11EC20D0A8E400E8DDC7 /* UIColor+Category.m */; };
+		187C11F420D0E42600E8DDC7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C11F320D0E42600E8DDC7 /* LoginViewController.m */; };
 		91B3B557CA6A413EFEEC07AB /* libPods-anjuyi1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D4CE4DF7C872891D91C834 /* libPods-anjuyi1.a */; };
 /* End PBXBuildFile section */
 
@@ -423,8 +429,20 @@
 		0AFEE75D20BD2F50004FA8FC /* PushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushViewController.h; sourceTree = "<group>"; };
 		0AFEE77120BD2F61004FA8FC /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		0AFEE83F20BD30C8004FA8FC /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		184D07D120D1029A00653D81 /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		184D07D220D1029A00653D81 /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		184D07D420D1171500653D81 /* SetPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetPasswordVC.h; sourceTree = "<group>"; };
+		184D07D520D1171500653D81 /* SetPasswordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetPasswordVC.m; sourceTree = "<group>"; };
+		184D07D720D11C8D00653D81 /* NSString+Predicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Predicate.m"; sourceTree = "<group>"; };
+		184D07D820D11C8D00653D81 /* NSString+Predicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Predicate.h"; sourceTree = "<group>"; };
+		184D07DA20D122D300653D81 /* SetUserNameVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetUserNameVC.h; sourceTree = "<group>"; };
+		184D07DB20D122D300653D81 /* SetUserNameVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetUserNameVC.m; sourceTree = "<group>"; };
+		184D07DD20D1250100653D81 /* ServiceAgreementVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServiceAgreementVC.h; sourceTree = "<group>"; };
+		184D07DE20D1250100653D81 /* ServiceAgreementVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServiceAgreementVC.m; sourceTree = "<group>"; };
 		187C11EB20D0A8E400E8DDC7 /* UIColor+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Category.h"; sourceTree = "<group>"; };
 		187C11EC20D0A8E400E8DDC7 /* UIColor+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Category.m"; sourceTree = "<group>"; };
+		187C11F220D0E42600E8DDC7 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		187C11F320D0E42600E8DDC7 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		45D4CE4DF7C872891D91C834 /* libPods-anjuyi1.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-anjuyi1.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2B52CBD25AF94FEBAF2F3B5 /* Pods-anjuyi1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-anjuyi1.release.xcconfig"; path = "Pods/Target Support Files/Pods-anjuyi1/Pods-anjuyi1.release.xcconfig"; sourceTree = "<group>"; };
 		E1C082ED32D6D91A3A95B2F1 /* Pods-anjuyi1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-anjuyi1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-anjuyi1/Pods-anjuyi1.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1045,6 +1063,7 @@
 			isa = PBXGroup;
 			children = (
 				0AFEE77120BD2F61004FA8FC /* PrefixHeader.pch */,
+				187C11F120D0E13800E8DDC7 /* Login */,
 				0AFEE75320BD2F50004FA8FC /* Base.lproj */,
 				0AFEE74C20BD2F50004FA8FC /* BaseConfig */,
 				0AFEE72E20BD2F4F004FA8FC /* Category */,
@@ -1079,6 +1098,8 @@
 		0AFEE72E20BD2F4F004FA8FC /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				184D07D820D11C8D00653D81 /* NSString+Predicate.h */,
+				184D07D720D11C8D00653D81 /* NSString+Predicate.m */,
 				0AFEE72F20BD2F4F004FA8FC /* UIImage+Category.m */,
 				0AFEE73020BD2F4F004FA8FC /* UIImage+Category.h */,
 				187C11EB20D0A8E400E8DDC7 /* UIColor+Category.h */,
@@ -1228,6 +1249,23 @@
 				0AFEE75C20BD2F50004FA8FC /* PushViewController.m */,
 			);
 			path = Push;
+			sourceTree = "<group>";
+		};
+		187C11F120D0E13800E8DDC7 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				187C11F220D0E42600E8DDC7 /* LoginViewController.h */,
+				187C11F320D0E42600E8DDC7 /* LoginViewController.m */,
+				184D07D120D1029A00653D81 /* RegisterViewController.h */,
+				184D07D220D1029A00653D81 /* RegisterViewController.m */,
+				184D07D420D1171500653D81 /* SetPasswordVC.h */,
+				184D07D520D1171500653D81 /* SetPasswordVC.m */,
+				184D07DA20D122D300653D81 /* SetUserNameVC.h */,
+				184D07DB20D122D300653D81 /* SetUserNameVC.m */,
+				184D07DD20D1250100653D81 /* ServiceAgreementVC.h */,
+				184D07DE20D1250100653D81 /* ServiceAgreementVC.m */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		B304830A5A52CE953582E64E /* Pods */ = {
@@ -1403,6 +1441,7 @@
 				0A7D503120C3A6E9001BFDBF /* RechargeViewController.m in Sources */,
 				0A38FF0920C6D86800B45CCD /* ShopCartCell.m in Sources */,
 				0A38FEF220C6CD1600B45CCD /* SuspensionButton.m in Sources */,
+				184D07DF20D1250100653D81 /* ServiceAgreementVC.m in Sources */,
 				0AC3190920BD9DF40035800F /* Tools.m in Sources */,
 				0AD2DEB220CA443B00E53B43 /* ChangepasswordVC.m in Sources */,
 				0AD0C62120BEE4D6001A20C4 /* DesignerTableViewCell.m in Sources */,
@@ -1450,7 +1489,9 @@
 				0AD0C61820BEB354001A20C4 /* MallTableViewCell.m in Sources */,
 				0AFEE76020BD2F50004FA8FC /* DecorateViewController.m in Sources */,
 				0AFD6CE920C4E3B000223512 /* CouponsDetails.m in Sources */,
+				184D07D320D1029A00653D81 /* RegisterViewController.m in Sources */,
 				0AC3190D20BDA0100035800F /* HomeTableViewCell.m in Sources */,
+				184D07D620D1171500653D81 /* SetPasswordVC.m in Sources */,
 				0AD2DEA620CA192C00E53B43 /* ChangeNameViewController.m in Sources */,
 				0A8E9C7520C8FD9600C6E176 /* IntegralPayTableViewCell.m in Sources */,
 				0AFEE72520BD2F26004FA8FC /* main.m in Sources */,
@@ -1477,6 +1518,7 @@
 				0AFEE71420BD2F23004FA8FC /* AppDelegate.m in Sources */,
 				0A7D500420C2D626001BFDBF /* DistributionDetailsVC.m in Sources */,
 				0AFEE76220BD2F50004FA8FC /* ViewHelps.m in Sources */,
+				184D07DC20D122D300653D81 /* SetUserNameVC.m in Sources */,
 				0A5A7B2E20C7DB9300153E9A /* SDPhotoBrowserd.m in Sources */,
 				0A5CD84420C67A330028F82D /* SelectTime.m in Sources */,
 				0A7D505520C433CF001BFDBF /* MyAnswerTableViewCell.m in Sources */,
@@ -1487,7 +1529,9 @@
 				0AFEE75E20BD2F50004FA8FC /* MallViewController.m in Sources */,
 				0A5582AA20C1339800759E6B /* ProjectDetailsVC.m in Sources */,
 				0AFEE75F20BD2F50004FA8FC /* UIImage+Category.m in Sources */,
+				184D07D920D11C8D00653D81 /* NSString+Predicate.m in Sources */,
 				0AD2DEB920CA51F500E53B43 /* MyArticleViewController.m in Sources */,
+				187C11F420D0E42600E8DDC7 /* LoginViewController.m in Sources */,
 				0A5CD82120C592C70028F82D /* MyOrderViewController.m in Sources */,
 				0AFEE76920BD2F50004FA8FC /* KBTabbar.m in Sources */,
 				0A7D503A20C42357001BFDBF /* NavTwoTitle.m in Sources */,

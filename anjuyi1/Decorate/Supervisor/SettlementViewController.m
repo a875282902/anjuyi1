@@ -12,6 +12,8 @@
 
 @property (nonatomic,strong) UIScrollView  * tmpScrollView;
 
+@property (nonatomic,strong) UIView  * footView;
+
 @end
 
 @implementation SettlementViewController
@@ -29,13 +31,32 @@
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1)]];
     
     [self setUpContent];
+    
+    [self.view addSubview:self.footView];
+}
+
+- (UIView *)footView{
+    
+    if (!_footView) {
+        _footView = [[UIView alloc] initWithFrame:CGRectMake(0, KScreenHeight - 50, KScreenWidth, 50)];
+        [_footView addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1)]];
+        
+        [_footView addSubview:[Tools creatLabel:CGRectMake(20, 0, KScreenWidth/2 - 20, 50) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#3b3b3b"] alignment:(NSTextAlignmentLeft) title:@"总计：￥2323"]];
+        
+        
+        UIButton *buy = [Tools creatButton:CGRectMake(KScreenWidth/2, 0, KScreenWidth/2, 50) font:[UIFont systemFontOfSize:14] color:[UIColor colorWithHexString:@"#ffffff"] title:@"立即付款" image:@""];
+        [buy setBackgroundColor:[UIColor colorWithHexString:@"ea7c01"]];
+        [buy addTarget:self action:@selector(buy) forControlEvents:(UIControlEventTouchUpInside)];
+        [_footView addSubview:buy];
+    }
+    return _footView;
 }
 
 #pragma mark -- UI
 -(UIScrollView *)tmpScrollView{
     
     if (!_tmpScrollView) {
-        _tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - KTopHeight)];
+        _tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - KTopHeight - 50)];
         [_tmpScrollView setShowsVerticalScrollIndicator:NO];
         [_tmpScrollView setShowsHorizontalScrollIndicator:NO];
         [_tmpScrollView setDelegate:self];
@@ -87,7 +108,6 @@
             
             [self.tmpScrollView addSubview:[Tools creatImage:CGRectMake(KScreenWidth - 23 , 16.5 +height, 8, 17) image:@"sy_arrow"]];
             
-            
         }
        
         [self.tmpScrollView addSubview:[Tools setLineView:CGRectMake(0, height + 49, KScreenWidth, 1)]];
@@ -99,15 +119,27 @@
     
     [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(20), height, MDXFrom6(95), 20) font:[UIFont systemFontOfSize:14] color:[UIColor colorWithHexString:@"#3b3b3b"] alignment:(NSTextAlignmentLeft) title:@"支付方式"]];
     
-    NSArray *iArr = @[@"",@"yinlianico",@"",@"integrat"];
+    height += 30;
+    
+    NSArray *iArr = @[@"wxico",@"yinlianico",@"alipayico",@"integrat"];
+    NSArray *ztArr = @[@"微信支付",@"银联卡支付",@"支付宝支付",@"账户余额支付"];
     
     for (NSInteger i = 0 ; i < 4 ; i++) {
+        UIView *back = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth/2 *(i%2), height + (i/2)*45, KScreenWidth/2, 45)];
+        [self.tmpScrollView addSubview:back];
         
+        [back addSubview:[Tools creatImage:CGRectMake(MDXFrom6(20), (45 - MDXFrom6(20))/2, MDXFrom6(20), MDXFrom6(20)) image:@"cart_select_no"]];
+        
+        [back addSubview:[Tools creatImage:CGRectMake(MDXFrom6(45), (45 - MDXFrom6(25))/2, MDXFrom6(25), MDXFrom6(25)) image:iArr[i]]];
+        
+        [back addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(80), (45 - MDXFrom6(25))/2, KScreenWidth/2 - MDXFrom6(90), MDXFrom6(25)) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#3b3b3b"] alignment:(NSTextAlignmentLeft) title:ztArr[i]]];
     }
     
+    height += 120;
+    
+    [self.tmpScrollView addSubview:[Tools setLineView:CGRectMake(0, height, KScreenWidth, 1)]];
     
     [self.tmpScrollView setContentSize:CGSizeMake(KScreenWidth, height)];
-    
 }
 
 - (void)textValueChange:(UITextField *)sender{
@@ -117,6 +149,11 @@
 
 - (void)selectTypeToSelectInformation:(UITapGestureRecognizer *)sender{
     
+    
+}
+
+//立即付款
+- (void)buy{
     
 }
 

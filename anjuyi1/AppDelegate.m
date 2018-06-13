@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "RootViewController.h"
 #import "HttpRequest.h"
+#import "RegisterViewController.h"
+#import "BaseNaviViewController.h"
 
 @interface AppDelegate ()
 
@@ -24,7 +26,7 @@
     
     [self.window setBackgroundColor:[UIColor whiteColor]];
     
-    [self.window setRootViewController:[[RootViewController alloc] init]];
+    [self.window setRootViewController:[[BaseNaviViewController alloc] initWithRootViewController:[[RegisterViewController alloc] init]]];
     
     [self.window makeKeyAndVisible];
     
