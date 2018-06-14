@@ -7,12 +7,13 @@
 //
 
 #import "SettlementViewController.h"
+#import "SelectLocationVC.h"
 
 @interface SettlementViewController ()<UIScrollViewDelegate>
 
-@property (nonatomic,strong) UIScrollView  * tmpScrollView;
-
-@property (nonatomic,strong) UIView  * footView;
+@property (nonatomic,strong) UIScrollView    * tmpScrollView;
+@property (nonatomic,strong) UIView          * footView;
+@property (nonatomic,strong) NSMutableArray  * payType;
 
 @end
 
@@ -23,6 +24,8 @@
     // Do any additional setup after loading the view.
     
     [self setTitle:@"结算中心"];
+    
+    self.payType = [NSMutableArray array];
     
     [self baseForDefaultLeftNavButton];
     
@@ -38,7 +41,7 @@
 - (UIView *)footView{
     
     if (!_footView) {
-        _footView = [[UIView alloc] initWithFrame:CGRectMake(0, KScreenHeight - 50, KScreenWidth, 50)];
+        _footView = [[UIView alloc] initWithFrame:CGRectMake(0, KScreenHeight - 50 - KTopHeight, KScreenWidth, 50)];
         [_footView addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1)]];
         
         [_footView addSubview:[Tools creatLabel:CGRectMake(20, 0, KScreenWidth/2 - 20, 50) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#3b3b3b"] alignment:(NSTextAlignmentLeft) title:@"总计：￥2323"]];
@@ -126,9 +129,14 @@
     
     for (NSInteger i = 0 ; i < 4 ; i++) {
         UIView *back = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth/2 *(i%2), height + (i/2)*45, KScreenWidth/2, 45)];
+        [back addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectPayType:)]];
+        [back setTag:i];
         [self.tmpScrollView addSubview:back];
         
-        [back addSubview:[Tools creatImage:CGRectMake(MDXFrom6(20), (45 - MDXFrom6(20))/2, MDXFrom6(20), MDXFrom6(20)) image:@"cart_select_no"]];
+        UIImageView *img =[Tools creatImage:CGRectMake(MDXFrom6(20), (45 - MDXFrom6(20))/2, MDXFrom6(20), MDXFrom6(20)) image:@"cart_select_no"];
+        [back addSubview:img];
+        
+        [self.payType addObject:img];
         
         [back addSubview:[Tools creatImage:CGRectMake(MDXFrom6(45), (45 - MDXFrom6(25))/2, MDXFrom6(25), MDXFrom6(25)) image:iArr[i]]];
         
@@ -142,14 +150,36 @@
     [self.tmpScrollView setContentSize:CGSizeMake(KScreenWidth, height)];
 }
 
+//  输入姓名手机等
 - (void)textValueChange:(UITextField *)sender{
     
     
 }
-
+// 选择房屋地址等 信息
 - (void)selectTypeToSelectInformation:(UITapGestureRecognizer *)sender{
+    switch (sender.view.tag) {
+        case 3:
+        {
+            SelectLocationVC *vc = [[SelectLocationVC alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
     
+}
+
+// 选择付款方式
+- (void)selectPayType:(UITapGestureRecognizer *)sender{
     
+    for (UIImageView *im in self.payType) {
+        [im setImage:[UIImage imageNamed:@"cart_select_no"]];
+    }
+    
+    UIImageView *img = (UIImageView *)self.payType[sender.view.tag];
+    [img setImage:[UIImage imageNamed:@"cart_selected"]];
 }
 
 //立即付款

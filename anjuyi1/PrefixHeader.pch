@@ -53,6 +53,8 @@
 
 #define KURL @"https://api.ajyvip.com"
 
+#define UTOKEN [[NSUserDefaults standardUserDefaults] valueForKey:@"UTOKEN"]
+
 #ifdef __OBJC__
 
 #import "MBProgressHUD.h"

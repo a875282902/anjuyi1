@@ -152,6 +152,8 @@
 		0AFEE76F20BD2F50004FA8FC /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEE75A20BD2F50004FA8FC /* MyViewController.m */; };
 		0AFEE77020BD2F50004FA8FC /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEE75C20BD2F50004FA8FC /* PushViewController.m */; };
 		0AFEE84020BD30C8004FA8FC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0AFEE83F20BD30C8004FA8FC /* Podfile */; };
+		18339CD520D24FD500165FF2 /* SelectLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD420D24FD500165FF2 /* SelectLocationVC.m */; };
+		18339CD920D25B6600165FF2 /* HouseInspectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD820D25B6600165FF2 /* HouseInspectViewController.m */; };
 		184D07D320D1029A00653D81 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D220D1029A00653D81 /* RegisterViewController.m */; };
 		184D07D620D1171500653D81 /* SetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D520D1171500653D81 /* SetPasswordVC.m */; };
 		184D07D920D11C8D00653D81 /* NSString+Predicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D720D11C8D00653D81 /* NSString+Predicate.m */; };
@@ -429,6 +431,10 @@
 		0AFEE75D20BD2F50004FA8FC /* PushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushViewController.h; sourceTree = "<group>"; };
 		0AFEE77120BD2F61004FA8FC /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		0AFEE83F20BD30C8004FA8FC /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		18339CD320D24FD500165FF2 /* SelectLocationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectLocationVC.h; sourceTree = "<group>"; };
+		18339CD420D24FD500165FF2 /* SelectLocationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectLocationVC.m; sourceTree = "<group>"; };
+		18339CD720D25B6600165FF2 /* HouseInspectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseInspectViewController.h; sourceTree = "<group>"; };
+		18339CD820D25B6600165FF2 /* HouseInspectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseInspectViewController.m; sourceTree = "<group>"; };
 		184D07D120D1029A00653D81 /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		184D07D220D1029A00653D81 /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		184D07D420D1171500653D81 /* SetPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetPasswordVC.h; sourceTree = "<group>"; };
@@ -637,6 +643,8 @@
 				0A45D95A20CB8322000C04B8 /* SupervisorDetailsVC.m */,
 				0A45D96020CBB691000C04B8 /* SettlementViewController.h */,
 				0A45D96120CBB691000C04B8 /* SettlementViewController.m */,
+				18339CD320D24FD500165FF2 /* SelectLocationVC.h */,
+				18339CD420D24FD500165FF2 /* SelectLocationVC.m */,
 			);
 			path = Supervisor;
 			sourceTree = "<group>";
@@ -1111,6 +1119,7 @@
 		0AFEE73120BD2F4F004FA8FC /* Decorate */ = {
 			isa = PBXGroup;
 			children = (
+				18339CD620D25A2B00165FF2 /* HouseInspect */,
 				0A45D94C20CB7A1B000C04B8 /* Supervisor */,
 				0A55829C20C11AED00759E6B /* Master */,
 				0A3085B920C02DEC00882805 /* Designer */,
@@ -1249,6 +1258,15 @@
 				0AFEE75C20BD2F50004FA8FC /* PushViewController.m */,
 			);
 			path = Push;
+			sourceTree = "<group>";
+		};
+		18339CD620D25A2B00165FF2 /* HouseInspect */ = {
+			isa = PBXGroup;
+			children = (
+				18339CD720D25B6600165FF2 /* HouseInspectViewController.h */,
+				18339CD820D25B6600165FF2 /* HouseInspectViewController.m */,
+			);
+			path = HouseInspect;
 			sourceTree = "<group>";
 		};
 		187C11F120D0E13800E8DDC7 /* Login */ = {
@@ -1453,6 +1471,7 @@
 				0A8E9C6C20C8F4CE00C6E176 /* IntegralPayViewController.m in Sources */,
 				0A5CD81520C592460028F82D /* YZCover.m in Sources */,
 				0A45D94B20CB68C7000C04B8 /* SubscribeVisitVC.m in Sources */,
+				18339CD920D25B6600165FF2 /* HouseInspectViewController.m in Sources */,
 				0A7D501B20C2F141001BFDBF /* ContractDetailsVC.m in Sources */,
 				0A5CD81D20C5927F0028F82D /* UIView+YZCategory.m in Sources */,
 				0AD2DEB520CA444800E53B43 /* ChangePhoneVC.m in Sources */,
@@ -1507,6 +1526,7 @@
 				0A55829F20C11B1D00759E6B /* MasterDetailsVC.m in Sources */,
 				0A5A7B2D20C7DB9300153E9A /* SDImageView.m in Sources */,
 				0A7D506320C43C62001BFDBF /* MyTopicViewController.m in Sources */,
+				18339CD520D24FD500165FF2 /* SelectLocationVC.m in Sources */,
 				0A5A7B3520C7E0B900153E9A /* ServiceProcessView.m in Sources */,
 				0A7D503420C3A700001BFDBF /* TransactionRecordsVC.m in Sources */,
 				0AD2DEAF20CA325400E53B43 /* AccountSecurityVC.m in Sources */,

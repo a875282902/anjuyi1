@@ -10,4 +10,8 @@
 
 @interface SetUserNameVC : BaseViewController
 
+@property (nonatomic,strong)NSString *phone;
+
+@property (nonatomic,strong)NSString *password;
+
 @end

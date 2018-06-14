@@ -10,4 +10,10 @@
 
 @interface ServiceAgreementVC : BaseViewController
 
+@property (nonatomic,strong)NSString *phone;
+
+@property (nonatomic,strong)NSString *password;
+
+@property (nonatomic,strong)NSString *nickName;
+
 @end

@@ -174,9 +174,6 @@
 
 - (void)registert{
     
-    SetPasswordVC *vc = [[SetPasswordVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-    
     if (userNames.length == 11 && passwords.length == 6) {
     
         NSString *path = [NSString stringWithFormat:@"%@/login/register_check_mobile",KURL];
@@ -186,6 +183,7 @@
         [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
             if ([responseObject[@"code"] integerValue] == 200) {
                 SetPasswordVC *vc = [[SetPasswordVC alloc] init];
+                vc.phone = self->userNames;
                 [self.navigationController pushViewController:vc animated:YES];
             }
             else{
@@ -212,16 +210,21 @@
         return;
     }
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     NSString *path = [NSString stringWithFormat:@"%@/login/getMobileCode",KURL];
     
     NSDictionary *dic = @{@"mobile":userNames};
     
     [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
         if ([responseObject[@"code"] integerValue] == 200) {
             if (!self.timer) {
                 self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeChange) userInfo:nil repeats:YES];
             }
-            {
+            else {
                 [self.timer setFireDate:[NSDate distantPast]];
             }
             
@@ -236,6 +239,7 @@
         
         
     } failure:^(NSError * _Nullable error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [ViewHelps showHUDWithText:@"验证码发送失败，请再次发送"];
     }];
     

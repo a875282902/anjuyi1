@@ -126,7 +126,6 @@
     }
 }
 
-
 #pragma mark - 清除缓存
 - (void) clearCache{
     
@@ -181,21 +180,13 @@
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:(UIAlertControllerStyleAlert)];
     
-    UIAlertAction *trueA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
-        
-        
-        
-    }];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
+  
+    }]];
     
-    UIAlertAction *falseA = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-        
-        
-        
-    }];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
     
-    [alert addAction:trueA];
-    
-    [alert addAction:falseA];
+    }]];
     
     [self presentViewController:alert animated:YES completion:nil];
     

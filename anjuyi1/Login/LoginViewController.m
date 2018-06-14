@@ -113,7 +113,7 @@
 
 - (void)jumpRegister{
     
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)textValueChange:(UITextField *)sender{// tag 1 为账号  2 为密码
@@ -123,7 +123,8 @@
 
 - (void)login{
     
-    
+    RootViewController *vc = [[RootViewController alloc] init];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

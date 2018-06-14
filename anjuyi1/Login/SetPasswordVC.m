@@ -143,6 +143,8 @@
     if ([userNames isValidNumberAndLetterPassword] && [passwords isEqualToString:userNames]) {
         
         SetUserNameVC *vc = [[SetUserNameVC alloc] init];
+        vc.phone = self.phone;
+        vc.password = passwords;
         [self.navigationController pushViewController:vc animated:YES];
         
     }

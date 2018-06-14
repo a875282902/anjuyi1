@@ -84,7 +84,7 @@
             [sender setText:[sender.text substringToIndex:30]];
         }
 
-        if ([sender.text isValidAlphaNumberPassword]) {
+        if ([sender.text isValidAlphaNumberPassword] || [sender.text isValidNumberAndLetterPassword]) {
             [firstI setImage:[UIImage imageNamed:@"mm_tick"]];
         }
         else{
@@ -101,9 +101,12 @@
 #pragma mark -- 下一步
 - (void)nextSteps{
 
-    if ([userNames isValidAlphaNumberPassword]) {
+    if ([userNames isValidAlphaNumberPassword] || [userNames isValidNumberAndLetterPassword]) {
         
         ServiceAgreementVC *vc = [[ServiceAgreementVC alloc] init];
+        vc.phone = self.phone;
+        vc.password = self.password;
+        vc.nickName = userNames;
         [self.navigationController pushViewController:vc animated:YES];
         
     }

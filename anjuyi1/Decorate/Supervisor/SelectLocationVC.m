@@ -1,14 +1,15 @@
 //
-//  AddAddressViewController.m
+//  SelectLocationVC.m
 //  anjuyi1
 //
-//  Created by 李 on 2018/6/7.
+//  Created by 李 on 2018/6/14.
 //  Copyright © 2018年 lsy. All rights reserved.
 //
+//  录入地址
 
-#import "AddAddressViewController.h"
+#import "SelectLocationVC.h"
 
-@interface AddAddressViewController ()<UIScrollViewDelegate>
+@interface SelectLocationVC ()<UIScrollViewDelegate>
 
 @property (nonatomic,strong)UIScrollView *tmpScrollView;
 
@@ -16,13 +17,13 @@
 
 @end
 
-@implementation AddAddressViewController
+@implementation SelectLocationVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self setTitle:@"新增地址"];
+    [self setTitle:@"录入地址"];
     [self setNavigationLeftBarButtonWithImageNamed:@"ss_back"];
     
     self.textArr = [NSMutableArray arrayWithObjects:@"",@"",@"",@"",@"",@"",@"",@"", nil];
@@ -50,14 +51,14 @@
 
 - (void)setUpUI{
     
-    NSArray *iArr = @[@"add_name",@"add_phone",@"add_add",@"",@""];
-    NSArray *tArr = @[@"请输入您的姓名",@"请输入您的电话",@"请选择您的城市",@"请选择您所在的区",@"请输入您的详细地址",@""];
+    NSArray *iArr = @[@"add_add",@"add_add",@"add_add",@"",@"",@"",@""];
+    NSArray *tArr = @[@"请选择您的城市",@"请选择您的所在地",@"请选择您的所在范围",@"请输入您的小区名字",@"请输入您的楼号/单元/门牌号",@""];
     
     for (NSInteger i = 0 ; i < 5 ; i ++ ) {
         UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, MDXFrom6(20+50*i), KScreenWidth, MDXFrom6(50))];
         [self.tmpScrollView addSubview:backView];
         
-        if (i<3) {
+        if (i<1) {
             [backView addSubview:[Tools creatImage:CGRectMake(MDXFrom6(15), MDXFrom6(17.5), MDXFrom6(15), MDXFrom6(15)) image:iArr[i]]];
             [backView addSubview:[Tools setLineView:CGRectMake(MDXFrom6(15), MDXFrom6(49), KScreenWidth - MDXFrom6(30), MDXFrom6(1))]];
         }
@@ -66,7 +67,7 @@
             [backView addSubview:[Tools setLineView:CGRectMake(MDXFrom6(45), MDXFrom6(49), KScreenWidth - MDXFrom6(60), MDXFrom6(1))]];
         }
         
-        if (i != 2&& i!= 3) {
+        if (i >= 3) {
             UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(MDXFrom6(45), 0, KScreenWidth - MDXFrom6(60), MDXFrom6(50))];
             [textField setPlaceholder:tArr[i]];
             [textField setFont:[UIFont systemFontOfSize:15]];
@@ -83,7 +84,7 @@
             [backView addSubview:label];
             
             [backView addSubview:[Tools creatImage:CGRectMake(KScreenWidth - MDXFrom6(35), MDXFrom6(20), MDXFrom6(6), MDXFrom6(10)) image:@"jilu_rili_arrow"]];
-        
+            
         }
         
         
@@ -126,13 +127,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

@@ -26,11 +26,11 @@
     
     [hud setMode:MBProgressHUDModeCustomView];
     
-    [hud setDetailsLabelText:message];
+    [hud.detailsLabel setText:message];
     
-    [hud show:YES];
+    [hud showAnimated:YES];
     
-    [hud hide:YES afterDelay:2];
+    [hud hideAnimated:YES afterDelay:1.5];
     
     hud.completionBlock = completionBlock;
 }

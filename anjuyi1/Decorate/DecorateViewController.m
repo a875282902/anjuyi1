@@ -11,9 +11,11 @@
 #import "SearchView.h"
 #import "DecorateTableViewCell.h"
 #import "IanScrollView.h"
+
 #import "DesignerViewController.h"//设计师
 #import "MasterViewController.h"//工长
-#import "PlaceSupervisorViewController.h"
+#import "PlaceSupervisorViewController.h"//监理
+#import "HouseInspectViewController.h"//免费验房
 
 #define hederHeight MDXFrom6(55)
 
@@ -51,7 +53,7 @@
         [_headerView setBackgroundColor:[UIColor whiteColor]];
         
         NSArray *arr = @[@"zx_fdesign",@"zx_worker",@"zx_vision",@"zx_inspect",@"zx_design"];
-        NSArray *tarr = @[@"找设计师",@"找工长",@"找监理",@"免费验房",@"找设计师"];
+        NSArray *tarr = @[@"找设计师",@"找工长",@"找监理",@"免费验房",@"免费报价"];
         for (NSInteger i = 0 ; i < 5; i ++) {
             UIView *back = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth*i/5, 0, KScreenWidth/5, MDXFrom6(90))];
             [back addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectService:)]];
@@ -172,6 +174,13 @@
         case 2:
         {
             PlaceSupervisorViewController *controller = [[PlaceSupervisorViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            
+        }
+            break;
+        case 3:
+        {
+            HouseInspectViewController *controller = [[HouseInspectViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }
