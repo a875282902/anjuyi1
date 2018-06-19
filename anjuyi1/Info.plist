@@ -35,10 +35,26 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>weibosdk2.5</string>
+		<string>weibosdk</string>
+		<string>sinaweibohd</string>
+		<string>sinaweibosso</string>
+		<string>sinaweibo</string>
+		<string>alipay</string>
+		<string>wechat</string>
+		<string>weixin</string>
+		<string>baidumap</string>
+		<string>iosamap</string>
+		<string>comgooglemaps</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
 		<key>api.ajyvip.com</key>
 		<dict>
 			<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -46,8 +62,6 @@
 			<key>NSIncludesSubdomains</key>
 			<true/>
 		</dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>App需要您的同意,才能访问相机</string>
@@ -68,14 +82,12 @@
 	<key>UIRequiresFullScreen</key>
 	<false/>
 	<key>UIStatusBarHidden</key>
-	<false/>
+	<true/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleBlackOpaque</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -83,20 +95,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>weibosdk2.5</string>
-		<string>weibosdk</string>
-		<string>sinaweibohd</string>
-		<string>sinaweibosso</string>
-		<string>sinaweibo</string>
-		<string>alipay</string>
-		<string>wechat</string>
-		<string>weixin</string>
-		<string>baidumap</string>
-		<string>iosamap</string>
-		<string>comgooglemaps</string>
 	</array>
 </dict>
 </plist>

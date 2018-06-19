@@ -11,6 +11,8 @@
 #import "MallTableViewCell.h"
 #import "IanScrollView.h"
 
+#import "GoodsClassViewController.h"//商品分类
+
 #define hederHeight MDXFrom6(55)
 
 @interface MallViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -107,6 +109,7 @@
         cell = [[MallTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"MallTableViewCell"];
     }
     
+    
     return cell;
 }
 
@@ -147,7 +150,17 @@
 
 - (void)selectService:(UITapGestureRecognizer *)sender{
     
-    NSLog(@"%ld",sender.view.tag);
+    switch (sender.view.tag) {
+        case 0:
+        {
+            GoodsClassViewController *vc = [[GoodsClassViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark -- delegate

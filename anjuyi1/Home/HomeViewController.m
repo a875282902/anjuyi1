@@ -29,6 +29,8 @@
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
     [self.view setBackgroundColor:[UIColor colorWithHexString:@"#f6f6f6"]];
     
+    NSLog(@"%@",UTOKEN);
+    
     //搜索框
     SearchView *search = [[SearchView alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(320), 30) Title:@"整屋搜索"];
     [search addTarget:self action:@selector(jumpSearch)];

@@ -1,16 +1,16 @@
 //
-//  HouseInspectViewController.m
+//  FreeOfferViewController.m
 //  anjuyi1
 //
 //  Created by apple on 2018/6/14.
 //  Copyright © 2018年 lsy. All rights reserved.
 //
-//  免费验房
+//  免费报价
 
-#import "HouseInspectViewController.h"
+#import "FreeOfferViewController.h"
 #import "SelectLocationVC.h"//选择地址
 
-@interface HouseInspectViewController ()
+@interface FreeOfferViewController ()
 {
     NSInteger time;
     UIButton *codeBtn;
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation HouseInspectViewController
+@implementation FreeOfferViewController
 
 - (void)viewWillAppear:(BOOL)animated{
     
@@ -45,9 +45,9 @@
     
     self.textArr = [NSMutableArray arrayWithObjects:@"",@"",@"",@"", nil];
     time = 60;
-
+    
     [self.view setBackgroundColor:[UIColor whiteColor]];
-
+    
     [self setUpUI];
     
 }
@@ -63,9 +63,34 @@
     CGFloat height = KStatusBarHeight + MDXFrom6(90);
     
     
-    [self.view addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(35), height, KScreenWidth - MDXFrom6(70), 22) font:[UIFont systemFontOfSize:21] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:@"免费验房"]];
+    [self.view addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(35), height, KScreenWidth - MDXFrom6(70), 22) font:[UIFont systemFontOfSize:21] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:@"免费报价"]];
     
     height += 50;
+    
+    height = [self selectLocationView:height];//房屋地址
+
+    height = [self selectRoomModelView:height];//房屋户型
+    
+    height = [self inputPersonInfor:height];//个人信息
+
+    
+    height += 40;
+    
+    [self.view addSubview:[Tools creatLabel:CGRectMake(0, height, KScreenWidth, 20) font:[UIFont systemFontOfSize:18] color:[UIColor redColor] alignment:(NSTextAlignmentCenter) title:@"预估价格：23万元"]];
+    
+    height += 60;
+    
+    UIButton *btn = [Tools creatButton:CGRectMake(MDXFrom6(35), height, KScreenWidth - MDXFrom6(70), MDXFrom6(50)) font:[UIFont systemFontOfSize:18] color:[UIColor whiteColor] title:@"提交" image:@""];
+    [btn setBackgroundColor:[UIColor colorWithHexString:@"#ffb638"]];
+    [btn.layer setCornerRadius:5];
+    [btn setClipsToBounds:YES];
+    [btn addTarget:self action:@selector(submit) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:btn];
+    
+}
+
+// ---------- 选择地址 -------
+- (CGFloat)selectLocationView:(CGFloat)height{
     
     [self.view addSubview:[Tools creatImage:CGRectMake(MDXFrom6(35), height + 10, 15, 15) image:@"add_add"]];
     
@@ -82,19 +107,47 @@
     [rechange addTarget:self action:@selector(rechangeLocation:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:rechange];
     
+    return height + 50;
+}
+
+// ---------- 选择户型 -------
+- (CGFloat)selectRoomModelView:(CGFloat)height{
+    
+    [self.view addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(35), height, MDXFrom6(50), 30) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:@"户型："]];
+    
+    UILabel *room = [Tools creatLabel:CGRectMake(MDXFrom6(100), height, MDXFrom6(100), 30) font:[UIFont systemFontOfSize:13] color:[UIColor colorWithHexString:@"#3b3b3b"] alignment:(NSTextAlignmentCenter) title:@"三室"];
+    [room.layer setBorderWidth:1];
+    [room.layer setCornerRadius:5];
+    [room.layer setBorderColor:[UIColor colorWithHexString:@"#d1d1d1"].CGColor];
+    [self.view addSubview:room];
+    
+    [room addSubview:[Tools creatImage:CGRectMake(MDXFrom6(100) - 20, 12.5 , 8, 5) image:@"guess_xjt"]];
+    
+    UILabel *hall = [Tools creatLabel:CGRectMake(MDXFrom6(210), height, MDXFrom6(100), 30) font:[UIFont systemFontOfSize:13] color:[UIColor colorWithHexString:@"#3b3b3b"] alignment:(NSTextAlignmentCenter) title:@"二厅"];
+    [hall.layer setBorderWidth:1];
+    [hall.layer setCornerRadius:5];
+    [hall.layer setBorderColor:[UIColor colorWithHexString:@"#d1d1d1"].CGColor];
+    [self.view addSubview:hall];
+    
+    [hall addSubview:[Tools creatImage:CGRectMake(MDXFrom6(100) - 20, 12.5 , 8, 5) image:@"guess_xjt"]];
     
     
-    height += 50;
+    return height + 40;
+}
+
+
+- (CGFloat)inputPersonInfor:(CGFloat)height{
     
+    // ---------- 输入信息 -------
+    NSArray *tArr = @[@"输入您的住宅面积(整数)",@"输入联系手机号码",@"验证码"];
     
-    NSArray *tArr = @[@"输入小区名字",@"输入具体楼号：例7号楼1001",@"输入联系手机号码",@"验证码"];
-    
-    for (NSInteger i = 0 ; i <  4; i++) {
+    for (NSInteger i = 0 ; i <  3; i++) {
         UITextField *userName = [[UITextField alloc] initWithFrame:CGRectMake(MDXFrom6(35), height, MDXFrom6(305), 50)];
         [userName setPlaceholder:tArr[i]];
         [userName setFont:[UIFont systemFontOfSize:16]];
         [userName setClearButtonMode:(UITextFieldViewModeAlways)];
         [userName setTag:i];
+        [userName setKeyboardType:(UIKeyboardTypeNumberPad)];
         [userName addTarget:self action:@selector(textValueChange:) forControlEvents:(UIControlEventEditingChanged)];
         [self.view addSubview:userName];
         
@@ -102,7 +155,7 @@
         
         height += 50;
         
-        if (i == 3) {
+        if (i == 2) {
             UIButton *codeBtn1 = [Tools creatButton:CGRectMake(KScreenWidth - 130, height - 42.5 , 95, 35) font:[UIFont systemFontOfSize:15] color:[UIColor whiteColor] title:@"获取验证码" image:@""];
             [codeBtn1 setBackgroundColor:BTNCOLOR];
             [codeBtn1.layer setCornerRadius:5];
@@ -114,18 +167,7 @@
             codeBtn = codeBtn1;
         }
     }
-    
-  
-
-    height += 40;
-    
-    UIButton *btn = [Tools creatButton:CGRectMake(MDXFrom6(35), height, KScreenWidth - MDXFrom6(70), MDXFrom6(50)) font:[UIFont systemFontOfSize:18] color:[UIColor whiteColor] title:@"提交" image:@""];
-    [btn setBackgroundColor:[UIColor colorWithHexString:@"#ffb638"]];
-    [btn.layer setCornerRadius:5];
-    [btn setClipsToBounds:YES];
-    [btn addTarget:self action:@selector(submit) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.view addSubview:btn];
-    
+    return height;
 }
 
 - (UIView *)creatLine:(CGRect)rect{

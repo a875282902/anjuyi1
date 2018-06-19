@@ -33,6 +33,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
+    [self setSelectionStyle:(UITableViewCellSelectionStyleNone)];
     // Configure the view for the selected state
 }
 

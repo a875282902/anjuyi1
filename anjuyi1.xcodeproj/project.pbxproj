@@ -154,6 +154,10 @@
 		0AFEE84020BD30C8004FA8FC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0AFEE83F20BD30C8004FA8FC /* Podfile */; };
 		18339CD520D24FD500165FF2 /* SelectLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD420D24FD500165FF2 /* SelectLocationVC.m */; };
 		18339CD920D25B6600165FF2 /* HouseInspectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD820D25B6600165FF2 /* HouseInspectViewController.m */; };
+		18339CDC20D2656800165FF2 /* FreeOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CDB20D2656800165FF2 /* FreeOfferViewController.m */; };
+		18339CE020D26D5000165FF2 /* GoodsClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CDF20D26D5000165FF2 /* GoodsClassViewController.m */; };
+		18339CE320D2746D00165FF2 /* ClassListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CE220D2746D00165FF2 /* ClassListView.m */; };
+		18339CE620D276B700165FF2 /* BrandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CE520D276B700165FF2 /* BrandListView.m */; };
 		184D07D320D1029A00653D81 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D220D1029A00653D81 /* RegisterViewController.m */; };
 		184D07D620D1171500653D81 /* SetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D520D1171500653D81 /* SetPasswordVC.m */; };
 		184D07D920D11C8D00653D81 /* NSString+Predicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D720D11C8D00653D81 /* NSString+Predicate.m */; };
@@ -435,6 +439,14 @@
 		18339CD420D24FD500165FF2 /* SelectLocationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectLocationVC.m; sourceTree = "<group>"; };
 		18339CD720D25B6600165FF2 /* HouseInspectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseInspectViewController.h; sourceTree = "<group>"; };
 		18339CD820D25B6600165FF2 /* HouseInspectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseInspectViewController.m; sourceTree = "<group>"; };
+		18339CDA20D2656800165FF2 /* FreeOfferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FreeOfferViewController.h; sourceTree = "<group>"; };
+		18339CDB20D2656800165FF2 /* FreeOfferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FreeOfferViewController.m; sourceTree = "<group>"; };
+		18339CDE20D26D5000165FF2 /* GoodsClassViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsClassViewController.h; sourceTree = "<group>"; };
+		18339CDF20D26D5000165FF2 /* GoodsClassViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsClassViewController.m; sourceTree = "<group>"; };
+		18339CE120D2746D00165FF2 /* ClassListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassListView.h; sourceTree = "<group>"; };
+		18339CE220D2746D00165FF2 /* ClassListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassListView.m; sourceTree = "<group>"; };
+		18339CE420D276B700165FF2 /* BrandListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrandListView.h; sourceTree = "<group>"; };
+		18339CE520D276B700165FF2 /* BrandListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrandListView.m; sourceTree = "<group>"; };
 		184D07D120D1029A00653D81 /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		184D07D220D1029A00653D81 /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		184D07D420D1171500653D81 /* SetPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetPasswordVC.h; sourceTree = "<group>"; };
@@ -1096,6 +1108,7 @@
 		0AFEE72B20BD2F4F004FA8FC /* Mall */ = {
 			isa = PBXGroup;
 			children = (
+				18339CDD20D26D1800165FF2 /* GoodsClass */,
 				0AD0C61420BEB33C001A20C4 /* Views */,
 				0AFEE72C20BD2F4F004FA8FC /* MallViewController.h */,
 				0AFEE72D20BD2F4F004FA8FC /* MallViewController.m */,
@@ -1265,8 +1278,23 @@
 			children = (
 				18339CD720D25B6600165FF2 /* HouseInspectViewController.h */,
 				18339CD820D25B6600165FF2 /* HouseInspectViewController.m */,
+				18339CDA20D2656800165FF2 /* FreeOfferViewController.h */,
+				18339CDB20D2656800165FF2 /* FreeOfferViewController.m */,
 			);
 			path = HouseInspect;
+			sourceTree = "<group>";
+		};
+		18339CDD20D26D1800165FF2 /* GoodsClass */ = {
+			isa = PBXGroup;
+			children = (
+				18339CDE20D26D5000165FF2 /* GoodsClassViewController.h */,
+				18339CDF20D26D5000165FF2 /* GoodsClassViewController.m */,
+				18339CE120D2746D00165FF2 /* ClassListView.h */,
+				18339CE220D2746D00165FF2 /* ClassListView.m */,
+				18339CE420D276B700165FF2 /* BrandListView.h */,
+				18339CE520D276B700165FF2 /* BrandListView.m */,
+			);
+			path = GoodsClass;
 			sourceTree = "<group>";
 		};
 		187C11F120D0E13800E8DDC7 /* Login */ = {
@@ -1443,6 +1471,7 @@
 				0AC3190120BD88DA0035800F /* SearchView.m in Sources */,
 				0A7D505120C432A6001BFDBF /* MyAnswerViewController.m in Sources */,
 				0AD2DEC720CA832100E53B43 /* OrderCenterViewController.m in Sources */,
+				18339CE620D276B700165FF2 /* BrandListView.m in Sources */,
 				0A5CD83C20C664FF0028F82D /* RecordsTableView.m in Sources */,
 				0A8E9C8020C9023200C6E176 /* AddressTableViewCell.m in Sources */,
 				0AD2DEBD20CA55EA00E53B43 /* CraftsmenViewController.m in Sources */,
@@ -1507,6 +1536,7 @@
 				0A5CD83420C621430028F82D /* OrderDetailsVC.m in Sources */,
 				0AD0C61820BEB354001A20C4 /* MallTableViewCell.m in Sources */,
 				0AFEE76020BD2F50004FA8FC /* DecorateViewController.m in Sources */,
+				18339CE320D2746D00165FF2 /* ClassListView.m in Sources */,
 				0AFD6CE920C4E3B000223512 /* CouponsDetails.m in Sources */,
 				184D07D320D1029A00653D81 /* RegisterViewController.m in Sources */,
 				0AC3190D20BDA0100035800F /* HomeTableViewCell.m in Sources */,
@@ -1532,6 +1562,7 @@
 				0AD2DEAF20CA325400E53B43 /* AccountSecurityVC.m in Sources */,
 				0AFEE76620BD2F50004FA8FC /* IanScrollImageView.m in Sources */,
 				0AD2DEAC20CA19E900E53B43 /* DateView.m in Sources */,
+				18339CE020D26D5000165FF2 /* GoodsClassViewController.m in Sources */,
 				0A8E9C7B20C9018E00C6E176 /* AddressViewController.m in Sources */,
 				0A1CA5B620C951CE00BA7AD3 /* PersonDetailsViewController.m in Sources */,
 				0A7D4FF320C2A92B001BFDBF /* SettingViewController.m in Sources */,
@@ -1543,6 +1574,7 @@
 				0A5CD84420C67A330028F82D /* SelectTime.m in Sources */,
 				0A7D505520C433CF001BFDBF /* MyAnswerTableViewCell.m in Sources */,
 				0A5CD84F20C695170028F82D /* IntegralMallTableViewCell.m in Sources */,
+				18339CDC20D2656800165FF2 /* FreeOfferViewController.m in Sources */,
 				0A7D4FF020C23462001BFDBF /* ProjectCollectionViewCell.m in Sources */,
 				0A45D95720CB7CB2000C04B8 /* PlaceSupervisorViewController.m in Sources */,
 				0AFEE76F20BD2F50004FA8FC /* MyViewController.m in Sources */,

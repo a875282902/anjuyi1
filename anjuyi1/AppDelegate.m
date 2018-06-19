@@ -29,15 +29,15 @@
     
     [self.window setBackgroundColor:[UIColor whiteColor]];
     
-//    if (!UTOKEN) {
-//        [self.window setRootViewController:[[BaseNaviViewController alloc] initWithRootViewController:[[RegisterViewController alloc] init]]];
-//    }
-//    else{
-//        [self.window setRootViewController:[[RootViewController alloc] init]];
-//    }
-//
+    if (!UTOKEN) {
+        [self.window setRootViewController:[[BaseNaviViewController alloc] initWithRootViewController:[[RegisterViewController alloc] init]]];
+    }
+    else{
+        [self.window setRootViewController:[[RootViewController alloc] init]];
+    }
+
    
-    [self.window setRootViewController:[[RootViewController alloc] init]];
+//    [self.window setRootViewController:[[RootViewController alloc] init]];
     
     [self.window makeKeyAndVisible];
     

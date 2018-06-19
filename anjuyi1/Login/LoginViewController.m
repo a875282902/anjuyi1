@@ -51,7 +51,7 @@
     [userName setClearButtonMode:(UITextFieldViewModeAlways)];
     [userName setKeyboardType:(UIKeyboardTypeNumberPad)];
     [userName setTag:1];
-    [userName addTarget:self action:@selector(textValueChange:) forControlEvents:(UIControlEventTouchUpInside)];
+    [userName addTarget:self action:@selector(textValueChange:) forControlEvents:(UIControlEventEditingChanged)];
     [self.view addSubview:userName];
 
     
@@ -71,7 +71,7 @@
     [passWord setClearButtonMode:(UITextFieldViewModeAlways)];
     [passWord setSecureTextEntry:YES];
     [passWord setTag:2];
-    [passWord addTarget:self action:@selector(textValueChange:) forControlEvents:(UIControlEventTouchUpInside)];
+    [passWord addTarget:self action:@selector(textValueChange:) forControlEvents:(UIControlEventEditingChanged)];
     [self.view addSubview:passWord];
     
     height += 30;

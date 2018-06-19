@@ -16,6 +16,7 @@
 #import "MasterViewController.h"//工长
 #import "PlaceSupervisorViewController.h"//监理
 #import "HouseInspectViewController.h"//免费验房
+#import "FreeOfferViewController.h"//免费报价
 
 #define hederHeight MDXFrom6(55)
 
@@ -181,6 +182,13 @@
         case 3:
         {
             HouseInspectViewController *controller = [[HouseInspectViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            
+        }
+            break;
+        case 4:
+        {
+            FreeOfferViewController *controller = [[FreeOfferViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }
