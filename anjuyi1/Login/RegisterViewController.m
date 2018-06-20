@@ -6,6 +6,7 @@
 //  Copyright © 2018年 lsy. All rights reserved.
 //
 //  注册页面
+//  怎么修改不懂呢
 
 #import "RegisterViewController.h"
 #import "RootViewController.h"
@@ -165,9 +166,13 @@
 
 - (void)jumpLogin{
     
-  
-    LoginViewController *vc = [[LoginViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (self.navigationController.viewControllers.count > 1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     
 }
 

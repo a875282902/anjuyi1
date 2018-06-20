@@ -9,8 +9,13 @@
 
 #import "LoginViewController.h"
 #import "RootViewController.h"
+#import "RegisterViewController.h"
 
 @interface LoginViewController ()
+{
+    NSString *userName;
+    NSString *password;
+}
 
 @end
 
@@ -113,18 +118,62 @@
 
 - (void)jumpRegister{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.navigationController.viewControllers.count > 1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
+        RegisterViewController *cont = [[RegisterViewController alloc] init];
+        [self.navigationController pushViewController:cont animated:YES];
+    }
 }
 
 - (void)textValueChange:(UITextField *)sender{// tag 1 为账号  2 为密码
     
+    if (sender.tag == 1) {
+        userName = sender.text;
+    }
     
+    if (sender.tag == 2) {
+        password = sender.text;
+    }
 }
 
 - (void)login{
     
-    RootViewController *vc = [[RootViewController alloc] init];
-    [self presentViewController:vc animated:YES completion:nil];
+    if (userName.length != 11) {
+        [ViewHelps showHUDWithText:@"请输入手机号码"];
+        return;
+    }
+    
+    if (password.length < 6) {
+        [ViewHelps showHUDWithText:@"请输入密码"];
+        return;
+    }
+    
+    NSString *path = [NSString stringWithFormat:@"%@/login/login",KURL];
+    
+    NSDictionary *dic = @{@"mobile":userName,@"password":password};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES].label.text = @"登录中···";
+    
+    [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            [[NSUserDefaults standardUserDefaults] setValue:responseObject[@"datas"][@"token"] forKey:@"UTOKEN"];
+            
+            RootViewController *vc = [[RootViewController alloc] init];
+            [self presentViewController:vc animated:YES completion:nil];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+    } failure:^(NSError * _Nullable error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

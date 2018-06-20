@@ -10,6 +10,8 @@
 #import "AddressViewController.h"
 #import "PersonDetailsViewController.h"//个人信息
 #import "AccountSecurityVC.h"//账号安全
+#import "LoginViewController.h"
+#import "BaseNaviViewController.h"
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -182,6 +184,12 @@
     
     [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
   
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UTOKEN"];
+        
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        BaseNaviViewController *navvc = [[BaseNaviViewController alloc] initWithRootViewController:vc];
+        [self presentViewController:navvc animated:YES completion:nil];
+        
     }]];
     
     [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
