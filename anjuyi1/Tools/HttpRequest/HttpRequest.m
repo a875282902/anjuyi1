@@ -104,6 +104,32 @@
     }];
 }
 
++ (void)POSTWithHeader:(NSDictionary *)header
+                   url:(NSString *_Nullable)URLString
+            parameters:(id _Nullable )parameters
+               success:(void (^_Nullable)(id _Nullable responseObject))success
+               failure:(void (^_Nullable)(NSError * _Nullable error))failure{
+    
+    AFHTTPSessionManager *mana = [self manager];
+    
+    for (NSString * key in header.allKeys) {
+        [mana.requestSerializer setValue:[header valueForKey:key] forHTTPHeaderField:key];
+    }
+    
+    [mana POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (success) {
+            success(responseObject);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+    
+}
+
 + (void) uploadFileWithInferface:(NSString *)URLString
                       parameters:(id)parameters
                         fileData:(NSData *)fileData

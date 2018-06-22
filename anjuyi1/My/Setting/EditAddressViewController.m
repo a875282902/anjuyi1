@@ -6,10 +6,10 @@
 //  Copyright © 2018年 lsy. All rights reserved.
 //
 
-#import "AddAddressViewController.h"
+#import "EditAddressViewController.h"
 #import "SelectCity.h"
 
-@interface AddAddressViewController ()<UIScrollViewDelegate,SelectCityDelegate>
+@interface EditAddressViewController ()<UIScrollViewDelegate,SelectCityDelegate>
 {
     NSDictionary  * provincesDic;//保存省
     NSDictionary  * cityDic;//保存城市
@@ -24,13 +24,13 @@
 
 @end
 
-@implementation AddAddressViewController
+@implementation EditAddressViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self setTitle:@"新增地址"];
+    [self setTitle:@"编辑地址"];
     [self setNavigationLeftBarButtonWithImageNamed:@"ss_back"];
     
     self.textArr = [NSMutableArray arrayWithObjects:@"",@"",@"",@"",@"",@"",@"",@"", nil];
@@ -40,11 +40,50 @@
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1.5)]];
     
-    [self.view addSubview:self.tmpScrollView];
-    
-    [self setUpUI];
+    [self getLocationDetails];
     
     [[UIApplication sharedApplication].keyWindow addSubview:self.selectCity];
+}
+
+- (void)getLocationDetails{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/address/info",KURL];
+    
+    NSDictionary *dic = @{@"address_id":self.addressID};
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            NSDictionary *dic = responseObject[@"datas"];
+            
+            self.textArr = [NSMutableArray arrayWithObjects:dic[@"name"],dic[@"phone"],@"",@"",@"",dic[@"detailed"],@"",@"", nil];
+            
+            self->provincesDic = @{@"key":dic[@"provice_id"],@"value":dic[@"province"]};
+            self->cityDic      = @{@"key":dic[@"city_id"],@"value":dic[@"city"]};
+            self->countyDic    = @{@"key":dic[@"area_id"],@"value":dic[@"area"]};
+            
+            [self setUpUI];
+            
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
 }
 
 
@@ -62,7 +101,9 @@
 - (void)setUpUI{
     
     NSArray *iArr = @[@"add_name",@"add_phone",@"add_add",@"",@"",@""];
+    
     NSArray *tArr = @[@"请输入您的姓名",@"请输入您的电话",@"请选择您的省份",@"请选择您的城市",@"请选择您所在的区",@"请输入您的详细地址",@""];
+    NSArray *dArr = @[self.textArr[0],self.textArr[1],provincesDic[@"value"],cityDic[@"value"],countyDic[@"value"],self.textArr[5],@""];
     
     for (NSInteger i = 0 ; i < 6 ; i ++ ) {
         UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, MDXFrom6(20+50*i), KScreenWidth, MDXFrom6(50))];
@@ -80,6 +121,7 @@
         if (i != 2&& i!= 3 && i != 4) {
             UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(MDXFrom6(45), 0, KScreenWidth - MDXFrom6(60), MDXFrom6(50))];
             [textField setPlaceholder:tArr[i]];
+            [textField setText:dArr[i]];
             [textField setFont:[UIFont systemFontOfSize:15]];
             [textField setValue:[UIColor colorWithHexString:@"#999999"] forKeyPath:@"_placeholderLabel.textColor"];
             [textField setTag:i];
@@ -96,8 +138,13 @@
             [label setTag:i];
             [backView addSubview:label];
             
+            if ([dArr[i] length] != 0) {
+                [label setTextColor:[UIColor blackColor]];
+                [label setText:dArr[i]];
+            }
+            
             [backView addSubview:[Tools creatImage:CGRectMake(KScreenWidth - MDXFrom6(35), MDXFrom6(20), MDXFrom6(6), MDXFrom6(10)) image:@"jilu_rili_arrow"]];
-        
+            
         }
         
         
@@ -147,7 +194,7 @@
 }
 
 - (void)sureSave{
-//    @[@"请输入您的姓名",@"请输入您的电话",@"请选择您的省份",@"请选择您的城市",@"请选择您所在的区",@"请输入您的详细地址",@""]
+    //    @[@"请输入您的姓名",@"请输入您的电话",@"请选择您的省份",@"请选择您的城市",@"请选择您所在的区",@"请输入您的详细地址",@""]
     if ([self.textArr[0] length] == 0) {
         [ViewHelps showHUDWithText:@"请输入您的姓名"];
         return;
@@ -173,9 +220,10 @@
         return;
     }
     
-    NSString *path = [NSString stringWithFormat:@"%@/address/add",KURL];
+    NSString *path = [NSString stringWithFormat:@"%@/address/edit",KURL];
     NSDictionary *header = @{@"token":UTOKEN};
-    NSDictionary *dic = @{@"name":self.textArr[0],
+    NSDictionary *dic = @{@"id":self.addressID,
+                          @"name":self.textArr[0],
                           @"mobile":self.textArr[1],
                           @"provice_id":[provincesDic valueForKey:@"key"],
                           @"city_id":[cityDic valueForKey:@"key"],
@@ -191,16 +239,22 @@
         
         if ([responseObject[@"code"] integerValue] == 200) {
             
+            [ViewHelps showHUDWithText:@"编辑成功"];
             [self.navigationController popViewControllerAnimated:YES];
             
         }
         else if ([responseObject[@"code"] integerValue] == 202){
             
-            [ViewHelps showHUDWithText:@"添加失败"];
+            [ViewHelps showHUDWithText:@"编辑失败"];
         }
         else if ([responseObject[@"code"] integerValue] == 201){
             
-            [ViewHelps showHUDWithText:@"验证失败"];
+            if (![responseObject[@"message"] isKindOfClass:[NSNull class]]) {
+                [ViewHelps showHUDWithText:responseObject[@"message"]];
+            }
+            else{
+                [ViewHelps showHUDWithText:@"编辑失败"];
+            }
         }
         
     } failure:^(NSError * _Nullable error) {
@@ -208,7 +262,7 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [RequestSever showMsgWithError:error];
     }];
-
+    
 }
 
 #pragma mark --  选择城市的view
@@ -286,13 +340,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

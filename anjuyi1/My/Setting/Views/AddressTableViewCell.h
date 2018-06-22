@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddressModel.h"
 
 @class AddressTableViewCell;
 
@@ -28,5 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 
 @property (nonatomic,assign)id<AddressTableViewCellDelegate>delegate;
+
+- (void)bandDataWith:(AddressModel *)model;
 
 @end

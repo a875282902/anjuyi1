@@ -9,16 +9,24 @@
 #import "AddressViewController.h"
 #import "AddressTableViewCell.h"
 #import "AddAddressViewController.h"
+#import "AddressModel.h"
+#import "EditAddressViewController.h"
 
 static AddressTableViewCell * defaultCell;
 
 @interface AddressViewController ()<UITableViewDelegate,UITableViewDataSource,AddressTableViewCellDelegate>
 
-@property (nonatomic,strong) UITableView * tmpTableView;
+@property (nonatomic,strong) UITableView    * tmpTableView;
+@property (nonatomic,strong) NSMutableArray * dataArr;
 
 @end
 
 @implementation AddressViewController
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self requestData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,9 +35,49 @@ static AddressTableViewCell * defaultCell;
     [self setTitle:@"地址管理"];
     [self setNavigationLeftBarButtonWithImageNamed:@"ss_back"];
     
+    self.dataArr = [NSMutableArray array];
+    
     [self.view addSubview:self.tmpTableView];
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1.5)]];
+    
+    
+}
+
+#pragma mark -- 数据
+- (void)requestData{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/address/index",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        [self.dataArr removeAllObjects];
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            for (NSDictionary *dic in responseObject[@"datas"]) {
+                AddressModel *model = [[AddressModel alloc] initWithDictionary:dic];
+                [self.dataArr addObject:model];
+            }
+            [self.tmpTableView reloadData];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
 }
 
 #pragma mark -- tableView
@@ -50,7 +98,7 @@ static AddressTableViewCell * defaultCell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -61,7 +109,13 @@ static AddressTableViewCell * defaultCell;
     }
     
     [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
-    [cell setDelegate:self];
+    
+    
+    if (indexPath.row < self.dataArr.count) {
+        [cell setDelegate:self];
+        [cell bandDataWith:self.dataArr[indexPath.row]];
+    }
+    
     
     return cell;
 }
@@ -103,30 +157,49 @@ static AddressTableViewCell * defaultCell;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-
-#pragma mark -- scrolldelegate
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat sectionHeaderHeight = MDXFrom6(100);
-    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
-        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
-    } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
-        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
-    }
-}
-
 #pragma mark -- addressTableViewCellDelegate
 - (void)setDefaultTableViewWithCell:(AddressTableViewCell *)cell{
-    
-    if (defaultCell&& defaultCell != cell) {
-        [defaultCell.defaultButton setSelected:NO];
-    }
-    
-    defaultCell = cell;
+
     
     NSIndexPath *indexpath = [self.tmpTableView indexPathForCell:cell];
     
-    NSLog(@"%ld",indexpath.row);
+    AddressModel *model = self.dataArr[indexpath.row];
+    
+    NSString *path = [NSString stringWithFormat:@"%@/address/setDefault",KURL];
+    
+    NSDictionary *dic = @{@"id":model.ID};
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            [cell.defaultButton setSelected:!cell.defaultButton.selected];
+            
+            if (defaultCell && defaultCell != cell) {
+                [defaultCell.defaultButton setSelected:NO];
+            }
+            
+            defaultCell = cell;
+            
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
     
     
 }
@@ -135,27 +208,30 @@ static AddressTableViewCell * defaultCell;
     
     NSIndexPath *indexpath = [self.tmpTableView indexPathForCell:cell];
 
-    [self creatAlertViewControllerWithMessage:@"确定要删除该条地址吗？" location:indexpath.row];
+    [self creatAlertViewControllerWithMessage:@"确定要删除该条地址吗？" location:indexpath];
 }
 
 - (void)editTableViewWithCell:(AddressTableViewCell *)cell{
     
     NSIndexPath *indexpath = [self.tmpTableView indexPathForCell:cell];
 
-    AddAddressViewController *controller = [[AddAddressViewController alloc] init];
+    AddressModel *model = self.dataArr[indexpath.row];
+    
+    EditAddressViewController *controller = [[EditAddressViewController alloc] init];
+    controller.addressID = model.ID;
     [self.navigationController pushViewController:controller animated:YES];
     
 }
 
 #pragma mark -- alertView
-- (void)creatAlertViewControllerWithMessage:(NSString *)message location:(NSInteger)index{
+- (void)creatAlertViewControllerWithMessage:(NSString *)message location:(NSIndexPath *)index{
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:(UIAlertControllerStyleAlert)];
     
     UIAlertAction *trueA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
         
         
-        
+        [self deleteAddressWithIndex:index];
     }];
     
     UIAlertAction *falseA = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
@@ -169,6 +245,43 @@ static AddressTableViewCell * defaultCell;
     [alert addAction:falseA];
     
     [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+
+- (void)deleteAddressWithIndex:(NSIndexPath *)index{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/address/delate_address",KURL];
+    
+    AddressModel *model = self.dataArr[index.row];
+    
+    NSDictionary *dic = @{@"id":model.ID};
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES].label.text = @"删除中···";
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            
+            [self.dataArr removeObjectAtIndex:index.row];
+            [self.tmpTableView deleteRowsAtIndexPaths:@[index] withRowAnimation:(UITableViewRowAnimationLeft)];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
     
 }
 

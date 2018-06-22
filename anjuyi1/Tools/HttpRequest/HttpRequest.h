@@ -49,7 +49,6 @@ typedef NS_ENUM(NSInteger , mimeFileType) {
  *  @brief  POST方式请求
  *
  *  @param URLString  请求地址
- *  @param Progress  进度
  *  @param parameters 参数
  *  @param success    成功回调
  *  @param failure    失败回调
@@ -59,16 +58,32 @@ typedef NS_ENUM(NSInteger , mimeFileType) {
      success:(void (^_Nullable)(id _Nullable responseObject))success
      failure:(void (^_Nullable)(NSError * _Nullable error))failure;
 
+
+/**
+ *  @author Micheal
+ *
+ *  @brief  POST方式请求
+ *
+ *  @param header  请求头
+ *  @param URLString  请求地址
+ *  @param parameters 参数
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
++ (void)POSTWithHeader:(NSDictionary *)header
+                   url:(NSString *_Nullable)URLString
+            parameters:(id _Nullable )parameters
+               success:(void (^_Nullable)(id _Nullable responseObject))success
+               failure:(void (^_Nullable)(NSError * _Nullable error))failure;
+
 /**
  *  @author Micheal
  *
  *  @brief  下载文件
  *
  *  @param URLString  请求地址
- *  @param paramDic   附加post参数
  *  @param savedPath  保存在磁盘的位置
- *  @param success    下载成功回调
- *  @param failure    下载失败回调
+ *  @param completionHandler    下载成功回调
  *  @param progress   实时下载进度回调
  */
 + (void) downloadFileWithInferface:(NSString*_Nullable)URLString

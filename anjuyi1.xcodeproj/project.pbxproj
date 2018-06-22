@@ -152,6 +152,7 @@
 		0AFEE76F20BD2F50004FA8FC /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEE75A20BD2F50004FA8FC /* MyViewController.m */; };
 		0AFEE77020BD2F50004FA8FC /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEE75C20BD2F50004FA8FC /* PushViewController.m */; };
 		0AFEE84020BD30C8004FA8FC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0AFEE83F20BD30C8004FA8FC /* Podfile */; };
+		180588A120DC9B7300883523 /* EditAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180588A020DC9B7300883523 /* EditAddressViewController.m */; };
 		18339CD520D24FD500165FF2 /* SelectLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD420D24FD500165FF2 /* SelectLocationVC.m */; };
 		18339CD920D25B6600165FF2 /* HouseInspectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD820D25B6600165FF2 /* HouseInspectViewController.m */; };
 		18339CDC20D2656800165FF2 /* FreeOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CDB20D2656800165FF2 /* FreeOfferViewController.m */; };
@@ -165,6 +166,8 @@
 		184D07DF20D1250100653D81 /* ServiceAgreementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07DE20D1250100653D81 /* ServiceAgreementVC.m */; };
 		187C11ED20D0A8E400E8DDC7 /* UIColor+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C11EC20D0A8E400E8DDC7 /* UIColor+Category.m */; };
 		187C11F420D0E42600E8DDC7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C11F320D0E42600E8DDC7 /* LoginViewController.m */; };
+		18D3480820DB74B9008FD35E /* SelectCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480720DB74B9008FD35E /* SelectCity.m */; };
+		18D3480C20DB8CFF008FD35E /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480B20DB8CFF008FD35E /* AddressModel.m */; };
 		91B3B557CA6A413EFEEC07AB /* libPods-anjuyi1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D4CE4DF7C872891D91C834 /* libPods-anjuyi1.a */; };
 /* End PBXBuildFile section */
 
@@ -435,6 +438,8 @@
 		0AFEE75D20BD2F50004FA8FC /* PushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushViewController.h; sourceTree = "<group>"; };
 		0AFEE77120BD2F61004FA8FC /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		0AFEE83F20BD30C8004FA8FC /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1805889F20DC9B7300883523 /* EditAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditAddressViewController.h; sourceTree = "<group>"; };
+		180588A020DC9B7300883523 /* EditAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditAddressViewController.m; sourceTree = "<group>"; };
 		18339CD320D24FD500165FF2 /* SelectLocationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectLocationVC.h; sourceTree = "<group>"; };
 		18339CD420D24FD500165FF2 /* SelectLocationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectLocationVC.m; sourceTree = "<group>"; };
 		18339CD720D25B6600165FF2 /* HouseInspectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseInspectViewController.h; sourceTree = "<group>"; };
@@ -461,6 +466,10 @@
 		187C11EC20D0A8E400E8DDC7 /* UIColor+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Category.m"; sourceTree = "<group>"; };
 		187C11F220D0E42600E8DDC7 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		187C11F320D0E42600E8DDC7 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		18D3480620DB74B9008FD35E /* SelectCity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCity.h; sourceTree = "<group>"; };
+		18D3480720DB74B9008FD35E /* SelectCity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCity.m; sourceTree = "<group>"; };
+		18D3480A20DB8CFF008FD35E /* AddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
+		18D3480B20DB8CFF008FD35E /* AddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
 		45D4CE4DF7C872891D91C834 /* libPods-anjuyi1.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-anjuyi1.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2B52CBD25AF94FEBAF2F3B5 /* Pods-anjuyi1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-anjuyi1.release.xcconfig"; path = "Pods/Target Support Files/Pods-anjuyi1/Pods-anjuyi1.release.xcconfig"; sourceTree = "<group>"; };
 		E1C082ED32D6D91A3A95B2F1 /* Pods-anjuyi1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-anjuyi1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-anjuyi1/Pods-anjuyi1.debug.xcconfig"; sourceTree = "<group>"; };
@@ -905,6 +914,7 @@
 		0A8E9C7720C9011C00C6E176 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				18D3480920DB8CE2008FD35E /* Model */,
 				0A8E9C7C20C9020100C6E176 /* Views */,
 				0A7D4FF120C2A92B001BFDBF /* SettingViewController.h */,
 				0A7D4FF220C2A92B001BFDBF /* SettingViewController.m */,
@@ -912,6 +922,8 @@
 				0A8E9C7A20C9018E00C6E176 /* AddressViewController.m */,
 				0A8E9C8220C90DA700C6E176 /* AddAddressViewController.h */,
 				0A8E9C8320C90DA700C6E176 /* AddAddressViewController.m */,
+				1805889F20DC9B7300883523 /* EditAddressViewController.h */,
+				180588A020DC9B7300883523 /* EditAddressViewController.m */,
 				0A1CA5B420C951CE00BA7AD3 /* PersonDetailsViewController.h */,
 				0A1CA5B520C951CE00BA7AD3 /* PersonDetailsViewController.m */,
 				0AD2DEA420CA192C00E53B43 /* ChangeNameViewController.h */,
@@ -936,6 +948,8 @@
 				0A8E9C7F20C9023200C6E176 /* AddressTableViewCell.xib */,
 				0AD2DEAA20CA19E900E53B43 /* DateView.h */,
 				0AD2DEAB20CA19E900E53B43 /* DateView.m */,
+				18D3480620DB74B9008FD35E /* SelectCity.h */,
+				18D3480720DB74B9008FD35E /* SelectCity.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1162,11 +1176,11 @@
 			isa = PBXGroup;
 			children = (
 				0AFEE73720BD2F4F004FA8FC /* ViewHelps.h */,
-				0AFEE73820BD2F4F004FA8FC /* RequestSever.h */,
-				0AFEE73920BD2F4F004FA8FC /* HttpRequest.m */,
 				0AFEE73A20BD2F4F004FA8FC /* ViewHelps.m */,
+				0AFEE73820BD2F4F004FA8FC /* RequestSever.h */,
 				0AFEE73B20BD2F4F004FA8FC /* RequestSever.m */,
 				0AFEE73C20BD2F4F004FA8FC /* HttpRequest.h */,
+				0AFEE73920BD2F4F004FA8FC /* HttpRequest.m */,
 			);
 			path = HttpRequest;
 			sourceTree = "<group>";
@@ -1312,6 +1326,15 @@
 				184D07DE20D1250100653D81 /* ServiceAgreementVC.m */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		18D3480920DB8CE2008FD35E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18D3480A20DB8CFF008FD35E /* AddressModel.h */,
+				18D3480B20DB8CFF008FD35E /* AddressModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B304830A5A52CE953582E64E /* Pods */ = {
@@ -1564,9 +1587,12 @@
 				0AD2DEAC20CA19E900E53B43 /* DateView.m in Sources */,
 				18339CE020D26D5000165FF2 /* GoodsClassViewController.m in Sources */,
 				0A8E9C7B20C9018E00C6E176 /* AddressViewController.m in Sources */,
+				18D3480820DB74B9008FD35E /* SelectCity.m in Sources */,
+				18D3480C20DB8CFF008FD35E /* AddressModel.m in Sources */,
 				0A1CA5B620C951CE00BA7AD3 /* PersonDetailsViewController.m in Sources */,
 				0A7D4FF320C2A92B001BFDBF /* SettingViewController.m in Sources */,
 				0AFEE71420BD2F23004FA8FC /* AppDelegate.m in Sources */,
+				180588A120DC9B7300883523 /* EditAddressViewController.m in Sources */,
 				0A7D500420C2D626001BFDBF /* DistributionDetailsVC.m in Sources */,
 				0AFEE76220BD2F50004FA8FC /* ViewHelps.m in Sources */,
 				184D07DC20D122D300653D81 /* SetUserNameVC.m in Sources */,

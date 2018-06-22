@@ -19,7 +19,7 @@
 }
 - (IBAction)setDefault:(UIButton *)sender {
     
-    [sender setSelected:!sender.selected];
+    
     [self.delegate setDefaultTableViewWithCell:self];
     
 }
@@ -30,6 +30,14 @@
 - (IBAction)eidt:(UIButton *)sender {
  
     [self.delegate editTableViewWithCell:self];
+}
+
+- (void)bandDataWith:(AddressModel *)model{
+    
+    [self.nameLabel setText:model.userName];
+    [self.phoneLabel setText:model.phone];
+    [self.locationLabel setText:[NSString stringWithFormat:@"%@%@%@%@",model.province,model.city,model.area,model.detail]];
+    [self.defaultButton setSelected:[model.is_default integerValue] == 0?YES:NO];
 }
 
 - (void)awakeFromNib {
