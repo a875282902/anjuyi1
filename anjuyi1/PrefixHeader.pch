@@ -22,8 +22,10 @@
 
 #define KStatusBarHeight [[UIApplication sharedApplication]statusBarFrame].size.height //状态栏高度
 #define KNavBarHeight 44.0
-#define KTabBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49) //底部tabbar高度
+
 #define KTopHeight (KStatusBarHeight + KNavBarHeight) //整个导航栏高度
+
+#define KTabBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49) //底部tabbar高度
 
 #define KViewHeight (KScreenHeight - KTopHeight)//视图的高
 

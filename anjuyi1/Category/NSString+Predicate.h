@@ -33,6 +33,9 @@
 //有效的字母数字密码
 - (BOOL)isValidNumberAndLetterPassword;
 
+//有效的昵称
+- (BOOL)isValidNickName;
+
 //检测有效身份证
 //15位
 - (BOOL) isValidIdentifyFifteen;

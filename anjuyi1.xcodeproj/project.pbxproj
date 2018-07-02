@@ -168,6 +168,14 @@
 		187C11F420D0E42600E8DDC7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C11F320D0E42600E8DDC7 /* LoginViewController.m */; };
 		18D3480820DB74B9008FD35E /* SelectCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480720DB74B9008FD35E /* SelectCity.m */; };
 		18D3480C20DB8CFF008FD35E /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480B20DB8CFF008FD35E /* AddressModel.m */; };
+		18EA1BD820E1CCB7000738CC /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA1BD720E1CCB7000738CC /* ShareView.m */; };
+		18EA1BDB20E1CD3A000738CC /* SortPullDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA1BDA20E1CD3A000738CC /* SortPullDown.m */; };
+		18EA1BDF20E1CD9A000738CC /* SortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA1BDD20E1CD9A000738CC /* SortCell.m */; };
+		18EA1BE020E1CD9A000738CC /* SortCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EA1BDE20E1CD9A000738CC /* SortCell.xib */; };
+		18F5B7CA20E9D90F00B76A73 /* MaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5B7C220E9D90F00B76A73 /* MaskView.m */; };
+		18F5B7CB20E9D90F00B76A73 /* AlbumSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5B7C320E9D90F00B76A73 /* AlbumSelectController.m */; };
+		18F5B7CC20E9D90F00B76A73 /* PhotoSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5B7C720E9D90F00B76A73 /* PhotoSelectController.m */; };
+		18F5B7CD20E9D90F00B76A73 /* PhotoCuttingBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5B7C820E9D90F00B76A73 /* PhotoCuttingBox.m */; };
 		91B3B557CA6A413EFEEC07AB /* libPods-anjuyi1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D4CE4DF7C872891D91C834 /* libPods-anjuyi1.a */; };
 /* End PBXBuildFile section */
 
@@ -470,6 +478,21 @@
 		18D3480720DB74B9008FD35E /* SelectCity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCity.m; sourceTree = "<group>"; };
 		18D3480A20DB8CFF008FD35E /* AddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
 		18D3480B20DB8CFF008FD35E /* AddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
+		18EA1BD620E1CCB7000738CC /* ShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
+		18EA1BD720E1CCB7000738CC /* ShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
+		18EA1BD920E1CD3A000738CC /* SortPullDown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortPullDown.h; sourceTree = "<group>"; };
+		18EA1BDA20E1CD3A000738CC /* SortPullDown.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SortPullDown.m; sourceTree = "<group>"; };
+		18EA1BDC20E1CD9A000738CC /* SortCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortCell.h; sourceTree = "<group>"; };
+		18EA1BDD20E1CD9A000738CC /* SortCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SortCell.m; sourceTree = "<group>"; };
+		18EA1BDE20E1CD9A000738CC /* SortCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SortCell.xib; sourceTree = "<group>"; };
+		18F5B7C220E9D90F00B76A73 /* MaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaskView.m; sourceTree = "<group>"; };
+		18F5B7C320E9D90F00B76A73 /* AlbumSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumSelectController.m; sourceTree = "<group>"; };
+		18F5B7C420E9D90F00B76A73 /* PhotoCuttingBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCuttingBox.h; sourceTree = "<group>"; };
+		18F5B7C520E9D90F00B76A73 /* PhotoSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoSelectController.h; sourceTree = "<group>"; };
+		18F5B7C620E9D90F00B76A73 /* MaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaskView.h; sourceTree = "<group>"; };
+		18F5B7C720E9D90F00B76A73 /* PhotoSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoSelectController.m; sourceTree = "<group>"; };
+		18F5B7C820E9D90F00B76A73 /* PhotoCuttingBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCuttingBox.m; sourceTree = "<group>"; };
+		18F5B7C920E9D90F00B76A73 /* AlbumSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumSelectController.h; sourceTree = "<group>"; };
 		45D4CE4DF7C872891D91C834 /* libPods-anjuyi1.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-anjuyi1.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2B52CBD25AF94FEBAF2F3B5 /* Pods-anjuyi1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-anjuyi1.release.xcconfig"; path = "Pods/Target Support Files/Pods-anjuyi1/Pods-anjuyi1.release.xcconfig"; sourceTree = "<group>"; };
 		E1C082ED32D6D91A3A95B2F1 /* Pods-anjuyi1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-anjuyi1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-anjuyi1/Pods-anjuyi1.debug.xcconfig"; sourceTree = "<group>"; };
@@ -723,6 +746,11 @@
 				0A5CD81220C592450028F82D /* YZPullDownMenu.m */,
 				0A5CD82220C593790028F82D /* DefaultPullDown.h */,
 				0A5CD82320C593790028F82D /* DefaultPullDown.m */,
+				18EA1BD920E1CD3A000738CC /* SortPullDown.h */,
+				18EA1BDA20E1CD3A000738CC /* SortPullDown.m */,
+				18EA1BDC20E1CD9A000738CC /* SortCell.h */,
+				18EA1BDD20E1CD9A000738CC /* SortCell.m */,
+				18EA1BDE20E1CD9A000738CC /* SortCell.xib */,
 			);
 			path = PullDown;
 			sourceTree = "<group>";
@@ -1160,6 +1188,7 @@
 		0AFEE73420BD2F4F004FA8FC /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				18F5B7C120E9D90F00B76A73 /* PhotoSelect */,
 				0A5A7B2120C7DB9300153E9A /* SDPhotoBrowserd */,
 				0A5CD81020C5921D0028F82D /* PullDown */,
 				0AFEE73E20BD2F4F004FA8FC /* IanScrollView */,
@@ -1168,6 +1197,8 @@
 				0AFEE73D20BD2F4F004FA8FC /* Rotating.m */,
 				0AC3190720BD9DF40035800F /* Tools.h */,
 				0AC3190820BD9DF40035800F /* Tools.m */,
+				18EA1BD620E1CCB7000738CC /* ShareView.h */,
+				18EA1BD720E1CCB7000738CC /* ShareView.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1337,6 +1368,21 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		18F5B7C120E9D90F00B76A73 /* PhotoSelect */ = {
+			isa = PBXGroup;
+			children = (
+				18F5B7C220E9D90F00B76A73 /* MaskView.m */,
+				18F5B7C320E9D90F00B76A73 /* AlbumSelectController.m */,
+				18F5B7C420E9D90F00B76A73 /* PhotoCuttingBox.h */,
+				18F5B7C520E9D90F00B76A73 /* PhotoSelectController.h */,
+				18F5B7C620E9D90F00B76A73 /* MaskView.h */,
+				18F5B7C720E9D90F00B76A73 /* PhotoSelectController.m */,
+				18F5B7C820E9D90F00B76A73 /* PhotoCuttingBox.m */,
+				18F5B7C920E9D90F00B76A73 /* AlbumSelectController.h */,
+			);
+			path = PhotoSelect;
+			sourceTree = "<group>";
+		};
 		B304830A5A52CE953582E64E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1414,6 +1460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AD0C61920BEB354001A20C4 /* MallTableViewCell.xib in Resources */,
+				18EA1BE020E1CD9A000738CC /* SortCell.xib in Resources */,
 				0AFEE72220BD2F26004FA8FC /* LaunchScreen.storyboard in Resources */,
 				0AFEE76D20BD2F50004FA8FC /* LaunchScreen.storyboard in Resources */,
 				0A5A7B2B20C7DB9300153E9A /* LICENSE in Resources */,
@@ -1491,6 +1538,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18F5B7CC20E9D90F00B76A73 /* PhotoSelectController.m in Sources */,
 				0AC3190120BD88DA0035800F /* SearchView.m in Sources */,
 				0A7D505120C432A6001BFDBF /* MyAnswerViewController.m in Sources */,
 				0AD2DEC720CA832100E53B43 /* OrderCenterViewController.m in Sources */,
@@ -1513,6 +1561,7 @@
 				0A38FEF220C6CD1600B45CCD /* SuspensionButton.m in Sources */,
 				184D07DF20D1250100653D81 /* ServiceAgreementVC.m in Sources */,
 				0AC3190920BD9DF40035800F /* Tools.m in Sources */,
+				18F5B7CA20E9D90F00B76A73 /* MaskView.m in Sources */,
 				0AD2DEB220CA443B00E53B43 /* ChangepasswordVC.m in Sources */,
 				0AD0C62120BEE4D6001A20C4 /* DesignerTableViewCell.m in Sources */,
 				0A38FEF520C6D3D600B45CCD /* ShopCartViewController.m in Sources */,
@@ -1522,12 +1571,14 @@
 				0A5CD83820C626880028F82D /* OrderDetailsCell.m in Sources */,
 				0A8E9C6C20C8F4CE00C6E176 /* IntegralPayViewController.m in Sources */,
 				0A5CD81520C592460028F82D /* YZCover.m in Sources */,
+				18EA1BDF20E1CD9A000738CC /* SortCell.m in Sources */,
 				0A45D94B20CB68C7000C04B8 /* SubscribeVisitVC.m in Sources */,
 				18339CD920D25B6600165FF2 /* HouseInspectViewController.m in Sources */,
 				0A7D501B20C2F141001BFDBF /* ContractDetailsVC.m in Sources */,
 				0A5CD81D20C5927F0028F82D /* UIView+YZCategory.m in Sources */,
 				0AD2DEB520CA444800E53B43 /* ChangePhoneVC.m in Sources */,
 				0A7D505A20C437C5001BFDBF /* MyFriendViewController.m in Sources */,
+				18EA1BD820E1CCB7000738CC /* ShareView.m in Sources */,
 				0AFEE71D20BD2F23004FA8FC /* anjuyi1.xcdatamodeld in Sources */,
 				0AFEE76320BD2F50004FA8FC /* RequestSever.m in Sources */,
 				0A5CD81C20C5927F0028F82D /* YZMenuButton.m in Sources */,
@@ -1594,15 +1645,18 @@
 				0AFEE71420BD2F23004FA8FC /* AppDelegate.m in Sources */,
 				180588A120DC9B7300883523 /* EditAddressViewController.m in Sources */,
 				0A7D500420C2D626001BFDBF /* DistributionDetailsVC.m in Sources */,
+				18F5B7CD20E9D90F00B76A73 /* PhotoCuttingBox.m in Sources */,
 				0AFEE76220BD2F50004FA8FC /* ViewHelps.m in Sources */,
 				184D07DC20D122D300653D81 /* SetUserNameVC.m in Sources */,
 				0A5A7B2E20C7DB9300153E9A /* SDPhotoBrowserd.m in Sources */,
 				0A5CD84420C67A330028F82D /* SelectTime.m in Sources */,
 				0A7D505520C433CF001BFDBF /* MyAnswerTableViewCell.m in Sources */,
 				0A5CD84F20C695170028F82D /* IntegralMallTableViewCell.m in Sources */,
+				18EA1BDB20E1CD3A000738CC /* SortPullDown.m in Sources */,
 				18339CDC20D2656800165FF2 /* FreeOfferViewController.m in Sources */,
 				0A7D4FF020C23462001BFDBF /* ProjectCollectionViewCell.m in Sources */,
 				0A45D95720CB7CB2000C04B8 /* PlaceSupervisorViewController.m in Sources */,
+				18F5B7CB20E9D90F00B76A73 /* AlbumSelectController.m in Sources */,
 				0AFEE76F20BD2F50004FA8FC /* MyViewController.m in Sources */,
 				0AFEE75E20BD2F50004FA8FC /* MallViewController.m in Sources */,
 				0A5582AA20C1339800759E6B /* ProjectDetailsVC.m in Sources */,

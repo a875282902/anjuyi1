@@ -185,7 +185,12 @@
         
         NSDictionary *dic = @{@"mobile":userNames,@"code":passwords};
         
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
         [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
             if ([responseObject[@"code"] integerValue] == 200) {
                 SetPasswordVC *vc = [[SetPasswordVC alloc] init];
                 vc.phone = self->userNames;
@@ -197,7 +202,10 @@
             }
             
         } failure:^(NSError * _Nullable error) {
-            [ViewHelps showHUDWithText:@"网络未响应，请稍后再次点击"];
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [RequestSever showMsgWithError:error];
+            
         }];
     }
     else{
@@ -245,7 +253,7 @@
         
     } failure:^(NSError * _Nullable error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [ViewHelps showHUDWithText:@"验证码发送失败，请再次发送"];
+        [RequestSever showMsgWithError:error];
     }];
     
     

@@ -173,6 +173,7 @@
         
     } failure:^(NSError * _Nullable error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
     }];
 }
 

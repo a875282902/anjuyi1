@@ -98,6 +98,8 @@
     
     [attS setAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#999999"]} range:NSMakeRange(0, str.length)];
     [attS setAttributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(22, 6)];
+    [attS addAttribute:NSUnderlineStyleAttributeName value:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid) range:NSMakeRange(23, 4)];
+    [attS addAttribute:NSUnderlineColorAttributeName value:[UIColor redColor] range:NSMakeRange(23, 4)];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, height, KScreenWidth - 30, 40)];
     [label setAttributedText:attS];

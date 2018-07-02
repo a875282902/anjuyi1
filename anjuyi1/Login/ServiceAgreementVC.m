@@ -52,6 +52,8 @@
     [yesBtn setBackgroundColor:BTNCOLOR];
     [yesBtn addTarget:self action:@selector(agree) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:yesBtn];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
 
@@ -162,6 +164,11 @@
         
     }
     
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 #pragma mark-NURLConnectiondelegate
