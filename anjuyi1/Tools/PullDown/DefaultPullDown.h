@@ -8,8 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class DefaultPullDown;
+
+@protocol DefaultPullDownDelegate <NSObject>
+
+- (void)dafalutPullDownSelect:(NSInteger)index;
+
+@end
+
 @interface DefaultPullDown : UITableViewController
 
 @property (nonatomic, copy) NSArray *titleArray;
+
+@property (nonatomic ,weak) id<DefaultPullDownDelegate>delegate;
 
 @end

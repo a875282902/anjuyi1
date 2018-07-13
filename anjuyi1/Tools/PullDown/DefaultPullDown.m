@@ -36,6 +36,22 @@ static NSString * const ID = @"cell";
     [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
 }
 
+- (void)setTitleArray:(NSArray *)titleArray{
+
+    NSMutableArray *arr = [NSMutableArray array];
+    for (id obj in titleArray) {
+        if ([obj isKindOfClass:[NSDictionary class]]) {
+            [arr addObject:obj[@"name"]];
+        }
+        else{
+            [arr addObject:obj];
+        }
+    }
+    _titleArray = arr;
+    
+    [self.tableView reloadData];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.titleArray.count;
@@ -49,6 +65,7 @@ static NSString * const ID = @"cell";
         [cell setSelected:YES animated:NO];
     }
     
+    
     return cell;
 }
 
@@ -56,6 +73,8 @@ static NSString * const ID = @"cell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _selectedCol = indexPath.row;
+    
+    [self.delegate dafalutPullDownSelect:indexPath.row];
     
     // 选中当前
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];

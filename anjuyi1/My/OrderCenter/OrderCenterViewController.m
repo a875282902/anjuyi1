@@ -10,6 +10,7 @@
 #import "YZPullDownMenu.h"
 #import "YZMenuButton.h"
 #import "SortPullDown.h"
+#import "DefaultPullDown.h"
 #import "OrderCenterTableViewCell.h"
 #import "OrderCenterDatailsVC.h"
 
@@ -111,7 +112,7 @@
     
     SortPullDown *sort = [[SortPullDown alloc] init];
     sort.titleArray = @[@"全部",@"电商",@"租赁",@"安装"];
-    SortPullDown *sort2 = [[SortPullDown alloc] init];
+    DefaultPullDown *sort2 = [[DefaultPullDown alloc] init];
     sort2.titleArray = @[@"全部",@"待支付",@"待发货",@"待收货",@"待评价",@"订单完成"];
     SortPullDown *sort3 = [[SortPullDown alloc] init];
     sort3.titleArray = @[@"全部",@"电商",@"租赁",@"安装"];

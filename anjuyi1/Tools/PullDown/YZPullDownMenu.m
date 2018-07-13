@@ -109,10 +109,8 @@ NSString * const YZUpdateMenuTitleNote = @"YZUpdateMenuTitleNote";
     if (_contentView == nil) {
         _contentView = [[UIView alloc] init];
         _contentView.backgroundColor = [UIColor whiteColor];
-        _contentView.frame = CGRectMake(0, 0, self.bounds.size.width/3, 0);
+        _contentView.frame = CGRectMake(0, 0, self.bounds.size.width, 0);
         _contentView.clipsToBounds = YES;
-        [_contentView.layer setBorderWidth:0.4];
-        [_contentView.layer setBackgroundColor:[UIColor colorWithHexString:@"#f6f6f6"].CGColor];
         [self.coverView addSubview:_contentView];
     }
     return _contentView;
@@ -173,13 +171,13 @@ NSString * const YZUpdateMenuTitleNote = @"YZUpdateMenuTitleNote";
     CGFloat btnY = 0;
     CGFloat btnW = self.bounds.size.width / count;
     CGFloat btnH = self.bounds.size.height;
-
+    
     for (NSInteger i = 0; i < count; i++) {
         // 设置按钮位置
         UIButton *btn = self.menuButtons[i];
         btnX = i * btnW;
         btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
-
+        
         // 设置分割线位置
         if (i < count - 1) {
             UIView *separateLine = self.separateLines[i];
@@ -190,7 +188,7 @@ NSString * const YZUpdateMenuTitleNote = @"YZUpdateMenuTitleNote";
     // 设置底部View位置
     CGFloat bottomH = 1;
     CGFloat bottomY = btnH - bottomH;
-    _bottomLine.frame = CGRectMake(0, bottomY, self.bounds.size.width/3, bottomH);
+    _bottomLine.frame = CGRectMake(0, bottomY, self.bounds.size.width, bottomH);
 }
 
 #pragma mark - 即将进入窗口
@@ -237,7 +235,7 @@ NSString * const YZUpdateMenuTitleNote = @"YZUpdateMenuTitleNote";
     if (![self.dataSource respondsToSelector:@selector(pullDownMenu:buttonForColAtIndex:)]) {
         @throw [NSException exceptionWithName:@"YZError" reason:@"pullDownMenu:buttonForColAtIndex:）" userInfo:nil];
     }
-
+    
     // 判断每一列控制器的方法是否实现
     if (![self.dataSource respondsToSelector:@selector(pullDownMenu:viewControllerForColAtIndex:)]) {
         @throw [NSException exceptionWithName:@"YZError" reason:@"pullDownMenu:viewControllerForColAtIndex:这个方法未实现）" userInfo:nil];
@@ -249,7 +247,7 @@ NSString * const YZUpdateMenuTitleNote = @"YZUpdateMenuTitleNote";
         @throw [NSException exceptionWithName:@"YZError" reason:@"pullDownMenu:heightForColAtIndex:这个方法未实现）" userInfo:nil];
         return;
     }
-
+    
     // 获取有多少列
     NSInteger cols = [self.dataSource numberOfColsInMenu:self];
     
@@ -302,7 +300,7 @@ NSString * const YZUpdateMenuTitleNote = @"YZUpdateMenuTitleNote";
     
     // 设置所有子控件的尺寸
     [self layoutSubviews];
-
+    
 }
 
 #pragma mark - 下拉菜单弹回
@@ -326,7 +324,7 @@ NSString * const YZUpdateMenuTitleNote = @"YZUpdateMenuTitleNote";
         
         self.coverView.hidden = YES;
         
-        self.coverView.backgroundColor = _coverColor;
+        self.coverView.backgroundColor = self->_coverColor;
         
     }];
 }
@@ -355,15 +353,11 @@ NSString * const YZUpdateMenuTitleNote = @"YZUpdateMenuTitleNote";
         
         // 添加对应子控制器的view
         UIViewController *vc = self.controllers[i];
-        CGRect frame = self.contentView.frame;
-        frame.origin.x = frame.size.width*i;
-        vc.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+        vc.view.frame = self.contentView.bounds;
         [self.contentView addSubview:vc.view];
-
+        
         // 设置内容的高度
         CGFloat height = [self.colsHeight[i] floatValue];
-        
-        self.contentView.frame = frame;
         
         [UIView animateWithDuration:0.25 animations:^{
             

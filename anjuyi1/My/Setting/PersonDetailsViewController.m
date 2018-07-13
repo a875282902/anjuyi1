@@ -10,14 +10,13 @@
 #import "ChangeNameViewController.h"
 #import "PersonalProfileVC.h"
 #import "DateView.h"
+#import "PhotoSelectController.h"
 
-@interface PersonDetailsViewController ()<UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface PersonDetailsViewController ()<UIScrollViewDelegate,PhotoSelectControllerDelegate>
 {
     UIImageView *headerImage;
 }
 @property (nonatomic,strong)UIScrollView *tmpScrollView;
-
-@property (nonatomic,strong)UIImagePickerController *imagePickerController;
 
 @property (nonatomic,strong)DateView *dateView;
 
@@ -132,103 +131,54 @@
 #pragma mark -- 选择照片
 - (void)chooseImageFromIphone{
     
-    // 判断有没有访问相册的权限
-    if(![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
-        
-        NSLog(@"没有访问相册的权限");
-        return;
-        
-    }
-    
-    if ([UIImagePickerController isSourceTypeAvailable:(UIImagePickerControllerSourceTypeCamera)]) {
-        
-        [self creatAlertViewControllerWithMessage:@"2"];
-    }
-    else{
-        
-        [self creatAlertViewControllerWithMessage:@"1"];
-    }
-    
-    
-    
+    PhotoSelectController *vc = [[PhotoSelectController alloc] init];
+    [vc setDelegate:self];
+    [vc setIsClip:NO];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
+
 }
 
-- (void)creatAlertViewControllerWithMessage:(NSString *)message{
+- (void)selectImage:(UIImage *)image{
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择" message:@"" preferredStyle:(UIAlertControllerStyleActionSheet)];
+    [headerImage setImage:image];
     
-    UIAlertAction *trueA = [UIAlertAction actionWithTitle:@"相册" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-        
-        self.imagePickerController = [[UIImagePickerController alloc] init];
-        
-        [self.imagePickerController setDelegate:self];
-        // 设置来自相册
-        [self.imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-        // 设置允许编辑
-        [self.imagePickerController setAllowsEditing:YES];
-        
-        [self presentViewController:self.imagePickerController animated:YES completion:nil];
-        
-    }];
-    
-    UIAlertAction *trueB = [UIAlertAction actionWithTitle:@"相机" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-        
-        self.imagePickerController = [[UIImagePickerController alloc] init];
-        
-        [self.imagePickerController setDelegate:self];
-        // 设置来自相机
-        [self.imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
-        
-        // 设置允许编辑
-        [self.imagePickerController setAllowsEditing:YES];
-        
-        [self presentViewController:self.imagePickerController animated:YES completion:nil];
-        
-    }];
-    
-    UIAlertAction *falseA = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    
-    
-    if ([message isEqualToString:@"2"]) {
-        
-        [alert addAction:trueB];
-    }
-    
-    [alert addAction:trueA];
-    [alert addAction:falseA];
-    [self presentViewController:alert animated:YES completion:nil];
-    
+    [self upLoadImage:image];
 }
 
-// 选择图片的回调
-- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-    
-    // 我们选取的信息都在info里面，info是一个字典
-    //    字典中的键
-    /*
-     UIImagePickerControllerMediaType;    指定用户选择的媒体类型
-     UIImagePickerControllerOriginalImage;    原始图片
-     UIImagePickerControllerEditedImage;      修改后的图片
-     UIImagePickerControllerCropRect;             裁剪尺寸
-     UIImagePickerControllerMediaURL;           媒体的URL
-     UIImagePickerControllerReferenceURL        原件的URL
-     UIImagePickerControllerMediaMetadata  当数据来源是照相机的时候这个值才有效
-     */
-    
-    
-    // 图片类型是修改后的图片
-    UIImage *selectedImage = [info objectForKey:UIImagePickerControllerEditedImage];
-    
-    // 设置图片
-    //    [self.headImageView setImage:selectedImage];
-    [headerImage setImage:selectedImage];
-    
-    // 返回（结束模态对话窗体）
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
 
+- (void)upLoadImage:(UIImage *)image{
+    
+    
+    NSString *path = [NSString stringWithFormat:@"%@/Upload/upload",KURL];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest uploadFileWithInferface:path parameters:nil fileData:UIImagePNGRepresentation(image) serverName:@"file" saveName:@"232323.png" mimeType:(MCPNGImageFileType) progress:^(float progress) {
+        NSLog(@"%.2f",progress);
+    } success:^(id  _Nullable responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            NSLog(@"成功");
+            
+            if ([responseObject[@"datas"][@"route"] integerValue]==200) {
+                
+            }
+            
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

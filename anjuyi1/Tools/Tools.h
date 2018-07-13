@@ -24,6 +24,7 @@
 + (UIImageView *)creatImage:(CGRect)rect url:(NSString *)imageUrl image:(NSString *)imageName;
 
 
++(NSString*)getCurrentTimes;
 
 
 @end

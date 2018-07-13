@@ -32,6 +32,9 @@
 //字符串是否为空
 #define KStringIsEmpty(str) ([str isKindOfClass:[NSNull class]] || str == nil || [str length] < 1 ? YES : NO )
 
+//字符串高度
+#define KHeight(s,w,h,f) [s boundingRectWithSize:CGSizeMake(w, h) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:f]} context:nil]
+
 //数组是否为空
 #define KArrayIsEmpty(array) (array == nil || [array isKindOfClass:[NSNull class]] || array.count == 0)
 
@@ -52,6 +55,7 @@
 
 //button 背景颜色
 #define BTNCOLOR [UIColor colorWithHexString:@"#ffb638"]
+#define TCOLOR [UIColor colorWithHexString:@"#3b3b3b"]
 
 #define KURL @"https://api.ajyvip.com"
 

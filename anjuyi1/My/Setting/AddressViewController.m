@@ -59,11 +59,13 @@ static AddressTableViewCell * defaultCell;
         
         [self.dataArr removeAllObjects];
         if ([responseObject[@"code"] integerValue] == 200) {
-            
-            for (NSDictionary *dic in responseObject[@"datas"]) {
-                AddressModel *model = [[AddressModel alloc] initWithDictionary:dic];
-                [self.dataArr addObject:model];
+            if ([responseObject[@"datas"] isKindOfClass:[NSDictionary class]]) {
+                for (NSDictionary *dic in responseObject[@"datas"]) {
+                    AddressModel *model = [[AddressModel alloc] initWithDictionary:dic];
+                    [self.dataArr addObject:model];
+                }
             }
+            
             [self.tmpTableView reloadData];
         }
         else{

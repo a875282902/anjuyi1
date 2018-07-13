@@ -43,7 +43,9 @@
     [self.navButton setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
     [self.navigationItem setTitleView:self.navButton];
     
-    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"back" style:(UIBarButtonItemStyleDone) target:self action:@selector(back)]];
+    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"yhq_close"] imageWithRenderingMode:(UIImageRenderingModeAlwaysOriginal)] style:(UIBarButtonItemStylePlain) target:self action:@selector(back)]];
+    
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"确定" style:(UIBarButtonItemStylePlain) target:self action:@selector(sure)]];
     
     [self creatImageView];
     
@@ -57,6 +59,10 @@
 
 - (void)back{
     
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)sure{
     [self.delegate selectImage:[self nomalSnapshotImage]];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -146,10 +152,14 @@
     UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth/4, KScreenWidth/4)];
     
     if (indexPath.item == 0) {
-        [image setBackgroundColor:[UIColor blackColor]];
+        [image setImage:[UIImage imageNamed:@"up_photo"]];
+        [image setFrame:CGRectMake(0, 0, KScreenWidth/8, KScreenWidth/8)];
+        [image setCenter:CGPointMake(KScreenWidth/8, KScreenWidth/8)];
+        [image setContentMode:(UIViewContentModeScaleAspectFit)];
         
     }
     else{
+        [image setFrame:CGRectMake(0, 0, KScreenWidth/4, KScreenWidth/4)];
         PHAsset *asset = self.dataArr[indexPath.item];
         
         PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];

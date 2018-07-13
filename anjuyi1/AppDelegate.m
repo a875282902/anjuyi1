@@ -12,8 +12,7 @@
 #import "RegisterViewController.h"
 #import "BaseNaviViewController.h"
 
-
-#import "ServiceAgreementVC.h"
+#import "AddProjectViewController.h"
 
 @interface AppDelegate ()
 
@@ -25,11 +24,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    
-    if (@available(iOS 11.0, *)) {
-        [[UIScrollView appearance] setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
-    }
-    
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [self.window setBackgroundColor:[UIColor whiteColor]];
@@ -42,7 +37,7 @@
     }
 
    
-//    [self.window setRootViewController:[[RootViewController alloc] init]];
+//    [self.window setRootViewController:[[BaseNaviViewController alloc] initWithRootViewController:[[AddProjectViewController alloc] init]]];
     
     [self.window makeKeyAndVisible];
     
@@ -87,7 +82,7 @@
 
 @synthesize persistentContainer = _persistentContainer;
 
-- (NSPersistentContainer *)persistentContainer {
+- (NSPersistentContainer *)persistentContainer  API_AVAILABLE(ios(10.0)){
     // The persistent container for the application. This implementation creates and returns a container, having loaded the store for the application to it.
     @synchronized (self) {
         if (_persistentContainer == nil) {

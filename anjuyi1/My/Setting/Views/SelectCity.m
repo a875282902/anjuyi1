@@ -71,6 +71,7 @@ static CGFloat sHeight = 50;
     _dataArr = dataArr;
     
     [self.tmpPickerView reloadAllComponents];
+
 }
 
 #pragma mark --  tmpPickerView
@@ -127,7 +128,7 @@ static CGFloat sHeight = 50;
     [self setHidden:NO];
     
     [UIView animateWithDuration:.3 animations:^{
-        [self.backView setFrame:CGRectMake(0, KScreenHeight - vHeight, KScreenWidth, vHeight)];
+        [self.backView setFrame:CGRectMake(0, self.frame.size.height - vHeight, KScreenWidth, vHeight)];
     }];
 }
 

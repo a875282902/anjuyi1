@@ -94,5 +94,18 @@
     return att;
 }
 
++ (NSString*) getCurrentTimes{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+
+    [formatter setDateFormat:@"MM-dd"];
+  
+    NSDate *datenow = [NSDate date];
+
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    
+    return currentTimeString;
+    
+}
 
 @end

@@ -92,6 +92,7 @@
     if (sender && [sender isKindOfClass:[UIButton class]]) {
         
         [self.navigationController popViewControllerAnimated:YES];
+    
     }
 }
 

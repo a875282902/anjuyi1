@@ -159,11 +159,15 @@
 		18339CE020D26D5000165FF2 /* GoodsClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CDF20D26D5000165FF2 /* GoodsClassViewController.m */; };
 		18339CE320D2746D00165FF2 /* ClassListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CE220D2746D00165FF2 /* ClassListView.m */; };
 		18339CE620D276B700165FF2 /* BrandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CE520D276B700165FF2 /* BrandListView.m */; };
+		1846CFD120F836FB00EA1417 /* PullDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD020F836FB00EA1417 /* PullDownView.m */; };
+		1846CFD420F85B8B00EA1417 /* ProjectAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD320F85B8B00EA1417 /* ProjectAddressViewController.m */; };
+		1846CFD720F88F8900EA1417 /* LabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD620F88F8900EA1417 /* LabelViewController.m */; };
 		184D07D320D1029A00653D81 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D220D1029A00653D81 /* RegisterViewController.m */; };
 		184D07D620D1171500653D81 /* SetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D520D1171500653D81 /* SetPasswordVC.m */; };
 		184D07D920D11C8D00653D81 /* NSString+Predicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D720D11C8D00653D81 /* NSString+Predicate.m */; };
 		184D07DC20D122D300653D81 /* SetUserNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07DB20D122D300653D81 /* SetUserNameVC.m */; };
 		184D07DF20D1250100653D81 /* ServiceAgreementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07DE20D1250100653D81 /* ServiceAgreementVC.m */; };
+		1862840D20F7314B0038A7AC /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862840C20F7314A0038A7AC /* BannerModel.m */; };
 		187C11ED20D0A8E400E8DDC7 /* UIColor+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C11EC20D0A8E400E8DDC7 /* UIColor+Category.m */; };
 		187C11F420D0E42600E8DDC7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C11F320D0E42600E8DDC7 /* LoginViewController.m */; };
 		18D3480820DB74B9008FD35E /* SelectCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480720DB74B9008FD35E /* SelectCity.m */; };
@@ -176,6 +180,9 @@
 		18F5B7CB20E9D90F00B76A73 /* AlbumSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5B7C320E9D90F00B76A73 /* AlbumSelectController.m */; };
 		18F5B7CC20E9D90F00B76A73 /* PhotoSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5B7C720E9D90F00B76A73 /* PhotoSelectController.m */; };
 		18F5B7CD20E9D90F00B76A73 /* PhotoCuttingBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5B7C820E9D90F00B76A73 /* PhotoCuttingBox.m */; };
+		18F5B7D120E9F87200B76A73 /* PushPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5B7D020E9F87200B76A73 /* PushPhotoViewController.m */; };
+		18F5B7D520EB1D0700B76A73 /* PushProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5B7D420EB1D0700B76A73 /* PushProjectViewController.m */; };
+		18F5B7D820EB1D1000B76A73 /* AddProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5B7D720EB1D1000B76A73 /* AddProjectViewController.m */; };
 		91B3B557CA6A413EFEEC07AB /* libPods-anjuyi1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D4CE4DF7C872891D91C834 /* libPods-anjuyi1.a */; };
 /* End PBXBuildFile section */
 
@@ -460,6 +467,12 @@
 		18339CE220D2746D00165FF2 /* ClassListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassListView.m; sourceTree = "<group>"; };
 		18339CE420D276B700165FF2 /* BrandListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrandListView.h; sourceTree = "<group>"; };
 		18339CE520D276B700165FF2 /* BrandListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrandListView.m; sourceTree = "<group>"; };
+		1846CFCF20F836FB00EA1417 /* PullDownView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullDownView.h; sourceTree = "<group>"; };
+		1846CFD020F836FB00EA1417 /* PullDownView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullDownView.m; sourceTree = "<group>"; };
+		1846CFD220F85B8B00EA1417 /* ProjectAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectAddressViewController.h; sourceTree = "<group>"; };
+		1846CFD320F85B8B00EA1417 /* ProjectAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectAddressViewController.m; sourceTree = "<group>"; };
+		1846CFD520F88F8900EA1417 /* LabelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelViewController.h; sourceTree = "<group>"; };
+		1846CFD620F88F8900EA1417 /* LabelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelViewController.m; sourceTree = "<group>"; };
 		184D07D120D1029A00653D81 /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		184D07D220D1029A00653D81 /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		184D07D420D1171500653D81 /* SetPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetPasswordVC.h; sourceTree = "<group>"; };
@@ -470,6 +483,8 @@
 		184D07DB20D122D300653D81 /* SetUserNameVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetUserNameVC.m; sourceTree = "<group>"; };
 		184D07DD20D1250100653D81 /* ServiceAgreementVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServiceAgreementVC.h; sourceTree = "<group>"; };
 		184D07DE20D1250100653D81 /* ServiceAgreementVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServiceAgreementVC.m; sourceTree = "<group>"; };
+		1862840B20F7314A0038A7AC /* BannerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerModel.h; sourceTree = "<group>"; };
+		1862840C20F7314A0038A7AC /* BannerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerModel.m; sourceTree = "<group>"; };
 		187C11EB20D0A8E400E8DDC7 /* UIColor+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Category.h"; sourceTree = "<group>"; };
 		187C11EC20D0A8E400E8DDC7 /* UIColor+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Category.m"; sourceTree = "<group>"; };
 		187C11F220D0E42600E8DDC7 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -493,6 +508,12 @@
 		18F5B7C720E9D90F00B76A73 /* PhotoSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoSelectController.m; sourceTree = "<group>"; };
 		18F5B7C820E9D90F00B76A73 /* PhotoCuttingBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCuttingBox.m; sourceTree = "<group>"; };
 		18F5B7C920E9D90F00B76A73 /* AlbumSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumSelectController.h; sourceTree = "<group>"; };
+		18F5B7CF20E9F87200B76A73 /* PushPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushPhotoViewController.h; sourceTree = "<group>"; };
+		18F5B7D020E9F87200B76A73 /* PushPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushPhotoViewController.m; sourceTree = "<group>"; };
+		18F5B7D320EB1D0700B76A73 /* PushProjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushProjectViewController.h; sourceTree = "<group>"; };
+		18F5B7D420EB1D0700B76A73 /* PushProjectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushProjectViewController.m; sourceTree = "<group>"; };
+		18F5B7D620EB1D1000B76A73 /* AddProjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddProjectViewController.h; sourceTree = "<group>"; };
+		18F5B7D720EB1D1000B76A73 /* AddProjectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddProjectViewController.m; sourceTree = "<group>"; };
 		45D4CE4DF7C872891D91C834 /* libPods-anjuyi1.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-anjuyi1.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2B52CBD25AF94FEBAF2F3B5 /* Pods-anjuyi1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-anjuyi1.release.xcconfig"; path = "Pods/Target Support Files/Pods-anjuyi1/Pods-anjuyi1.release.xcconfig"; sourceTree = "<group>"; };
 		E1C082ED32D6D91A3A95B2F1 /* Pods-anjuyi1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-anjuyi1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-anjuyi1/Pods-anjuyi1.debug.xcconfig"; sourceTree = "<group>"; };
@@ -751,6 +772,8 @@
 				18EA1BDC20E1CD9A000738CC /* SortCell.h */,
 				18EA1BDD20E1CD9A000738CC /* SortCell.m */,
 				18EA1BDE20E1CD9A000738CC /* SortCell.xib */,
+				1846CFCF20F836FB00EA1417 /* PullDownView.h */,
+				1846CFD020F836FB00EA1417 /* PullDownView.m */,
 			);
 			path = PullDown;
 			sourceTree = "<group>";
@@ -758,9 +781,9 @@
 		0A5CD81720C5927F0028F82D /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				0A5CD81A20C5927F0028F82D /* YZMenuButton.h */,
 				0A5CD81820C5927F0028F82D /* YZMenuButton.m */,
 				0A5CD81920C5927F0028F82D /* UIView+YZCategory.h */,
-				0A5CD81A20C5927F0028F82D /* YZMenuButton.h */,
 				0A5CD81B20C5927F0028F82D /* UIView+YZCategory.m */,
 			);
 			path = Category;
@@ -999,6 +1022,8 @@
 			children = (
 				0AC3190420BD8ED70035800F /* HomeModel.h */,
 				0AC3190520BD8ED70035800F /* HomeModel.m */,
+				1862840B20F7314A0038A7AC /* BannerModel.h */,
+				1862840C20F7314A0038A7AC /* BannerModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1312,6 +1337,8 @@
 		0AFEE75B20BD2F50004FA8FC /* Push */ = {
 			isa = PBXGroup;
 			children = (
+				18F5B7D220EB1CDA00B76A73 /* PushProject */,
+				18F5B7CE20E9F7D600B76A73 /* PushPhoto */,
 				0AFEE75D20BD2F50004FA8FC /* PushViewController.h */,
 				0AFEE75C20BD2F50004FA8FC /* PushViewController.m */,
 			);
@@ -1371,16 +1398,40 @@
 		18F5B7C120E9D90F00B76A73 /* PhotoSelect */ = {
 			isa = PBXGroup;
 			children = (
-				18F5B7C220E9D90F00B76A73 /* MaskView.m */,
+				18F5B7C520E9D90F00B76A73 /* PhotoSelectController.h */,
+				18F5B7C720E9D90F00B76A73 /* PhotoSelectController.m */,
+				18F5B7C920E9D90F00B76A73 /* AlbumSelectController.h */,
 				18F5B7C320E9D90F00B76A73 /* AlbumSelectController.m */,
 				18F5B7C420E9D90F00B76A73 /* PhotoCuttingBox.h */,
-				18F5B7C520E9D90F00B76A73 /* PhotoSelectController.h */,
-				18F5B7C620E9D90F00B76A73 /* MaskView.h */,
-				18F5B7C720E9D90F00B76A73 /* PhotoSelectController.m */,
 				18F5B7C820E9D90F00B76A73 /* PhotoCuttingBox.m */,
-				18F5B7C920E9D90F00B76A73 /* AlbumSelectController.h */,
+				18F5B7C620E9D90F00B76A73 /* MaskView.h */,
+				18F5B7C220E9D90F00B76A73 /* MaskView.m */,
 			);
 			path = PhotoSelect;
+			sourceTree = "<group>";
+		};
+		18F5B7CE20E9F7D600B76A73 /* PushPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				18F5B7CF20E9F87200B76A73 /* PushPhotoViewController.h */,
+				18F5B7D020E9F87200B76A73 /* PushPhotoViewController.m */,
+				1846CFD520F88F8900EA1417 /* LabelViewController.h */,
+				1846CFD620F88F8900EA1417 /* LabelViewController.m */,
+			);
+			path = PushPhoto;
+			sourceTree = "<group>";
+		};
+		18F5B7D220EB1CDA00B76A73 /* PushProject */ = {
+			isa = PBXGroup;
+			children = (
+				18F5B7D320EB1D0700B76A73 /* PushProjectViewController.h */,
+				18F5B7D420EB1D0700B76A73 /* PushProjectViewController.m */,
+				18F5B7D620EB1D1000B76A73 /* AddProjectViewController.h */,
+				18F5B7D720EB1D1000B76A73 /* AddProjectViewController.m */,
+				1846CFD220F85B8B00EA1417 /* ProjectAddressViewController.h */,
+				1846CFD320F85B8B00EA1417 /* ProjectAddressViewController.m */,
+			);
+			path = PushProject;
 			sourceTree = "<group>";
 		};
 		B304830A5A52CE953582E64E /* Pods */ = {
@@ -1555,6 +1606,7 @@
 				0AFEE76120BD2F50004FA8FC /* HttpRequest.m in Sources */,
 				0AD2DEC020CA5F3200E53B43 /* CraftsmanTypeVC.m in Sources */,
 				0A5A7B2C20C7DB9300153E9A /* SDLoadingView.m in Sources */,
+				18F5B7D520EB1D0700B76A73 /* PushProjectViewController.m in Sources */,
 				0A7D500E20C2E894001BFDBF /* CommentDetailsVC.m in Sources */,
 				0A7D503120C3A6E9001BFDBF /* RechargeViewController.m in Sources */,
 				0A38FF0920C6D86800B45CCD /* ShopCartCell.m in Sources */,
@@ -1579,6 +1631,7 @@
 				0AD2DEB520CA444800E53B43 /* ChangePhoneVC.m in Sources */,
 				0A7D505A20C437C5001BFDBF /* MyFriendViewController.m in Sources */,
 				18EA1BD820E1CCB7000738CC /* ShareView.m in Sources */,
+				1846CFD420F85B8B00EA1417 /* ProjectAddressViewController.m in Sources */,
 				0AFEE71D20BD2F23004FA8FC /* anjuyi1.xcdatamodeld in Sources */,
 				0AFEE76320BD2F50004FA8FC /* RequestSever.m in Sources */,
 				0A5CD81C20C5927F0028F82D /* YZMenuButton.m in Sources */,
@@ -1589,6 +1642,7 @@
 				0A5A7B3820C7E0D900153E9A /* UserEvaluationView.m in Sources */,
 				0A7D505E20C43891001BFDBF /* MyFriendTableViewCell.m in Sources */,
 				0A45D96220CBB691000C04B8 /* SettlementViewController.m in Sources */,
+				18F5B7D820EB1D1000B76A73 /* AddProjectViewController.m in Sources */,
 				0AFEE76520BD2F50004FA8FC /* IanScrollView.m in Sources */,
 				0A7D500B20C2DC22001BFDBF /* CommentTableViewCell.m in Sources */,
 				0A45D95F20CBB0C8000C04B8 /* StandardView.m in Sources */,
@@ -1605,6 +1659,7 @@
 				0AFEE76720BD2F50004FA8FC /* HomeViewController.m in Sources */,
 				0AD0C61C20BEE1EC001A20C4 /* DesignerViewController.m in Sources */,
 				187C11ED20D0A8E400E8DDC7 /* UIColor+Category.m in Sources */,
+				1862840D20F7314B0038A7AC /* BannerModel.m in Sources */,
 				0A5A7B3220C7DE4500153E9A /* GoodsDetailsVIew.m in Sources */,
 				0AFEE76420BD2F50004FA8FC /* Rotating.m in Sources */,
 				0A5CD83420C621430028F82D /* OrderDetailsVC.m in Sources */,
@@ -1621,8 +1676,10 @@
 				0A4A97C420BFCFAB009D6594 /* MoreChannel.m in Sources */,
 				0A7D502320C39476001BFDBF /* PersonalViewController.m in Sources */,
 				0A7D500820C2DC08001BFDBF /* CommentViewController.m in Sources */,
+				1846CFD720F88F8900EA1417 /* LabelViewController.m in Sources */,
 				0AFD6CE120C4DD0300223512 /* MyCouponsViewController.m in Sources */,
 				0A7D504920C42B01001BFDBF /* DraftBoxTableViewCell.m in Sources */,
+				18F5B7D120E9F87200B76A73 /* PushPhotoViewController.m in Sources */,
 				0A18745120C8B70F00451BAA /* GoodsStandardView.m in Sources */,
 				0A3085B820C02B4F00882805 /* MasterViewController.m in Sources */,
 				0A5CD84B20C68FBB0028F82D /* IntegralMallViewController.m in Sources */,
@@ -1665,6 +1722,7 @@
 				0AD2DEB920CA51F500E53B43 /* MyArticleViewController.m in Sources */,
 				187C11F420D0E42600E8DDC7 /* LoginViewController.m in Sources */,
 				0A5CD82120C592C70028F82D /* MyOrderViewController.m in Sources */,
+				1846CFD120F836FB00EA1417 /* PullDownView.m in Sources */,
 				0AFEE76920BD2F50004FA8FC /* KBTabbar.m in Sources */,
 				0A7D503A20C42357001BFDBF /* NavTwoTitle.m in Sources */,
 				0A45D95B20CB8322000C04B8 /* SupervisorDetailsVC.m in Sources */,
