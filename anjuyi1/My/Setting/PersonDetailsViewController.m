@@ -16,9 +16,9 @@
 {
     UIImageView *headerImage;
 }
-@property (nonatomic,strong)UIScrollView *tmpScrollView;
-
-@property (nonatomic,strong)DateView *dateView;
+@property (nonatomic,strong)UIScrollView        *tmpScrollView;
+@property (nonatomic,strong)DateView            *dateView;
+@property (nonatomic,strong)NSMutableDictionary *data;
 
 @end
 
@@ -38,6 +38,47 @@
     [self setUpUI];
     
     [[UIApplication sharedApplication].keyWindow addSubview:self.dateView];
+    
+    [self getPersonInfo];
+}
+
+- (void)getPersonInfo{
+
+
+    NSString *path = [NSString stringWithFormat:@"%@/Member/get_member_info",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            if ([responseObject[@"datas"] isKindOfClass:[NSDictionary class]]) {
+            
+                weakSelf.data = [NSMutableDictionary dictionaryWithDictionary:responseObject[@"datas"]];
+                [self setUpUI];
+            }
+            
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
+
 }
 
 -(UIScrollView *)tmpScrollView{
@@ -54,9 +95,17 @@
 
 - (void)setUpUI{
     
+    [self.tmpScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
     CGFloat height = 0;
     
     NSArray *tArr = @[@"头像",@"昵称",@"位置",@"生日",@"个人简历"];
+    
+    NSArray * dArr ;
+    
+    if (self.data) {
+        dArr = @[self.data[@"head"],self.data[@"nickname"],self.data[@"address"],self.data[@"birthday"],self.data[@"personal"]];
+    }
     
     for (NSInteger i = 0 ; i < 5 ; i++) {
         UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, height, KScreenWidth, i==0?60:50)];

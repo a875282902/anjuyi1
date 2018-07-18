@@ -26,8 +26,10 @@
     
     [hud setMode:MBProgressHUDModeCustomView];
     
-    [hud.detailsLabel setText:message];
-    
+    if ([message isKindOfClass:[NSString class]]) {
+        [hud.detailsLabel setText:message];
+    }
+
     [hud showAnimated:YES];
     
     [hud hideAnimated:YES afterDelay:1.5];

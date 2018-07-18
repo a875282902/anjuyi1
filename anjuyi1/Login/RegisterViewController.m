@@ -249,7 +249,9 @@
             
             [ViewHelps showHUDWithText:@"验证码发送成功，请注意查收"];
         }
-        
+        else{
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
         
     } failure:^(NSError * _Nullable error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];

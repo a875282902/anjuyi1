@@ -10,4 +10,6 @@
 
 @interface ProjectCollectionViewCell : UICollectionViewCell
 
+- (void)bandDataWithDictionary:(NSDictionary *)dic;
+
 @end

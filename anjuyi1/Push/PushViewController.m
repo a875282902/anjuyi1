@@ -11,6 +11,7 @@
 
 #import "PushPhotoViewController.h"//发布图片
 #import "PushProjectViewController.h"//发布项目
+#import "PushHouseViewController.h"//发布整屋
 
 @interface PushViewController ()
 
@@ -76,8 +77,6 @@
 
 - (void)pushType:(UITapGestureRecognizer *)sender{
     
-    NSLog(@"%ld",sender.view.tag);
-    
     switch (sender.view.tag) {
         case 1:
         {
@@ -93,6 +92,14 @@
             [self presentViewController:nav animated:YES completion:nil];
         }
             break;
+        case 5:
+        {
+            PushHouseViewController *controller = [[PushHouseViewController alloc] init];
+            BaseNaviViewController *nav = [[BaseNaviViewController alloc] initWithRootViewController:controller];
+            [self presentViewController:nav animated:YES completion:nil];
+        }
+            break;
+            
             
         default:
             break;

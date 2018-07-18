@@ -22,7 +22,7 @@
     
     CGContextRef ref = UIGraphicsGetCurrentContext();
     
-    CGContextSetRGBFillColor(ref, 0.15, 0.15, 0.15, 0.6);
+    CGContextSetRGBFillColor(ref, 0, 0, 0, 0.6);
     CGContextFillRect(ref, rect);
     
     CGFloat w = rect.size.width;

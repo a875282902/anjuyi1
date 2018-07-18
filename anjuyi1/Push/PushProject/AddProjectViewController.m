@@ -223,9 +223,9 @@
 - (CGFloat)inputPersonInfor:(CGFloat)height{
     
     // ---------- 输入信息 -------
-    NSArray *tArr = @[@"输入您的住宅面积(整数)",@"输入小区名称"];
+    NSArray *tArr = @[@"输入您的住宅面积(整数)",@"输入小区名称",@"输入可预约时间"];
     
-    for (NSInteger i = 0 ; i <  2; i++) {
+    for (NSInteger i = 0 ; i <  3; i++) {
         UITextField *userName = [[UITextField alloc] initWithFrame:CGRectMake(MDXFrom6(20), height, MDXFrom6(335), 50)];
         [userName setPlaceholder:tArr[i]];
         [userName setFont:[UIFont systemFontOfSize:16]];
@@ -235,7 +235,7 @@
         [userName addTarget:self action:@selector(textValueChange:) forControlEvents:(UIControlEventEditingChanged)];
         [self.tmpScrollView addSubview:userName];
         
-        if (i==1) {
+        if (i==1 || i==2) {
             [userName setKeyboardType:(UIKeyboardTypeDefault)];
         }
         
@@ -414,9 +414,10 @@
                               @"hall_id":self.selectRoomArr[1][@"id"],
                               @"areaop":self.textArr[0],
                               @"nameregister":self.textArr[1],
+                              @"appointment_time":self.textArr[2],
                               @"picture":_picture};
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES].label.text = @"新增中···";
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     

@@ -10,4 +10,6 @@
 
 @interface LabelViewController : BaseViewController
 
+@property (nonatomic,copy)void(^selectLabel)(NSDictionary *dic);
+
 @end

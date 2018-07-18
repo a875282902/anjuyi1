@@ -41,11 +41,18 @@
     self.coverImage = [Tools creatImage:CGRectMake(0, 0, width , width) image:@"project_process_case"];
     [backView addSubview:self.coverImage];
     
-    self.titleLabel = [Tools creatLabel:CGRectMake(MDXFrom6(10), width+MDXFrom6(10), width - MDXFrom6(20), MDXFrom6(20)) font:[UIFont systemFontOfSize:MDXFrom6(16)] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:@"水电部工作也"];
+    self.titleLabel = [Tools creatLabel:CGRectMake(MDXFrom6(10), width+MDXFrom6(10), width - MDXFrom6(20), MDXFrom6(20)) font:[UIFont systemFontOfSize:MDXFrom6(16)] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:@""];
     [backView addSubview:self.titleLabel];
     
-    self.timeLabel = [Tools creatLabel:CGRectMake(MDXFrom6(10), width+MDXFrom6(35), width - MDXFrom6(20), MDXFrom6(20)) font:[UIFont systemFontOfSize:MDXFrom6(12)] color:[UIColor colorWithHexString:@"#666666"] alignment:(NSTextAlignmentLeft) title:@"发布于04-12"];
+    self.timeLabel = [Tools creatLabel:CGRectMake(MDXFrom6(10), width+MDXFrom6(35), width - MDXFrom6(20), MDXFrom6(20)) font:[UIFont systemFontOfSize:MDXFrom6(12)] color:[UIColor colorWithHexString:@"#666666"] alignment:(NSTextAlignmentLeft) title:@"发布于----"];
     [backView addSubview:self.timeLabel];
+}
+
+- (void)bandDataWithDictionary:(NSDictionary *)dic{
+    
+    [self.titleLabel setText:dic[@"text"]];
+    [self.coverImage sd_setImageWithURL:[NSURL URLWithString:dic[@"img_url"]]];
+    [self.timeLabel setText:[NSString stringWithFormat:@"发布于%@",dic[@"create_time"]]];
 }
 
 @end

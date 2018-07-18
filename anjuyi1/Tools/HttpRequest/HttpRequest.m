@@ -150,11 +150,11 @@
         // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
         // 要解决此问题，
         // 可以在上传时使用当前的系统事件作为文件名
-        //        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         // 设置时间格式
-        //        [formatter setDateFormat:@"yyyyMMddHHmmss"];
-        //        NSString *dateString = [formatter stringFromDate:[NSDate date]];
-        //        NSString *fileName = [NSString  stringWithFormat:@"%@.jpg", dateString];
+                [formatter setDateFormat:@"yyyyMMddHHmmss"];
+                NSString *dateString = [formatter stringFromDate:[NSDate date]];
+                NSString *fileName = [NSString  stringWithFormat:@"%@.jpg", dateString];
         /*
          *该方法的参数
          1. appendPartWithFileData：要上传的照片[二进制流]
@@ -166,7 +166,7 @@
         
         
         NSString *typeString = [[self class] uploadFileMineType:mimeType];
-        [formData appendPartWithFileData:fileData name:serverName fileName:saveName mimeType:typeString];
+        [formData appendPartWithFileData:fileData name:serverName fileName:fileName mimeType:typeString];
         
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         //        CGFloat p = ((CGFloat)totalBytesWritten / totalBytesExpectedToWrite) * 100;

@@ -10,4 +10,15 @@
 
 @implementation HomeModel
 
+- (void)setValue:(id)value forKey:(NSString *)key{
+    
+    if ([value isKindOfClass:[NSString class]]) {
+        [super setValue:value forKey:key];
+    }
+    else{
+        [super setValue:@"" forKey:key];
+    }
+    
+}
+
 @end

@@ -140,9 +140,12 @@
             weakSelf.headerModel = [[HomeModel alloc] initWithDictionary:responseObject[@"datas"]];
             
             [weakSelf.bannerArr removeAllObjects];
-            for (NSDictionary *dict in responseObject[@"datas"][@"slide_img"]) {
-                BannerModel *model = [[BannerModel alloc] initWithDictionary:dict];
-                [weakSelf.bannerArr addObject:model];
+            
+            if ([responseObject[@"datas"][@"slide_img"] isKindOfClass:[NSDictionary class]] ) {
+                for (NSDictionary *dict in responseObject[@"datas"][@"slide_img"]) {
+                    BannerModel *model = [[BannerModel alloc] initWithDictionary:dict];
+                    [weakSelf.bannerArr addObject:model];
+                }
             }
             
             [weakSelf setUpHeaderView];
@@ -209,9 +212,10 @@
         [backView.layer setBorderColor:[UIColor colorWithHexString:@"#f0f0f0"].CGColor];
         [backView.layer setBorderWidth:1];
         [activityScroll addSubview:backView];
+        if ([uArr[i] isKindOfClass:[NSString class]]) {
+            [backView addSubview:[self setImageViewWithFrame:CGRectMake(MDXFrom6(42), MDXFrom6(5),MDXFrom6(30), MDXFrom6(30)) andImageName:arr[i] andTag:(i+3) image:uArr[i]]];
+        }
 
-        [backView addSubview:[self setImageViewWithFrame:CGRectMake(MDXFrom6(42), MDXFrom6(5),MDXFrom6(30), MDXFrom6(30)) andImageName:arr[i] andTag:(i+3) image:uArr[i]]];
-        
         [backView addSubview:[Tools creatLabel:CGRectMake(0, MDXFrom6(35), MDXFrom6(114), MDXFrom6(20)) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#3b3b3b"] alignment:(NSTextAlignmentCenter) title:tarr[i]]];
     }
     
@@ -226,9 +230,11 @@
     for (BannerModel *model in self.bannerArr) {
         [barr addObject:@{@"images":model.picture}];
     }
-    [self.bannerScroll setSlideImagesArray:barr];
-    [_headerView addSubview:self.bannerScroll];
-    [self.bannerScroll startLoading];
+    if (barr.count != 0) {
+        [self.bannerScroll setSlideImagesArray:barr];
+        [_headerView addSubview:self.bannerScroll];
+        [self.bannerScroll startLoading];
+    }
     
     height += MDXFrom6(127.5)+MDXFrom6(10);
     

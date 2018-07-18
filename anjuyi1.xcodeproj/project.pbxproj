@@ -162,6 +162,23 @@
 		1846CFD120F836FB00EA1417 /* PullDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD020F836FB00EA1417 /* PullDownView.m */; };
 		1846CFD420F85B8B00EA1417 /* ProjectAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD320F85B8B00EA1417 /* ProjectAddressViewController.m */; };
 		1846CFD720F88F8900EA1417 /* LabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD620F88F8900EA1417 /* LabelViewController.m */; };
+		1846CFDB20FB8E0000EA1417 /* PushHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFDA20FB8E0000EA1417 /* PushHouseViewController.m */; };
+		1846CFE220FB9AE400EA1417 /* HouseAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFE020FB9AE400EA1417 /* HouseAreaViewController.m */; };
+		1846CFE620FC451C00EA1417 /* HouseCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFE520FC451C00EA1417 /* HouseCityViewController.m */; };
+		1846CFE920FD85F100EA1417 /* HousePriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFE820FD85F100EA1417 /* HousePriceViewController.m */; };
+		1846CFEC20FD9F5600EA1417 /* HouseDesignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFEB20FD9F5600EA1417 /* HouseDesignViewController.m */; };
+		1846CFEF20FDB72600EA1417 /* HouseInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFEE20FDB72600EA1417 /* HouseInfoViewController.m */; };
+		1846CFF320FDD3E100EA1417 /* HouseSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFF220FDD3E100EA1417 /* HouseSpace.m */; };
+		1846CFF720FDD66500EA1417 /* HouseSpaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFF520FDD66500EA1417 /* HouseSpaceTableViewCell.m */; };
+		1846CFF820FDD66500EA1417 /* HouseSpaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1846CFF620FDD66500EA1417 /* HouseSpaceTableViewCell.xib */; };
+		1846CFFF20FDDE9300EA1417 /* HouseCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFFE20FDDE9300EA1417 /* HouseCoverView.m */; };
+		1846D00520FE2A8500EA1417 /* AddSpaceImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846D00420FE2A8500EA1417 /* AddSpaceImageViewController.m */; };
+		1846D00820FE2AAA00EA1417 /* SpaceImageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846D00720FE2AAA00EA1417 /* SpaceImageListViewController.m */; };
+		1846D00C20FE389900EA1417 /* SpaceImageListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846D00A20FE389900EA1417 /* SpaceImageListTableViewCell.m */; };
+		1846D00D20FE389900EA1417 /* SpaceImageListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1846D00B20FE389900EA1417 /* SpaceImageListTableViewCell.xib */; };
+		1846D05120FEE93100EA1417 /* EditSpaceImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846D05020FEE93100EA1417 /* EditSpaceImageViewController.m */; };
+		1846D05420FF229700EA1417 /* PushProjectNodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846D05320FF229700EA1417 /* PushProjectNodeViewController.m */; };
+		1846D05720FF27DD00EA1417 /* ProjectNodeDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846D05620FF27DD00EA1417 /* ProjectNodeDetailsViewController.m */; };
 		184D07D320D1029A00653D81 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D220D1029A00653D81 /* RegisterViewController.m */; };
 		184D07D620D1171500653D81 /* SetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D520D1171500653D81 /* SetPasswordVC.m */; };
 		184D07D920D11C8D00653D81 /* NSString+Predicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D720D11C8D00653D81 /* NSString+Predicate.m */; };
@@ -473,6 +490,38 @@
 		1846CFD320F85B8B00EA1417 /* ProjectAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectAddressViewController.m; sourceTree = "<group>"; };
 		1846CFD520F88F8900EA1417 /* LabelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelViewController.h; sourceTree = "<group>"; };
 		1846CFD620F88F8900EA1417 /* LabelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelViewController.m; sourceTree = "<group>"; };
+		1846CFD920FB8E0000EA1417 /* PushHouseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushHouseViewController.h; sourceTree = "<group>"; };
+		1846CFDA20FB8E0000EA1417 /* PushHouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushHouseViewController.m; sourceTree = "<group>"; };
+		1846CFDF20FB9AE400EA1417 /* HouseAreaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseAreaViewController.h; sourceTree = "<group>"; };
+		1846CFE020FB9AE400EA1417 /* HouseAreaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseAreaViewController.m; sourceTree = "<group>"; };
+		1846CFE420FC451C00EA1417 /* HouseCityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseCityViewController.h; sourceTree = "<group>"; };
+		1846CFE520FC451C00EA1417 /* HouseCityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseCityViewController.m; sourceTree = "<group>"; };
+		1846CFE720FD85F100EA1417 /* HousePriceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HousePriceViewController.h; sourceTree = "<group>"; };
+		1846CFE820FD85F100EA1417 /* HousePriceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HousePriceViewController.m; sourceTree = "<group>"; };
+		1846CFEA20FD9F5600EA1417 /* HouseDesignViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseDesignViewController.h; sourceTree = "<group>"; };
+		1846CFEB20FD9F5600EA1417 /* HouseDesignViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseDesignViewController.m; sourceTree = "<group>"; };
+		1846CFED20FDB72600EA1417 /* HouseInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseInfoViewController.h; sourceTree = "<group>"; };
+		1846CFEE20FDB72600EA1417 /* HouseInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseInfoViewController.m; sourceTree = "<group>"; };
+		1846CFF120FDD3E100EA1417 /* HouseSpace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseSpace.h; sourceTree = "<group>"; };
+		1846CFF220FDD3E100EA1417 /* HouseSpace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseSpace.m; sourceTree = "<group>"; };
+		1846CFF420FDD66500EA1417 /* HouseSpaceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseSpaceTableViewCell.h; sourceTree = "<group>"; };
+		1846CFF520FDD66500EA1417 /* HouseSpaceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseSpaceTableViewCell.m; sourceTree = "<group>"; };
+		1846CFF620FDD66500EA1417 /* HouseSpaceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HouseSpaceTableViewCell.xib; sourceTree = "<group>"; };
+		1846CFFD20FDDE9300EA1417 /* HouseCoverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseCoverView.h; sourceTree = "<group>"; };
+		1846CFFE20FDDE9300EA1417 /* HouseCoverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseCoverView.m; sourceTree = "<group>"; };
+		1846D00320FE2A8500EA1417 /* AddSpaceImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddSpaceImageViewController.h; sourceTree = "<group>"; };
+		1846D00420FE2A8500EA1417 /* AddSpaceImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddSpaceImageViewController.m; sourceTree = "<group>"; };
+		1846D00620FE2AAA00EA1417 /* SpaceImageListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpaceImageListViewController.h; sourceTree = "<group>"; };
+		1846D00720FE2AAA00EA1417 /* SpaceImageListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpaceImageListViewController.m; sourceTree = "<group>"; };
+		1846D00920FE389900EA1417 /* SpaceImageListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpaceImageListTableViewCell.h; sourceTree = "<group>"; };
+		1846D00A20FE389900EA1417 /* SpaceImageListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpaceImageListTableViewCell.m; sourceTree = "<group>"; };
+		1846D00B20FE389900EA1417 /* SpaceImageListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpaceImageListTableViewCell.xib; sourceTree = "<group>"; };
+		1846D04F20FEE93100EA1417 /* EditSpaceImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditSpaceImageViewController.h; sourceTree = "<group>"; };
+		1846D05020FEE93100EA1417 /* EditSpaceImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditSpaceImageViewController.m; sourceTree = "<group>"; };
+		1846D05220FF229700EA1417 /* PushProjectNodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushProjectNodeViewController.h; sourceTree = "<group>"; };
+		1846D05320FF229700EA1417 /* PushProjectNodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushProjectNodeViewController.m; sourceTree = "<group>"; };
+		1846D05520FF27DD00EA1417 /* ProjectNodeDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectNodeDetailsViewController.h; sourceTree = "<group>"; };
+		1846D05620FF27DD00EA1417 /* ProjectNodeDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectNodeDetailsViewController.m; sourceTree = "<group>"; };
 		184D07D120D1029A00653D81 /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		184D07D220D1029A00653D81 /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		184D07D420D1171500653D81 /* SetPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetPasswordVC.h; sourceTree = "<group>"; };
@@ -1337,6 +1386,7 @@
 		0AFEE75B20BD2F50004FA8FC /* Push */ = {
 			isa = PBXGroup;
 			children = (
+				1846CFD820FB8DE600EA1417 /* PushHouse */,
 				18F5B7D220EB1CDA00B76A73 /* PushProject */,
 				18F5B7CE20E9F7D600B76A73 /* PushPhoto */,
 				0AFEE75D20BD2F50004FA8FC /* PushViewController.h */,
@@ -1367,6 +1417,57 @@
 				18339CE520D276B700165FF2 /* BrandListView.m */,
 			);
 			path = GoodsClass;
+			sourceTree = "<group>";
+		};
+		1846CFD820FB8DE600EA1417 /* PushHouse */ = {
+			isa = PBXGroup;
+			children = (
+				1846CFF920FDDA7000EA1417 /* Model */,
+				1846CFF020FDD3B800EA1417 /* Views */,
+				1846CFD920FB8E0000EA1417 /* PushHouseViewController.h */,
+				1846CFDA20FB8E0000EA1417 /* PushHouseViewController.m */,
+				1846CFDF20FB9AE400EA1417 /* HouseAreaViewController.h */,
+				1846CFE020FB9AE400EA1417 /* HouseAreaViewController.m */,
+				1846CFE420FC451C00EA1417 /* HouseCityViewController.h */,
+				1846CFE520FC451C00EA1417 /* HouseCityViewController.m */,
+				1846CFE720FD85F100EA1417 /* HousePriceViewController.h */,
+				1846CFE820FD85F100EA1417 /* HousePriceViewController.m */,
+				1846CFEA20FD9F5600EA1417 /* HouseDesignViewController.h */,
+				1846CFEB20FD9F5600EA1417 /* HouseDesignViewController.m */,
+				1846CFED20FDB72600EA1417 /* HouseInfoViewController.h */,
+				1846CFEE20FDB72600EA1417 /* HouseInfoViewController.m */,
+				1846D00620FE2AAA00EA1417 /* SpaceImageListViewController.h */,
+				1846D00720FE2AAA00EA1417 /* SpaceImageListViewController.m */,
+				1846D00320FE2A8500EA1417 /* AddSpaceImageViewController.h */,
+				1846D00420FE2A8500EA1417 /* AddSpaceImageViewController.m */,
+				1846D04F20FEE93100EA1417 /* EditSpaceImageViewController.h */,
+				1846D05020FEE93100EA1417 /* EditSpaceImageViewController.m */,
+			);
+			path = PushHouse;
+			sourceTree = "<group>";
+		};
+		1846CFF020FDD3B800EA1417 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1846CFF120FDD3E100EA1417 /* HouseSpace.h */,
+				1846CFF220FDD3E100EA1417 /* HouseSpace.m */,
+				1846CFF420FDD66500EA1417 /* HouseSpaceTableViewCell.h */,
+				1846CFF520FDD66500EA1417 /* HouseSpaceTableViewCell.m */,
+				1846CFF620FDD66500EA1417 /* HouseSpaceTableViewCell.xib */,
+				1846CFFD20FDDE9300EA1417 /* HouseCoverView.h */,
+				1846CFFE20FDDE9300EA1417 /* HouseCoverView.m */,
+				1846D00920FE389900EA1417 /* SpaceImageListTableViewCell.h */,
+				1846D00A20FE389900EA1417 /* SpaceImageListTableViewCell.m */,
+				1846D00B20FE389900EA1417 /* SpaceImageListTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1846CFF920FDDA7000EA1417 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		187C11F120D0E13800E8DDC7 /* Login */ = {
@@ -1430,6 +1531,10 @@
 				18F5B7D720EB1D1000B76A73 /* AddProjectViewController.m */,
 				1846CFD220F85B8B00EA1417 /* ProjectAddressViewController.h */,
 				1846CFD320F85B8B00EA1417 /* ProjectAddressViewController.m */,
+				1846D05220FF229700EA1417 /* PushProjectNodeViewController.h */,
+				1846D05320FF229700EA1417 /* PushProjectNodeViewController.m */,
+				1846D05520FF27DD00EA1417 /* ProjectNodeDetailsViewController.h */,
+				1846D05620FF27DD00EA1417 /* ProjectNodeDetailsViewController.m */,
 			);
 			path = PushProject;
 			sourceTree = "<group>";
@@ -1521,6 +1626,7 @@
 				0A5CD83120C61A110028F82D /* MyOrderTableViewCell.xib in Resources */,
 				0A8E9C7620C8FD9600C6E176 /* IntegralPayTableViewCell.xib in Resources */,
 				0A5A7B2F20C7DB9300153E9A /* SDPhotoBrowserd.podspec in Resources */,
+				1846CFF820FDD66500EA1417 /* HouseSpaceTableViewCell.xib in Resources */,
 				0A7D504A20C42B01001BFDBF /* DraftBoxTableViewCell.xib in Resources */,
 				0AFEE71F20BD2F26004FA8FC /* Assets.xcassets in Resources */,
 				0A5582A720C1298000759E6B /* ProjectTableViewCell.xib in Resources */,
@@ -1537,6 +1643,7 @@
 				0A8E9C8120C9023200C6E176 /* AddressTableViewCell.xib in Resources */,
 				0AD0C62220BEE4D6001A20C4 /* DesignerTableViewCell.xib in Resources */,
 				0AFD6CDA20C4D55E00223512 /* CollectShopTableViewCell.xib in Resources */,
+				1846D00D20FE389900EA1417 /* SpaceImageListTableViewCell.xib in Resources */,
 				0AFEE84020BD30C8004FA8FC /* Podfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1608,6 +1715,7 @@
 				0A5A7B2C20C7DB9300153E9A /* SDLoadingView.m in Sources */,
 				18F5B7D520EB1D0700B76A73 /* PushProjectViewController.m in Sources */,
 				0A7D500E20C2E894001BFDBF /* CommentDetailsVC.m in Sources */,
+				1846CFF720FDD66500EA1417 /* HouseSpaceTableViewCell.m in Sources */,
 				0A7D503120C3A6E9001BFDBF /* RechargeViewController.m in Sources */,
 				0A38FF0920C6D86800B45CCD /* ShopCartCell.m in Sources */,
 				0A38FEF220C6CD1600B45CCD /* SuspensionButton.m in Sources */,
@@ -1646,10 +1754,12 @@
 				0AFEE76520BD2F50004FA8FC /* IanScrollView.m in Sources */,
 				0A7D500B20C2DC22001BFDBF /* CommentTableViewCell.m in Sources */,
 				0A45D95F20CBB0C8000C04B8 /* StandardView.m in Sources */,
+				1846CFE620FC451C00EA1417 /* HouseCityViewController.m in Sources */,
 				0A7D504520C42A66001BFDBF /* DraftBoxViewController.m in Sources */,
 				0A3D7A2320BE44B4009D949B /* DecorateTableViewCell.m in Sources */,
 				0A5CD81620C592460028F82D /* YZPullDownMenu.m in Sources */,
 				0A7D501220C2EDC6001BFDBF /* ContractViewController.m in Sources */,
+				1846D00820FE2AAA00EA1417 /* SpaceImageListViewController.m in Sources */,
 				0AD0C62520BF7E1E001A20C4 /* ScreeningBar.m in Sources */,
 				0A7D503720C41B31001BFDBF /* PhotoCollectionViewCell.m in Sources */,
 				0AD2DECC20CA83B900E53B43 /* OrderCenterTableViewCell.m in Sources */,
@@ -1664,6 +1774,7 @@
 				0AFEE76420BD2F50004FA8FC /* Rotating.m in Sources */,
 				0A5CD83420C621430028F82D /* OrderDetailsVC.m in Sources */,
 				0AD0C61820BEB354001A20C4 /* MallTableViewCell.m in Sources */,
+				1846D05720FF27DD00EA1417 /* ProjectNodeDetailsViewController.m in Sources */,
 				0AFEE76020BD2F50004FA8FC /* DecorateViewController.m in Sources */,
 				18339CE320D2746D00165FF2 /* ClassListView.m in Sources */,
 				0AFD6CE920C4E3B000223512 /* CouponsDetails.m in Sources */,
@@ -1675,6 +1786,7 @@
 				0AFEE72520BD2F26004FA8FC /* main.m in Sources */,
 				0A4A97C420BFCFAB009D6594 /* MoreChannel.m in Sources */,
 				0A7D502320C39476001BFDBF /* PersonalViewController.m in Sources */,
+				1846CFEF20FDB72600EA1417 /* HouseInfoViewController.m in Sources */,
 				0A7D500820C2DC08001BFDBF /* CommentViewController.m in Sources */,
 				1846CFD720F88F8900EA1417 /* LabelViewController.m in Sources */,
 				0AFD6CE120C4DD0300223512 /* MyCouponsViewController.m in Sources */,
@@ -1684,6 +1796,8 @@
 				0A3085B820C02B4F00882805 /* MasterViewController.m in Sources */,
 				0A5CD84B20C68FBB0028F82D /* IntegralMallViewController.m in Sources */,
 				0A7D506720C43CC7001BFDBF /* CustomerServiceViewController.m in Sources */,
+				1846CFF320FDD3E100EA1417 /* HouseSpace.m in Sources */,
+				1846D00520FE2A8500EA1417 /* AddSpaceImageViewController.m in Sources */,
 				0A55829F20C11B1D00759E6B /* MasterDetailsVC.m in Sources */,
 				0A5A7B2D20C7DB9300153E9A /* SDImageView.m in Sources */,
 				0A7D506320C43C62001BFDBF /* MyTopicViewController.m in Sources */,
@@ -1691,6 +1805,10 @@
 				0A5A7B3520C7E0B900153E9A /* ServiceProcessView.m in Sources */,
 				0A7D503420C3A700001BFDBF /* TransactionRecordsVC.m in Sources */,
 				0AD2DEAF20CA325400E53B43 /* AccountSecurityVC.m in Sources */,
+				1846D05120FEE93100EA1417 /* EditSpaceImageViewController.m in Sources */,
+				1846CFFF20FDDE9300EA1417 /* HouseCoverView.m in Sources */,
+				1846D05420FF229700EA1417 /* PushProjectNodeViewController.m in Sources */,
+				1846CFEC20FD9F5600EA1417 /* HouseDesignViewController.m in Sources */,
 				0AFEE76620BD2F50004FA8FC /* IanScrollImageView.m in Sources */,
 				0AD2DEAC20CA19E900E53B43 /* DateView.m in Sources */,
 				18339CE020D26D5000165FF2 /* GoodsClassViewController.m in Sources */,
@@ -1702,6 +1820,7 @@
 				0AFEE71420BD2F23004FA8FC /* AppDelegate.m in Sources */,
 				180588A120DC9B7300883523 /* EditAddressViewController.m in Sources */,
 				0A7D500420C2D626001BFDBF /* DistributionDetailsVC.m in Sources */,
+				1846CFDB20FB8E0000EA1417 /* PushHouseViewController.m in Sources */,
 				18F5B7CD20E9D90F00B76A73 /* PhotoCuttingBox.m in Sources */,
 				0AFEE76220BD2F50004FA8FC /* ViewHelps.m in Sources */,
 				184D07DC20D122D300653D81 /* SetUserNameVC.m in Sources */,
@@ -1710,9 +1829,11 @@
 				0A7D505520C433CF001BFDBF /* MyAnswerTableViewCell.m in Sources */,
 				0A5CD84F20C695170028F82D /* IntegralMallTableViewCell.m in Sources */,
 				18EA1BDB20E1CD3A000738CC /* SortPullDown.m in Sources */,
+				1846CFE920FD85F100EA1417 /* HousePriceViewController.m in Sources */,
 				18339CDC20D2656800165FF2 /* FreeOfferViewController.m in Sources */,
 				0A7D4FF020C23462001BFDBF /* ProjectCollectionViewCell.m in Sources */,
 				0A45D95720CB7CB2000C04B8 /* PlaceSupervisorViewController.m in Sources */,
+				1846D00C20FE389900EA1417 /* SpaceImageListTableViewCell.m in Sources */,
 				18F5B7CB20E9D90F00B76A73 /* AlbumSelectController.m in Sources */,
 				0AFEE76F20BD2F50004FA8FC /* MyViewController.m in Sources */,
 				0AFEE75E20BD2F50004FA8FC /* MallViewController.m in Sources */,
@@ -1732,6 +1853,7 @@
 				0AFD6CD520C4CB2E00223512 /* CollectShopViewController.m in Sources */,
 				0AFEE76C20BD2F50004FA8FC /* BaseModel.m in Sources */,
 				0A7D502E20C3A552001BFDBF /* MyWalletViewController.m in Sources */,
+				1846CFE220FB9AE400EA1417 /* HouseAreaViewController.m in Sources */,
 				0A7D500020C2B760001BFDBF /* DistributionTableViewCell.m in Sources */,
 				0A7D502720C39CD0001BFDBF /* LSYCollerctionViewLayout.m in Sources */,
 				0AFEE76820BD2F50004FA8FC /* RootViewController.m in Sources */,

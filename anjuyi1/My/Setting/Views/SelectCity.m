@@ -70,8 +70,8 @@ static CGFloat sHeight = 50;
     currentDic = nil;
     _dataArr = dataArr;
     
+    [self.tmpPickerView selectRow:0 inComponent:0 animated:YES];
     [self.tmpPickerView reloadAllComponents];
-
 }
 
 #pragma mark --  tmpPickerView

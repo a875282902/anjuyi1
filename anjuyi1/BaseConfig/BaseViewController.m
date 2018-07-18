@@ -37,9 +37,6 @@
     
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleDefault;
-}
 // 什么时候调用，每次触发手势之前都会询问下代理方法，是否触发
 // 作用：拦截手势触发
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -50,7 +47,7 @@
         return NO;
     }
     
-    return YES;
+    return NO;
 }
 
 /*设置导航栏左侧的按钮 和点击事件*/
