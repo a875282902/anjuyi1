@@ -179,6 +179,8 @@
 		1846D05120FEE93100EA1417 /* EditSpaceImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846D05020FEE93100EA1417 /* EditSpaceImageViewController.m */; };
 		1846D05420FF229700EA1417 /* PushProjectNodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846D05320FF229700EA1417 /* PushProjectNodeViewController.m */; };
 		1846D05720FF27DD00EA1417 /* ProjectNodeDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846D05620FF27DD00EA1417 /* ProjectNodeDetailsViewController.m */; };
+		1846D05A20FF853700EA1417 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846D05920FF853700EA1417 /* TextViewController.m */; };
+		1846D05E20FF8D9E00EA1417 /* ChargingHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846D05D20FF8D9E00EA1417 /* ChargingHomeViewController.m */; };
 		184D07D320D1029A00653D81 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D220D1029A00653D81 /* RegisterViewController.m */; };
 		184D07D620D1171500653D81 /* SetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D520D1171500653D81 /* SetPasswordVC.m */; };
 		184D07D920D11C8D00653D81 /* NSString+Predicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D720D11C8D00653D81 /* NSString+Predicate.m */; };
@@ -522,6 +524,10 @@
 		1846D05320FF229700EA1417 /* PushProjectNodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushProjectNodeViewController.m; sourceTree = "<group>"; };
 		1846D05520FF27DD00EA1417 /* ProjectNodeDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectNodeDetailsViewController.h; sourceTree = "<group>"; };
 		1846D05620FF27DD00EA1417 /* ProjectNodeDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectNodeDetailsViewController.m; sourceTree = "<group>"; };
+		1846D05820FF853700EA1417 /* TextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
+		1846D05920FF853700EA1417 /* TextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = "<group>"; };
+		1846D05C20FF8D9E00EA1417 /* ChargingHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChargingHomeViewController.h; sourceTree = "<group>"; };
+		1846D05D20FF8D9E00EA1417 /* ChargingHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChargingHomeViewController.m; sourceTree = "<group>"; };
 		184D07D120D1029A00653D81 /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		184D07D220D1029A00653D81 /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		184D07D420D1171500653D81 /* SetPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetPasswordVC.h; sourceTree = "<group>"; };
@@ -1304,6 +1310,7 @@
 		0AFEE74320BD2F50004FA8FC /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				1846D05B20FF8D8100EA1417 /* Charging */,
 				0AC3190320BD8EB50035800F /* Model */,
 				0AC318FE20BD88BC0035800F /* Views */,
 				0AFEE74520BD2F50004FA8FC /* HomeViewController.h */,
@@ -1436,6 +1443,8 @@
 				1846CFEB20FD9F5600EA1417 /* HouseDesignViewController.m */,
 				1846CFED20FDB72600EA1417 /* HouseInfoViewController.h */,
 				1846CFEE20FDB72600EA1417 /* HouseInfoViewController.m */,
+				1846D05820FF853700EA1417 /* TextViewController.h */,
+				1846D05920FF853700EA1417 /* TextViewController.m */,
 				1846D00620FE2AAA00EA1417 /* SpaceImageListViewController.h */,
 				1846D00720FE2AAA00EA1417 /* SpaceImageListViewController.m */,
 				1846D00320FE2A8500EA1417 /* AddSpaceImageViewController.h */,
@@ -1468,6 +1477,15 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1846D05B20FF8D8100EA1417 /* Charging */ = {
+			isa = PBXGroup;
+			children = (
+				1846D05C20FF8D9E00EA1417 /* ChargingHomeViewController.h */,
+				1846D05D20FF8D9E00EA1417 /* ChargingHomeViewController.m */,
+			);
+			path = Charging;
 			sourceTree = "<group>";
 		};
 		187C11F120D0E13800E8DDC7 /* Login */ = {
@@ -1703,6 +1721,7 @@
 				18339CE620D276B700165FF2 /* BrandListView.m in Sources */,
 				0A5CD83C20C664FF0028F82D /* RecordsTableView.m in Sources */,
 				0A8E9C8020C9023200C6E176 /* AddressTableViewCell.m in Sources */,
+				1846D05A20FF853700EA1417 /* TextViewController.m in Sources */,
 				0AD2DEBD20CA55EA00E53B43 /* CraftsmenViewController.m in Sources */,
 				0A4A97C720BFD200009D6594 /* ChannelButton.m in Sources */,
 				0A5CD82420C593790028F82D /* DefaultPullDown.m in Sources */,
@@ -1748,6 +1767,7 @@
 				0AFEE77020BD2F50004FA8FC /* PushViewController.m in Sources */,
 				0AD2DED020CA9E2200E53B43 /* OrderCenterDatailsVC.m in Sources */,
 				0A5A7B3820C7E0D900153E9A /* UserEvaluationView.m in Sources */,
+				1846D05E20FF8D9E00EA1417 /* ChargingHomeViewController.m in Sources */,
 				0A7D505E20C43891001BFDBF /* MyFriendTableViewCell.m in Sources */,
 				0A45D96220CBB691000C04B8 /* SettlementViewController.m in Sources */,
 				18F5B7D820EB1D1000B76A73 /* AddProjectViewController.m in Sources */,

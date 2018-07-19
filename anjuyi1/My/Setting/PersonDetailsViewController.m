@@ -12,9 +12,11 @@
 #import "DateView.h"
 #import "PhotoSelectController.h"
 
-@interface PersonDetailsViewController ()<UIScrollViewDelegate,PhotoSelectControllerDelegate>
+@interface PersonDetailsViewController ()<UIScrollViewDelegate,PhotoSelectControllerDelegate,DateViewDelegate>
 {
     UIImageView *headerImage;
+    NSString * _image_url;
+    NSString * _time;
 }
 @property (nonatomic,strong)UIScrollView        *tmpScrollView;
 @property (nonatomic,strong)DateView            *dateView;
@@ -23,6 +25,11 @@
 @end
 
 @implementation PersonDetailsViewController
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+     [self getPersonInfo];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,11 +42,9 @@
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1.5)]];
     
-    [self setUpUI];
-    
     [[UIApplication sharedApplication].keyWindow addSubview:self.dateView];
     
-    [self getPersonInfo];
+   
 }
 
 - (void)getPersonInfo{
@@ -122,10 +127,23 @@
             headerImage = [Tools creatImage:CGRectMake(KScreenWidth - 80, 10, 40, 40) url:@"" image:@"grzl_tx_img"];
             [headerImage.layer setCornerRadius:20];
             [backView addSubview:headerImage];
+            
+            if ([dArr[0] isKindOfClass:[NSString class]]) {
+                if (_image_url) {
+                     [headerImage sd_setImageWithURL:[NSURL URLWithString:_image_url]];
+                }else{
+                    [headerImage sd_setImageWithURL:[NSURL URLWithString:dArr[0]]];
+                }
+            }
            
         }
         else{
-             [backView addSubview:[Tools creatLabel:CGRectMake(15, 0, 200 , backView.frame.size.height) font:[UIFont systemFontOfSize:15] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:tArr[i]]];
+            if (dArr.count>0) {
+                
+                if ([dArr[i] isKindOfClass:[NSString class]]) {
+                    [backView addSubview:[Tools creatLabel:CGRectMake(15, 0, KScreenWidth - 60 , backView.frame.size.height) font:[UIFont systemFontOfSize:15] color:[UIColor blackColor] alignment:(NSTextAlignmentRight) title:dArr[i]]];
+                }
+            }
         }
         
         [backView addSubview:[Tools creatImage:CGRectMake(KScreenWidth - 35, (backView.frame.size.height -10 )/2, 6, 10) image:@"jilu_rili_arrow"]];
@@ -140,8 +158,50 @@
     if (!_dateView) {
         
         _dateView = [[DateView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+        [_dateView setDelegate:self];
     }
     return _dateView;
+}
+
+- (void)selectCurrentTime:(NSString *)time{
+    
+    _time = time;
+    
+    [self changeBirthday];
+}
+
+- (void)changeBirthday{
+    
+    
+    NSString *path = [NSString stringWithFormat:@"%@/Member/update_birthday",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *dic =@{@"birthday":_time};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            [weakSelf getPersonInfo];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
 }
 
 - (void)tap:(UITapGestureRecognizer *)sender{
@@ -209,13 +269,15 @@
         NSLog(@"%.2f",progress);
     } success:^(id  _Nullable responseObject) {
         
+        [MBProgressHUD showHUDAddedTo:weakSelf.view animated:YES];
+        
         if ([responseObject[@"code"] integerValue] == 200) {
             NSLog(@"成功");
             
             if ([responseObject[@"datas"][@"route"] integerValue]==200) {
-                
+                [self->headerImage setImage:image];
+                self->_image_url =responseObject[@"datas"][@"fullPath"];
             }
-            
         }
         else{
             

@@ -84,7 +84,7 @@
             [sender setText:[sender.text substringToIndex:30]];
         }
 
-        if ([sender.text isValidNickName]) {
+        if ([sender.text isValidAlphaNumberPassword] || [sender.text isValidNumberAndLetterPassword]) {
             [firstI setImage:[UIImage imageNamed:@"mm_tick"]];
         }
         else{

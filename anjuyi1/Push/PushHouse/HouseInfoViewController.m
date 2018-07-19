@@ -13,6 +13,8 @@
 
 #import "SpaceImageListViewController.h"
 
+#import "TextViewController.h"
+
 
 @interface HouseInfoViewController ()<PhotoSelectControllerDelegate,HouseCoverViewDlegate,UIScrollViewDelegate>
 {
@@ -188,7 +190,23 @@
 
 - (void)pushToController:(BaseViewController *)vc{
     isRefre = YES;
+    
+    if ([vc isKindOfClass:[TextViewController class]]) {
+        isChanageColor = NO;
+        isRefre = NO;
+    }
+    
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)titleChangeValue:(NSString *)text type:(NSInteger)type{
+    if (type == 0) {
+        _title = text;
+    }
+    
+    if (type == 1) {
+        _said = text;
+    }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
@@ -350,7 +368,7 @@
         if ([responseObject[@"code"] integerValue] == 200) {
             
             [ViewHelps showHUDWithText:@"保存成功"];
-            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+//            [weakSelf dismissViewControllerAnimated:YES completion:nil];
         }
         else{
             

@@ -14,6 +14,8 @@
 
 - (void)pushToController:(UIViewController *)vc;
 
+- (void)titleChangeValue:(NSString *)text type:(NSInteger)type;
+
 @end
 
 @interface HouseCoverView : UIView

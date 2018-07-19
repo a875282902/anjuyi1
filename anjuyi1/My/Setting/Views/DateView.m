@@ -13,6 +13,9 @@ static CGFloat vHeight = 250;
 static CGFloat sHeight = 50;
 
 @interface DateView()
+{
+    NSString *time;
+}
 
 @property (nonatomic,strong)UIDatePicker *tmpDataPicker;
 
@@ -86,12 +89,23 @@ static CGFloat sHeight = 50;
 
 - (void)sureDidPress{
     
+    if (!time) {
+        NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
+        dateFormatter.dateFormat=@"yyyy-MM-dd";
+        time = [dateFormatter stringFromDate:self.tmpDataPicker.date];
+    }
+    
+    [self.delegate selectCurrentTime:time];
     [self hidden];
 }
 
 - (void)datePickerValueChanged:(UIDatePicker *)sender{
     
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];//创建一个日期格式化器
     
+    dateFormatter.dateFormat=@"yyyy-MM-dd";//指定转date得日期格式化形式
+    
+    time = [dateFormatter stringFromDate:sender.date];
 }
 
 - (void)show{

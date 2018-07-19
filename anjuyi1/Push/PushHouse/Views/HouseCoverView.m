@@ -12,8 +12,13 @@
 #import "HouseAreaViewController.h"
 #import "HouseCityViewController.h"
 #import "HousePriceViewController.h"
+#import "TextViewController.h"
 
-@interface HouseCoverView ()<UITableViewDelegate,UITableViewDataSource>
+@interface HouseCoverView ()<UITableViewDelegate,UITableViewDataSource,TextViewControllerDelegat>
+{
+    NSString *_title ;
+    NSString *_desc;
+}
 
 @property (nonatomic,strong)UITableView          * tmpTableView;
 @property (nonatomic,strong)NSMutableDictionary  * houseData;
@@ -25,6 +30,8 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     
     if (self == [super initWithFrame:frame]) {
+        _title = @"";
+        _desc = @"";
         [self addSubview:self.tmpTableView];
     }
     return self;
@@ -38,12 +45,12 @@
 }
 
 - (void)refreData{
+    
     [self getHouseInfo];
 }
 
 - (void)getHouseInfo{
-    
-    
+
     NSString *path = [NSString stringWithFormat:@"%@/WholeHouse/get_house_info",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
@@ -133,7 +140,7 @@
     [cell setAccessoryType:(UITableViewCellAccessoryDisclosureIndicator)];
     
     if (self.houseData) {
-        NSArray *dArr = @[@"",@"",self.houseData[@"door"],[NSString stringWithFormat:@"%@平米",self.houseData[@"proportion"]],[NSString stringWithFormat:@"%@ %@ %@",self.houseData[@"province_name"],self.houseData[@"city_name"],self.houseData[@"area_name"]],[NSString stringWithFormat:@"%@万元",self.houseData[@"cost"]]];
+        NSArray *dArr = @[_title,_desc,self.houseData[@"door"],[NSString stringWithFormat:@"%@平米",self.houseData[@"proportion"]],[NSString stringWithFormat:@"%@ %@ %@",self.houseData[@"province_name"],self.houseData[@"city_name"],self.houseData[@"area_name"]],[NSString stringWithFormat:@"%@万元",self.houseData[@"cost"]]];
         [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@",dArr[indexPath.row]]];
     }
     
@@ -176,11 +183,47 @@
             [self.delegate pushToController:vc];
         }
             break;
+        case 0:
+        {
+            TextViewController * vc = [[TextViewController alloc] init];
+            vc.type = 0;
+            vc.text = _title;
+            vc.placeHolder = @"请输入标题";
+            [vc setDelegate:self];
+            [self.delegate pushToController:vc];
+        }
+            break;
+        case 1:
+        {
+            TextViewController * vc = [[TextViewController alloc] init];
+            vc.type = 1;
+            vc.text = _desc;
+            vc.placeHolder = @"说在前面";
+            [vc setDelegate:self];
+            [self.delegate pushToController:vc];
+        }
+            break;
             
             
         default:
             break;
     }
+}
+
+- (void)textViewInputText:(NSString *)text type:(NSInteger)type{
+    if (type == 0) {
+        _title = text;
+    }
+    
+    if (type == 1) {
+        _desc = text;
+    }
+    
+    [self.delegate titleChangeValue:text type:type];
+    
+    
+    [self.tmpTableView reloadData];
+    
 }
 
 - (void)selectCover{

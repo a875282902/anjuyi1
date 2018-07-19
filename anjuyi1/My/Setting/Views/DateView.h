@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol DateViewDelegate <NSObject>
+
+- (void)selectCurrentTime:(NSString *)time;
+
+@end
+
 @interface DateView : UIView
+
+@property (nonatomic,weak)id<DateViewDelegate>delegate;
 
 - (void)show;
 

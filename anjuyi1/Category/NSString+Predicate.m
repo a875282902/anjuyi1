@@ -68,7 +68,7 @@
 }
 - (BOOL) isValidAlphaNumberPassword
 {
-    NSString *regex = @"^(?!\\d+$|[a-zA-Z]+$)\\w{6,12}$";
+    NSString *regex = @"^(?!\\d+$|[a-zA-Z]+$)\\w{0,100}$";
     NSPredicate *identityCardPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     return [identityCardPredicate evaluateWithObject:self];
 }
@@ -87,13 +87,13 @@
     //符合英文字条件的有几个字节
     NSUInteger tLetterMatchCount = [tLetterRegularExpression numberOfMatchesInString:self options:NSMatchingReportProgress range:NSMakeRange(0, self.length)];
     
-    if (tNumMatchCount == self.length && self.length >= 6 && self.length <= 30) {
+    if (tNumMatchCount == self.length ) {
         //全部符合数字，表示沒有英文
         return YES;
-    } else if (tLetterMatchCount == self.length && self.length >= 6 && self.length <= 30) {
+    } else if (tLetterMatchCount == self.length ) {
         //全部符合英文，表示沒有数字
         return YES;
-    } else if (tNumMatchCount + tLetterMatchCount == self.length && self.length >= 6 && self.length <= 30) {
+    } else if (tNumMatchCount + tLetterMatchCount == self.length ) {
         //符合英文和符合数字条件的相加等于密码长度
         return YES;
     } else {
@@ -102,39 +102,6 @@
     }
 }
 
-- (BOOL)isValidNickName{
-    
-    NSString *regex = @"^(?!\\d+$|[a-zA-Z]+$)\\w{1,30}$";
-    NSPredicate *identityCardPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    return [identityCardPredicate evaluateWithObject:self];
-    
-    //数字条件
-    NSRegularExpression *tNumRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"[0-9]" options:NSRegularExpressionCaseInsensitive error:nil];
-    
-    //符合数字条件的有几个字节
-    NSUInteger tNumMatchCount = [tNumRegularExpression numberOfMatchesInString:self options:NSMatchingReportProgress range:NSMakeRange(0, self.length)];
-    
-    //英文字条件
-    NSRegularExpression *tLetterRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:nil];
-    
-    //符合英文字条件的有几个字节
-    NSUInteger tLetterMatchCount = [tLetterRegularExpression numberOfMatchesInString:self options:NSMatchingReportProgress range:NSMakeRange(0, self.length)];
-    
-    if (tNumMatchCount == self.length && self.length >= 1 && self.length <= 30) {
-        //全部符合数字，表示沒有英文
-        return YES;
-    } else if (tLetterMatchCount == self.length && self.length >= 1 && self.length <= 30) {
-        //全部符合英文，表示沒有数字
-        return YES;
-    } else if (tNumMatchCount + tLetterMatchCount == self.length && self.length >= 1 && self.length <= 30) {
-        //符合英文和符合数字条件的相加等于密码长度
-        return YES;
-    } else {
-        return NO;
-        //可能包含标点符号的情況，或是包含非英文的文字，这里再依照需求详细判断想呈现的错误
-    }
-    
-}
 
 - (BOOL) isValidIdentifyFifteen
 {

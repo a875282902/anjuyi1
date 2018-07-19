@@ -15,6 +15,8 @@
 #import "SearchView.h"
 #import "HomeTableViewCell.h"
 
+#import "ChargingHomeViewController.h"//充电桩
+
 
 #define hederHeight MDXFrom6(55)
 
@@ -141,7 +143,7 @@
             
             [weakSelf.bannerArr removeAllObjects];
             
-            if ([responseObject[@"datas"][@"slide_img"] isKindOfClass:[NSDictionary class]] ) {
+            if ([responseObject[@"datas"][@"slide_img"] isKindOfClass:[NSArray class]] ) {
                 for (NSDictionary *dict in responseObject[@"datas"][@"slide_img"]) {
                     BannerModel *model = [[BannerModel alloc] initWithDictionary:dict];
                     [weakSelf.bannerArr addObject:model];
@@ -244,7 +246,6 @@
 - (UIImageView *)setImageViewWithFrame:(CGRect)rect andImageName:(NSString *)imageName andTag:(NSInteger)tag image:(NSString *)url{
     
     UIImageView * wholeHouse = [[UIImageView alloc] initWithFrame:rect];
-    
     if (url.length > 0) {
         [wholeHouse sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:imageName]];
     }
@@ -253,7 +254,9 @@
     }
     
     [wholeHouse setUserInteractionEnabled:YES];
-    [wholeHouse addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectActivity:)]];
+    if (tag != 3 && tag != 4 && tag != 5) {
+        [wholeHouse addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectActivity:)]];
+    }
     [wholeHouse setTag:tag];
     
     return wholeHouse;
@@ -548,7 +551,8 @@
             
         case 1://充电桩安装
         {
-            
+            ChargingHomeViewController * vc = [[ChargingHomeViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
             
         }
             break;
