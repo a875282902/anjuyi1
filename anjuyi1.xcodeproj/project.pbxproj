@@ -180,7 +180,6 @@
 		1846D05420FF229700EA1417 /* PushProjectNodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846D05320FF229700EA1417 /* PushProjectNodeViewController.m */; };
 		1846D05720FF27DD00EA1417 /* ProjectNodeDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846D05620FF27DD00EA1417 /* ProjectNodeDetailsViewController.m */; };
 		1846D05A20FF853700EA1417 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846D05920FF853700EA1417 /* TextViewController.m */; };
-		1846D05E20FF8D9E00EA1417 /* ChargingHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846D05D20FF8D9E00EA1417 /* ChargingHomeViewController.m */; };
 		184D07D320D1029A00653D81 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D220D1029A00653D81 /* RegisterViewController.m */; };
 		184D07D620D1171500653D81 /* SetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D520D1171500653D81 /* SetPasswordVC.m */; };
 		184D07D920D11C8D00653D81 /* NSString+Predicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D720D11C8D00653D81 /* NSString+Predicate.m */; };
@@ -195,6 +194,13 @@
 		18EA1BDB20E1CD3A000738CC /* SortPullDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA1BDA20E1CD3A000738CC /* SortPullDown.m */; };
 		18EA1BDF20E1CD9A000738CC /* SortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA1BDD20E1CD9A000738CC /* SortCell.m */; };
 		18EA1BE020E1CD9A000738CC /* SortCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EA1BDE20E1CD9A000738CC /* SortCell.xib */; };
+		18ED87DF21008D7100B38548 /* ChargingHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED87D121008D7100B38548 /* ChargingHomeViewController.m */; };
+		18ED87E021008D7100B38548 /* QuickOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED87D221008D7100B38548 /* QuickOrderViewController.m */; };
+		18ED87E121008D7100B38548 /* ChargingAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED87D421008D7100B38548 /* ChargingAgreementViewController.m */; };
+		18ED87E221008D7100B38548 /* ShowDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED87D521008D7100B38548 /* ShowDetailsViewController.m */; };
+		18ED87E321008D7100B38548 /* ChargingCaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED87D721008D7100B38548 /* ChargingCaseViewController.m */; };
+		18ED87E421008D7100B38548 /* ChargingCaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED87DC21008D7100B38548 /* ChargingCaseTableViewCell.m */; };
+		18ED87E521008D7100B38548 /* ChargingCaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18ED87DD21008D7100B38548 /* ChargingCaseTableViewCell.xib */; };
 		18F5B7CA20E9D90F00B76A73 /* MaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5B7C220E9D90F00B76A73 /* MaskView.m */; };
 		18F5B7CB20E9D90F00B76A73 /* AlbumSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5B7C320E9D90F00B76A73 /* AlbumSelectController.m */; };
 		18F5B7CC20E9D90F00B76A73 /* PhotoSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5B7C720E9D90F00B76A73 /* PhotoSelectController.m */; };
@@ -526,8 +532,6 @@
 		1846D05620FF27DD00EA1417 /* ProjectNodeDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectNodeDetailsViewController.m; sourceTree = "<group>"; };
 		1846D05820FF853700EA1417 /* TextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
 		1846D05920FF853700EA1417 /* TextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = "<group>"; };
-		1846D05C20FF8D9E00EA1417 /* ChargingHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChargingHomeViewController.h; sourceTree = "<group>"; };
-		1846D05D20FF8D9E00EA1417 /* ChargingHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChargingHomeViewController.m; sourceTree = "<group>"; };
 		184D07D120D1029A00653D81 /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		184D07D220D1029A00653D81 /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		184D07D420D1171500653D81 /* SetPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetPasswordVC.h; sourceTree = "<group>"; };
@@ -555,6 +559,19 @@
 		18EA1BDC20E1CD9A000738CC /* SortCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortCell.h; sourceTree = "<group>"; };
 		18EA1BDD20E1CD9A000738CC /* SortCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SortCell.m; sourceTree = "<group>"; };
 		18EA1BDE20E1CD9A000738CC /* SortCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SortCell.xib; sourceTree = "<group>"; };
+		18ED87D121008D7100B38548 /* ChargingHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargingHomeViewController.m; sourceTree = "<group>"; };
+		18ED87D221008D7100B38548 /* QuickOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickOrderViewController.m; sourceTree = "<group>"; };
+		18ED87D321008D7100B38548 /* ChargingCaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargingCaseViewController.h; sourceTree = "<group>"; };
+		18ED87D421008D7100B38548 /* ChargingAgreementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargingAgreementViewController.m; sourceTree = "<group>"; };
+		18ED87D521008D7100B38548 /* ShowDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDetailsViewController.m; sourceTree = "<group>"; };
+		18ED87D621008D7100B38548 /* ChargingAgreementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargingAgreementViewController.h; sourceTree = "<group>"; };
+		18ED87D721008D7100B38548 /* ChargingCaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargingCaseViewController.m; sourceTree = "<group>"; };
+		18ED87D821008D7100B38548 /* QuickOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickOrderViewController.h; sourceTree = "<group>"; };
+		18ED87D921008D7100B38548 /* ChargingHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargingHomeViewController.h; sourceTree = "<group>"; };
+		18ED87DA21008D7100B38548 /* ShowDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDetailsViewController.h; sourceTree = "<group>"; };
+		18ED87DC21008D7100B38548 /* ChargingCaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargingCaseTableViewCell.m; sourceTree = "<group>"; };
+		18ED87DD21008D7100B38548 /* ChargingCaseTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChargingCaseTableViewCell.xib; sourceTree = "<group>"; };
+		18ED87DE21008D7100B38548 /* ChargingCaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargingCaseTableViewCell.h; sourceTree = "<group>"; };
 		18F5B7C220E9D90F00B76A73 /* MaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaskView.m; sourceTree = "<group>"; };
 		18F5B7C320E9D90F00B76A73 /* AlbumSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumSelectController.m; sourceTree = "<group>"; };
 		18F5B7C420E9D90F00B76A73 /* PhotoCuttingBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCuttingBox.h; sourceTree = "<group>"; };
@@ -1310,7 +1327,7 @@
 		0AFEE74320BD2F50004FA8FC /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				1846D05B20FF8D8100EA1417 /* Charging */,
+				18ED87D021008D7100B38548 /* Charging */,
 				0AC3190320BD8EB50035800F /* Model */,
 				0AC318FE20BD88BC0035800F /* Views */,
 				0AFEE74520BD2F50004FA8FC /* HomeViewController.h */,
@@ -1479,15 +1496,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		1846D05B20FF8D8100EA1417 /* Charging */ = {
-			isa = PBXGroup;
-			children = (
-				1846D05C20FF8D9E00EA1417 /* ChargingHomeViewController.h */,
-				1846D05D20FF8D9E00EA1417 /* ChargingHomeViewController.m */,
-			);
-			path = Charging;
-			sourceTree = "<group>";
-		};
 		187C11F120D0E13800E8DDC7 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -1512,6 +1520,34 @@
 				18D3480B20DB8CFF008FD35E /* AddressModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		18ED87D021008D7100B38548 /* Charging */ = {
+			isa = PBXGroup;
+			children = (
+				18ED87D321008D7100B38548 /* ChargingCaseViewController.h */,
+				18ED87D721008D7100B38548 /* ChargingCaseViewController.m */,
+				18ED87D921008D7100B38548 /* ChargingHomeViewController.h */,
+				18ED87D121008D7100B38548 /* ChargingHomeViewController.m */,
+				18ED87D621008D7100B38548 /* ChargingAgreementViewController.h */,
+				18ED87D421008D7100B38548 /* ChargingAgreementViewController.m */,
+				18ED87DA21008D7100B38548 /* ShowDetailsViewController.h */,
+				18ED87D521008D7100B38548 /* ShowDetailsViewController.m */,
+				18ED87D821008D7100B38548 /* QuickOrderViewController.h */,
+				18ED87D221008D7100B38548 /* QuickOrderViewController.m */,
+				18ED87DB21008D7100B38548 /* Views */,
+			);
+			path = Charging;
+			sourceTree = "<group>";
+		};
+		18ED87DB21008D7100B38548 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				18ED87DC21008D7100B38548 /* ChargingCaseTableViewCell.m */,
+				18ED87DD21008D7100B38548 /* ChargingCaseTableViewCell.xib */,
+				18ED87DE21008D7100B38548 /* ChargingCaseTableViewCell.h */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		18F5B7C120E9D90F00B76A73 /* PhotoSelect */ = {
@@ -1659,6 +1695,7 @@
 				0A5CD83920C626880028F82D /* OrderDetailsCell.xib in Resources */,
 				0A7D501F20C2F32F001BFDBF /* pdf.pdf in Resources */,
 				0A8E9C8120C9023200C6E176 /* AddressTableViewCell.xib in Resources */,
+				18ED87E521008D7100B38548 /* ChargingCaseTableViewCell.xib in Resources */,
 				0AD0C62220BEE4D6001A20C4 /* DesignerTableViewCell.xib in Resources */,
 				0AFD6CDA20C4D55E00223512 /* CollectShopTableViewCell.xib in Resources */,
 				1846D00D20FE389900EA1417 /* SpaceImageListTableViewCell.xib in Resources */,
@@ -1718,6 +1755,7 @@
 				0AC3190120BD88DA0035800F /* SearchView.m in Sources */,
 				0A7D505120C432A6001BFDBF /* MyAnswerViewController.m in Sources */,
 				0AD2DEC720CA832100E53B43 /* OrderCenterViewController.m in Sources */,
+				18ED87E221008D7100B38548 /* ShowDetailsViewController.m in Sources */,
 				18339CE620D276B700165FF2 /* BrandListView.m in Sources */,
 				0A5CD83C20C664FF0028F82D /* RecordsTableView.m in Sources */,
 				0A8E9C8020C9023200C6E176 /* AddressTableViewCell.m in Sources */,
@@ -1743,6 +1781,7 @@
 				18F5B7CA20E9D90F00B76A73 /* MaskView.m in Sources */,
 				0AD2DEB220CA443B00E53B43 /* ChangepasswordVC.m in Sources */,
 				0AD0C62120BEE4D6001A20C4 /* DesignerTableViewCell.m in Sources */,
+				18ED87E121008D7100B38548 /* ChargingAgreementViewController.m in Sources */,
 				0A38FEF520C6D3D600B45CCD /* ShopCartViewController.m in Sources */,
 				0A7D502A20C39CEE001BFDBF /* MyPhotoViewController.m in Sources */,
 				0AFD6CD920C4D55E00223512 /* CollectShopTableViewCell.m in Sources */,
@@ -1767,7 +1806,7 @@
 				0AFEE77020BD2F50004FA8FC /* PushViewController.m in Sources */,
 				0AD2DED020CA9E2200E53B43 /* OrderCenterDatailsVC.m in Sources */,
 				0A5A7B3820C7E0D900153E9A /* UserEvaluationView.m in Sources */,
-				1846D05E20FF8D9E00EA1417 /* ChargingHomeViewController.m in Sources */,
+				18ED87DF21008D7100B38548 /* ChargingHomeViewController.m in Sources */,
 				0A7D505E20C43891001BFDBF /* MyFriendTableViewCell.m in Sources */,
 				0A45D96220CBB691000C04B8 /* SettlementViewController.m in Sources */,
 				18F5B7D820EB1D1000B76A73 /* AddProjectViewController.m in Sources */,
@@ -1828,6 +1867,7 @@
 				1846D05120FEE93100EA1417 /* EditSpaceImageViewController.m in Sources */,
 				1846CFFF20FDDE9300EA1417 /* HouseCoverView.m in Sources */,
 				1846D05420FF229700EA1417 /* PushProjectNodeViewController.m in Sources */,
+				18ED87E421008D7100B38548 /* ChargingCaseTableViewCell.m in Sources */,
 				1846CFEC20FD9F5600EA1417 /* HouseDesignViewController.m in Sources */,
 				0AFEE76620BD2F50004FA8FC /* IanScrollImageView.m in Sources */,
 				0AD2DEAC20CA19E900E53B43 /* DateView.m in Sources */,
@@ -1863,12 +1903,14 @@
 				0AD2DEB920CA51F500E53B43 /* MyArticleViewController.m in Sources */,
 				187C11F420D0E42600E8DDC7 /* LoginViewController.m in Sources */,
 				0A5CD82120C592C70028F82D /* MyOrderViewController.m in Sources */,
+				18ED87E321008D7100B38548 /* ChargingCaseViewController.m in Sources */,
 				1846CFD120F836FB00EA1417 /* PullDownView.m in Sources */,
 				0AFEE76920BD2F50004FA8FC /* KBTabbar.m in Sources */,
 				0A7D503A20C42357001BFDBF /* NavTwoTitle.m in Sources */,
 				0A45D95B20CB8322000C04B8 /* SupervisorDetailsVC.m in Sources */,
 				0A3085BC20C02E1100882805 /* DesignerDetailsVC.m in Sources */,
 				0A5582A220C124B200759E6B /* ProjectListVC.m in Sources */,
+				18ED87E021008D7100B38548 /* QuickOrderViewController.m in Sources */,
 				0A8E9C8420C90DA700C6E176 /* AddAddressViewController.m in Sources */,
 				0AFD6CD520C4CB2E00223512 /* CollectShopViewController.m in Sources */,
 				0AFEE76C20BD2F50004FA8FC /* BaseModel.m in Sources */,

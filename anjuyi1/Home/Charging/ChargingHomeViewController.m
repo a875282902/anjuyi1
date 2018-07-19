@@ -10,14 +10,22 @@
 #import "BannerModel.h"
 #import "IanScrollView.h"
 
+#import "QuickOrderViewController.h"
+#import "ChargingAgreementViewController.h"
+#import "ChargingCaseViewController.h"
+
+#import "ShowDetailsViewController.h"
+
+
+
 @interface ChargingHomeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic,strong)UITableView     *    tmpTableView;
-@property (nonatomic,strong)NSMutableArray  *    dataArr;
-@property (nonatomic,strong)UIView          *    headerView;
+@property (nonatomic,strong)UITableView     *  tmpTableView;
+@property (nonatomic,strong)NSMutableArray  *  dataArr;
+@property (nonatomic,strong)UIView          *  headerView;
 
-@property (nonatomic,strong)IanScrollView   *    bannerScroll;
-@property (nonatomic,strong)NSMutableArray  *    bannerArr;
+@property (nonatomic,strong)IanScrollView   *  bannerScroll;
+@property (nonatomic,strong)NSMutableArray  *  bannerArr;
 
 @end
 
@@ -243,9 +251,42 @@
     return 70;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    ShowDetailsViewController *vc = [[ShowDetailsViewController alloc] init];
+    vc.url = [NSString stringWithFormat:@"https://api.ajyvip.com/charging/article_detail/id/%@",self.dataArr[indexPath.row][@"id"]];
+    [vc.navigationItem setTitle:@"新闻详情"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark -- 点击事件
 - (void)selectService:(UITapGestureRecognizer *)sender{
     
+    switch (sender.view.tag) {
+        case 0:
+        {
+            QuickOrderViewController *vc = [[QuickOrderViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 1:
+        {
+            ChargingAgreementViewController *vc = [[ChargingAgreementViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 2:
+        {
+            ChargingCaseViewController *vc = [[ChargingCaseViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        
+            
+            
+        default:
+            break;
+    }
     
 }
 

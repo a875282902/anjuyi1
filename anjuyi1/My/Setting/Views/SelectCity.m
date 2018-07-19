@@ -94,7 +94,7 @@ static CGFloat sHeight = 50;
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     
-    return [self.dataArr[row] valueForKey:@"value"];
+    return [self.dataArr[row] valueForKey:@"value"]?[self.dataArr[row] valueForKey:@"value"]:[self.dataArr[row] valueForKey:@"name"];
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{

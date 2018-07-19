@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="293" id="KGk-i7-Jjw" customClass="ChargingCaseTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="500" height="293"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="500" height="292.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSv-N0-ul3">
+                        <rect key="frame" x="15" y="15" width="470" height="277.5"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t2t-8V-Arp">
+                                <rect key="frame" x="0.0" y="0.0" width="470" height="157.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="157.5" id="IHd-QR-jhz"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="美式整屋、乡村风格，她家聚集了当下最流行的元素！" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFt-Y8-nIs">
+                                <rect key="frame" x="10" y="172.5" width="450" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="wZ1-m1-6vN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="两室  78平米" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Haq-rR-nVQ">
+                                <rect key="frame" x="10" y="222.5" width="450" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="nZJ-Ks-kAI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Haq-rR-nVQ" secondAttribute="trailing" constant="10" id="34b-wr-SbL"/>
+                            <constraint firstItem="QFt-Y8-nIs" firstAttribute="top" secondItem="t2t-8V-Arp" secondAttribute="bottom" constant="15" id="DOl-NX-RbO"/>
+                            <constraint firstItem="t2t-8V-Arp" firstAttribute="top" secondItem="vSv-N0-ul3" secondAttribute="top" id="Dfv-D6-rbQ"/>
+                            <constraint firstAttribute="trailing" secondItem="t2t-8V-Arp" secondAttribute="trailing" id="ReK-vu-8FG"/>
+                            <constraint firstAttribute="trailing" secondItem="QFt-Y8-nIs" secondAttribute="trailing" constant="10" id="S8R-p3-RRe"/>
+                            <constraint firstItem="t2t-8V-Arp" firstAttribute="leading" secondItem="vSv-N0-ul3" secondAttribute="leading" id="Zh4-DU-OJM"/>
+                            <constraint firstItem="Haq-rR-nVQ" firstAttribute="top" secondItem="QFt-Y8-nIs" secondAttribute="bottom" constant="10" id="g2u-7O-qJ1"/>
+                            <constraint firstItem="Haq-rR-nVQ" firstAttribute="leading" secondItem="vSv-N0-ul3" secondAttribute="leading" constant="10" id="sZV-uS-9ZT"/>
+                            <constraint firstItem="QFt-Y8-nIs" firstAttribute="leading" secondItem="vSv-N0-ul3" secondAttribute="leading" constant="10" id="wkY-uc-AxY"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="vSv-N0-ul3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="3Ak-iF-51n"/>
+                    <constraint firstAttribute="trailing" secondItem="vSv-N0-ul3" secondAttribute="trailing" constant="15" id="A48-DR-3T8"/>
+                    <constraint firstItem="vSv-N0-ul3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="F9j-2Q-uvJ"/>
+                    <constraint firstAttribute="bottom" secondItem="vSv-N0-ul3" secondAttribute="bottom" id="ZZp-IN-SJT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="backView" destination="vSv-N0-ul3" id="Ilc-X2-r6J"/>
+                <outlet property="coverImage" destination="t2t-8V-Arp" id="gGc-Np-Aeq"/>
+                <outlet property="descLabel" destination="Haq-rR-nVQ" id="TH0-RS-zDQ"/>
+                <outlet property="titleLabel" destination="QFt-Y8-nIs" id="df2-9B-1RD"/>
+            </connections>
+            <point key="canvasLocation" x="227" y="159"/>
+        </tableViewCell>
+    </objects>
+</document>
