@@ -14,6 +14,8 @@
 
 #import "AddProjectViewController.h"
 
+#import <BaiduMapAPI_Base/BMKMapManager.h>
+
 @interface AppDelegate ()
 
 @end
@@ -23,7 +25,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+    BMKMapManager *man = [[BMKMapManager alloc]init];
+    BOOL ret = [man start:@"4tH1ZZT4xHAGKw5w2Yzs9113ylv534HL"  generalDelegate:nil];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
+    else{
+        NSLog(@"success");
+    }
+
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     

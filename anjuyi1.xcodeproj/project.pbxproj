@@ -153,6 +153,19 @@
 		0AFEE77020BD2F50004FA8FC /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEE75C20BD2F50004FA8FC /* PushViewController.m */; };
 		0AFEE84020BD30C8004FA8FC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0AFEE83F20BD30C8004FA8FC /* Podfile */; };
 		180588A120DC9B7300883523 /* EditAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180588A020DC9B7300883523 /* EditAddressViewController.m */; };
+		18275116210171F3002A61F8 /* PowerStatonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18275115210171F3002A61F8 /* PowerStatonModel.m */; };
+		1827511A210177DF002A61F8 /* CustomPaopaotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18275119210177DF002A61F8 /* CustomPaopaotView.m */; };
+		1827511D210179EF002A61F8 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1827511C210179EF002A61F8 /* CustomAnnotationView.m */; };
+		18275120210188EA002A61F8 /* PowerStationList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1827511F210188EA002A61F8 /* PowerStationList.m */; };
+		18275127210189FB002A61F8 /* PowerStationListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18275125210189FB002A61F8 /* PowerStationListTableViewCell.m */; };
+		18275128210189FB002A61F8 /* PowerStationListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18275126210189FB002A61F8 /* PowerStationListTableViewCell.xib */; };
+		1827512A21019480002A61F8 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182751292101947F002A61F8 /* Photos.framework */; };
+		1827512C210194A6002A61F8 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1827512B210194A5002A61F8 /* JavaScriptCore.framework */; };
+		1827512E210194AC002A61F8 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1827512D210194AC002A61F8 /* WebKit.framework */; };
+		18275130210195E5002A61F8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1827512F210195E5002A61F8 /* MapKit.framework */; };
+		1827513221019C28002A61F8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1827513121019C28002A61F8 /* CoreData.framework */; };
+		182751352101A40A002A61F8 /* PowerStationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182751342101A40A002A61F8 /* PowerStationDetailsViewController.m */; };
+		182751382101C1D5002A61F8 /* ProwerStationDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 182751372101C1D5002A61F8 /* ProwerStationDetails.m */; };
 		18339CD520D24FD500165FF2 /* SelectLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD420D24FD500165FF2 /* SelectLocationVC.m */; };
 		18339CD920D25B6600165FF2 /* HouseInspectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD820D25B6600165FF2 /* HouseInspectViewController.m */; };
 		18339CDC20D2656800165FF2 /* FreeOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CDB20D2656800165FF2 /* FreeOfferViewController.m */; };
@@ -201,6 +214,26 @@
 		18ED87E321008D7100B38548 /* ChargingCaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED87D721008D7100B38548 /* ChargingCaseViewController.m */; };
 		18ED87E421008D7100B38548 /* ChargingCaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED87DC21008D7100B38548 /* ChargingCaseTableViewCell.m */; };
 		18ED87E521008D7100B38548 /* ChargingCaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18ED87DD21008D7100B38548 /* ChargingCaseTableViewCell.xib */; };
+		18ED88442100D4DE00B38548 /* BaiduMapAPI_Location.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED883A2100D4DE00B38548 /* BaiduMapAPI_Location.framework */; };
+		18ED88452100D4DE00B38548 /* BaiduMapAPI_Map.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED883B2100D4DE00B38548 /* BaiduMapAPI_Map.framework */; };
+		18ED88462100D4DE00B38548 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED883D2100D4DE00B38548 /* libcrypto.a */; };
+		18ED88472100D4DE00B38548 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED883E2100D4DE00B38548 /* libssl.a */; };
+		18ED88482100D4DE00B38548 /* BaiduMapAPI_Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED883F2100D4DE00B38548 /* BaiduMapAPI_Utils.framework */; };
+		18ED88492100D4DE00B38548 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED88402100D4DE00B38548 /* BaiduMapAPI_Base.framework */; };
+		18ED884A2100D4DE00B38548 /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED88412100D4DE00B38548 /* BaiduMapAPI_Search.framework */; };
+		18ED884B2100D4DE00B38548 /* BaiduMapAPI_Radar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED88422100D4DE00B38548 /* BaiduMapAPI_Radar.framework */; };
+		18ED884C2100D4DE00B38548 /* BaiduMapAPI_Cloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED88432100D4DE00B38548 /* BaiduMapAPI_Cloud.framework */; };
+		18ED884E2100D4F700B38548 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18ED884D2100D4F700B38548 /* mapapi.bundle */; };
+		18ED88502100D55C00B38548 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED884F2100D55B00B38548 /* CoreLocation.framework */; };
+		18ED88522100D56000B38548 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED88512100D56000B38548 /* QuartzCore.framework */; };
+		18ED88542100D56600B38548 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED88532100D56600B38548 /* OpenGLES.framework */; };
+		18ED88562100D56C00B38548 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED88552100D56C00B38548 /* SystemConfiguration.framework */; };
+		18ED88582100D57300B38548 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED88572100D57200B38548 /* CoreGraphics.framework */; };
+		18ED885A2100D57900B38548 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED88592100D57800B38548 /* Security.framework */; };
+		18ED885C2100D58000B38548 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED885B2100D58000B38548 /* libsqlite3.0.tbd */; };
+		18ED885E2100D58C00B38548 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED885D2100D58B00B38548 /* CoreTelephony.framework */; };
+		18ED88602100D59300B38548 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED885F2100D59300B38548 /* libstdc++.6.0.9.tbd */; };
+		18ED88692100D78400B38548 /* PowerStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED88682100D78400B38548 /* PowerStationViewController.m */; };
 		18F5B7CA20E9D90F00B76A73 /* MaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5B7C220E9D90F00B76A73 /* MaskView.m */; };
 		18F5B7CB20E9D90F00B76A73 /* AlbumSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5B7C320E9D90F00B76A73 /* AlbumSelectController.m */; };
 		18F5B7CC20E9D90F00B76A73 /* PhotoSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5B7C720E9D90F00B76A73 /* PhotoSelectController.m */; };
@@ -480,6 +513,26 @@
 		0AFEE83F20BD30C8004FA8FC /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		1805889F20DC9B7300883523 /* EditAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditAddressViewController.h; sourceTree = "<group>"; };
 		180588A020DC9B7300883523 /* EditAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditAddressViewController.m; sourceTree = "<group>"; };
+		18275114210171F3002A61F8 /* PowerStatonModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PowerStatonModel.h; sourceTree = "<group>"; };
+		18275115210171F3002A61F8 /* PowerStatonModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PowerStatonModel.m; sourceTree = "<group>"; };
+		18275118210177DF002A61F8 /* CustomPaopaotView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPaopaotView.h; sourceTree = "<group>"; };
+		18275119210177DF002A61F8 /* CustomPaopaotView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPaopaotView.m; sourceTree = "<group>"; };
+		1827511B210179EF002A61F8 /* CustomAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomAnnotationView.h; sourceTree = "<group>"; };
+		1827511C210179EF002A61F8 /* CustomAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotationView.m; sourceTree = "<group>"; };
+		1827511E210188EA002A61F8 /* PowerStationList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PowerStationList.h; sourceTree = "<group>"; };
+		1827511F210188EA002A61F8 /* PowerStationList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PowerStationList.m; sourceTree = "<group>"; };
+		18275124210189FB002A61F8 /* PowerStationListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PowerStationListTableViewCell.h; sourceTree = "<group>"; };
+		18275125210189FB002A61F8 /* PowerStationListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PowerStationListTableViewCell.m; sourceTree = "<group>"; };
+		18275126210189FB002A61F8 /* PowerStationListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PowerStationListTableViewCell.xib; sourceTree = "<group>"; };
+		182751292101947F002A61F8 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		1827512B210194A5002A61F8 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		1827512D210194AC002A61F8 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		1827512F210195E5002A61F8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		1827513121019C28002A61F8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		182751332101A40A002A61F8 /* PowerStationDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PowerStationDetailsViewController.h; sourceTree = "<group>"; };
+		182751342101A40A002A61F8 /* PowerStationDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PowerStationDetailsViewController.m; sourceTree = "<group>"; };
+		182751362101C1D5002A61F8 /* ProwerStationDetails.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProwerStationDetails.h; sourceTree = "<group>"; };
+		182751372101C1D5002A61F8 /* ProwerStationDetails.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProwerStationDetails.m; sourceTree = "<group>"; };
 		18339CD320D24FD500165FF2 /* SelectLocationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectLocationVC.h; sourceTree = "<group>"; };
 		18339CD420D24FD500165FF2 /* SelectLocationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectLocationVC.m; sourceTree = "<group>"; };
 		18339CD720D25B6600165FF2 /* HouseInspectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseInspectViewController.h; sourceTree = "<group>"; };
@@ -572,6 +625,27 @@
 		18ED87DC21008D7100B38548 /* ChargingCaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargingCaseTableViewCell.m; sourceTree = "<group>"; };
 		18ED87DD21008D7100B38548 /* ChargingCaseTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChargingCaseTableViewCell.xib; sourceTree = "<group>"; };
 		18ED87DE21008D7100B38548 /* ChargingCaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargingCaseTableViewCell.h; sourceTree = "<group>"; };
+		18ED883A2100D4DE00B38548 /* BaiduMapAPI_Location.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Location.framework; sourceTree = "<group>"; };
+		18ED883B2100D4DE00B38548 /* BaiduMapAPI_Map.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Map.framework; sourceTree = "<group>"; };
+		18ED883D2100D4DE00B38548 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		18ED883E2100D4DE00B38548 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		18ED883F2100D4DE00B38548 /* BaiduMapAPI_Utils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Utils.framework; sourceTree = "<group>"; };
+		18ED88402100D4DE00B38548 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
+		18ED88412100D4DE00B38548 /* BaiduMapAPI_Search.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Search.framework; sourceTree = "<group>"; };
+		18ED88422100D4DE00B38548 /* BaiduMapAPI_Radar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Radar.framework; sourceTree = "<group>"; };
+		18ED88432100D4DE00B38548 /* BaiduMapAPI_Cloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Cloud.framework; sourceTree = "<group>"; };
+		18ED884D2100D4F700B38548 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = BaiduMapAPI/BaiduMapAPI_Map.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
+		18ED884F2100D55B00B38548 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		18ED88512100D56000B38548 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		18ED88532100D56600B38548 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		18ED88552100D56C00B38548 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		18ED88572100D57200B38548 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		18ED88592100D57800B38548 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		18ED885B2100D58000B38548 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		18ED885D2100D58B00B38548 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		18ED885F2100D59300B38548 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		18ED88672100D78300B38548 /* PowerStationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PowerStationViewController.h; sourceTree = "<group>"; };
+		18ED88682100D78400B38548 /* PowerStationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PowerStationViewController.m; sourceTree = "<group>"; };
 		18F5B7C220E9D90F00B76A73 /* MaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaskView.m; sourceTree = "<group>"; };
 		18F5B7C320E9D90F00B76A73 /* AlbumSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumSelectController.m; sourceTree = "<group>"; };
 		18F5B7C420E9D90F00B76A73 /* PhotoCuttingBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCuttingBox.h; sourceTree = "<group>"; };
@@ -596,7 +670,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1827513221019C28002A61F8 /* CoreData.framework in Frameworks */,
+				18275130210195E5002A61F8 /* MapKit.framework in Frameworks */,
+				1827512E210194AC002A61F8 /* WebKit.framework in Frameworks */,
+				1827512C210194A6002A61F8 /* JavaScriptCore.framework in Frameworks */,
+				1827512A21019480002A61F8 /* Photos.framework in Frameworks */,
+				18ED88602100D59300B38548 /* libstdc++.6.0.9.tbd in Frameworks */,
+				18ED885E2100D58C00B38548 /* CoreTelephony.framework in Frameworks */,
+				18ED885C2100D58000B38548 /* libsqlite3.0.tbd in Frameworks */,
+				18ED885A2100D57900B38548 /* Security.framework in Frameworks */,
+				18ED88582100D57300B38548 /* CoreGraphics.framework in Frameworks */,
+				18ED88562100D56C00B38548 /* SystemConfiguration.framework in Frameworks */,
+				18ED88542100D56600B38548 /* OpenGLES.framework in Frameworks */,
+				18ED88522100D56000B38548 /* QuartzCore.framework in Frameworks */,
+				18ED88502100D55C00B38548 /* CoreLocation.framework in Frameworks */,
+				18ED88472100D4DE00B38548 /* libssl.a in Frameworks */,
 				91B3B557CA6A413EFEEC07AB /* libPods-anjuyi1.a in Frameworks */,
+				18ED884C2100D4DE00B38548 /* BaiduMapAPI_Cloud.framework in Frameworks */,
+				18ED884A2100D4DE00B38548 /* BaiduMapAPI_Search.framework in Frameworks */,
+				18ED88482100D4DE00B38548 /* BaiduMapAPI_Utils.framework in Frameworks */,
+				18ED88442100D4DE00B38548 /* BaiduMapAPI_Location.framework in Frameworks */,
+				18ED88492100D4DE00B38548 /* BaiduMapAPI_Base.framework in Frameworks */,
+				18ED88462100D4DE00B38548 /* libcrypto.a in Frameworks */,
+				18ED884B2100D4DE00B38548 /* BaiduMapAPI_Radar.framework in Frameworks */,
+				18ED88452100D4DE00B38548 /* BaiduMapAPI_Map.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1096,6 +1193,8 @@
 				0AC3190520BD8ED70035800F /* HomeModel.m */,
 				1862840B20F7314A0038A7AC /* BannerModel.h */,
 				1862840C20F7314A0038A7AC /* BannerModel.m */,
+				18275114210171F3002A61F8 /* PowerStatonModel.h */,
+				18275115210171F3002A61F8 /* PowerStatonModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1221,6 +1320,8 @@
 		0AFEE71120BD2F23004FA8FC /* anjuyi1 */ = {
 			isa = PBXGroup;
 			children = (
+				18ED884D2100D4F700B38548 /* mapapi.bundle */,
+				18ED88392100D4DE00B38548 /* BaiduMapAPI */,
 				0AFEE77120BD2F61004FA8FC /* PrefixHeader.pch */,
 				187C11F120D0E13800E8DDC7 /* Login */,
 				0AFEE75320BD2F50004FA8FC /* Base.lproj */,
@@ -1419,6 +1520,17 @@
 			path = Push;
 			sourceTree = "<group>";
 		};
+		18275117210177C1002A61F8 /* MyAnnotationView */ = {
+			isa = PBXGroup;
+			children = (
+				18275118210177DF002A61F8 /* CustomPaopaotView.h */,
+				18275119210177DF002A61F8 /* CustomPaopaotView.m */,
+				1827511B210179EF002A61F8 /* CustomAnnotationView.h */,
+				1827511C210179EF002A61F8 /* CustomAnnotationView.m */,
+			);
+			path = MyAnnotationView;
+			sourceTree = "<group>";
+		};
 		18339CD620D25A2B00165FF2 /* HouseInspect */ = {
 			isa = PBXGroup;
 			children = (
@@ -1525,16 +1637,21 @@
 		18ED87D021008D7100B38548 /* Charging */ = {
 			isa = PBXGroup;
 			children = (
-				18ED87D321008D7100B38548 /* ChargingCaseViewController.h */,
-				18ED87D721008D7100B38548 /* ChargingCaseViewController.m */,
+				18275117210177C1002A61F8 /* MyAnnotationView */,
 				18ED87D921008D7100B38548 /* ChargingHomeViewController.h */,
 				18ED87D121008D7100B38548 /* ChargingHomeViewController.m */,
+				18ED87D321008D7100B38548 /* ChargingCaseViewController.h */,
+				18ED87D721008D7100B38548 /* ChargingCaseViewController.m */,
 				18ED87D621008D7100B38548 /* ChargingAgreementViewController.h */,
 				18ED87D421008D7100B38548 /* ChargingAgreementViewController.m */,
 				18ED87DA21008D7100B38548 /* ShowDetailsViewController.h */,
 				18ED87D521008D7100B38548 /* ShowDetailsViewController.m */,
 				18ED87D821008D7100B38548 /* QuickOrderViewController.h */,
 				18ED87D221008D7100B38548 /* QuickOrderViewController.m */,
+				18ED88672100D78300B38548 /* PowerStationViewController.h */,
+				18ED88682100D78400B38548 /* PowerStationViewController.m */,
+				182751332101A40A002A61F8 /* PowerStationDetailsViewController.h */,
+				182751342101A40A002A61F8 /* PowerStationDetailsViewController.m */,
 				18ED87DB21008D7100B38548 /* Views */,
 			);
 			path = Charging;
@@ -1543,11 +1660,42 @@
 		18ED87DB21008D7100B38548 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				18ED87DE21008D7100B38548 /* ChargingCaseTableViewCell.h */,
 				18ED87DC21008D7100B38548 /* ChargingCaseTableViewCell.m */,
 				18ED87DD21008D7100B38548 /* ChargingCaseTableViewCell.xib */,
-				18ED87DE21008D7100B38548 /* ChargingCaseTableViewCell.h */,
+				1827511E210188EA002A61F8 /* PowerStationList.h */,
+				1827511F210188EA002A61F8 /* PowerStationList.m */,
+				18275124210189FB002A61F8 /* PowerStationListTableViewCell.h */,
+				18275125210189FB002A61F8 /* PowerStationListTableViewCell.m */,
+				18275126210189FB002A61F8 /* PowerStationListTableViewCell.xib */,
+				182751362101C1D5002A61F8 /* ProwerStationDetails.h */,
+				182751372101C1D5002A61F8 /* ProwerStationDetails.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		18ED88392100D4DE00B38548 /* BaiduMapAPI */ = {
+			isa = PBXGroup;
+			children = (
+				18ED883A2100D4DE00B38548 /* BaiduMapAPI_Location.framework */,
+				18ED883B2100D4DE00B38548 /* BaiduMapAPI_Map.framework */,
+				18ED883C2100D4DE00B38548 /* thirdlibs */,
+				18ED883F2100D4DE00B38548 /* BaiduMapAPI_Utils.framework */,
+				18ED88402100D4DE00B38548 /* BaiduMapAPI_Base.framework */,
+				18ED88412100D4DE00B38548 /* BaiduMapAPI_Search.framework */,
+				18ED88422100D4DE00B38548 /* BaiduMapAPI_Radar.framework */,
+				18ED88432100D4DE00B38548 /* BaiduMapAPI_Cloud.framework */,
+			);
+			path = BaiduMapAPI;
+			sourceTree = "<group>";
+		};
+		18ED883C2100D4DE00B38548 /* thirdlibs */ = {
+			isa = PBXGroup;
+			children = (
+				18ED883D2100D4DE00B38548 /* libcrypto.a */,
+				18ED883E2100D4DE00B38548 /* libssl.a */,
+			);
+			path = thirdlibs;
 			sourceTree = "<group>";
 		};
 		18F5B7C120E9D90F00B76A73 /* PhotoSelect */ = {
@@ -1605,6 +1753,20 @@
 		E57638EA566F5CBF54092AE1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1827513121019C28002A61F8 /* CoreData.framework */,
+				1827512F210195E5002A61F8 /* MapKit.framework */,
+				1827512D210194AC002A61F8 /* WebKit.framework */,
+				1827512B210194A5002A61F8 /* JavaScriptCore.framework */,
+				182751292101947F002A61F8 /* Photos.framework */,
+				18ED885F2100D59300B38548 /* libstdc++.6.0.9.tbd */,
+				18ED885D2100D58B00B38548 /* CoreTelephony.framework */,
+				18ED885B2100D58000B38548 /* libsqlite3.0.tbd */,
+				18ED88592100D57800B38548 /* Security.framework */,
+				18ED88572100D57200B38548 /* CoreGraphics.framework */,
+				18ED88552100D56C00B38548 /* SystemConfiguration.framework */,
+				18ED88532100D56600B38548 /* OpenGLES.framework */,
+				18ED88512100D56000B38548 /* QuartzCore.framework */,
+				18ED884F2100D55B00B38548 /* CoreLocation.framework */,
 				45D4CE4DF7C872891D91C834 /* libPods-anjuyi1.a */,
 			);
 			name = Frameworks;
@@ -1682,6 +1844,7 @@
 				0A5A7B2F20C7DB9300153E9A /* SDPhotoBrowserd.podspec in Resources */,
 				1846CFF820FDD66500EA1417 /* HouseSpaceTableViewCell.xib in Resources */,
 				0A7D504A20C42B01001BFDBF /* DraftBoxTableViewCell.xib in Resources */,
+				18ED884E2100D4F700B38548 /* mapapi.bundle in Resources */,
 				0AFEE71F20BD2F26004FA8FC /* Assets.xcassets in Resources */,
 				0A5582A720C1298000759E6B /* ProjectTableViewCell.xib in Resources */,
 				0A7D505620C433CF001BFDBF /* MyAnswerTableViewCell.xib in Resources */,
@@ -1696,6 +1859,7 @@
 				0A7D501F20C2F32F001BFDBF /* pdf.pdf in Resources */,
 				0A8E9C8120C9023200C6E176 /* AddressTableViewCell.xib in Resources */,
 				18ED87E521008D7100B38548 /* ChargingCaseTableViewCell.xib in Resources */,
+				18275128210189FB002A61F8 /* PowerStationListTableViewCell.xib in Resources */,
 				0AD0C62220BEE4D6001A20C4 /* DesignerTableViewCell.xib in Resources */,
 				0AFD6CDA20C4D55E00223512 /* CollectShopTableViewCell.xib in Resources */,
 				1846D00D20FE389900EA1417 /* SpaceImageListTableViewCell.xib in Resources */,
@@ -1767,6 +1931,7 @@
 				0A5582A620C1298000759E6B /* ProjectTableViewCell.m in Sources */,
 				0AD2DEA920CA194A00E53B43 /* PersonalProfileVC.m in Sources */,
 				0A7D4FF720C2B723001BFDBF /* DistributionViewController.m in Sources */,
+				18275116210171F3002A61F8 /* PowerStatonModel.m in Sources */,
 				0AFEE76120BD2F50004FA8FC /* HttpRequest.m in Sources */,
 				0AD2DEC020CA5F3200E53B43 /* CraftsmanTypeVC.m in Sources */,
 				0A5A7B2C20C7DB9300153E9A /* SDLoadingView.m in Sources */,
@@ -1790,6 +1955,7 @@
 				0A8E9C6C20C8F4CE00C6E176 /* IntegralPayViewController.m in Sources */,
 				0A5CD81520C592460028F82D /* YZCover.m in Sources */,
 				18EA1BDF20E1CD9A000738CC /* SortCell.m in Sources */,
+				18275120210188EA002A61F8 /* PowerStationList.m in Sources */,
 				0A45D94B20CB68C7000C04B8 /* SubscribeVisitVC.m in Sources */,
 				18339CD920D25B6600165FF2 /* HouseInspectViewController.m in Sources */,
 				0A7D501B20C2F141001BFDBF /* ContractDetailsVC.m in Sources */,
@@ -1805,12 +1971,14 @@
 				0AFD6CE520C4DD5900223512 /* MyCouponsTableViewCell.m in Sources */,
 				0AFEE77020BD2F50004FA8FC /* PushViewController.m in Sources */,
 				0AD2DED020CA9E2200E53B43 /* OrderCenterDatailsVC.m in Sources */,
+				18275127210189FB002A61F8 /* PowerStationListTableViewCell.m in Sources */,
 				0A5A7B3820C7E0D900153E9A /* UserEvaluationView.m in Sources */,
 				18ED87DF21008D7100B38548 /* ChargingHomeViewController.m in Sources */,
 				0A7D505E20C43891001BFDBF /* MyFriendTableViewCell.m in Sources */,
 				0A45D96220CBB691000C04B8 /* SettlementViewController.m in Sources */,
 				18F5B7D820EB1D1000B76A73 /* AddProjectViewController.m in Sources */,
 				0AFEE76520BD2F50004FA8FC /* IanScrollView.m in Sources */,
+				182751352101A40A002A61F8 /* PowerStationDetailsViewController.m in Sources */,
 				0A7D500B20C2DC22001BFDBF /* CommentTableViewCell.m in Sources */,
 				0A45D95F20CBB0C8000C04B8 /* StandardView.m in Sources */,
 				1846CFE620FC451C00EA1417 /* HouseCityViewController.m in Sources */,
@@ -1819,6 +1987,7 @@
 				0A5CD81620C592460028F82D /* YZPullDownMenu.m in Sources */,
 				0A7D501220C2EDC6001BFDBF /* ContractViewController.m in Sources */,
 				1846D00820FE2AAA00EA1417 /* SpaceImageListViewController.m in Sources */,
+				182751382101C1D5002A61F8 /* ProwerStationDetails.m in Sources */,
 				0AD0C62520BF7E1E001A20C4 /* ScreeningBar.m in Sources */,
 				0A7D503720C41B31001BFDBF /* PhotoCollectionViewCell.m in Sources */,
 				0AD2DECC20CA83B900E53B43 /* OrderCenterTableViewCell.m in Sources */,
@@ -1851,9 +2020,11 @@
 				0AFD6CE120C4DD0300223512 /* MyCouponsViewController.m in Sources */,
 				0A7D504920C42B01001BFDBF /* DraftBoxTableViewCell.m in Sources */,
 				18F5B7D120E9F87200B76A73 /* PushPhotoViewController.m in Sources */,
+				18ED88692100D78400B38548 /* PowerStationViewController.m in Sources */,
 				0A18745120C8B70F00451BAA /* GoodsStandardView.m in Sources */,
 				0A3085B820C02B4F00882805 /* MasterViewController.m in Sources */,
 				0A5CD84B20C68FBB0028F82D /* IntegralMallViewController.m in Sources */,
+				1827511A210177DF002A61F8 /* CustomPaopaotView.m in Sources */,
 				0A7D506720C43CC7001BFDBF /* CustomerServiceViewController.m in Sources */,
 				1846CFF320FDD3E100EA1417 /* HouseSpace.m in Sources */,
 				1846D00520FE2A8500EA1417 /* AddSpaceImageViewController.m in Sources */,
@@ -1868,6 +2039,7 @@
 				1846CFFF20FDDE9300EA1417 /* HouseCoverView.m in Sources */,
 				1846D05420FF229700EA1417 /* PushProjectNodeViewController.m in Sources */,
 				18ED87E421008D7100B38548 /* ChargingCaseTableViewCell.m in Sources */,
+				1827511D210179EF002A61F8 /* CustomAnnotationView.m in Sources */,
 				1846CFEC20FD9F5600EA1417 /* HouseDesignViewController.m in Sources */,
 				0AFEE76620BD2F50004FA8FC /* IanScrollImageView.m in Sources */,
 				0AD2DEAC20CA19E900E53B43 /* DateView.m in Sources */,
@@ -2072,12 +2244,47 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7MT463WE3Z;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/anjuyi1/BaiduMapAPI",
+				);
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/anjuyi1/PrefixHeader.pch";
 				INFOPLIST_FILE = anjuyi1/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/anjuyi1/BaiduMapAPI/thirdlibs",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"IQKeyboardManager\"",
+					"-l\"MBProgressHUD\"",
+					"-l\"MJRefresh\"",
+					"-l\"SDWebImage\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-fprofile-instr-generate",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lishuaiying.anjuyi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2094,12 +2301,47 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7MT463WE3Z;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/anjuyi1/BaiduMapAPI",
+				);
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/anjuyi1/PrefixHeader.pch";
 				INFOPLIST_FILE = anjuyi1/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/anjuyi1/BaiduMapAPI/thirdlibs",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"IQKeyboardManager\"",
+					"-l\"MBProgressHUD\"",
+					"-l\"MJRefresh\"",
+					"-l\"SDWebImage\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-fprofile-instr-generate",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lishuaiying.anjuyi;
 				PRODUCT_NAME = "$(TARGET_NAME)";

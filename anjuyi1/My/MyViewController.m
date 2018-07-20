@@ -8,6 +8,7 @@
 
 #import "MyViewController.h"
 #import "BaseNaviViewController.h"
+#import "PhotoSelectController.h"
 
 #import "SettingViewController.h"
 #import "PersonalViewController.h"//个人主页
@@ -36,12 +37,15 @@
 #import "OrderCenterViewController.h"//接单中心
 
 
-@interface MyViewController ()<UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface MyViewController ()<UIScrollViewDelegate,PhotoSelectControllerDelegate>
+{
+    NSString *_image_url;
+}
 
 @property (nonatomic,strong)UIView                    * navView;
 @property (nonatomic,strong)UIScrollView              * tmpScrollView;
 @property (nonatomic,strong)UIImageView               * headerImage;
-@property (nonatomic,strong)UIImagePickerController   * imagePickerController;
+@property (nonatomic,strong)NSMutableDictionary       * data;
 
 @end
 
@@ -53,6 +57,8 @@
     UIImage *tmpImage = [UIImage imageWithColor:[UIColor colorWithHexString:@"#7dd3d3"]];
     
     [self.navigationController.navigationBar setBackgroundImage:tmpImage forBarMetrics:UIBarMetricsDefault];
+    
+    [self getPersonInfo];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -71,13 +77,48 @@
     [self.view setBackgroundColor:[UIColor colorWithHexString:@"#7dd3d3"]];
     
     [self.view addSubview:self.tmpScrollView];
-    
-    [self setUpUi];
 
     [self setNavigationDoubleRightBarButtonWithImageNamed:@"my_notice" imageNamed2:@"my_set"];
     
 }
+#pragma mark -- 获取个人信息
+- (void)getPersonInfo{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/Member/get_member_info",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            if ([responseObject[@"datas"] isKindOfClass:[NSDictionary class]]) {
+                
+                weakSelf.data = [NSMutableDictionary dictionaryWithDictionary:responseObject[@"datas"]];
+             
+                [weakSelf setUpUi];
+            }
+            
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+    
+    
+}
 
+#pragma mark -- UI
 - (UIScrollView *)tmpScrollView{
     //designer_xq_banner
     if (!_tmpScrollView) {
@@ -97,14 +138,17 @@
 
 - (void)setUpUi{
     
+    [self.tmpScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
     CGFloat height = KTopHeight+MDXFrom6(20);
     
-    self.headerImage = [Tools creatImage:CGRectMake(MDXFrom6(15), height , MDXFrom6(60), MDXFrom6(60)) url:@"" image:@"leader_tx_img"];
+    self.headerImage = [Tools creatImage:CGRectMake(MDXFrom6(15), height , MDXFrom6(60), MDXFrom6(60)) url:self.data?self.data[@"head"]:@"" image:@""];
     [self.headerImage.layer setCornerRadius:MDXFrom6(30)];
     [self.headerImage addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseImageFromIphone)]];
     [self.tmpScrollView addSubview:self.headerImage];
     
-    [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(85), height, MDXFrom6(200), MDXFrom6(30)) font:[UIFont systemFontOfSize:18] color:[UIColor whiteColor] alignment:(NSTextAlignmentLeft) title:@"name"]];
+    [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(85), height, MDXFrom6(200), MDXFrom6(30)) font:[UIFont systemFontOfSize:18] color:[UIColor whiteColor] alignment:(NSTextAlignmentLeft) title:self.data?self.data[@"nickname"]:@""]];
+    
     
     UIButton * showPerson =[Tools creatButton:CGRectMake(MDXFrom6(80), height+MDXFrom6(30), MDXFrom6(150), MDXFrom6(30)) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] title:@"查看个人主页" image:@"my_rig_arrow"];
     [showPerson addTarget:self action:@selector(showPerson) forControlEvents:(UIControlEventTouchUpInside)];
@@ -367,79 +411,87 @@
         
     }
     
-    if ([UIImagePickerController isSourceTypeAvailable:(UIImagePickerControllerSourceTypeCamera)]) {
-        
-        [self creatAlertViewControllerWithMessage:@"2"];
-    }
-    else{
-        
-        [self creatAlertViewControllerWithMessage:@"1"];
-    }
-    
-    
+    PhotoSelectController *vc = [[PhotoSelectController alloc] init];
+    [vc setDelegate:self];
+    [vc setIsClip:NO];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
     
 }
 
-- (void)creatAlertViewControllerWithMessage:(NSString *)message{
+- (void)selectImage:(UIImage *)image{
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择" message:@"" preferredStyle:(UIAlertControllerStyleActionSheet)];
+    [self upLoadImage:image];
+}
+
+
+- (void)upLoadImage:(UIImage *)image{
     
-    UIAlertAction *trueA = [UIAlertAction actionWithTitle:@"相册" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+    NSString *path = [NSString stringWithFormat:@"%@/Upload/upload",KURL];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest uploadFileWithInferface:path parameters:nil fileData:UIImageJPEGRepresentation(image, 0.7) serverName:@"file" saveName:@"232323.png" mimeType:(MCPNGImageFileType) progress:^(float progress) {
         
-        self.imagePickerController = [[UIImagePickerController alloc] init];
+    } success:^(id  _Nullable responseObject) {
         
-        [self.imagePickerController setDelegate:self];
-        // 设置来自相册
-        [self.imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-        // 设置允许编辑
-        [self.imagePickerController setAllowsEditing:YES];
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         
-        [self presentViewController:self.imagePickerController animated:YES completion:nil];
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            
+            if ([responseObject[@"datas"][@"route"] integerValue]==200) {
+                
+                self->_image_url =responseObject[@"datas"][@"fullPath"];
+                
+                [weakSelf editPersonHeader];
+            }
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+    } failure:^(NSError * _Nullable error) {
         
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
     }];
-    
-    UIAlertAction *trueB = [UIAlertAction actionWithTitle:@"相机" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-        
-        self.imagePickerController = [[UIImagePickerController alloc] init];
-        
-        [self.imagePickerController setDelegate:self];
-        // 设置来自相机
-        [self.imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
-        
-        // 设置允许编辑
-        [self.imagePickerController setAllowsEditing:YES];
-        
-        [self presentViewController:self.imagePickerController animated:YES completion:nil];
-        
-    }];
-    
-    UIAlertAction *falseA = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    
-    
-    if ([message isEqualToString:@"2"]) {
-        
-        [alert addAction:trueB];
-    }
-    
-    [alert addAction:trueA];
-    [alert addAction:falseA];
-    [self presentViewController:alert animated:YES completion:nil];
     
 }
 
-// 选择图片的回调
-- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-
-    // 图片类型是修改后的图片
-    UIImage *selectedImage = [info objectForKey:UIImagePickerControllerEditedImage];
+- (void)editPersonHeader{
     
-    // 设置图片
-    [self.headerImage setImage:selectedImage];
     
-    // 返回（结束模态对话窗体）
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    NSString *path = [NSString stringWithFormat:@"%@/Member/update_head",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *paramet = @{@"head":_image_url};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    [HttpRequest POSTWithHeader:header url:path parameters:paramet success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            [weakSelf.headerImage sd_setImageWithURL:[NSURL URLWithString:self->_image_url]];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+    
 }
 
 

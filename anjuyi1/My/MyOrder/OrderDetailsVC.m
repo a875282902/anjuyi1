@@ -167,12 +167,12 @@
     [service addTarget:self action:@selector(pullUpCusetomerServise) forControlEvents:(UIControlEventTouchUpInside)];
     [foot addSubview:service];
     
-    UIButton *delete = [Tools creatButton:CGRectMake(MDXFrom6(100), MDXFrom6(12.5), MDXFrom6(90), MDXFrom6(30)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#666666"] title:@"删除订单" image:@""];
-    [delete.layer setCornerRadius:MDXFrom6(15)];
-    [delete.layer setBorderColor:[UIColor colorWithHexString:@"#666666"].CGColor];
-    [delete.layer setBorderWidth:1];
-    [delete addTarget:self action:@selector(deleteOrder) forControlEvents:(UIControlEventTouchUpInside)];
-    [foot addSubview:delete];
+    UIButton *delete1 = [Tools creatButton:CGRectMake(MDXFrom6(100), MDXFrom6(12.5), MDXFrom6(90), MDXFrom6(30)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#666666"] title:@"删除订单" image:@""];
+    [delete1.layer setCornerRadius:MDXFrom6(15)];
+    [delete1.layer setBorderColor:[UIColor colorWithHexString:@"#666666"].CGColor];
+    [delete1.layer setBorderWidth:1];
+    [delete1 addTarget:self action:@selector(deleteOrder) forControlEvents:(UIControlEventTouchUpInside)];
+    [foot addSubview:delete1];
     
     
     

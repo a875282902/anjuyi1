@@ -318,6 +318,11 @@
     if ([_projiectNode isEqualToString:type]) {
         return;
     }
+    
+    if (!_currentProjectInfo) {
+        return;
+    }
+    
     _projiectNode = type;
     //项目类型 1 施工准备 2、水电工程 3、泥木工程 4、油漆工程 5、竣工
     

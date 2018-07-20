@@ -17,6 +17,7 @@
     UIImageView *headerImage;
     NSString * _image_url;
     NSString * _time;
+    BOOL isRefre;
 }
 @property (nonatomic,strong)UIScrollView        *tmpScrollView;
 @property (nonatomic,strong)DateView            *dateView;
@@ -28,7 +29,11 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-     [self getPersonInfo];
+    if (!isRefre) {
+        [self getPersonInfo];
+    }
+    isRefre = NO;
+    
 }
 
 - (void)viewDidLoad {
@@ -239,7 +244,7 @@
 
 #pragma mark -- 选择照片
 - (void)chooseImageFromIphone{
-    
+    isRefre = YES;
     PhotoSelectController *vc = [[PhotoSelectController alloc] init];
     [vc setDelegate:self];
     [vc setIsClip:NO];
@@ -249,8 +254,6 @@
 }
 
 - (void)selectImage:(UIImage *)image{
-    
-    [headerImage setImage:image];
     
     [self upLoadImage:image];
 }
@@ -265,24 +268,59 @@
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest uploadFileWithInferface:path parameters:nil fileData:UIImagePNGRepresentation(image) serverName:@"file" saveName:@"232323.png" mimeType:(MCPNGImageFileType) progress:^(float progress) {
-        NSLog(@"%.2f",progress);
+    [HttpRequest uploadFileWithInferface:path parameters:nil fileData:UIImageJPEGRepresentation(image, 0.7) serverName:@"file" saveName:@"232323.png" mimeType:(MCPNGImageFileType) progress:^(float progress) {
+        
     } success:^(id  _Nullable responseObject) {
         
-        [MBProgressHUD showHUDAddedTo:weakSelf.view animated:YES];
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         
         if ([responseObject[@"code"] integerValue] == 200) {
-            NSLog(@"成功");
+            
             
             if ([responseObject[@"datas"][@"route"] integerValue]==200) {
-                [self->headerImage setImage:image];
+                
                 self->_image_url =responseObject[@"datas"][@"fullPath"];
+                
+                [weakSelf editPersonHeader];
             }
         }
         else{
             
             [ViewHelps showHUDWithText:responseObject[@"message"]];
         }
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
+}
+
+- (void)editPersonHeader{
+    
+    
+    NSString *path = [NSString stringWithFormat:@"%@/Member/update_head",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *paramet = @{@"head":_image_url};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+
+    [HttpRequest POSTWithHeader:header url:path parameters:paramet success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            [self->headerImage sd_setImageWithURL:[NSURL URLWithString:self->_image_url]];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
     } failure:^(NSError * _Nullable error) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];

@@ -57,6 +57,7 @@
 //button 背景颜色
 #define BTNCOLOR [UIColor colorWithHexString:@"#ffb638"]
 #define TCOLOR [UIColor colorWithHexString:@"#3b3b3b"]
+#define GCOLOR [UIColor colorWithHexString:@"#5cc6c6"]
 
 #define KURL @"https://api.ajyvip.com"
 

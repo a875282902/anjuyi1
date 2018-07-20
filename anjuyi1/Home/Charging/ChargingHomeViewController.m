@@ -13,6 +13,7 @@
 #import "QuickOrderViewController.h"
 #import "ChargingAgreementViewController.h"
 #import "ChargingCaseViewController.h"
+#import "PowerStationViewController.h"
 
 #import "ShowDetailsViewController.h"
 
@@ -281,7 +282,12 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        
+        case 3:
+        {
+            PowerStationViewController *vc = [[PowerStationViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
             
             
         default:

@@ -12,6 +12,7 @@
 {
     UILabel *_placeholdLabel;
     UILabel *_numLabel;
+    NSString *_content;
 }
 
 @end
@@ -28,7 +29,7 @@
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth , 1.5)]];
     
-   
+    _content = @"";
     
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(15, 20, KScreenWidth - 15,200)];
     [textView setDelegate:self];
@@ -64,9 +65,49 @@
     }
     
     [_numLabel setText:[NSString stringWithFormat:@"%ld/45",textView.text.length]];
+    
+    _content = textView.text;
 }
 
+- (void)rightButtonTouchUpInside:(id)sender{
+    
+    if ([_content length]==0) {
+        [ViewHelps showHUDWithText:@"请输入您的个人简介"];
+        return;
+    }
+    
+    NSString *path = [NSString stringWithFormat:@"%@/Member/update_personal",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *paramet = @{@"personal":_content};
+    
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:paramet success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
 
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
