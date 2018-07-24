@@ -242,12 +242,14 @@
             break;
         case 1:
         {
-            [self saveHouse];
+
+            [self insertHouseInfo:1];
         }
             break;
         case 2:
         {
-            [self saveHouse];
+            [self insertHouseInfo:2];
+            
         }
             break;
             
@@ -328,8 +330,8 @@
     
 }
 
-#pragma mark -- 保存 删除
-- (void)saveHouse{
+#pragma mark -- 预览 保存 删除
+- (void)insertHouseInfo:(NSInteger)tag{
     
     if (_cover.length == 0) {
         [ViewHelps showHUDWithText:@"请选择封面"];
@@ -363,12 +365,18 @@
     
     [HttpRequest POSTWithHeader:header url:path parameters:paramet success:^(id  _Nullable responseObject) {
         
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         
         if ([responseObject[@"code"] integerValue] == 200) {
-            
-            [ViewHelps showHUDWithText:@"保存成功"];
-//            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+
+           
+            if (tag == 1) {
+                [weakSelf saveHouse];
+            }
+            else{
+                
+                [weakSelf showHouse];
+            }
         }
         else{
             
@@ -378,11 +386,81 @@
         
     } failure:^(NSError * _Nullable error) {
         
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [RequestSever showMsgWithError:error];
     }];
 
 }
+
+- (void)showHouse{
+    
+    
+    NSString *path = [NSString stringWithFormat:@"%@/WholeHouse/preview_house_status",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *paramet = @{@"house_id":self.house_id};
+    
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:paramet success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            [ViewHelps showHUDWithText:@"预览成功"];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
+}
+
+- (void)saveHouse{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/WholeHouse/save_house_status",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *paramet = @{@"house_id":self.house_id};
+    
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:paramet success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            [ViewHelps showHUDWithText:@"保存成功"];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+}
+
+
 
 - (void)deleteHouse{
     
