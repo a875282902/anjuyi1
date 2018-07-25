@@ -9,6 +9,8 @@
 
 #import "PersonalViewController.h"
 
+#import "MyPushHouseViewController.h"//整屋
+
 @interface PersonalViewController ()<UIScrollViewDelegate>
 {
     UIButton *backBtn;
@@ -254,6 +256,8 @@
 //选择图片 整屋 评价 回答
 - (void)selectType:(UITapGestureRecognizer *)sender{
     
+    MyPushHouseViewController *VC = [[MyPushHouseViewController alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];
     
 }
 

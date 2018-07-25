@@ -59,6 +59,13 @@
     // 添加子控制器
     [self setupAllChildViewController];
 }
+
+-(void)leftButtonTouchUpInside:(id)sender{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark -- tableView
 - (UITableView *)tmpTableView{
     

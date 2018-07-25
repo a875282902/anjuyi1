@@ -187,7 +187,7 @@
     vc.img_id = self.dataArr[indexPath.row][@"id"];
     [self.navigationController pushViewController:vc animated:YES];
 }
-
+#pragma mark -- 右划删除
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
 }
@@ -201,7 +201,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self deleteSpaceImage:indexPath];
     }
-    
+
 }
 
 - (void)deleteSpaceImage:(NSIndexPath *)indexPath{

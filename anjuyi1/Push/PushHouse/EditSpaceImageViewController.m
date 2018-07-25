@@ -143,7 +143,7 @@
     return height + 141;
 }
 
-- (void)textViewDidChangeSelection:(UITextView *)textView{
+- (void)textViewDidChange:(UITextView *)textView{
     
     if (textView.tag == 1001) {
         if (textView.text.length == 0) {

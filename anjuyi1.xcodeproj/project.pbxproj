@@ -166,6 +166,13 @@
 		1827513221019C28002A61F8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1827513121019C28002A61F8 /* CoreData.framework */; };
 		182751352101A40A002A61F8 /* PowerStationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182751342101A40A002A61F8 /* PowerStationDetailsViewController.m */; };
 		182751382101C1D5002A61F8 /* ProwerStationDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 182751372101C1D5002A61F8 /* ProwerStationDetails.m */; };
+		182CDA3C21070F5F00F28F4C /* HouseDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDA3B21070F5F00F28F4C /* HouseDetailsViewController.m */; };
+		182CDA3F21071D8900F28F4C /* HouseQA.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDA3E21071D8900F28F4C /* HouseQA.m */; };
+		182CDA452107256E00F28F4C /* EditHouseQAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDA442107256E00F28F4C /* EditHouseQAViewController.m */; };
+		182CDA4821081A9300F28F4C /* PushView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDA4721081A9300F28F4C /* PushView.m */; };
+		182CDA4B21082A5400F28F4C /* MyPushHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDA4A21082A5400F28F4C /* MyPushHouseViewController.m */; };
+		182CDA4E21082CFF00F28F4C /* HouseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDA4D21082CFF00F28F4C /* HouseModel.m */; };
+		182CDA5221083DA200F28F4C /* MyPushHouseDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDA5121083DA200F28F4C /* MyPushHouseDetailsViewController.m */; };
 		18339CD520D24FD500165FF2 /* SelectLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD420D24FD500165FF2 /* SelectLocationVC.m */; };
 		18339CD920D25B6600165FF2 /* HouseInspectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD820D25B6600165FF2 /* HouseInspectViewController.m */; };
 		18339CDC20D2656800165FF2 /* FreeOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CDB20D2656800165FF2 /* FreeOfferViewController.m */; };
@@ -533,6 +540,20 @@
 		182751342101A40A002A61F8 /* PowerStationDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PowerStationDetailsViewController.m; sourceTree = "<group>"; };
 		182751362101C1D5002A61F8 /* ProwerStationDetails.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProwerStationDetails.h; sourceTree = "<group>"; };
 		182751372101C1D5002A61F8 /* ProwerStationDetails.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProwerStationDetails.m; sourceTree = "<group>"; };
+		182CDA3A21070F5F00F28F4C /* HouseDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseDetailsViewController.h; sourceTree = "<group>"; };
+		182CDA3B21070F5F00F28F4C /* HouseDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseDetailsViewController.m; sourceTree = "<group>"; };
+		182CDA3D21071D8900F28F4C /* HouseQA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseQA.h; sourceTree = "<group>"; };
+		182CDA3E21071D8900F28F4C /* HouseQA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseQA.m; sourceTree = "<group>"; };
+		182CDA432107256E00F28F4C /* EditHouseQAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditHouseQAViewController.h; sourceTree = "<group>"; };
+		182CDA442107256E00F28F4C /* EditHouseQAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditHouseQAViewController.m; sourceTree = "<group>"; };
+		182CDA4621081A9300F28F4C /* PushView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushView.h; sourceTree = "<group>"; };
+		182CDA4721081A9300F28F4C /* PushView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushView.m; sourceTree = "<group>"; };
+		182CDA4921082A5400F28F4C /* MyPushHouseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPushHouseViewController.h; sourceTree = "<group>"; };
+		182CDA4A21082A5400F28F4C /* MyPushHouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPushHouseViewController.m; sourceTree = "<group>"; };
+		182CDA4C21082CFF00F28F4C /* HouseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseModel.h; sourceTree = "<group>"; };
+		182CDA4D21082CFF00F28F4C /* HouseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseModel.m; sourceTree = "<group>"; };
+		182CDA5021083DA200F28F4C /* MyPushHouseDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPushHouseDetailsViewController.h; sourceTree = "<group>"; };
+		182CDA5121083DA200F28F4C /* MyPushHouseDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPushHouseDetailsViewController.m; sourceTree = "<group>"; };
 		18339CD320D24FD500165FF2 /* SelectLocationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectLocationVC.h; sourceTree = "<group>"; };
 		18339CD420D24FD500165FF2 /* SelectLocationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectLocationVC.m; sourceTree = "<group>"; };
 		18339CD720D25B6600165FF2 /* HouseInspectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseInspectViewController.h; sourceTree = "<group>"; };
@@ -1037,9 +1058,14 @@
 		0A7D502020C39469001BFDBF /* Personal */ = {
 			isa = PBXGroup;
 			children = (
+				182CDA4F21082D0100F28F4C /* Model */,
 				0A38FEFC20C6D6B600B45CCD /* Views */,
 				0A7D502120C39476001BFDBF /* PersonalViewController.h */,
 				0A7D502220C39476001BFDBF /* PersonalViewController.m */,
+				182CDA4921082A5400F28F4C /* MyPushHouseViewController.h */,
+				182CDA4A21082A5400F28F4C /* MyPushHouseViewController.m */,
+				182CDA5021083DA200F28F4C /* MyPushHouseDetailsViewController.h */,
+				182CDA5121083DA200F28F4C /* MyPushHouseDetailsViewController.m */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -1516,6 +1542,8 @@
 				18F5B7CE20E9F7D600B76A73 /* PushPhoto */,
 				0AFEE75D20BD2F50004FA8FC /* PushViewController.h */,
 				0AFEE75C20BD2F50004FA8FC /* PushViewController.m */,
+				182CDA4621081A9300F28F4C /* PushView.h */,
+				182CDA4721081A9300F28F4C /* PushView.m */,
 			);
 			path = Push;
 			sourceTree = "<group>";
@@ -1529,6 +1557,15 @@
 				1827511C210179EF002A61F8 /* CustomAnnotationView.m */,
 			);
 			path = MyAnnotationView;
+			sourceTree = "<group>";
+		};
+		182CDA4F21082D0100F28F4C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				182CDA4C21082CFF00F28F4C /* HouseModel.h */,
+				182CDA4D21082CFF00F28F4C /* HouseModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		18339CD620D25A2B00165FF2 /* HouseInspect */ = {
@@ -1580,6 +1617,10 @@
 				1846D00420FE2A8500EA1417 /* AddSpaceImageViewController.m */,
 				1846D04F20FEE93100EA1417 /* EditSpaceImageViewController.h */,
 				1846D05020FEE93100EA1417 /* EditSpaceImageViewController.m */,
+				182CDA432107256E00F28F4C /* EditHouseQAViewController.h */,
+				182CDA442107256E00F28F4C /* EditHouseQAViewController.m */,
+				182CDA3A21070F5F00F28F4C /* HouseDetailsViewController.h */,
+				182CDA3B21070F5F00F28F4C /* HouseDetailsViewController.m */,
 			);
 			path = PushHouse;
 			sourceTree = "<group>";
@@ -1597,6 +1638,8 @@
 				1846D00920FE389900EA1417 /* SpaceImageListTableViewCell.h */,
 				1846D00A20FE389900EA1417 /* SpaceImageListTableViewCell.m */,
 				1846D00B20FE389900EA1417 /* SpaceImageListTableViewCell.xib */,
+				182CDA3D21071D8900F28F4C /* HouseQA.h */,
+				182CDA3E21071D8900F28F4C /* HouseQA.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1922,6 +1965,7 @@
 				18ED87E221008D7100B38548 /* ShowDetailsViewController.m in Sources */,
 				18339CE620D276B700165FF2 /* BrandListView.m in Sources */,
 				0A5CD83C20C664FF0028F82D /* RecordsTableView.m in Sources */,
+				182CDA3C21070F5F00F28F4C /* HouseDetailsViewController.m in Sources */,
 				0A8E9C8020C9023200C6E176 /* AddressTableViewCell.m in Sources */,
 				1846D05A20FF853700EA1417 /* TextViewController.m in Sources */,
 				0AD2DEBD20CA55EA00E53B43 /* CraftsmenViewController.m in Sources */,
@@ -1936,6 +1980,7 @@
 				0AD2DEC020CA5F3200E53B43 /* CraftsmanTypeVC.m in Sources */,
 				0A5A7B2C20C7DB9300153E9A /* SDLoadingView.m in Sources */,
 				18F5B7D520EB1D0700B76A73 /* PushProjectViewController.m in Sources */,
+				182CDA4821081A9300F28F4C /* PushView.m in Sources */,
 				0A7D500E20C2E894001BFDBF /* CommentDetailsVC.m in Sources */,
 				1846CFF720FDD66500EA1417 /* HouseSpaceTableViewCell.m in Sources */,
 				0A7D503120C3A6E9001BFDBF /* RechargeViewController.m in Sources */,
@@ -1976,6 +2021,7 @@
 				18ED87DF21008D7100B38548 /* ChargingHomeViewController.m in Sources */,
 				0A7D505E20C43891001BFDBF /* MyFriendTableViewCell.m in Sources */,
 				0A45D96220CBB691000C04B8 /* SettlementViewController.m in Sources */,
+				182CDA4B21082A5400F28F4C /* MyPushHouseViewController.m in Sources */,
 				18F5B7D820EB1D1000B76A73 /* AddProjectViewController.m in Sources */,
 				0AFEE76520BD2F50004FA8FC /* IanScrollView.m in Sources */,
 				182751352101A40A002A61F8 /* PowerStationDetailsViewController.m in Sources */,
@@ -2036,10 +2082,12 @@
 				0A7D503420C3A700001BFDBF /* TransactionRecordsVC.m in Sources */,
 				0AD2DEAF20CA325400E53B43 /* AccountSecurityVC.m in Sources */,
 				1846D05120FEE93100EA1417 /* EditSpaceImageViewController.m in Sources */,
+				182CDA452107256E00F28F4C /* EditHouseQAViewController.m in Sources */,
 				1846CFFF20FDDE9300EA1417 /* HouseCoverView.m in Sources */,
 				1846D05420FF229700EA1417 /* PushProjectNodeViewController.m in Sources */,
 				18ED87E421008D7100B38548 /* ChargingCaseTableViewCell.m in Sources */,
 				1827511D210179EF002A61F8 /* CustomAnnotationView.m in Sources */,
+				182CDA5221083DA200F28F4C /* MyPushHouseDetailsViewController.m in Sources */,
 				1846CFEC20FD9F5600EA1417 /* HouseDesignViewController.m in Sources */,
 				0AFEE76620BD2F50004FA8FC /* IanScrollImageView.m in Sources */,
 				0AD2DEAC20CA19E900E53B43 /* DateView.m in Sources */,
@@ -2048,6 +2096,7 @@
 				18D3480820DB74B9008FD35E /* SelectCity.m in Sources */,
 				18D3480C20DB8CFF008FD35E /* AddressModel.m in Sources */,
 				0A1CA5B620C951CE00BA7AD3 /* PersonDetailsViewController.m in Sources */,
+				182CDA3F21071D8900F28F4C /* HouseQA.m in Sources */,
 				0A7D4FF320C2A92B001BFDBF /* SettingViewController.m in Sources */,
 				0AFEE71420BD2F23004FA8FC /* AppDelegate.m in Sources */,
 				180588A120DC9B7300883523 /* EditAddressViewController.m in Sources */,
@@ -2082,6 +2131,7 @@
 				0A45D95B20CB8322000C04B8 /* SupervisorDetailsVC.m in Sources */,
 				0A3085BC20C02E1100882805 /* DesignerDetailsVC.m in Sources */,
 				0A5582A220C124B200759E6B /* ProjectListVC.m in Sources */,
+				182CDA4E21082CFF00F28F4C /* HouseModel.m in Sources */,
 				18ED87E021008D7100B38548 /* QuickOrderViewController.m in Sources */,
 				0A8E9C8420C90DA700C6E176 /* AddAddressViewController.m in Sources */,
 				0AFD6CD520C4CB2E00223512 /* CollectShopViewController.m in Sources */,

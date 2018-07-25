@@ -15,8 +15,11 @@
 #import "BaseNaviViewController.h"
 #import "PushViewController.h"
 #import "UIColor+Category.h"
+#import "PushView.h"
 
-@interface RootViewController ()
+@interface RootViewController ()<PushViewDelegate>
+
+@property (nonatomic,strong)  PushView *pushView ;
 
 @end
 
@@ -62,12 +65,31 @@
 
 - (void)centerBtnClick:(UIButton *)btn{
     
-    PushViewController *controller = [[PushViewController alloc] init];
-    BaseNaviViewController *navCon = [[BaseNaviViewController alloc] initWithRootViewController:controller];
-    [self presentViewController:navCon animated:YES completion:nil];
+//    PushViewController *controller = [[PushViewController alloc] init];
+//    BaseNaviViewController *navCon = [[BaseNaviViewController alloc] initWithRootViewController:controller];
+//    [self presentViewController:navCon animated:YES completion:nil];
     
     
+    
+    [self.pushView setHidden:NO];
+    [[UIApplication sharedApplication].keyWindow addSubview:self.pushView];
+
 }
+
+- (PushView *)pushView{
+    
+    if (!_pushView) {
+        _pushView = [[PushView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        [_pushView setDelegate:self];
+    }
+    return  _pushView;
+}
+
+
+- (void)jumpToViewControllerForPush:(BaseNaviViewController *)nav{
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

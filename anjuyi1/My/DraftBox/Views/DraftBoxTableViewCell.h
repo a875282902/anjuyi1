@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseModel.h"
 
 @interface DraftBoxTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *backView;
@@ -17,5 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
+
+- (void)bandDataWithModel:(BaseModel *)model;
 
 @end

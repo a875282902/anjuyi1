@@ -7,6 +7,7 @@
 //
 
 #import "DraftBoxTableViewCell.h"
+#import "HouseModel.h"
 
 @implementation DraftBoxTableViewCell
 
@@ -16,6 +17,21 @@
         self = [[[NSBundle mainBundle] loadNibNamed:@"DraftBoxTableViewCell" owner:self options:nil] lastObject];
     }
     return self;
+}
+
+- (void)bandDataWithModel:(BaseModel *)model{
+    
+    if ([model isKindOfClass:[HouseModel class]]) {
+        
+        HouseModel *houseModel = (HouseModel *)model;
+        
+        [self.coverImage sd_setImageWithURL:[NSURL URLWithString:houseModel.cover]];
+        [self.headerImage sd_setImageWithURL:[NSURL URLWithString:houseModel.head]];
+        [self.nameLabel setText:houseModel.nick_name];
+        [self.titleLabel setText:houseModel.title];
+        [self.descLabel setText:[NSString stringWithFormat:@"%@   %@平米",houseModel.door,houseModel.proportion]];
+        
+    }
 }
 
 - (void)awakeFromNib {

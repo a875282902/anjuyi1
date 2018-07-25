@@ -12,4 +12,6 @@
 
 - (instancetype)initWithFrame:(CGRect)frame WithTitle1:(NSString *)title1 WithTitle2:(NSString *)title2;
 
+- (void)refreNum:(NSString *)num;
+
 @end

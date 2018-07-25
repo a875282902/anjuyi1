@@ -23,8 +23,9 @@
 }
 
 - (void)setValue:(id)value forKey:(NSString *)key{
-
+    
     [super setValue:value forKey:key];
+    
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key{

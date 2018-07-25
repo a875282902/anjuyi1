@@ -8,12 +8,20 @@
 
 #import "HouseInfoViewController.h"
 #import "PhotoSelectController.h"
+
+#import "HouseQA.h"
 #import "HouseSpace.h"
 #import "HouseCoverView.h"
 
+// 空间
 #import "SpaceImageListViewController.h"
 
+//问答
+#import "EditHouseQAViewController.h"
+
 #import "TextViewController.h"
+
+#import "MyPushHouseViewController.h"
 
 
 @interface HouseInfoViewController ()<PhotoSelectControllerDelegate,HouseCoverViewDlegate,UIScrollViewDelegate>
@@ -25,12 +33,15 @@
     UIButton *_selectBtn;
     BOOL isRefre;
     BOOL isRefre1;
+    BOOL isRefre2;
     BOOL isChanageColor;
     NSString *_newSpaceName;
+    NSString *_newQAName;
 }
 @property (nonatomic,strong)UIScrollView         * tmpScrollView;
 @property (nonatomic,strong)HouseCoverView       * houseCoverView;
 @property (nonatomic,strong)HouseSpace           * houseSpace;
+@property (nonatomic,strong)HouseQA              * houseQA;
 @property (nonatomic,strong)NSMutableArray       * channelArr;
 
 @end
@@ -52,8 +63,13 @@
         [self.houseSpace refreData];
     }
     
+    if (self.houseQA && isRefre2) {
+        [self.houseQA refreData];
+    }
+    
     isRefre = NO;
     isRefre1 = NO;
+    isRefre2 = NO;
     isChanageColor = YES;
     
 }
@@ -118,9 +134,9 @@
     [self.view addSubview:statusView];
 
     self.channelArr = [NSMutableArray array];
-    NSArray *tArr1 = @[@"封面",@"空间"];
-    for (NSInteger i = 0 ; i < 2; i ++) {
-        UIButton *btn = [Tools creatButton:CGRectMake(KScreenWidth*i /2.0, 0 , KScreenWidth/2, 50) font:[UIFont systemFontOfSize:15] color:[UIColor whiteColor] title:tArr1[i] image:@""];
+    NSArray *tArr1 = @[@"封面",@"空间",@"回答"];
+    for (NSInteger i = 0 ; i < 3; i ++) {
+        UIButton *btn = [Tools creatButton:CGRectMake(KScreenWidth*i /3.0, 0 , KScreenWidth/3.0, 50) font:[UIFont systemFontOfSize:15] color:[UIColor whiteColor] title:tArr1[i] image:@""];
         [btn setTag:i];
         [btn setTitleColor:[UIColor colorWithHexString:@"#b0dfdf"] forState:(UIControlStateNormal)];
         [btn setTitleColor:[UIColor colorWithHexString:@"#ffffff"] forState:(UIControlStateSelected)];
@@ -134,7 +150,7 @@
         [self.channelArr addObject:btn];
     }
     
-    _lineView = [Tools setLineView:CGRectMake(0, 48, KScreenWidth/2, 2)];
+    _lineView = [Tools setLineView:CGRectMake(0, 48, KScreenWidth/3, 2)];
     [statusView addSubview:_lineView];
 }
 
@@ -146,7 +162,7 @@
         [_tmpScrollView setShowsVerticalScrollIndicator:NO];
         [_tmpScrollView setShowsHorizontalScrollIndicator:NO];
         [_tmpScrollView setPagingEnabled:YES];
-        [_tmpScrollView setContentSize:CGSizeMake(KScreenWidth*2, _tmpScrollView.frame.size.height)];
+        [_tmpScrollView setContentSize:CGSizeMake(KScreenWidth*3, _tmpScrollView.frame.size.height)];
         [_tmpScrollView setDelegate:self];
         [_tmpScrollView setBounces:NO];
         [_tmpScrollView setScrollEnabled:NO];
@@ -180,6 +196,28 @@
         self->isRefre1 = YES;
         [weakSelf creatAddHouseSpace];
     }];
+    
+    
+    self.houseQA = [[HouseQA alloc] initWithFrame:CGRectMake(KScreenWidth*2, 0, KScreenWidth, self.tmpScrollView.frame.size.height)];
+    [self.houseQA setHouse_id:self.house_id];
+    [self.tmpScrollView addSubview:self.houseQA];
+    
+    [self.houseQA setSelectHouseQA:^(NSDictionary *dic) {
+        self->isChanageColor = NO;
+        self->isRefre2 = YES;
+        EditHouseQAViewController *vc = [[EditHouseQAViewController alloc] init];
+        vc.QADic = dic;
+        vc.house_id = weakSelf.house_id;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [self.houseQA setAddHouseQAToList:^{
+        self->isRefre2 = YES;
+        
+        [weakSelf creatAddHouseQA];
+    }];
+    
+    
 }
 
 #pragma mark -- delegate
@@ -446,6 +484,9 @@
         if ([responseObject[@"code"] integerValue] == 200) {
             
             [ViewHelps showHUDWithText:@"保存成功"];
+            
+            MyPushHouseViewController * vc = [[MyPushHouseViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
         }
         else{
             
@@ -460,8 +501,22 @@
     }];
 }
 
-
-
+#pragma mark -- 删除整屋
+- (void)creatAlertViewControllerWithMessage:(NSString *)message{
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:(UIAlertControllerStyleAlert)];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
+        [self deleteHouse];
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
 - (void)deleteHouse{
     
     
@@ -500,22 +555,7 @@
 
 }
 
-#pragma mark -- 提示框
-- (void)creatAlertViewControllerWithMessage:(NSString *)message{
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:(UIAlertControllerStyleAlert)];
-    
-    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
-        [self deleteHouse];
-    }]];
-    
-    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-        
-    }]];
-    
-    [self presentViewController:alert animated:YES completion:nil];
-    
-}
+#pragma mark -- 创建空间名字
 
 - (void)creatAddHouseSpace{
     
@@ -593,6 +633,59 @@
         [RequestSever showMsgWithError:error];
     }];
 
+}
+
+#pragma mark -- 创建问答
+- (void)creatAddHouseQA{
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"新增问题" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"保存" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        
+        
+        [self saveHouseQAName];
+        
+        
+    }]];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        
+        [textField setPlaceholder:@"最多50个字"];
+        
+        [textField addTarget:self action:@selector(houseQANameChange:) forControlEvents:(UIControlEventEditingChanged)];
+    }];
+    
+    
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+- (void)houseQANameChange:(UITextField *)sender{
+    
+    if (sender.text.length > 50) {
+        [sender setText:[sender.text substringToIndex:50]];
+    }
+    
+    _newQAName = sender.text;
+}
+
+- (void)saveHouseQAName{
+    
+    if (_newQAName.length == 0) {
+        [ViewHelps showHUDWithText:@"请输入问题"];
+        return;
+    }
+    self->isChanageColor = NO;
+    EditHouseQAViewController *vc = [[EditHouseQAViewController alloc] init];
+    vc.house_id =self.house_id;
+    vc.name = _newQAName;
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning {
