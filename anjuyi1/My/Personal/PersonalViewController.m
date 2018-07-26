@@ -15,6 +15,7 @@
 {
     UIButton *backBtn;
     UIButton *shareBtn;
+    UIImageView *headerBackImage;
 }
 
 @property (nonatomic,strong)UIScrollView   *  tmpScrollView;
@@ -90,6 +91,8 @@
     
     UIImageView *headerBack = [Tools creatImage:CGRectMake(0, 0, KScreenWidth, MDXFrom6(286.5)) image:@"designer_xq_banner"];
     [self.tmpScrollView addSubview:headerBack];
+    
+    headerBackImage = headerBack;
     
     height = KStatusBarHeight +MDXFrom6(65);
     
@@ -290,6 +293,15 @@
             
             [shareBtn setImage:[UIImage imageNamed:@"designer_xq_zf"] forState:(UIControlStateNormal)];
             [backBtn setImage:[UIImage imageNamed:@"my_back"] forState:(UIControlStateNormal)];
+        }
+        
+        CGPoint point = scrollView.contentOffset;
+        
+        if (point.y < 0) {
+            CGRect rect = headerBackImage.frame;
+            rect.origin.y =point.y ;
+            rect.size.height =MDXFrom6(286.5) - point.y;
+            headerBackImage.frame = rect;
         }
         
     }

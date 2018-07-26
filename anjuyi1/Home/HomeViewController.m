@@ -40,7 +40,7 @@
     // Do any additional setup after loading the view.
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
     [self.view setBackgroundColor:[UIColor colorWithHexString:@"#f6f6f6"]];
-    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     NSLog(@"%@",UTOKEN);
     
     self.bannerArr = [NSMutableArray array];

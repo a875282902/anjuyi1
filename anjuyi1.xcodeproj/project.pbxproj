@@ -173,6 +173,13 @@
 		182CDA4B21082A5400F28F4C /* MyPushHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDA4A21082A5400F28F4C /* MyPushHouseViewController.m */; };
 		182CDA4E21082CFF00F28F4C /* HouseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDA4D21082CFF00F28F4C /* HouseModel.m */; };
 		182CDA5221083DA200F28F4C /* MyPushHouseDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDA5121083DA200F28F4C /* MyPushHouseDetailsViewController.m */; };
+		182CDA5521083EAF00F28F4C /* HouseCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDA5421083EAF00F28F4C /* HouseCommentView.m */; };
+		182CDA5821085DCA00F28F4C /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDA5721085DCA00F28F4C /* CommentModel.m */; };
+		182CDA5B21085E2900F28F4C /* CommentUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDA5A21085E2900F28F4C /* CommentUserModel.m */; };
+		182CDA5F2108605400F28F4C /* HouseCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDA5D2108605400F28F4C /* HouseCommentTableViewCell.m */; };
+		182CDA602108605400F28F4C /* HouseCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182CDA5E2108605400F28F4C /* HouseCommentTableViewCell.xib */; };
+		182CDAA021097D4900F28F4C /* city.db in Resources */ = {isa = PBXBuildFile; fileRef = 182CDA9F21097D4800F28F4C /* city.db */; };
+		182CDAA621097DA900F28F4C /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDAA521097DA900F28F4C /* DBManager.m */; };
 		18339CD520D24FD500165FF2 /* SelectLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD420D24FD500165FF2 /* SelectLocationVC.m */; };
 		18339CD920D25B6600165FF2 /* HouseInspectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD820D25B6600165FF2 /* HouseInspectViewController.m */; };
 		18339CDC20D2656800165FF2 /* FreeOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CDB20D2656800165FF2 /* FreeOfferViewController.m */; };
@@ -554,6 +561,18 @@
 		182CDA4D21082CFF00F28F4C /* HouseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseModel.m; sourceTree = "<group>"; };
 		182CDA5021083DA200F28F4C /* MyPushHouseDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPushHouseDetailsViewController.h; sourceTree = "<group>"; };
 		182CDA5121083DA200F28F4C /* MyPushHouseDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPushHouseDetailsViewController.m; sourceTree = "<group>"; };
+		182CDA5321083EAF00F28F4C /* HouseCommentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseCommentView.h; sourceTree = "<group>"; };
+		182CDA5421083EAF00F28F4C /* HouseCommentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseCommentView.m; sourceTree = "<group>"; };
+		182CDA5621085DCA00F28F4C /* CommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
+		182CDA5721085DCA00F28F4C /* CommentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
+		182CDA5921085E2900F28F4C /* CommentUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentUserModel.h; sourceTree = "<group>"; };
+		182CDA5A21085E2900F28F4C /* CommentUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentUserModel.m; sourceTree = "<group>"; };
+		182CDA5C2108605400F28F4C /* HouseCommentTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseCommentTableViewCell.h; sourceTree = "<group>"; };
+		182CDA5D2108605400F28F4C /* HouseCommentTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseCommentTableViewCell.m; sourceTree = "<group>"; };
+		182CDA5E2108605400F28F4C /* HouseCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HouseCommentTableViewCell.xib; sourceTree = "<group>"; };
+		182CDA9F21097D4800F28F4C /* city.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = city.db; sourceTree = "<group>"; };
+		182CDAA421097DA900F28F4C /* DBManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		182CDAA521097DA900F28F4C /* DBManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		18339CD320D24FD500165FF2 /* SelectLocationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectLocationVC.h; sourceTree = "<group>"; };
 		18339CD420D24FD500165FF2 /* SelectLocationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectLocationVC.m; sourceTree = "<group>"; };
 		18339CD720D25B6600165FF2 /* HouseInspectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseInspectViewController.h; sourceTree = "<group>"; };
@@ -791,6 +810,11 @@
 		0A38FEFC20C6D6B600B45CCD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				182CDA5321083EAF00F28F4C /* HouseCommentView.h */,
+				182CDA5421083EAF00F28F4C /* HouseCommentView.m */,
+				182CDA5C2108605400F28F4C /* HouseCommentTableViewCell.h */,
+				182CDA5D2108605400F28F4C /* HouseCommentTableViewCell.m */,
+				182CDA5E2108605400F28F4C /* HouseCommentTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1346,6 +1370,7 @@
 		0AFEE71120BD2F23004FA8FC /* anjuyi1 */ = {
 			isa = PBXGroup;
 			children = (
+				182CDA9E21097D4800F28F4C /* resource */,
 				18ED884D2100D4F700B38548 /* mapapi.bundle */,
 				18ED88392100D4DE00B38548 /* BaiduMapAPI */,
 				0AFEE77120BD2F61004FA8FC /* PrefixHeader.pch */,
@@ -1423,6 +1448,8 @@
 				0AC3190820BD9DF40035800F /* Tools.m */,
 				18EA1BD620E1CCB7000738CC /* ShareView.h */,
 				18EA1BD720E1CCB7000738CC /* ShareView.m */,
+				182CDAA421097DA900F28F4C /* DBManager.h */,
+				182CDAA521097DA900F28F4C /* DBManager.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1564,8 +1591,20 @@
 			children = (
 				182CDA4C21082CFF00F28F4C /* HouseModel.h */,
 				182CDA4D21082CFF00F28F4C /* HouseModel.m */,
+				182CDA5621085DCA00F28F4C /* CommentModel.h */,
+				182CDA5721085DCA00F28F4C /* CommentModel.m */,
+				182CDA5921085E2900F28F4C /* CommentUserModel.h */,
+				182CDA5A21085E2900F28F4C /* CommentUserModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		182CDA9E21097D4800F28F4C /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				182CDA9F21097D4800F28F4C /* city.db */,
+			);
+			path = resource;
 			sourceTree = "<group>";
 		};
 		18339CD620D25A2B00165FF2 /* HouseInspect */ = {
@@ -1882,6 +1921,7 @@
 				0A5CD85020C695170028F82D /* IntegralMallTableViewCell.xib in Resources */,
 				0A7D505F20C43891001BFDBF /* MyFriendTableViewCell.xib in Resources */,
 				0A38FF0A20C6D86800B45CCD /* ShopCartCell.xib in Resources */,
+				182CDAA021097D4900F28F4C /* city.db in Resources */,
 				0A5CD83120C61A110028F82D /* MyOrderTableViewCell.xib in Resources */,
 				0A8E9C7620C8FD9600C6E176 /* IntegralPayTableViewCell.xib in Resources */,
 				0A5A7B2F20C7DB9300153E9A /* SDPhotoBrowserd.podspec in Resources */,
@@ -1906,6 +1946,7 @@
 				0AD0C62220BEE4D6001A20C4 /* DesignerTableViewCell.xib in Resources */,
 				0AFD6CDA20C4D55E00223512 /* CollectShopTableViewCell.xib in Resources */,
 				1846D00D20FE389900EA1417 /* SpaceImageListTableViewCell.xib in Resources */,
+				182CDA602108605400F28F4C /* HouseCommentTableViewCell.xib in Resources */,
 				0AFEE84020BD30C8004FA8FC /* Podfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1960,6 +2001,7 @@
 			files = (
 				18F5B7CC20E9D90F00B76A73 /* PhotoSelectController.m in Sources */,
 				0AC3190120BD88DA0035800F /* SearchView.m in Sources */,
+				182CDA5F2108605400F28F4C /* HouseCommentTableViewCell.m in Sources */,
 				0A7D505120C432A6001BFDBF /* MyAnswerViewController.m in Sources */,
 				0AD2DEC720CA832100E53B43 /* OrderCenterViewController.m in Sources */,
 				18ED87E221008D7100B38548 /* ShowDetailsViewController.m in Sources */,
@@ -1989,6 +2031,7 @@
 				184D07DF20D1250100653D81 /* ServiceAgreementVC.m in Sources */,
 				0AC3190920BD9DF40035800F /* Tools.m in Sources */,
 				18F5B7CA20E9D90F00B76A73 /* MaskView.m in Sources */,
+				182CDA5521083EAF00F28F4C /* HouseCommentView.m in Sources */,
 				0AD2DEB220CA443B00E53B43 /* ChangepasswordVC.m in Sources */,
 				0AD0C62120BEE4D6001A20C4 /* DesignerTableViewCell.m in Sources */,
 				18ED87E121008D7100B38548 /* ChargingAgreementViewController.m in Sources */,
@@ -1998,6 +2041,7 @@
 				0AD0C62820BF87FF001A20C4 /* ScreeningView.m in Sources */,
 				0A5CD83820C626880028F82D /* OrderDetailsCell.m in Sources */,
 				0A8E9C6C20C8F4CE00C6E176 /* IntegralPayViewController.m in Sources */,
+				182CDA5821085DCA00F28F4C /* CommentModel.m in Sources */,
 				0A5CD81520C592460028F82D /* YZCover.m in Sources */,
 				18EA1BDF20E1CD9A000738CC /* SortCell.m in Sources */,
 				18275120210188EA002A61F8 /* PowerStationList.m in Sources */,
@@ -2080,6 +2124,7 @@
 				18339CD520D24FD500165FF2 /* SelectLocationVC.m in Sources */,
 				0A5A7B3520C7E0B900153E9A /* ServiceProcessView.m in Sources */,
 				0A7D503420C3A700001BFDBF /* TransactionRecordsVC.m in Sources */,
+				182CDA5B21085E2900F28F4C /* CommentUserModel.m in Sources */,
 				0AD2DEAF20CA325400E53B43 /* AccountSecurityVC.m in Sources */,
 				1846D05120FEE93100EA1417 /* EditSpaceImageViewController.m in Sources */,
 				182CDA452107256E00F28F4C /* EditHouseQAViewController.m in Sources */,
@@ -2133,6 +2178,7 @@
 				0A5582A220C124B200759E6B /* ProjectListVC.m in Sources */,
 				182CDA4E21082CFF00F28F4C /* HouseModel.m in Sources */,
 				18ED87E021008D7100B38548 /* QuickOrderViewController.m in Sources */,
+				182CDAA621097DA900F28F4C /* DBManager.m in Sources */,
 				0A8E9C8420C90DA700C6E176 /* AddAddressViewController.m in Sources */,
 				0AFD6CD520C4CB2E00223512 /* CollectShopViewController.m in Sources */,
 				0AFEE76C20BD2F50004FA8FC /* BaseModel.m in Sources */,

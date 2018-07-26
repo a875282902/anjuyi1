@@ -138,22 +138,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-//    NSDictionary *dic = self.dataArr[indexPath.row];
-//    [dict setValue:dic[@"id"] forKey:@"door"];
-//
-//    if (self.house_id) {
-//        [self editHouseInfo:dic[@"id"]];
-//    }
-//    else{
-//        HouseAreaViewController *vc = [[HouseAreaViewController alloc] init];
-//        vc.houseDic = dict;
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    NSDictionary *dic = self.dataArr[indexPath.row];
+    [dict setValue:dic[@"id"] forKey:@"door"];
+
+    if (self.house_id) {
+        [self editHouseInfo:dic[@"id"]];
+    }
+    else{
+        HouseAreaViewController *vc = [[HouseAreaViewController alloc] init];
+        vc.houseDic = dict;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     
-    HouseInfoViewController *vc = [[HouseInfoViewController alloc] init];
-    vc.house_id = @"32";
-    [self.navigationController pushViewController:vc animated:YES];
+//    HouseInfoViewController *vc = [[HouseInfoViewController alloc] init];
+//    vc.house_id = @"32";
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)leftButtonTouchUpInside:(id)sender{

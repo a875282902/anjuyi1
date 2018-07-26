@@ -27,7 +27,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor brownColor];
     
-    self.navView = [[NavTwoTitle alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 44) WithTitle1:@"我的整屋" WithTitle2:@"0篇"];
+    self.navView = [[NavTwoTitle alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(200), 44) WithTitle1:@"我的整屋" WithTitle2:@"0篇"];
     
     [self.navigationItem setTitleView:self.navView];
 
@@ -138,8 +138,9 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
- 
+    HouseModel *model  = self.dataArr[indexPath.row];
     MyPushHouseDetailsViewController *vc = [[MyPushHouseDetailsViewController alloc] init];
+    [vc setHouse_id:model.ID];
     [self.navigationController pushViewController:vc animated:YES];
     
 }

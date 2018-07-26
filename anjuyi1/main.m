@@ -11,6 +11,10 @@
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+        if (@available(iOS 10.0, *)) {
+            return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+        } else {
+            // Fallback on earlier versions
+        }
     }
 }

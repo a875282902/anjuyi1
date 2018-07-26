@@ -1,15 +1,19 @@
 //
-//  MyPushHouseDetailsViewController.h
+//  HouseCommentView.h
 //  anjuyi1
 //
 //  Created by apple on 2018/7/25.
 //  Copyright © 2018年 lsy. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface MyPushHouseDetailsViewController : BaseViewController
+@interface HouseCommentView : UIView
 
 @property (nonatomic,strong)NSString *house_id;
+
+- (void)openDisplay;
+
+- (void)addComment;
 
 @end
