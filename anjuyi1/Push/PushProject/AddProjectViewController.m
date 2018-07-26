@@ -9,6 +9,7 @@
 #import "AddProjectViewController.h"
 #import "ProjectAddressViewController.h"
 #import "PhotoSelectController.h"
+#import "SelectLocationVC.h"
 
 #import "PullDownView.h"
 #import "YZMenuButton.h"
@@ -16,13 +17,14 @@
 
 #define padding 20
 
-@interface AddProjectViewController ()<UIScrollViewDelegate,PhotoSelectControllerDelegate,ProjectAddressViewControllerDelegate,DefaultPullDownDelegate>
+@interface AddProjectViewController ()<UIScrollViewDelegate,PhotoSelectControllerDelegate,DefaultPullDownDelegate,SelectLocationVCDelegate>
 {
     NSDictionary  * _provincesDic;//保存省
     NSDictionary  * _cityDic;//保存城市
     NSDictionary  * _areaDic;//保存区
     NSString      * _picture;//保存封面地址
     NSInteger       _currentSelect;//当前下拉的view 0为房间 1为室
+    UIButton *_selectLocationBtn;
 }
 @property (nonatomic,strong)UIScrollView     * tmpScrollView;
 @property (nonatomic,strong)UILabel          * location;//地址
@@ -188,7 +190,7 @@
     [rechange.layer setBorderWidth:1];
     [rechange addTarget:self action:@selector(rechangeLocation:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.tmpScrollView addSubview:rechange];
-    
+
     return height + 50;
 }
 
@@ -281,7 +283,7 @@
 #pragma mark  -- 点击事件  选择地址
 - (void)rechangeLocation:(UIButton *)sender{
     
-    ProjectAddressViewController *vc = [[ProjectAddressViewController alloc] init];
+    SelectLocationVC *vc = [[SelectLocationVC alloc] init];
     [vc setDelegate:self];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -292,7 +294,22 @@
          _cityDic = city;
          _areaDic = area;
     
-    [self.location setText:[NSString stringWithFormat:@"%@ %@ %@",province[@"value"],city[@"value"],area[@"value"]]];
+    NSString *address = [NSString stringWithFormat:@"%@ %@ %@",_provincesDic[@"value"],_cityDic[@"value"],_areaDic[@"value"]];
+    
+    
+    CGRect rect = [address boundingRectWithSize:CGSizeMake(1000000, 35) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
+    
+    if (55 + rect.size.width + 95 < KScreenWidth) {
+        [self->_location setText:address];
+        [self->_location setFrame:CGRectMake(40, self->_location.frame.origin.y, rect.size.width , 35)];
+        [self->_selectLocationBtn setFrame:CGRectMake(55 + rect.size.width, self->_selectLocationBtn.frame.origin.y, 80, 35)];
+    }
+    else{
+        
+        [self->_location setText:address];
+        [self->_location setFrame:CGRectMake(40,self->_location.frame.origin.y , KScreenWidth - 95 - 55-15 , 35)];
+        [self->_selectLocationBtn setFrame:CGRectMake(KScreenWidth - 95, self->_selectLocationBtn.frame.origin.y, 80, 35)];
+    }
 }
 
 - (PullDownView *)pullDownView{

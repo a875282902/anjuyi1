@@ -10,10 +10,14 @@
 #import "HouseInspectViewController.h"
 #import "SelectLocationVC.h"//选择地址
 
-@interface HouseInspectViewController ()
+@interface HouseInspectViewController ()<SelectLocationVCDelegate>
 {
     NSInteger time;
     UIButton *codeBtn;
+    NSDictionary *_province;
+    NSDictionary *_city;
+    NSDictionary *_area;
+    UIButton *_selectLocationBtn;
 }
 
 @property (nonatomic,strong)NSMutableArray * textArr;
@@ -82,7 +86,7 @@
     [rechange addTarget:self action:@selector(rechangeLocation:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:rechange];
     
-    
+    _selectLocationBtn = rechange;
     
     height += 50;
     
@@ -144,7 +148,32 @@
 - (void)rechangeLocation:(UIButton *)sender{
     
     SelectLocationVC *vc = [[SelectLocationVC alloc] init];
+    [vc setDelegate:self];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)sureProvince:(NSDictionary *)province city:(NSDictionary *)city area:(NSDictionary *)area{
+    _province = province;
+    _city = city;
+    _area = area;
+    
+    NSString *address = [NSString stringWithFormat:@"%@ %@ %@",province[@"value"],city[@"value"],area[@"value"]];
+    
+    
+    CGRect rect = [address boundingRectWithSize:CGSizeMake(1000000, 35) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
+    
+    if (MDXFrom6(60) + rect.size.width + 95 < KScreenWidth) {
+        [self->_location setText:address];
+        [self->_location setFrame:CGRectMake(MDXFrom6(60), self->_location.frame.origin.y, rect.size.width , 35)];
+        [self->_selectLocationBtn setFrame:CGRectMake(MDXFrom6(75) + rect.size.width, self->_selectLocationBtn.frame.origin.y, 80, 35)];
+    }
+    else{
+        
+        [self->_location setText:address];
+        [self->_location setFrame:CGRectMake(MDXFrom6(60),self->_location.frame.origin.y , KScreenWidth - 95 - 55-15 , 35)];
+        [self->_selectLocationBtn setFrame:CGRectMake(KScreenWidth - 95, self->_selectLocationBtn.frame.origin.y, 80, 35)];
+    }
+    
 }
 
 - (void)textValueChange:(UITextField *)sender{// tag 1 为账号
@@ -152,11 +181,45 @@
     [self.textArr replaceObjectAtIndex:sender.tag withObject:sender.text];
 }
 
-
 // 提交
 - (void)submit{
     
     
+    NSString *path = [NSString stringWithFormat:@"%@/free/free_house",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *parameter = @{@"province":_province[@"key"],
+                                @"city":_city[@"key"],
+                                @"area":_area[@"key"],
+                                @"community":self.textArr[0],
+                                @"detailed":self.textArr[1],
+                                @"phone":self.textArr[2],
+                                @"code":self.textArr[3]};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:parameter success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
 }
 
 #pragma mark -- 验证码
@@ -194,11 +257,14 @@
             
             [ViewHelps showHUDWithText:@"验证码发送成功，请注意查收"];
         }
-        
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
         
     } failure:^(NSError * _Nullable error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [ViewHelps showHUDWithText:@"验证码发送失败，请再次发送"];
+        [RequestSever showMsgWithError:error];
     }];
     
     

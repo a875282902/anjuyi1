@@ -290,9 +290,7 @@
         [self->_location setFrame:CGRectMake(40,self->_location.frame.origin.y , KScreenWidth - 95 - 55-15 , 35)];
         [self->_selectLocationBtn setFrame:CGRectMake(KScreenWidth - 95, self->_selectLocationBtn.frame.origin.y, 80, 35)];
     }
-    
-    
-    
+
 }
 
 - (void)textValueChange:(UITextField *)sender{// tag 1 为账号

@@ -64,7 +64,15 @@
     self.likeLabel = [Tools creatLabel:CGRectMake(frame.size.width - 35,height ,35 , 20) font:[UIFont systemFontOfSize:12] color:[UIColor blackColor] alignment:(NSTextAlignmentCenter) title:@"555"];
     [backView addSubview:self.likeLabel];
     
+}
+
+- (void)bandDataWithModel:(MyPhotoModel *)model{
     
+    [self.coverImage sd_setImageWithURL:[NSURL URLWithString:model.cover]];
+    [self.titleLabel setText:model.text];
+    [self.headerImage sd_setImageWithURL:[NSURL URLWithString:model.head]];
+    [self.nameLabel setText:model.nick_name];
+    [self.likeLabel setText:model.collect_num];
 }
 
 @end

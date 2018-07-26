@@ -143,42 +143,46 @@
 #pragma mark --  选择城市的view
 - (void)getLocation:(NSInteger)tag{//tag  2为省份 3为城市 4为区
     
-    NSString     *path   = [NSString stringWithFormat:@"%@/Project/select_city",KURL];
-    NSDictionary *header = @{@"token":UTOKEN};
-    NSDictionary *dic    = @{@"id":tag==0?@"0":(tag==1?provincesDic[@"key"]:cityDic[@"key"])};
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+    if ((provincesDic && tag<2 ) || (cityDic&& tag<3 )) {
         
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSString     *path   = [NSString stringWithFormat:@"%@/Project/select_city",KURL];
+        NSDictionary *header = @{@"token":UTOKEN};
+        NSDictionary *dic    = @{@"id":tag==0?@"0":(tag==1?provincesDic[@"key"]:cityDic[@"key"])};
         
-        if ([responseObject[@"code"] integerValue] == 200) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
             
-            [self.cityArr removeAllObjects];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             
-            if (![responseObject[@"datas"] isKindOfClass:[NSNull class]]) {
+            if ([responseObject[@"code"] integerValue] == 200) {
                 
-                for (NSDictionary *dic in responseObject[@"datas"]) {
-                    [self.cityArr addObject:dic];
+                [self.cityArr removeAllObjects];
+                
+                if (![responseObject[@"datas"] isKindOfClass:[NSNull class]]) {
+                    
+                    for (NSDictionary *dic in responseObject[@"datas"]) {
+                        [self.cityArr addObject:dic];
+                    }
+                    [self.selectCity setDataArr:self.cityArr];
+                    [self.selectCity setTag:tag];
+                    [self.selectCity show];
                 }
-                [self.selectCity setDataArr:self.cityArr];
-                [self.selectCity setTag:tag];
-                [self.selectCity show];
+                
+            }
+            else{
+                
+                [ViewHelps showHUDWithText:responseObject[@"message"]];
             }
             
-        }
-        else{
             
-            [ViewHelps showHUDWithText:responseObject[@"message"]];
-        }
+        } failure:^(NSError * _Nullable error) {
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [RequestSever showMsgWithError:error];
+        }];
         
-        
-    } failure:^(NSError * _Nullable error) {
-        
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [RequestSever showMsgWithError:error];
-    }];
+    }
 }
 
 - (SelectCity *)selectCity{

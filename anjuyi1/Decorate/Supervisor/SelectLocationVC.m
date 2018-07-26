@@ -8,12 +8,22 @@
 //  录入地址
 
 #import "SelectLocationVC.h"
+#import "SelectCity.h"
+#import "DBManager.h"
 
-@interface SelectLocationVC ()<UIScrollViewDelegate>
+@interface SelectLocationVC ()<UIScrollViewDelegate,SelectCityDelegate>
+{
+    NSDictionary  * provincesDic;//保存省
+    NSDictionary  * cityDic;//保存城市
+    NSDictionary  * countyDic;//保存区
+    UILabel       * selectLabel;//选择城市的label 为了修改文字
+}
 
-@property (nonatomic,strong)UIScrollView *tmpScrollView;
-
-@property (nonatomic,strong)NSMutableArray *textArr;
+@property (nonatomic,strong)UIScrollView   * tmpScrollView;
+@property (nonatomic,strong)NSMutableArray * textArr;
+@property (nonatomic,strong)SelectCity     * selectCity;
+@property (nonatomic,strong)NSMutableArray * cityArr;
+@property (nonatomic,strong)DBManager      * dbManager;
 
 @end
 
@@ -27,6 +37,7 @@
     [self setNavigationLeftBarButtonWithImageNamed:@"ss_back"];
     
     self.textArr = [NSMutableArray arrayWithObjects:@"",@"",@"",@"",@"",@"",@"",@"", nil];
+    self.cityArr = [NSMutableArray array];
     
     [self.view addSubview:self.tmpScrollView];
     
@@ -35,6 +46,8 @@
     [self.view addSubview:self.tmpScrollView];
     
     [self setUpUI];
+    
+    [self.view addSubview:self.selectCity];
 }
 
 
@@ -49,12 +62,19 @@
     return _tmpScrollView;
 }
 
+-(DBManager *)dbManager{
+    if (!_dbManager) {
+        _dbManager = [DBManager new];
+    }
+    return _dbManager;
+}
+
 - (void)setUpUI{
     
     NSArray *iArr = @[@"add_add",@"add_add",@"add_add",@"",@"",@"",@""];
     NSArray *tArr = @[@"请选择您的城市",@"请选择您的所在地",@"请选择您的所在范围",@"请输入您的小区名字",@"请输入您的楼号/单元/门牌号",@""];
     
-    for (NSInteger i = 0 ; i < 5 ; i ++ ) {
+    for (NSInteger i = 0 ; i < 3 ; i ++ ) {
         UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, MDXFrom6(20+50*i), KScreenWidth, MDXFrom6(50))];
         [self.tmpScrollView addSubview:backView];
         
@@ -108,18 +128,94 @@
 
 - (void)selectCity:(UITapGestureRecognizer *)sender{
     
-    //tag  2为城市 3为区
+    //tag  1为城市 2为区
     
     UILabel *label = (UILabel *)sender.view;
     
-    [label setText:@"点击了"];
+    selectLabel = label;
+    
+    [self getLocation:sender.view.tag];
     
 }
 
 - (void)sureSave{
     
+    if (provincesDic == nil ||cityDic == nil ||countyDic == nil ) {
+        [ViewHelps showHUDWithText:@"请选择匹配的省市区"];
+        return;
+    }
+    
+    [self.delegate sureProvince:provincesDic city:cityDic area:countyDic];
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark --  选择城市的view
+- (void)getLocation:(NSInteger)tag{//tag  2为省份 3为城市 4为区
+    
+    
+    NSDictionary *dic;
+    
+    if (tag == 0) {
+        dic = @{@"id":@"0"};
+    }
+    
+    if (tag == 1 && provincesDic) {
+        dic = @{@"id":provincesDic[@"key"]};
+    }
+    
+    if (tag == 2 && cityDic) {
+        dic = @{@"id":cityDic[@"key"]};
+    }
+    
+    if (!dic) {
+        return;
+    }
+    
+     NSArray *arr = [self.dbManager searchDataBaseWithSuperId:dic[@"id"]];
+    
+     [self.cityArr removeAllObjects];
+    
+     for (NSDictionary *dic in arr) {
+         [self.cityArr addObject:dic];
+     }
+     [self.selectCity setDataArr:self.cityArr];
+     [self.selectCity setTag:tag];
+     [self.selectCity show];
+
+
+
+}
+
+- (SelectCity *)selectCity{
+    
+    if (!_selectCity) {
+        
+        _selectCity = [[SelectCity alloc] initWithFrame:CGRectMake(0, 0 , KScreenWidth, KViewHeight)];
+        [_selectCity setDelegate:self];
+    }
+    return _selectCity;
+}
+
+- (void)selectCityWithInfo:(NSDictionary *)info view:(SelectCity *)selectCity{
+    
+    [selectLabel setTextColor:[UIColor blackColor]];
+    [selectLabel setText:[info valueForKey:@"value"]];
+    
+    if (selectCity.tag == 0) {
+        provincesDic = info;
+        cityDic = nil;
+        countyDic = nil;
+    }
+    if (selectCity.tag == 1) {
+        cityDic = info;
+        countyDic = nil;
+    }
+    if (selectCity.tag == 2) {
+        countyDic = info;
+    }
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

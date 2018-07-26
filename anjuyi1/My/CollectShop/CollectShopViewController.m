@@ -21,7 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.navigationItem setTitleView:[[NavTwoTitle alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 44) WithTitle1:@"收藏的商品" WithTitle2:@"3篇"]];
+    [self.navigationItem setTitleView:[[NavTwoTitle alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(200), 44) WithTitle1:@"收藏的商品" WithTitle2:@"3篇"]];
 
     [self baseForDefaultLeftNavButton];
     

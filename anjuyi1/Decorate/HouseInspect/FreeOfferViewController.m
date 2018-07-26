@@ -10,15 +10,30 @@
 #import "FreeOfferViewController.h"
 #import "SelectLocationVC.h"//选择地址
 
-@interface FreeOfferViewController ()
+#import "PullDownView.h"
+#import "YZMenuButton.h"
+#import "DefaultPullDown.h"
+
+@interface FreeOfferViewController ()<SelectLocationVCDelegate,DefaultPullDownDelegate>
 {
     NSInteger time;
     UIButton *codeBtn;
+    NSDictionary *_province;
+    NSDictionary *_city ;
+    NSDictionary *_area ;
+    UIButton * _selectLocationBtn;
+    NSInteger       _currentSelect;//当前下拉的view 0为房间 1为室
 }
 
 @property (nonatomic,strong)NSMutableArray * textArr;
 @property (nonatomic,strong)NSTimer        * timer;
 @property (nonatomic,strong)UILabel        * location;
+
+@property (nonatomic,strong)PullDownView     * pullDownView;//下拉选择框
+@property (nonatomic,strong)NSMutableArray   * roomArr;
+@property (nonatomic,strong)NSMutableArray   * hallArr;
+@property (nonatomic,strong)NSMutableArray   * buttonArr;
+@property (nonatomic,strong)NSMutableArray   * selectRoomArr;
 
 @end
 
@@ -45,12 +60,89 @@
     
     self.textArr = [NSMutableArray arrayWithObjects:@"",@"",@"",@"", nil];
     time = 60;
+    self.roomArr = [NSMutableArray array];
+    self.hallArr = [NSMutableArray array];
+    self.buttonArr = [NSMutableArray array];
+    self.selectRoomArr = [NSMutableArray arrayWithObjects:@"",@"",@"", nil];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     [self setUpUI];
     
+    [self getRoom];
+    
 }
+- (void)getRoom{
+    
+    
+    NSString *path = [NSString stringWithFormat:@"%@/free/offer_info",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [weakSelf.roomArr removeLastObject];
+        [weakSelf.hallArr removeLastObject];
+        if ([responseObject[@"code"] integerValue] == 200) {
+            for (NSDictionary *dic  in responseObject[@"datas"][@"room"]) {
+                [weakSelf.roomArr addObject:dic];
+            }
+            
+            for (NSDictionary *dic  in responseObject[@"datas"][@"hall"]) {
+                [weakSelf.hallArr addObject:dic];
+            }
+            
+            DefaultPullDown *sort1 = [[DefaultPullDown alloc] init];
+            sort1.titleArray = weakSelf.roomArr;
+            [sort1 setDelegate:weakSelf];
+            [weakSelf addChildViewController:sort1];
+            
+            DefaultPullDown *sort2 = [[DefaultPullDown alloc] init];
+            sort2.titleArray = weakSelf.hallArr;
+            [sort2 setDelegate:weakSelf];
+            [weakSelf addChildViewController:sort2];
+            
+            if (weakSelf.buttonArr.count > 0 && weakSelf.hallArr.count > 0 && weakSelf.roomArr.count > 0) {
+                UIButton *btn1 = weakSelf.buttonArr[0];
+                [btn1 setTitle:weakSelf.roomArr[0] forState:(UIControlStateNormal)];
+                UIButton *btn2 = weakSelf.buttonArr[1];
+                [btn2 setTitle:weakSelf.hallArr[0] forState:(UIControlStateNormal)];
+                
+                [weakSelf.selectRoomArr replaceObjectAtIndex:0 withObject:weakSelf.roomArr[0]];
+                [weakSelf.selectRoomArr replaceObjectAtIndex:1 withObject:weakSelf.hallArr[0]];
+            }
+            
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+    
+}
+// 选择的房间 数量
+- (void)dafalutPullDownSelect:(NSInteger)index{
+    
+    if (_currentSelect == 0) {
+        [self.selectRoomArr replaceObjectAtIndex:0 withObject:self.roomArr[index]];
+    }
+    else{
+        [self.selectRoomArr replaceObjectAtIndex:0 withObject:self.hallArr[index]];
+    }
+}
+
+#pragma mark --  UI
 
 - (void)setUpUI{
     
@@ -115,21 +207,26 @@
     
     [self.view addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(35), height, MDXFrom6(50), 30) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:@"户型："]];
     
-    UILabel *room = [Tools creatLabel:CGRectMake(MDXFrom6(100), height, MDXFrom6(100), 30) font:[UIFont systemFontOfSize:13] color:[UIColor colorWithHexString:@"#3b3b3b"] alignment:(NSTextAlignmentCenter) title:@"三室"];
-    [room.layer setBorderWidth:1];
-    [room.layer setCornerRadius:5];
-    [room.layer setBorderColor:[UIColor colorWithHexString:@"#d1d1d1"].CGColor];
-    [self.view addSubview:room];
     
-    [room addSubview:[Tools creatImage:CGRectMake(MDXFrom6(100) - 20, 12.5 , 8, 5) image:@"guess_xjt"]];
+    for (NSInteger i = 0 ; i < 2 ; i++) {
+        
+        YZMenuButton *button = [YZMenuButton buttonWithType:UIButtonTypeCustom];
+        [button.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor colorWithRed:25 /255.0 green:143/255.0 blue:238/255.0 alpha:1] forState:UIControlStateSelected];
+        [button setImage:[UIImage imageNamed:@"标签-向下箭头"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"标签-向上箭头"] forState:UIControlStateSelected];
+        [button.layer setBorderWidth:1];
+        [button.layer setCornerRadius:5];
+        [button.layer setBorderColor:[UIColor colorWithHexString:@"#d1d1d1"].CGColor];
+        [button setFrame:CGRectMake(i==0?MDXFrom6(100):MDXFrom6(210), height, MDXFrom6(100), 30)];
+        [button setTag:i];
+        [button addTarget:self action:@selector(selectRoomNum:) forControlEvents:(UIControlEventTouchUpInside)];
+        [self.view addSubview:button];
+        
+        [self.buttonArr addObject:button];
+    }
     
-    UILabel *hall = [Tools creatLabel:CGRectMake(MDXFrom6(210), height, MDXFrom6(100), 30) font:[UIFont systemFontOfSize:13] color:[UIColor colorWithHexString:@"#3b3b3b"] alignment:(NSTextAlignmentCenter) title:@"二厅"];
-    [hall.layer setBorderWidth:1];
-    [hall.layer setCornerRadius:5];
-    [hall.layer setBorderColor:[UIColor colorWithHexString:@"#d1d1d1"].CGColor];
-    [self.view addSubview:hall];
-    
-    [hall addSubview:[Tools creatImage:CGRectMake(MDXFrom6(100) - 20, 12.5 , 8, 5) image:@"guess_xjt"]];
     
     
     return height + 40;
@@ -186,18 +283,106 @@
 - (void)rechangeLocation:(UIButton *)sender{
     
     SelectLocationVC *vc = [[SelectLocationVC alloc] init];
+    [vc setDelegate:self];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)sureProvince:(NSDictionary *)province city:(NSDictionary *)city area:(NSDictionary *)area{
+    
+    _province = province;
+    _city = city;
+    _area = area;
+    
+    NSString *address = [NSString stringWithFormat:@"%@ %@ %@",province[@"value"],city[@"value"],area[@"value"]];
+    
+    
+    CGRect rect = [address boundingRectWithSize:CGSizeMake(1000000, 35) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
+    
+    if (55 + rect.size.width + 95 < KScreenWidth) {
+        [self->_location setText:address];
+        [self->_location setFrame:CGRectMake(40, self->_location.frame.origin.y, rect.size.width , 35)];
+        [self->_selectLocationBtn setFrame:CGRectMake(55 + rect.size.width, self->_selectLocationBtn.frame.origin.y, 80, 35)];
+    }
+    else{
+        
+        [self->_location setText:address];
+        [self->_location setFrame:CGRectMake(40,self->_location.frame.origin.y , KScreenWidth - 95 - 55-15 , 35)];
+        [self->_selectLocationBtn setFrame:CGRectMake(KScreenWidth - 95, self->_selectLocationBtn.frame.origin.y, 80, 35)];
+    }
 }
 
 - (void)textValueChange:(UITextField *)sender{// tag 1 为账号
     
     [self.textArr replaceObjectAtIndex:sender.tag withObject:sender.text];
 }
+- (PullDownView *)pullDownView{
+    
+    if (!_pullDownView) {
+        _pullDownView  = [[PullDownView alloc] init];
+        [self.view addSubview:_pullDownView];
+    }
+    return _pullDownView;
+}
+
+- (void)selectRoomNum:(UIButton *)sender{
+    
+    sender.selected = !sender.selected;
+    
+    _currentSelect = sender.tag;
+    
+    CGRect rext = [sender convertRect:sender.bounds toView:self.view];
+    
+    CGRect frame;
+    frame.origin.x = rext.origin.x;
+    frame.origin.y = rext.origin.y + rext.size.height;
+    frame.size.width = rext.size.width;
+    frame.size.height = 150;
+    
+    [self.pullDownView showOrHidden:NO withFrame:frame button:sender view:((DefaultPullDown *)self.childViewControllers[sender.tag]).view];
+}
 
 
 // 提交
 - (void)submit{
     
+    
+    
+    NSString *path = [NSString stringWithFormat:@"%@/free/free_offer",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *parameter= @{@"province":_province[@"key"],
+                               @"city":_city[@"key"],
+                               @"area":_area[@"key"],
+                               @"phone":self.textArr[0],
+                               @"code":self.textArr[1],
+                               @"areaop":self.textArr[2],
+                               @"room":self.selectRoomArr[0],
+                               @"hall":self.selectRoomArr[1]};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:parameter success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
     
 }
 

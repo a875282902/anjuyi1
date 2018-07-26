@@ -8,6 +8,7 @@
 
 #import "HouseCityViewController.h"
 #import "HousePriceViewController.h"
+#import "DBManager.h"
 
 @interface HouseCityViewController ()<UIPickerViewDelegate,UIPickerViewDataSource>
 {
@@ -21,6 +22,7 @@
 @property (nonatomic,strong)NSMutableArray  * provinceArr;
 @property (nonatomic,strong)NSMutableArray  * cityArr;
 @property (nonatomic,strong)NSMutableArray  * areaArr;
+@property (nonatomic,strong)DBManager       * dbManager;
 
 @end
 
@@ -63,90 +65,72 @@
     
     [self setUpCityView];
 }
+
+-(DBManager *)dbManager{
+    
+    if (!_dbManager ) {
+        _dbManager = [DBManager new];
+    }
+    return _dbManager;
+}
+
 #pragma mark -- 选择城市的view
 - (void)getCityData:(NSString *)cityID{
     
-    NSString *path = [NSString stringWithFormat:@"%@/WholeHouse/select_city",KURL];
-    
-    NSDictionary *header = @{@"token":UTOKEN};
-    
-    NSDictionary *parameter = @{@"id":cityID};
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSArray *arr = [self.dbManager searchDataBaseWithSuperId:cityID];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:parameter success:^(id  _Nullable responseObject) {
-        
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
-        if ([responseObject[@"code"] integerValue] == 200) {
-            
-            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {//datas是否类型相同
-                if ([cityID integerValue] == 0) {//添加省数组
-                    [weakSelf.provinceArr removeAllObjects];
-                    for (NSDictionary *dic in responseObject[@"datas"]) {
-                        [weakSelf.provinceArr addObject:dic];
-                    }
-                    [weakSelf.cityPickerView reloadComponent:0];
-                    
-                    if (weakSelf.cityArr.count == 0 && weakSelf.provinceArr.count > 0) {
-                        self -> provinceDic = weakSelf.provinceArr[0];
-                        [weakSelf getCityData:weakSelf.provinceArr[0][@"key"]];
-                    }
-                    
-                }
-                else{//添加城市数组
-                    if (weakSelf.cityArr.count == 0) {
-                    
-                        for (NSDictionary *dic in responseObject[@"datas"]) {
-                            [weakSelf.cityArr addObject:dic];
-                        }
-                        [weakSelf.cityPickerView reloadComponent:1];
-                        
-                        if (weakSelf.cityArr.count > 0 && weakSelf.areaArr.count == 0) {
-                            self -> cityDic = weakSelf.cityArr[0];
-                            [weakSelf getCityData:weakSelf.cityArr[0][@"key"]];
-                        }
-                        
-                        [weakSelf.cityPickerView selectRow:0 inComponent:1 animated:YES];
-                        
-                    }
-                    
-                    else{
-                        
-                        for (NSDictionary *dic in responseObject[@"datas"]) {
-                            [weakSelf.areaArr addObject:dic];
-                        }
-                        [weakSelf.cityPickerView reloadComponent:2];
-                        
-                        if (weakSelf.areaArr.count > 0) {
-                            self -> areaDic = weakSelf.areaArr[0];
     
-                        }
-                        
-                        [weakSelf.cityPickerView selectRow:0 inComponent:2 animated:YES];
-                        
-                        [weakSelf.locationLabel setTitle:[NSString stringWithFormat:@"%@  %@ %@",self->provinceDic[@"value"],self->cityDic[@"value"] ,self->areaDic[@"value"]] forState:(UIControlStateNormal)];
-                        
-                        [weakSelf refreButtonLayout:weakSelf.locationLabel];
-                    }
-                }
-                
-            }
-            else{
-                
-                [ViewHelps showHUDWithText:responseObject[@"message"]];
-            }
+    if ([cityID integerValue] == 0) {//添加省数组
+        [weakSelf.provinceArr removeAllObjects];
+        for (NSDictionary *dic in arr) {
+            [weakSelf.provinceArr addObject:dic];
         }
-
+        [weakSelf.cityPickerView reloadComponent:0];
         
-    } failure:^(NSError * _Nullable error) {
+        if (weakSelf.cityArr.count == 0 && weakSelf.provinceArr.count > 0) {
+            self -> provinceDic = weakSelf.provinceArr[0];
+            [weakSelf getCityData:weakSelf.provinceArr[0][@"key"]];
+        }
         
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [RequestSever showMsgWithError:error];
-    }];
-
+    }
+    else{//添加城市数组
+        if (weakSelf.cityArr.count == 0) {
+            
+            for (NSDictionary *dic in arr) {
+                [weakSelf.cityArr addObject:dic];
+            }
+            [weakSelf.cityPickerView reloadComponent:1];
+            
+            if (weakSelf.cityArr.count > 0 && weakSelf.areaArr.count == 0) {
+                self -> cityDic = weakSelf.cityArr[0];
+                [weakSelf getCityData:weakSelf.cityArr[0][@"key"]];
+            }
+            
+            [weakSelf.cityPickerView selectRow:0 inComponent:1 animated:YES];
+            
+        }
+        
+        else{
+            
+            for (NSDictionary *dic in arr) {
+                [weakSelf.areaArr addObject:dic];
+            }
+            [weakSelf.cityPickerView reloadComponent:2];
+            
+            if (weakSelf.areaArr.count > 0) {
+                self -> areaDic = weakSelf.areaArr[0];
+                
+            }
+            
+            [weakSelf.cityPickerView selectRow:0 inComponent:2 animated:YES];
+            
+            [weakSelf.locationLabel setTitle:[NSString stringWithFormat:@"%@  %@ %@",self->provinceDic[@"value"],self->cityDic[@"value"] ,self->areaDic[@"value"]] forState:(UIControlStateNormal)];
+            
+            [weakSelf refreButtonLayout:weakSelf.locationLabel];
+        }
+    }
 }
 
 - (void)setUpCityView{

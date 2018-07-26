@@ -8,6 +8,9 @@ pod 'MJRefresh', '~> 3.1.15.3'
 pod 'SDWebImage', '~> 4.3.3'
 
 pod 'IQKeyboardManager', '~> 6.0.3'
-z
+
+pod 'FMDB', '~> 2.7.2'
+
+
 end
 

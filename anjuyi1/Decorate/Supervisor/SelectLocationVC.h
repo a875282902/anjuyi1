@@ -8,6 +8,14 @@
 
 #import "BaseViewController.h"
 
+@protocol SelectLocationVCDelegate <NSObject>
+
+- (void)sureProvince:(NSDictionary *)province city:(NSDictionary *)city area:(NSDictionary *)area;
+
+@end
+
 @interface SelectLocationVC : BaseViewController
+
+@property (nonatomic,weak)id<SelectLocationVCDelegate>delegate;
 
 @end

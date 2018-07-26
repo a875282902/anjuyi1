@@ -24,7 +24,7 @@
     // Do any additional setup after loading the view.\
     
     [self baseForDefaultLeftNavButton];
-    [self.navigationItem setTitleView:[[NavTwoTitle alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(300), 44) WithTitle1:@"购物车" WithTitle2:@"5件"]];
+    [self.navigationItem setTitleView:[[NavTwoTitle alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(200), 44) WithTitle1:@"购物车" WithTitle2:@"5件"]];
     
     [self setNavigationRightBarButtonWithTitle:@"清空" color:[UIColor colorWithHexString:@"#ff9500"]];
     

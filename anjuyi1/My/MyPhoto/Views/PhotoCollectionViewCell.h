@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MyPhotoModel.h"
 
 @interface PhotoCollectionViewCell : UICollectionViewCell
+
+- (void)bandDataWithModel:(MyPhotoModel *)model;
 
 @end

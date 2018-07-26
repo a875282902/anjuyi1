@@ -10,4 +10,6 @@
 
 @interface DBManager : NSObject
 
+- (NSArray *)searchDataBaseWithSuperId:(NSString *)upid;
+
 @end

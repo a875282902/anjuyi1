@@ -17,12 +17,13 @@
     UIImageView *headerBackImage;
 }
 
-@property (nonatomic,strong)UIScrollView     *  tmpScrollView;
-@property (nonatomic,strong)UIView           *  navView;
-@property (nonatomic,strong)HouseCommentView *  commentV;
-@property (nonatomic,strong)UIView           *  infoView;
-@property (nonatomic,strong)UIView           *  contentView;
-@property (nonatomic,strong)UIView           *  commentView;
+@property (nonatomic,strong)UIScrollView         *  tmpScrollView;
+@property (nonatomic,strong)UIView               *  navView;
+@property (nonatomic,strong)HouseCommentView     *  commentV;
+@property (nonatomic,strong)UIView               *  infoView;
+@property (nonatomic,strong)UIView               *  contentView;
+@property (nonatomic,strong)UIView               *  commentView;
+@property (nonatomic,strong)NSMutableDictionary  *  houseInfo;
 
 @end
 
@@ -33,7 +34,7 @@
     [super viewWillAppear:animated];
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
-    [self setNavigationLeftBarButtonWithImageNamed:@""];
+    [self baseForDefaultLeftNavButton];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 
 }
@@ -50,7 +51,51 @@
     // Do any additional setup after loading the view.
     
     [self.view addSubview:self.tmpScrollView];
+    [self.tmpScrollView addSubview:self.infoView];
+    [self.tmpScrollView addSubview:self.contentView];
+    [self.tmpScrollView addSubview:self.commentView];
+   
+    [self getHouseInfo];
+    
+    [self.view addSubview:self.navView];
+    
     [self.view addSubview:self.commentV];
+}
+
+- (void)getHouseInfo{
+    
+    
+    NSString *path = [NSString stringWithFormat:@"%@/WholeHouse/get_whole_house_info",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *parameter = @{@"house_id":self.house_id};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:parameter success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            weakSelf.houseInfo = [NSMutableDictionary dictionaryWithDictionary:responseObject[@"datas"]];
+            
+            [weakSelf createHouseInfo];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
     
 }
 
@@ -70,7 +115,7 @@
     
     if (!_navView) {
         _navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KTopHeight)];
-        [_navView setBackgroundColor:MDRGBA(255, 255, 255, 0)];
+        [_navView setBackgroundColor:[UIColor redColor]];
         
         UIButton *back = [Tools creatButton:CGRectMake(MDXFrom6(10), KStatusBarHeight + 2, 40, 40) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] title:@"" image:@"my_back"];
         [back addTarget:self action:@selector(back) forControlEvents:(UIControlEventTouchUpInside)];
@@ -129,8 +174,17 @@
     
     CGFloat height = 0;
    
-    [self.infoView addSubview:[Tools creatImage:CGRectMake(0, 0, KScreenWidth,  572*KScreenWidth/750.0) image:@"designer_case"]];
-
+    [self.infoView addSubview:[Tools creatImage:CGRectMake(0, 0, KScreenWidth,  572*KScreenWidth/750.0)  url:self.houseInfo[@"cover"] image:@"designer_case"]];
+    
+    height += 572*KScreenWidth/750.0 + 20;
+    
+    [self.infoView addSubview:[Tools creatLabel:CGRectMake(15, height, KScreenWidth - 30, 50) font:[UIFont systemFontOfSize:19] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:self.houseInfo[@"title"]]];
+    
+    height += 50 + 20;
+    
+    [self.infoView setFrame:CGRectMake(0, 0, KScreenWidth, height)];
+    
+    [self refreScrollViewFrame];
 }
 
 - (void)refreScrollViewFrame{
@@ -152,7 +206,7 @@
 }
 
 - (void)share{
-    
+    [self checkMoreComment];
 }
 
 - (void)checkMoreComment{

@@ -20,7 +20,7 @@
     // Do any additional setup after loading the view.
     
     [self baseForDefaultLeftNavButton];
-    [self.navigationItem setTitleView:[[NavTwoTitle alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(300), 44) WithTitle1:@"我的收藏" WithTitle2:@"3篇"]];
+    [self.navigationItem setTitleView:[[NavTwoTitle alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(200), 44) WithTitle1:@"我的收藏" WithTitle2:@"3篇"]];
 }
 
 - (void)didReceiveMemoryWarning {

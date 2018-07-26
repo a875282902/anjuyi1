@@ -47,6 +47,7 @@ static NSString * const ID = @"cell";
             [arr addObject:obj];
         }
     }
+    
     _titleArray = arr;
     
     [self.tableView reloadData];

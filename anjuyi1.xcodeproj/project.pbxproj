@@ -180,6 +180,8 @@
 		182CDA602108605400F28F4C /* HouseCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182CDA5E2108605400F28F4C /* HouseCommentTableViewCell.xib */; };
 		182CDAA021097D4900F28F4C /* city.db in Resources */ = {isa = PBXBuildFile; fileRef = 182CDA9F21097D4800F28F4C /* city.db */; };
 		182CDAA621097DA900F28F4C /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDAA521097DA900F28F4C /* DBManager.m */; };
+		182CDAA821098D1E00F28F4C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 182CDAA721098D1D00F28F4C /* libsqlite3.tbd */; };
+		182CDAAC2109ACAC00F28F4C /* MyPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDAAB2109ACAC00F28F4C /* MyPhotoModel.m */; };
 		18339CD520D24FD500165FF2 /* SelectLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD420D24FD500165FF2 /* SelectLocationVC.m */; };
 		18339CD920D25B6600165FF2 /* HouseInspectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD820D25B6600165FF2 /* HouseInspectViewController.m */; };
 		18339CDC20D2656800165FF2 /* FreeOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CDB20D2656800165FF2 /* FreeOfferViewController.m */; };
@@ -573,6 +575,9 @@
 		182CDA9F21097D4800F28F4C /* city.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = city.db; sourceTree = "<group>"; };
 		182CDAA421097DA900F28F4C /* DBManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		182CDAA521097DA900F28F4C /* DBManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		182CDAA721098D1D00F28F4C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		182CDAAA2109ACAC00F28F4C /* MyPhotoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPhotoModel.h; sourceTree = "<group>"; };
+		182CDAAB2109ACAC00F28F4C /* MyPhotoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPhotoModel.m; sourceTree = "<group>"; };
 		18339CD320D24FD500165FF2 /* SelectLocationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectLocationVC.h; sourceTree = "<group>"; };
 		18339CD420D24FD500165FF2 /* SelectLocationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectLocationVC.m; sourceTree = "<group>"; };
 		18339CD720D25B6600165FF2 /* HouseInspectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseInspectViewController.h; sourceTree = "<group>"; };
@@ -710,6 +715,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				182CDAA821098D1E00F28F4C /* libsqlite3.tbd in Frameworks */,
+				18ED885C2100D58000B38548 /* libsqlite3.0.tbd in Frameworks */,
 				1827513221019C28002A61F8 /* CoreData.framework in Frameworks */,
 				18275130210195E5002A61F8 /* MapKit.framework in Frameworks */,
 				1827512E210194AC002A61F8 /* WebKit.framework in Frameworks */,
@@ -717,7 +724,6 @@
 				1827512A21019480002A61F8 /* Photos.framework in Frameworks */,
 				18ED88602100D59300B38548 /* libstdc++.6.0.9.tbd in Frameworks */,
 				18ED885E2100D58C00B38548 /* CoreTelephony.framework in Frameworks */,
-				18ED885C2100D58000B38548 /* libsqlite3.0.tbd in Frameworks */,
 				18ED885A2100D57900B38548 /* Security.framework in Frameworks */,
 				18ED88582100D57300B38548 /* CoreGraphics.framework in Frameworks */,
 				18ED88562100D56C00B38548 /* SystemConfiguration.framework in Frameworks */,
@@ -1097,6 +1103,7 @@
 		0A7D502420C39CB1001BFDBF /* MyPhoto */ = {
 			isa = PBXGroup;
 			children = (
+				182CDAA92109AC8900F28F4C /* Model */,
 				0A38FEFD20C6D6C900B45CCD /* Views */,
 				0A7D502520C39CD0001BFDBF /* LSYCollerctionViewLayout.h */,
 				0A7D502620C39CD0001BFDBF /* LSYCollerctionViewLayout.m */,
@@ -1607,6 +1614,15 @@
 			path = resource;
 			sourceTree = "<group>";
 		};
+		182CDAA92109AC8900F28F4C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				182CDAAA2109ACAC00F28F4C /* MyPhotoModel.h */,
+				182CDAAB2109ACAC00F28F4C /* MyPhotoModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		18339CD620D25A2B00165FF2 /* HouseInspect */ = {
 			isa = PBXGroup;
 			children = (
@@ -1835,6 +1851,7 @@
 		E57638EA566F5CBF54092AE1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				182CDAA721098D1D00F28F4C /* libsqlite3.tbd */,
 				1827513121019C28002A61F8 /* CoreData.framework */,
 				1827512F210195E5002A61F8 /* MapKit.framework */,
 				1827512D210194AC002A61F8 /* WebKit.framework */,
@@ -2022,6 +2039,7 @@
 				0AD2DEC020CA5F3200E53B43 /* CraftsmanTypeVC.m in Sources */,
 				0A5A7B2C20C7DB9300153E9A /* SDLoadingView.m in Sources */,
 				18F5B7D520EB1D0700B76A73 /* PushProjectViewController.m in Sources */,
+				182CDAAC2109ACAC00F28F4C /* MyPhotoModel.m in Sources */,
 				182CDA4821081A9300F28F4C /* PushView.m in Sources */,
 				0A7D500E20C2E894001BFDBF /* CommentDetailsVC.m in Sources */,
 				1846CFF720FDD66500EA1417 /* HouseSpaceTableViewCell.m in Sources */,
