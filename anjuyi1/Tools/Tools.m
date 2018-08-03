@@ -14,7 +14,9 @@
 +(UILabel *)creatLabel:(CGRect)rect font:(UIFont *)font color:(UIColor *)color alignment:(NSTextAlignment)alignment title:(NSString *)title{
 
     UILabel *label = [[UILabel alloc] initWithFrame:rect];
-    [label setText:title];
+    if (title && ![title isKindOfClass:[NSNull class]]) {
+        [label setText:title];
+    }
     [label setFont:font];
     [label setTextColor:color];
     [label setNumberOfLines:0];
@@ -71,7 +73,9 @@
 + (UIImageView *)creatImage:(CGRect)rect url:(NSString *)imageUrl image:(NSString *)imageName{
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:rect];
-    [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:imageName]];
+    if (imageUrl && ![imageUrl isKindOfClass:[NSNull class]]) {
+        [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:imageName]];
+    }
     [imageView setUserInteractionEnabled:YES];
     [imageView setClipsToBounds:YES];
     return imageView;

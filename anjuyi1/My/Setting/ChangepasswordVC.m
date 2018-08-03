@@ -10,8 +10,8 @@
 
 @interface ChangepasswordVC ()<UIScrollViewDelegate>
 
-@property (nonatomic,strong) UIScrollView  * tmpScrollView;
-
+@property (nonatomic,strong) UIScrollView       * tmpScrollView;
+@property (nonatomic,strong) NSMutableArray     * textArr;
 
 @end
 
@@ -24,7 +24,7 @@
     [self setTitle:@"修改密码"];
     
     [self baseForDefaultLeftNavButton];
-    
+    self.textArr = [NSMutableArray arrayWithObjects:@"",@"",@"",@"",@"",@"", nil];
     [self.view addSubview:self.tmpScrollView];
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1)]];
@@ -55,12 +55,14 @@
         [textField setFont:[UIFont systemFontOfSize:15]];
         [textField setPlaceholder:tArr[i]];
         [textField setValue:[UIColor colorWithHexString:@"#999999"] forKeyPath:@"_placeholderLabel.textColor"];
+        [textField addTarget:self action:@selector(textValueChange:) forControlEvents:(UIControlEventEditingChanged)];
+        [textField setTag:i];
         [self.view addSubview:textField];
         
 
         [self.view addSubview:[Tools setLineView:CGRectMake(15,height+59, KScreenWidth - 30, 1)]];
         
-        [self.view addSubview:[Tools creatImage:CGRectMake(KScreenWidth - 40,height+ 21.5, 17, 17) image:@"mm_tick"]];
+//        [self.view addSubview:[Tools creatImage:CGRectMake(KScreenWidth - 40,height+ 21.5, 17, 17) image:@"mm_tick"]];
         
         height += 60;
     }
@@ -76,9 +78,52 @@
     
 }
 
+- (void)textValueChange:(UITextField *)sender{
+    
+    [self.textArr replaceObjectAtIndex:sender.tag withObject:sender.text];
+}
+
 - (void)sureChange{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    NSArray *tArr = @[@"请输入原始密码",@"请输入新密码",@"请确认新密码"];
+    for (NSInteger i = 0 ; i < tArr.count; i++) {
+        if ([self.textArr[i] length] == 0) {
+            [ViewHelps showHUDWithText:tArr[i]];
+            
+            return;
+        }
+    }
+    NSString *path = [NSString stringWithFormat:@"%@/member/update_password",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *parameter = @{@"password_old":self.textArr[0],
+                                @"password":self.textArr[1],
+                                @"password_confirm":self.textArr[2]};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:parameter success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            [ViewHelps showHUDWithText:@"修改成功"]; 
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

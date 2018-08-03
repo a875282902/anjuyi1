@@ -252,7 +252,8 @@
 - (void)showPerson{
     [self setNavWrite];
     PersonalViewController *controller = [[PersonalViewController alloc] init];
-    [self.navigationController pushViewController:controller animated:YES];
+    BaseNaviViewController *nav = [[BaseNaviViewController alloc] initWithRootViewController:controller];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 //选择项目

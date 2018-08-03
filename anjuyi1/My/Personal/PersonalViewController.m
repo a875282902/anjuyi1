@@ -242,7 +242,7 @@
 #pragma mark -- 点击事件
 - (void)back{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 

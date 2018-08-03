@@ -73,7 +73,8 @@
     }
    
     
-    
+    [self.typeLabel setText:dic[@"type_name"]];
+    [self.timeLabel setText:dic[@"create_time"]];
     
     
 }

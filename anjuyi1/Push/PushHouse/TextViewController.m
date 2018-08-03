@@ -34,7 +34,7 @@
 
 - (void)setUpUI{
     
-    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(15, 20, KScreenWidth - 15,200)];
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(15, 20, KScreenWidth - 30,200)];
     [textView setDelegate:self];
     [textView setFont:[UIFont systemFontOfSize:16]];
     [textView setTextColor:[UIColor blackColor]];

@@ -21,6 +21,8 @@
 
 @property (nonatomic,strong)NSTimer *timer;
 
+@property (nonatomic,strong)NSMutableArray *textArr;
+
 @end
 
 @implementation ChangePhoneVC
@@ -29,10 +31,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self setTitle:@"修改密码"];
+    [self setTitle:@"修改手机号"];
     
     oldTime = 0;
     newTime = 0;
+    
+    self.textArr = [NSMutableArray arrayWithObjects:@"",@"",@"",@"",@"",@"",@"",@"", nil];
     
     [self baseForDefaultLeftNavButton];
     
@@ -65,6 +69,9 @@
         UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(15, height, KScreenWidth - 30, 60)];
         [textField setFont:[UIFont systemFontOfSize:15]];
         [textField setPlaceholder:tArr[i]];
+        [textField setKeyboardType:(UIKeyboardTypePhonePad)];
+        [textField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:(UIControlEventEditingChanged)];
+        [textField setTag:i];
         [textField setValue:[UIColor colorWithHexString:@"#999999"] forKeyPath:@"_placeholderLabel.textColor"];
         [self.tmpScrollView addSubview:textField];
         
@@ -109,29 +116,114 @@
     
 }
 
-- (void)sureChange{
+
+#pragma mark -- 事件
+- (void)textFieldValueChange:(UITextField *)sender{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.textArr replaceObjectAtIndex:sender.tag withObject:sender.text];
+    
+}
+- (void)sureChange{
+    NSArray *tArr = @[@"请输入手机号",@"请输入验证码",@"请输入新手机号",@"请输入新手机号验证码"];
+    for (NSInteger i = 0 ; i < tArr.count; i++) {
+        if ([self.textArr[i] length] == 0) {
+            [ViewHelps showHUDWithText:tArr[i]];
+            
+            return;
+        }
+    }
+    
+    
+    NSString *path = [NSString stringWithFormat:@"%@/member/update_phone",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *parameter = @{@"code_yuan":self.textArr[1],
+                                @"mobile_edit":self.textArr[2],
+                                @"code_edit":self.textArr[3]};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:parameter success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+             [ViewHelps showHUDWithText:@"修改成功"];
+             [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
 }
 
 - (void)getCode:(UIButton *)sender{
     
-    if (!self.timer) {
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeChange) userInfo:nil repeats:YES];
-    }
-    
-    [sender removeTarget:self action:@selector(getCode:) forControlEvents:(UIControlEventTouchUpInside)];
-    
-    [sender setTitle:@"60 S" forState:(UIControlStateNormal)];
-    
+    NSString *phone = @"";
     if (sender.tag == 1) {
-        oldTime = 60;
+        phone = self.textArr[0];
     }
     else if (sender.tag == 2){
-        newTime = 60;
+        phone = self.textArr[2];
     }
     
-    index = sender.tag ;
+    if (phone.length !=11) {
+        
+        [ViewHelps showHUDWithText:@"请输入正确的手机号"];
+        return;
+    }
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    NSString *path = [NSString stringWithFormat:@"%@/login/getMobileCode",KURL];
+    
+    NSDictionary *dic = @{@"mobile":phone};
+    
+    [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+           
+            
+            if (!self.timer) {
+                self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeChange) userInfo:nil repeats:YES];
+            }
+            
+            [sender removeTarget:self action:@selector(getCode:) forControlEvents:(UIControlEventTouchUpInside)];
+            
+            [sender setTitle:@"60 S" forState:(UIControlStateNormal)];
+            
+            if (sender.tag == 1) {
+               self-> oldTime = 60;
+            }
+            else if (sender.tag == 2){
+                self->newTime = 60;
+            }
+            
+            self->index = sender.tag ;
+            
+            [ViewHelps showHUDWithText:@"验证码发送成功，请注意查收"];
+        }
+        else{
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+    } failure:^(NSError * _Nullable error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
 }
 
 - (void)timeChange{

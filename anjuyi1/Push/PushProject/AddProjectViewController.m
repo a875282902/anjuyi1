@@ -190,6 +190,8 @@
     [rechange.layer setBorderWidth:1];
     [rechange addTarget:self action:@selector(rechangeLocation:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.tmpScrollView addSubview:rechange];
+    
+    _selectLocationBtn = rechange;
 
     return height + 50;
 }

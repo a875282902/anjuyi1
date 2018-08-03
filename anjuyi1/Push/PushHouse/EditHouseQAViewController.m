@@ -179,7 +179,7 @@
     NSString *path = [NSString stringWithFormat:@"%@/WholeHouse/insert_QA",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
-    NSDictionary *paramet = @{@"house_id":self.house_id,@"title":self.title,@"text":_content};
+    NSDictionary *paramet = @{@"house_id":self.house_id,@"title":self.name,@"text":_content};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     

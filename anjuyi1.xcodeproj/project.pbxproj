@@ -182,6 +182,11 @@
 		182CDAA621097DA900F28F4C /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDAA521097DA900F28F4C /* DBManager.m */; };
 		182CDAA821098D1E00F28F4C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 182CDAA721098D1D00F28F4C /* libsqlite3.tbd */; };
 		182CDAAC2109ACAC00F28F4C /* MyPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDAAB2109ACAC00F28F4C /* MyPhotoModel.m */; };
+		182CDB1C2112D8A200F28F4C /* SpaceImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDB1A2112D8A200F28F4C /* SpaceImageTableViewCell.m */; };
+		182CDB1D2112D8A200F28F4C /* SpaceImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182CDB1B2112D8A200F28F4C /* SpaceImageTableViewCell.xib */; };
+		182CDB212113DAC100F28F4C /* QuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDB1F2113DAC100F28F4C /* QuestionTableViewCell.m */; };
+		182CDB222113DAC100F28F4C /* QuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182CDB202113DAC100F28F4C /* QuestionTableViewCell.xib */; };
+		182CDB252113FED400F28F4C /* PushPhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDB242113FED400F28F4C /* PushPhotoDetailsViewController.m */; };
 		18339CD520D24FD500165FF2 /* SelectLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD420D24FD500165FF2 /* SelectLocationVC.m */; };
 		18339CD920D25B6600165FF2 /* HouseInspectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD820D25B6600165FF2 /* HouseInspectViewController.m */; };
 		18339CDC20D2656800165FF2 /* FreeOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CDB20D2656800165FF2 /* FreeOfferViewController.m */; };
@@ -578,6 +583,14 @@
 		182CDAA721098D1D00F28F4C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		182CDAAA2109ACAC00F28F4C /* MyPhotoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPhotoModel.h; sourceTree = "<group>"; };
 		182CDAAB2109ACAC00F28F4C /* MyPhotoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPhotoModel.m; sourceTree = "<group>"; };
+		182CDB192112D8A200F28F4C /* SpaceImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpaceImageTableViewCell.h; sourceTree = "<group>"; };
+		182CDB1A2112D8A200F28F4C /* SpaceImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpaceImageTableViewCell.m; sourceTree = "<group>"; };
+		182CDB1B2112D8A200F28F4C /* SpaceImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpaceImageTableViewCell.xib; sourceTree = "<group>"; };
+		182CDB1E2113DAC100F28F4C /* QuestionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuestionTableViewCell.h; sourceTree = "<group>"; };
+		182CDB1F2113DAC100F28F4C /* QuestionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuestionTableViewCell.m; sourceTree = "<group>"; };
+		182CDB202113DAC100F28F4C /* QuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionTableViewCell.xib; sourceTree = "<group>"; };
+		182CDB232113FED400F28F4C /* PushPhotoDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushPhotoDetailsViewController.h; sourceTree = "<group>"; };
+		182CDB242113FED400F28F4C /* PushPhotoDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushPhotoDetailsViewController.m; sourceTree = "<group>"; };
 		18339CD320D24FD500165FF2 /* SelectLocationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectLocationVC.h; sourceTree = "<group>"; };
 		18339CD420D24FD500165FF2 /* SelectLocationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectLocationVC.m; sourceTree = "<group>"; };
 		18339CD720D25B6600165FF2 /* HouseInspectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseInspectViewController.h; sourceTree = "<group>"; };
@@ -821,6 +834,12 @@
 				182CDA5C2108605400F28F4C /* HouseCommentTableViewCell.h */,
 				182CDA5D2108605400F28F4C /* HouseCommentTableViewCell.m */,
 				182CDA5E2108605400F28F4C /* HouseCommentTableViewCell.xib */,
+				182CDB192112D8A200F28F4C /* SpaceImageTableViewCell.h */,
+				182CDB1A2112D8A200F28F4C /* SpaceImageTableViewCell.m */,
+				182CDB1B2112D8A200F28F4C /* SpaceImageTableViewCell.xib */,
+				182CDB1E2113DAC100F28F4C /* QuestionTableViewCell.h */,
+				182CDB1F2113DAC100F28F4C /* QuestionTableViewCell.m */,
+				182CDB202113DAC100F28F4C /* QuestionTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1818,6 +1837,8 @@
 				18F5B7D020E9F87200B76A73 /* PushPhotoViewController.m */,
 				1846CFD520F88F8900EA1417 /* LabelViewController.h */,
 				1846CFD620F88F8900EA1417 /* LabelViewController.m */,
+				182CDB232113FED400F28F4C /* PushPhotoDetailsViewController.h */,
+				182CDB242113FED400F28F4C /* PushPhotoDetailsViewController.m */,
 			);
 			path = PushPhoto;
 			sourceTree = "<group>";
@@ -1944,10 +1965,12 @@
 				0A5A7B2F20C7DB9300153E9A /* SDPhotoBrowserd.podspec in Resources */,
 				1846CFF820FDD66500EA1417 /* HouseSpaceTableViewCell.xib in Resources */,
 				0A7D504A20C42B01001BFDBF /* DraftBoxTableViewCell.xib in Resources */,
+				182CDB222113DAC100F28F4C /* QuestionTableViewCell.xib in Resources */,
 				18ED884E2100D4F700B38548 /* mapapi.bundle in Resources */,
 				0AFEE71F20BD2F26004FA8FC /* Assets.xcassets in Resources */,
 				0A5582A720C1298000759E6B /* ProjectTableViewCell.xib in Resources */,
 				0A7D505620C433CF001BFDBF /* MyAnswerTableViewCell.xib in Resources */,
+				182CDB1D2112D8A200F28F4C /* SpaceImageTableViewCell.xib in Resources */,
 				0A45D95820CB7CB2000C04B8 /* PlaceSupervisorViewController.xib in Resources */,
 				0AC3190E20BDA0100035800F /* HomeTableViewCell.xib in Resources */,
 				0AD2DECD20CA83B900E53B43 /* OrderCenterTableViewCell.xib in Resources */,
@@ -2055,6 +2078,7 @@
 				18ED87E121008D7100B38548 /* ChargingAgreementViewController.m in Sources */,
 				0A38FEF520C6D3D600B45CCD /* ShopCartViewController.m in Sources */,
 				0A7D502A20C39CEE001BFDBF /* MyPhotoViewController.m in Sources */,
+				182CDB212113DAC100F28F4C /* QuestionTableViewCell.m in Sources */,
 				0AFD6CD920C4D55E00223512 /* CollectShopTableViewCell.m in Sources */,
 				0AD0C62820BF87FF001A20C4 /* ScreeningView.m in Sources */,
 				0A5CD83820C626880028F82D /* OrderDetailsCell.m in Sources */,
@@ -2150,6 +2174,7 @@
 				1846D05420FF229700EA1417 /* PushProjectNodeViewController.m in Sources */,
 				18ED87E421008D7100B38548 /* ChargingCaseTableViewCell.m in Sources */,
 				1827511D210179EF002A61F8 /* CustomAnnotationView.m in Sources */,
+				182CDB1C2112D8A200F28F4C /* SpaceImageTableViewCell.m in Sources */,
 				182CDA5221083DA200F28F4C /* MyPushHouseDetailsViewController.m in Sources */,
 				1846CFEC20FD9F5600EA1417 /* HouseDesignViewController.m in Sources */,
 				0AFEE76620BD2F50004FA8FC /* IanScrollImageView.m in Sources */,
@@ -2194,6 +2219,7 @@
 				0A45D95B20CB8322000C04B8 /* SupervisorDetailsVC.m in Sources */,
 				0A3085BC20C02E1100882805 /* DesignerDetailsVC.m in Sources */,
 				0A5582A220C124B200759E6B /* ProjectListVC.m in Sources */,
+				182CDB252113FED400F28F4C /* PushPhotoDetailsViewController.m in Sources */,
 				182CDA4E21082CFF00F28F4C /* HouseModel.m in Sources */,
 				18ED87E021008D7100B38548 /* QuickOrderViewController.m in Sources */,
 				182CDAA621097DA900F28F4C /* DBManager.m in Sources */,

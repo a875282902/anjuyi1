@@ -52,11 +52,13 @@
 
 /*设置导航栏左侧的按钮 和点击事件*/
 - (void) setNavigationLeftBarButtonWithImageNamed:(NSString *)imageName{
-    UIImage *image = [UIImage imageNamed:imageName];
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 0, 25, 44)];
-    [leftButton setImage:image forState:UIControlStateNormal];
-    [leftButton addTarget:self action:@selector(leftButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    if (imageName.length != 0) {
+        UIImage *image = [UIImage imageNamed:imageName];
+        [leftButton setImage:image forState:UIControlStateNormal];
+        [leftButton addTarget:self action:@selector(leftButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    }
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     [self.navigationItem setLeftBarButtonItem:leftButtonItem];
 }

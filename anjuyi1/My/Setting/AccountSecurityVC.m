@@ -14,6 +14,8 @@
 
 @property (nonatomic,strong)UIScrollView *tmpScrollView;
 
+@property (nonatomic,strong)NSMutableDictionary *phoneDic;
+
 @end
 
 @implementation AccountSecurityVC
@@ -29,9 +31,42 @@
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1.5)]];
     
     [self setUpUI];
+    [self getPhone];
+}
+
+- (void)getPhone{
     
     
+    NSString *path = [NSString stringWithFormat:@"%@/member/account_security",KURL];
     
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            weakSelf.phoneDic = [NSMutableDictionary dictionaryWithDictionary:responseObject[@"datas"]];
+            
+            [weakSelf setUpUI];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
 }
 
 -(UIScrollView *)tmpScrollView{
@@ -47,10 +82,15 @@
 
 - (void)setUpUI{
     
+    [self.tmpScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
     CGFloat height = 0 ;
     
     NSArray *tArr = @[@"修改手机号",@"修改密码"];
-    NSArray *dArr = @[@"13213692355",@""];
+    NSArray *dArr = @[@"",@""];
+    if (self.phoneDic) {
+        dArr = @[self.phoneDic[@"phone"],@""];
+    }
     
     for (NSInteger i = 0 ; i < 2 ; i ++) {
         UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, height, KScreenWidth , 50)];
@@ -73,9 +113,16 @@
     
     height += 20;
     
-    NSArray * iArr = @[@"zhaq_wx",@"zhaq_wb",@"zhaq_qq"];
+    NSArray * iArr = @[@"zhaq_qq",@"zhaq_wx",@"alipayico"];
 
-    NSArray * iTArr = @[@"微信绑定",@"微博绑定",@"QQ绑定"];
+    NSArray * iTArr = @[@"QQ绑定",@"微信绑定",@"支付宝绑定"];
+    
+    NSArray * idArr = @[@"0",@"0",@"0"];
+    
+    if (self.phoneDic) {
+        idArr = @[self.phoneDic[@"is_qq"],self.phoneDic[@"is_wechat"],self.phoneDic[@"is_zfb"]];
+    }
+    
     
     for (NSInteger i = 0 ; i < 3 ; i++) {
         
@@ -88,7 +135,7 @@
         
         [backView addSubview:[Tools creatLabel:CGRectMake(60, 0, KScreenWidth - 70, 60) font:[UIFont systemFontOfSize:15] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:iTArr[i]]];
         
-        [backView addSubview:[Tools creatLabel:CGRectMake(60, 0, KScreenWidth - 80, 60) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"666666"] alignment:(NSTextAlignmentRight) title:@"已绑定"]];
+        [backView addSubview:[Tools creatLabel:CGRectMake(60, 0, KScreenWidth - 80, 60) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"666666"] alignment:(NSTextAlignmentRight) title:[idArr[i] integerValue]==0?@"未绑定":@"已绑定"]];
         
         [backView addSubview:[Tools setLineView:CGRectMake(10, 59, KScreenWidth - 30, 1)]];
         
