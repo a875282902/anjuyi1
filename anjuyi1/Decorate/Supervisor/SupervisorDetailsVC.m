@@ -18,9 +18,9 @@
     UIButton *backBtn;
     UIButton *shareBtn;
 }
-
-@property (nonatomic , strong)UIScrollView   *  tmpScrollView;
 @property (nonatomic , strong)UIView         *  navView;
+@property (nonatomic , strong)UIScrollView   *  tmpScrollView;
+
 /** banner */
 @property (nonatomic , strong)IanScrollView  * bannerScroll;
 /** foot */

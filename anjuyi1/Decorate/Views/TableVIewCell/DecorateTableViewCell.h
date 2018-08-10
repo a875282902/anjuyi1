@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DecorateModel.h"
 
 @interface DecorateTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *coverImage;
@@ -14,5 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+
+- (void)bandDataWithModel:(DecorateModel *)model;
 
 @end

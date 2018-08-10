@@ -15,6 +15,9 @@
 #import "SearchView.h"
 #import "HomeTableViewCell.h"
 
+
+#import "ActivityViewController.h"//活动精选
+
 #import "ChargingHomeViewController.h"//充电桩
 
 
@@ -530,7 +533,8 @@
             
         case 2://活动精选
         {
-            
+            ActivityViewController *VC = [[ActivityViewController alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
             
         }
             break;

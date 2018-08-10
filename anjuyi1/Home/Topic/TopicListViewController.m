@@ -1,18 +1,18 @@
 //
-//  PushPhotoDetailsViewController.m
+//  TopicListViewController.m
 //  anjuyi1
 //
-//  Created by apple on 2018/8/3.
+//  Created by apple on 2018/8/10.
 //  Copyright © 2018年 lsy. All rights reserved.
 //
 
-#import "PushPhotoDetailsViewController.h"
+#import "TopicListViewController.h"
 
-@interface PushPhotoDetailsViewController ()
+@interface TopicListViewController ()
 
 @end
 
-@implementation PushPhotoDetailsViewController
+@implementation TopicListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

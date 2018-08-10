@@ -32,6 +32,12 @@
         [self.backView setBackgroundColor:[UIColor whiteColor]];
         [self addSubview:self.backView];
         
+        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.backView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(30, 30)];
+        CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+        maskLayer.frame = self.backView.bounds;
+        maskLayer.path = maskPath.CGPath;
+        self.backView.layer.mask = maskLayer;
+        
         [self setUpHeaderView];
         [self.backView addSubview:self.tmpTableView];
         

@@ -168,7 +168,7 @@
     
     _myPoint.coordinate = userLocation.location.coordinate;
     _myLocation = userLocation.location.coordinate;
-    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);  
+    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     [self.mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
     
     [self getPowerStationData:userLocation.location.coordinate];

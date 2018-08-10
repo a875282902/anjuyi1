@@ -13,6 +13,8 @@
 @property (nonatomic,strong) UILabel     * titleLabel;
 @property (nonatomic,strong) UILabel     * typeLabel;
 @property (nonatomic,strong) UILabel     * timeLabel;
+@property (nonatomic,strong) UIView      * lineView;
+@property (nonatomic,strong) UIImageView * arrowImage;
 
 @end
 
@@ -41,6 +43,12 @@
     self.timeLabel = [Tools creatLabel:CGRectMake(MDXFrom6(15), MDXFrom6(15), MDXFrom6(290), 20) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:@"2018年4月28号"];
     [self addSubview:self.timeLabel];
     
+    self.lineView = [Tools setLineView:CGRectMake(0,0 , KScreenWidth, 1)];
+    [self addSubview:self.lineView];
+    
+    self.arrowImage = [Tools creatImage:CGRectMake(MDXFrom6(350), 0, MDXFrom6(6), MDXFrom6(10)) image:@"arrow_dark"];
+    [self addSubview:self.arrowImage];
+    
 }
 
 - (void)bandDataWith:(NSDictionary *)dic{
@@ -57,9 +65,9 @@
         
         [self.timeLabel setFrame:CGRectMake(MDXFrom6(15), [dic[@"titleHight"] floatValue]+MDXFrom6(26)+16, MDXFrom6(290),MDXFrom6(20))];
         
-        [self addSubview:[Tools setLineView:CGRectMake(0, [dic[@"titleHight"] floatValue]+MDXFrom6(46)+31 , KScreenWidth, 1)]];
+        [self.lineView setFrame:CGRectMake(0, [dic[@"titleHight"] floatValue]+MDXFrom6(46)+31 , KScreenWidth, 1)];
         
-        [self addSubview:[Tools creatImage:CGRectMake(MDXFrom6(350), ([dic[@"titleHight"] floatValue]+MDXFrom6(36)+31)/2, MDXFrom6(6), MDXFrom6(10)) image:@"arrow_dark"]];
+        [self.arrowImage setFrame:CGRectMake(MDXFrom6(350), ([dic[@"titleHight"] floatValue]+MDXFrom6(36)+31)/2, MDXFrom6(6), MDXFrom6(10))];
     }
     else{
    
@@ -67,9 +75,10 @@
         
         [self.timeLabel setFrame:CGRectMake(MDXFrom6(15),[dic[@"titleHight"] floatValue]+MDXFrom6(25), MDXFrom6(290),MDXFrom6(20))];
         
-        [self addSubview:[Tools setLineView:CGRectMake(0, [dic[@"titleHight"] floatValue]+MDXFrom6(45)+15 , KScreenWidth, 1)]];
+        self.lineView.frame =CGRectMake(0, [dic[@"titleHight"] floatValue]+MDXFrom6(45)+15 , KScreenWidth, 1);
         
-        [self addSubview:[Tools creatImage:CGRectMake(MDXFrom6(350), ([dic[@"titleHight"] floatValue]+MDXFrom6(35)+15)/2, MDXFrom6(6), MDXFrom6(10)) image:@"arrow_dark"]];
+        [self.arrowImage setFrame:CGRectMake(MDXFrom6(350), ([dic[@"titleHight"] floatValue]+MDXFrom6(35)+15)/2, MDXFrom6(6), MDXFrom6(10))];
+        
     }
    
     

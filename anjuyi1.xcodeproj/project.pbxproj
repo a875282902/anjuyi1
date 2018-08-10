@@ -153,6 +153,20 @@
 		0AFEE77020BD2F50004FA8FC /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEE75C20BD2F50004FA8FC /* PushViewController.m */; };
 		0AFEE84020BD30C8004FA8FC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0AFEE83F20BD30C8004FA8FC /* Podfile */; };
 		180588A120DC9B7300883523 /* EditAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180588A020DC9B7300883523 /* EditAddressViewController.m */; };
+		180F19B0211717BF0018F1CD /* LSYLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19AF211717BF0018F1CD /* LSYLocation.m */; };
+		180F19B62117FE9D0018F1CD /* MyCollectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19B52117FE9D0018F1CD /* MyCollectView.m */; };
+		180F19B8211850110018F1CD /* details in Resources */ = {isa = PBXBuildFile; fileRef = 180F19B7211850110018F1CD /* details */; };
+		180F19BC21192FE30018F1CD /* DecorateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19BB21192FE30018F1CD /* DecorateModel.m */; };
+		180F19C021193E580018F1CD /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19BF21193E580018F1CD /* ActivityViewController.m */; };
+		180F19C521193E780018F1CD /* ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19C421193E780018F1CD /* ActivityModel.m */; };
+		180F19C9211943A90018F1CD /* ActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19C7211943A90018F1CD /* ActivityTableViewCell.m */; };
+		180F19CA211943A90018F1CD /* ActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180F19C8211943A90018F1CD /* ActivityTableViewCell.xib */; };
+		180F19CD211978590018F1CD /* ActivityDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19CC211978590018F1CD /* ActivityDetailsViewController.m */; };
+		180F19D0211990FE0018F1CD /* ActivityList.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19CF211990FE0018F1CD /* ActivityList.m */; };
+		180F1A05211C2E700018F1CD /* PushPhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F1A04211C2E6F0018F1CD /* PushPhotoDetailsViewController.m */; };
+		180F1A08211C41260018F1CD /* AddActivityPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F1A07211C41260018F1CD /* AddActivityPhotoViewController.m */; };
+		180F1A0C211D23160018F1CD /* TopicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F1A0B211D23160018F1CD /* TopicListViewController.m */; };
+		180F1A11211D23FF0018F1CD /* ChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F1A10211D23FF0018F1CD /* ChannelView.m */; };
 		18275116210171F3002A61F8 /* PowerStatonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18275115210171F3002A61F8 /* PowerStatonModel.m */; };
 		1827511A210177DF002A61F8 /* CustomPaopaotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18275119210177DF002A61F8 /* CustomPaopaotView.m */; };
 		1827511D210179EF002A61F8 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1827511C210179EF002A61F8 /* CustomAnnotationView.m */; };
@@ -186,7 +200,9 @@
 		182CDB1D2112D8A200F28F4C /* SpaceImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182CDB1B2112D8A200F28F4C /* SpaceImageTableViewCell.xib */; };
 		182CDB212113DAC100F28F4C /* QuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDB1F2113DAC100F28F4C /* QuestionTableViewCell.m */; };
 		182CDB222113DAC100F28F4C /* QuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182CDB202113DAC100F28F4C /* QuestionTableViewCell.xib */; };
-		182CDB252113FED400F28F4C /* PushPhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDB242113FED400F28F4C /* PushPhotoDetailsViewController.m */; };
+		182CDB252113FED400F28F4C /* MyPushPhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDB242113FED400F28F4C /* MyPushPhotoDetailsViewController.m */; };
+		182CDB292114167300F28F4C /* PhotoCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDB282114167300F28F4C /* PhotoCommentView.m */; };
+		182CDB2C211428D200F28F4C /* EditPushPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDB2B211428D200F28F4C /* EditPushPhotoViewController.m */; };
 		18339CD520D24FD500165FF2 /* SelectLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD420D24FD500165FF2 /* SelectLocationVC.m */; };
 		18339CD920D25B6600165FF2 /* HouseInspectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD820D25B6600165FF2 /* HouseInspectViewController.m */; };
 		18339CDC20D2656800165FF2 /* FreeOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CDB20D2656800165FF2 /* FreeOfferViewController.m */; };
@@ -534,6 +550,32 @@
 		0AFEE83F20BD30C8004FA8FC /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		1805889F20DC9B7300883523 /* EditAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditAddressViewController.h; sourceTree = "<group>"; };
 		180588A020DC9B7300883523 /* EditAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditAddressViewController.m; sourceTree = "<group>"; };
+		180F19AE211717BF0018F1CD /* LSYLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSYLocation.h; sourceTree = "<group>"; };
+		180F19AF211717BF0018F1CD /* LSYLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSYLocation.m; sourceTree = "<group>"; };
+		180F19B42117FE9D0018F1CD /* MyCollectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCollectView.h; sourceTree = "<group>"; };
+		180F19B52117FE9D0018F1CD /* MyCollectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCollectView.m; sourceTree = "<group>"; };
+		180F19B7211850110018F1CD /* details */ = {isa = PBXFileReference; lastKnownFileType = text; path = details; sourceTree = "<group>"; };
+		180F19BA21192FE30018F1CD /* DecorateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DecorateModel.h; sourceTree = "<group>"; };
+		180F19BB21192FE30018F1CD /* DecorateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DecorateModel.m; sourceTree = "<group>"; };
+		180F19BE21193E580018F1CD /* ActivityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
+		180F19BF21193E580018F1CD /* ActivityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
+		180F19C321193E780018F1CD /* ActivityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivityModel.h; sourceTree = "<group>"; };
+		180F19C421193E780018F1CD /* ActivityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivityModel.m; sourceTree = "<group>"; };
+		180F19C6211943A90018F1CD /* ActivityTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivityTableViewCell.h; sourceTree = "<group>"; };
+		180F19C7211943A90018F1CD /* ActivityTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivityTableViewCell.m; sourceTree = "<group>"; };
+		180F19C8211943A90018F1CD /* ActivityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityTableViewCell.xib; sourceTree = "<group>"; };
+		180F19CB211978590018F1CD /* ActivityDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivityDetailsViewController.h; sourceTree = "<group>"; };
+		180F19CC211978590018F1CD /* ActivityDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailsViewController.m; sourceTree = "<group>"; };
+		180F19CE211990FE0018F1CD /* ActivityList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivityList.h; sourceTree = "<group>"; };
+		180F19CF211990FE0018F1CD /* ActivityList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivityList.m; sourceTree = "<group>"; };
+		180F1A03211C2E6F0018F1CD /* PushPhotoDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushPhotoDetailsViewController.h; sourceTree = "<group>"; };
+		180F1A04211C2E6F0018F1CD /* PushPhotoDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushPhotoDetailsViewController.m; sourceTree = "<group>"; };
+		180F1A06211C41260018F1CD /* AddActivityPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddActivityPhotoViewController.h; sourceTree = "<group>"; };
+		180F1A07211C41260018F1CD /* AddActivityPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddActivityPhotoViewController.m; sourceTree = "<group>"; };
+		180F1A0A211D23160018F1CD /* TopicListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicListViewController.h; sourceTree = "<group>"; };
+		180F1A0B211D23160018F1CD /* TopicListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicListViewController.m; sourceTree = "<group>"; };
+		180F1A0F211D23FF0018F1CD /* ChannelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelView.h; sourceTree = "<group>"; };
+		180F1A10211D23FF0018F1CD /* ChannelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelView.m; sourceTree = "<group>"; };
 		18275114210171F3002A61F8 /* PowerStatonModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PowerStatonModel.h; sourceTree = "<group>"; };
 		18275115210171F3002A61F8 /* PowerStatonModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PowerStatonModel.m; sourceTree = "<group>"; };
 		18275118210177DF002A61F8 /* CustomPaopaotView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPaopaotView.h; sourceTree = "<group>"; };
@@ -589,8 +631,12 @@
 		182CDB1E2113DAC100F28F4C /* QuestionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuestionTableViewCell.h; sourceTree = "<group>"; };
 		182CDB1F2113DAC100F28F4C /* QuestionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuestionTableViewCell.m; sourceTree = "<group>"; };
 		182CDB202113DAC100F28F4C /* QuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionTableViewCell.xib; sourceTree = "<group>"; };
-		182CDB232113FED400F28F4C /* PushPhotoDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushPhotoDetailsViewController.h; sourceTree = "<group>"; };
-		182CDB242113FED400F28F4C /* PushPhotoDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushPhotoDetailsViewController.m; sourceTree = "<group>"; };
+		182CDB232113FED400F28F4C /* MyPushPhotoDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPushPhotoDetailsViewController.h; sourceTree = "<group>"; };
+		182CDB242113FED400F28F4C /* MyPushPhotoDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPushPhotoDetailsViewController.m; sourceTree = "<group>"; };
+		182CDB272114167300F28F4C /* PhotoCommentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoCommentView.h; sourceTree = "<group>"; };
+		182CDB282114167300F28F4C /* PhotoCommentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoCommentView.m; sourceTree = "<group>"; };
+		182CDB2A211428D200F28F4C /* EditPushPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditPushPhotoViewController.h; sourceTree = "<group>"; };
+		182CDB2B211428D200F28F4C /* EditPushPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPushPhotoViewController.m; sourceTree = "<group>"; };
 		18339CD320D24FD500165FF2 /* SelectLocationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectLocationVC.h; sourceTree = "<group>"; };
 		18339CD420D24FD500165FF2 /* SelectLocationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectLocationVC.m; sourceTree = "<group>"; };
 		18339CD720D25B6600165FF2 /* HouseInspectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseInspectViewController.h; sourceTree = "<group>"; };
@@ -856,6 +902,8 @@
 		0A38FEFE20C6D6D900B45CCD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				180F19B42117FE9D0018F1CD /* MyCollectView.h */,
+				180F19B52117FE9D0018F1CD /* MyCollectView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1377,6 +1425,7 @@
 		0AFEE70620BD2F23004FA8FC = {
 			isa = PBXGroup;
 			children = (
+				180F19B7211850110018F1CD /* details */,
 				0AFEE83F20BD30C8004FA8FC /* Podfile */,
 				0AFEE71120BD2F23004FA8FC /* anjuyi1 */,
 				0AFEE71020BD2F23004FA8FC /* Products */,
@@ -1405,6 +1454,7 @@
 				0AFEE74C20BD2F50004FA8FC /* BaseConfig */,
 				0AFEE72E20BD2F4F004FA8FC /* Category */,
 				0AFEE73120BD2F4F004FA8FC /* Decorate */,
+				180F1A02211C2E540018F1CD /* Photo */,
 				0AFEE74320BD2F50004FA8FC /* Home */,
 				0AFEE72B20BD2F4F004FA8FC /* Mall */,
 				0AFEE75820BD2F50004FA8FC /* My */,
@@ -1449,6 +1499,7 @@
 		0AFEE73120BD2F4F004FA8FC /* Decorate */ = {
 			isa = PBXGroup;
 			children = (
+				180F19B921192FC20018F1CD /* Model */,
 				18339CD620D25A2B00165FF2 /* HouseInspect */,
 				0A45D94C20CB7A1B000C04B8 /* Supervisor */,
 				0A55829C20C11AED00759E6B /* Master */,
@@ -1476,6 +1527,8 @@
 				18EA1BD720E1CCB7000738CC /* ShareView.m */,
 				182CDAA421097DA900F28F4C /* DBManager.h */,
 				182CDAA521097DA900F28F4C /* DBManager.m */,
+				180F19AE211717BF0018F1CD /* LSYLocation.h */,
+				180F19AF211717BF0018F1CD /* LSYLocation.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1507,6 +1560,8 @@
 		0AFEE74320BD2F50004FA8FC /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				180F1A09211D22F80018F1CD /* Topic */,
+				180F19BD21193E440018F1CD /* Activity */,
 				18ED87D021008D7100B38548 /* Charging */,
 				0AC3190320BD8EB50035800F /* Model */,
 				0AC318FE20BD88BC0035800F /* Views */,
@@ -1601,6 +1656,87 @@
 			path = Push;
 			sourceTree = "<group>";
 		};
+		180F19B921192FC20018F1CD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				180F19BA21192FE30018F1CD /* DecorateModel.h */,
+				180F19BB21192FE30018F1CD /* DecorateModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		180F19BD21193E440018F1CD /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				180F19C221193E630018F1CD /* Model */,
+				180F19C121193E5E0018F1CD /* Views */,
+				180F19BE21193E580018F1CD /* ActivityViewController.h */,
+				180F19BF21193E580018F1CD /* ActivityViewController.m */,
+				180F19CB211978590018F1CD /* ActivityDetailsViewController.h */,
+				180F19CC211978590018F1CD /* ActivityDetailsViewController.m */,
+				180F1A06211C41260018F1CD /* AddActivityPhotoViewController.h */,
+				180F1A07211C41260018F1CD /* AddActivityPhotoViewController.m */,
+			);
+			path = Activity;
+			sourceTree = "<group>";
+		};
+		180F19C121193E5E0018F1CD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				180F19C6211943A90018F1CD /* ActivityTableViewCell.h */,
+				180F19C7211943A90018F1CD /* ActivityTableViewCell.m */,
+				180F19C8211943A90018F1CD /* ActivityTableViewCell.xib */,
+				180F19CE211990FE0018F1CD /* ActivityList.h */,
+				180F19CF211990FE0018F1CD /* ActivityList.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		180F19C221193E630018F1CD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				180F19C321193E780018F1CD /* ActivityModel.h */,
+				180F19C421193E780018F1CD /* ActivityModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		180F1A02211C2E540018F1CD /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				180F1A03211C2E6F0018F1CD /* PushPhotoDetailsViewController.h */,
+				180F1A04211C2E6F0018F1CD /* PushPhotoDetailsViewController.m */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
+		180F1A09211D22F80018F1CD /* Topic */ = {
+			isa = PBXGroup;
+			children = (
+				180F1A0E211D23220018F1CD /* Views */,
+				180F1A0D211D231D0018F1CD /* Model */,
+				180F1A0A211D23160018F1CD /* TopicListViewController.h */,
+				180F1A0B211D23160018F1CD /* TopicListViewController.m */,
+			);
+			path = Topic;
+			sourceTree = "<group>";
+		};
+		180F1A0D211D231D0018F1CD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		180F1A0E211D23220018F1CD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				180F1A0F211D23FF0018F1CD /* ChannelView.h */,
+				180F1A10211D23FF0018F1CD /* ChannelView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		18275117210177C1002A61F8 /* MyAnnotationView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1640,6 +1776,15 @@
 				182CDAAB2109ACAC00F28F4C /* MyPhotoModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		182CDB262114165400F28F4C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				182CDB272114167300F28F4C /* PhotoCommentView.h */,
+				182CDB282114167300F28F4C /* PhotoCommentView.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		18339CD620D25A2B00165FF2 /* HouseInspect */ = {
@@ -1833,12 +1978,15 @@
 		18F5B7CE20E9F7D600B76A73 /* PushPhoto */ = {
 			isa = PBXGroup;
 			children = (
+				182CDB262114165400F28F4C /* Views */,
 				18F5B7CF20E9F87200B76A73 /* PushPhotoViewController.h */,
 				18F5B7D020E9F87200B76A73 /* PushPhotoViewController.m */,
 				1846CFD520F88F8900EA1417 /* LabelViewController.h */,
 				1846CFD620F88F8900EA1417 /* LabelViewController.m */,
-				182CDB232113FED400F28F4C /* PushPhotoDetailsViewController.h */,
-				182CDB242113FED400F28F4C /* PushPhotoDetailsViewController.m */,
+				182CDB232113FED400F28F4C /* MyPushPhotoDetailsViewController.h */,
+				182CDB242113FED400F28F4C /* MyPushPhotoDetailsViewController.m */,
+				182CDB2A211428D200F28F4C /* EditPushPhotoViewController.h */,
+				182CDB2B211428D200F28F4C /* EditPushPhotoViewController.m */,
 			);
 			path = PushPhoto;
 			sourceTree = "<group>";
@@ -1951,6 +2099,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				180F19B8211850110018F1CD /* details in Resources */,
+				180F19CA211943A90018F1CD /* ActivityTableViewCell.xib in Resources */,
 				0AD0C61920BEB354001A20C4 /* MallTableViewCell.xib in Resources */,
 				18EA1BE020E1CD9A000738CC /* SortCell.xib in Resources */,
 				0AFEE72220BD2F26004FA8FC /* LaunchScreen.storyboard in Resources */,
@@ -2052,6 +2202,7 @@
 				1846D05A20FF853700EA1417 /* TextViewController.m in Sources */,
 				0AD2DEBD20CA55EA00E53B43 /* CraftsmenViewController.m in Sources */,
 				0A4A97C720BFD200009D6594 /* ChannelButton.m in Sources */,
+				180F19CD211978590018F1CD /* ActivityDetailsViewController.m in Sources */,
 				0A5CD82420C593790028F82D /* DefaultPullDown.m in Sources */,
 				0AFEE76B20BD2F50004FA8FC /* BaseViewController.m in Sources */,
 				0A5582A620C1298000759E6B /* ProjectTableViewCell.m in Sources */,
@@ -2071,6 +2222,7 @@
 				0A38FEF220C6CD1600B45CCD /* SuspensionButton.m in Sources */,
 				184D07DF20D1250100653D81 /* ServiceAgreementVC.m in Sources */,
 				0AC3190920BD9DF40035800F /* Tools.m in Sources */,
+				180F1A05211C2E700018F1CD /* PushPhotoDetailsViewController.m in Sources */,
 				18F5B7CA20E9D90F00B76A73 /* MaskView.m in Sources */,
 				182CDA5521083EAF00F28F4C /* HouseCommentView.m in Sources */,
 				0AD2DEB220CA443B00E53B43 /* ChangepasswordVC.m in Sources */,
@@ -2084,6 +2236,7 @@
 				0A5CD83820C626880028F82D /* OrderDetailsCell.m in Sources */,
 				0A8E9C6C20C8F4CE00C6E176 /* IntegralPayViewController.m in Sources */,
 				182CDA5821085DCA00F28F4C /* CommentModel.m in Sources */,
+				180F19BC21192FE30018F1CD /* DecorateModel.m in Sources */,
 				0A5CD81520C592460028F82D /* YZCover.m in Sources */,
 				18EA1BDF20E1CD9A000738CC /* SortCell.m in Sources */,
 				18275120210188EA002A61F8 /* PowerStationList.m in Sources */,
@@ -2112,8 +2265,11 @@
 				0AFEE76520BD2F50004FA8FC /* IanScrollView.m in Sources */,
 				182751352101A40A002A61F8 /* PowerStationDetailsViewController.m in Sources */,
 				0A7D500B20C2DC22001BFDBF /* CommentTableViewCell.m in Sources */,
+				180F1A11211D23FF0018F1CD /* ChannelView.m in Sources */,
 				0A45D95F20CBB0C8000C04B8 /* StandardView.m in Sources */,
 				1846CFE620FC451C00EA1417 /* HouseCityViewController.m in Sources */,
+				182CDB2C211428D200F28F4C /* EditPushPhotoViewController.m in Sources */,
+				180F19C521193E780018F1CD /* ActivityModel.m in Sources */,
 				0A7D504520C42A66001BFDBF /* DraftBoxViewController.m in Sources */,
 				0A3D7A2320BE44B4009D949B /* DecorateTableViewCell.m in Sources */,
 				0A5CD81620C592460028F82D /* YZPullDownMenu.m in Sources */,
@@ -2130,12 +2286,14 @@
 				0AD0C61C20BEE1EC001A20C4 /* DesignerViewController.m in Sources */,
 				187C11ED20D0A8E400E8DDC7 /* UIColor+Category.m in Sources */,
 				1862840D20F7314B0038A7AC /* BannerModel.m in Sources */,
+				180F1A0C211D23160018F1CD /* TopicListViewController.m in Sources */,
 				0A5A7B3220C7DE4500153E9A /* GoodsDetailsVIew.m in Sources */,
 				0AFEE76420BD2F50004FA8FC /* Rotating.m in Sources */,
 				0A5CD83420C621430028F82D /* OrderDetailsVC.m in Sources */,
 				0AD0C61820BEB354001A20C4 /* MallTableViewCell.m in Sources */,
 				1846D05720FF27DD00EA1417 /* ProjectNodeDetailsViewController.m in Sources */,
 				0AFEE76020BD2F50004FA8FC /* DecorateViewController.m in Sources */,
+				180F19B0211717BF0018F1CD /* LSYLocation.m in Sources */,
 				18339CE320D2746D00165FF2 /* ClassListView.m in Sources */,
 				0AFD6CE920C4E3B000223512 /* CouponsDetails.m in Sources */,
 				184D07D320D1029A00653D81 /* RegisterViewController.m in Sources */,
@@ -2145,9 +2303,11 @@
 				0A8E9C7520C8FD9600C6E176 /* IntegralPayTableViewCell.m in Sources */,
 				0AFEE72520BD2F26004FA8FC /* main.m in Sources */,
 				0A4A97C420BFCFAB009D6594 /* MoreChannel.m in Sources */,
+				180F1A08211C41260018F1CD /* AddActivityPhotoViewController.m in Sources */,
 				0A7D502320C39476001BFDBF /* PersonalViewController.m in Sources */,
 				1846CFEF20FDB72600EA1417 /* HouseInfoViewController.m in Sources */,
 				0A7D500820C2DC08001BFDBF /* CommentViewController.m in Sources */,
+				180F19D0211990FE0018F1CD /* ActivityList.m in Sources */,
 				1846CFD720F88F8900EA1417 /* LabelViewController.m in Sources */,
 				0AFD6CE120C4DD0300223512 /* MyCouponsViewController.m in Sources */,
 				0A7D504920C42B01001BFDBF /* DraftBoxTableViewCell.m in Sources */,
@@ -2155,6 +2315,7 @@
 				18ED88692100D78400B38548 /* PowerStationViewController.m in Sources */,
 				0A18745120C8B70F00451BAA /* GoodsStandardView.m in Sources */,
 				0A3085B820C02B4F00882805 /* MasterViewController.m in Sources */,
+				180F19C021193E580018F1CD /* ActivityViewController.m in Sources */,
 				0A5CD84B20C68FBB0028F82D /* IntegralMallViewController.m in Sources */,
 				1827511A210177DF002A61F8 /* CustomPaopaotView.m in Sources */,
 				0A7D506720C43CC7001BFDBF /* CustomerServiceViewController.m in Sources */,
@@ -2166,6 +2327,7 @@
 				18339CD520D24FD500165FF2 /* SelectLocationVC.m in Sources */,
 				0A5A7B3520C7E0B900153E9A /* ServiceProcessView.m in Sources */,
 				0A7D503420C3A700001BFDBF /* TransactionRecordsVC.m in Sources */,
+				180F19B62117FE9D0018F1CD /* MyCollectView.m in Sources */,
 				182CDA5B21085E2900F28F4C /* CommentUserModel.m in Sources */,
 				0AD2DEAF20CA325400E53B43 /* AccountSecurityVC.m in Sources */,
 				1846D05120FEE93100EA1417 /* EditSpaceImageViewController.m in Sources */,
@@ -2180,6 +2342,7 @@
 				0AFEE76620BD2F50004FA8FC /* IanScrollImageView.m in Sources */,
 				0AD2DEAC20CA19E900E53B43 /* DateView.m in Sources */,
 				18339CE020D26D5000165FF2 /* GoodsClassViewController.m in Sources */,
+				182CDB292114167300F28F4C /* PhotoCommentView.m in Sources */,
 				0A8E9C7B20C9018E00C6E176 /* AddressViewController.m in Sources */,
 				18D3480820DB74B9008FD35E /* SelectCity.m in Sources */,
 				18D3480C20DB8CFF008FD35E /* AddressModel.m in Sources */,
@@ -2206,6 +2369,7 @@
 				18F5B7CB20E9D90F00B76A73 /* AlbumSelectController.m in Sources */,
 				0AFEE76F20BD2F50004FA8FC /* MyViewController.m in Sources */,
 				0AFEE75E20BD2F50004FA8FC /* MallViewController.m in Sources */,
+				180F19C9211943A90018F1CD /* ActivityTableViewCell.m in Sources */,
 				0A5582AA20C1339800759E6B /* ProjectDetailsVC.m in Sources */,
 				0AFEE75F20BD2F50004FA8FC /* UIImage+Category.m in Sources */,
 				184D07D920D11C8D00653D81 /* NSString+Predicate.m in Sources */,
@@ -2219,7 +2383,7 @@
 				0A45D95B20CB8322000C04B8 /* SupervisorDetailsVC.m in Sources */,
 				0A3085BC20C02E1100882805 /* DesignerDetailsVC.m in Sources */,
 				0A5582A220C124B200759E6B /* ProjectListVC.m in Sources */,
-				182CDB252113FED400F28F4C /* PushPhotoDetailsViewController.m in Sources */,
+				182CDB252113FED400F28F4C /* MyPushPhotoDetailsViewController.m in Sources */,
 				182CDA4E21082CFF00F28F4C /* HouseModel.m in Sources */,
 				18ED87E021008D7100B38548 /* QuickOrderViewController.m in Sources */,
 				182CDAA621097DA900F28F4C /* DBManager.m in Sources */,

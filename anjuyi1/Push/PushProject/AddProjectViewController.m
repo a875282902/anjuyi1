@@ -142,6 +142,9 @@
     
     if (!_tmpScrollView) {
         _tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 50, KScreenWidth, KViewHeight - 50 - 80)];
+        if (@available(iOS 11.0, *)) {
+            [_tmpScrollView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
+        }
         [_tmpScrollView setShowsVerticalScrollIndicator:NO];
         [_tmpScrollView setShowsHorizontalScrollIndicator:NO];
         [_tmpScrollView setDelegate:self];

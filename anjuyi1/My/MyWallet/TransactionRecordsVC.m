@@ -72,6 +72,9 @@
     if (!_tmpScrollView) {
         _tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, MDXFrom6(60), KScreenWidth, KScreenHeight - MDXFrom6(60)- KTopHeight)];
         [_tmpScrollView setDelegate:self];
+        if (@available(iOS 11.0, *)) {
+            [_tmpScrollView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
+        }
         [_tmpScrollView setShowsVerticalScrollIndicator:NO];
         [_tmpScrollView setShowsHorizontalScrollIndicator:NO];
         [_tmpScrollView setPagingEnabled:YES];

@@ -15,7 +15,7 @@
 
     UILabel *label = [[UILabel alloc] initWithFrame:rect];
     if (title && ![title isKindOfClass:[NSNull class]]) {
-        [label setText:title];
+        [label setText:[NSString stringWithFormat:@"%@",title]];
     }
     [label setFont:font];
     [label setTextColor:color];

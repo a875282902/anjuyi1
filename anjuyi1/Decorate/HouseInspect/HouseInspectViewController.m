@@ -9,8 +9,9 @@
 
 #import "HouseInspectViewController.h"
 #import "SelectLocationVC.h"//选择地址
+#import "LSYLocation.h"
 
-@interface HouseInspectViewController ()<SelectLocationVCDelegate>
+@interface HouseInspectViewController ()<SelectLocationVCDelegate,LSYLocationDelegta>
 {
     NSInteger time;
     UIButton *codeBtn;
@@ -23,6 +24,7 @@
 @property (nonatomic,strong)NSMutableArray * textArr;
 @property (nonatomic,strong)NSTimer        * timer;
 @property (nonatomic,strong)UILabel        * location;
+@property (nonatomic,strong)LSYLocation    * locationSevice;
 
 @end
 
@@ -54,7 +56,11 @@
 
     [self setUpUI];
     
+    
+    [self.locationSevice beginUpdatingLocation];
+    
 }
+
 
 - (void)setUpUI{
     
@@ -288,6 +294,20 @@
     }
 }
 
+#pragma mark -- 获取地址
+- (LSYLocation *)locationSevice{
+    
+    if (!_locationSevice) {
+        _locationSevice = [[LSYLocation alloc] init];
+        [_locationSevice setDelegate:self];
+    }
+    return _locationSevice;
+}
+
+- (void)loctionWithProvince:(NSDictionary *)province city:(NSDictionary *)city area:(NSDictionary *)area{
+    
+    [self sureProvince:province city:city area:area];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

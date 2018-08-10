@@ -44,22 +44,27 @@
 }
 
 -(void)leftButtonTouchUpInside:(id)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    if (self.isPresent) {
+         [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)getHouseList{
     
-    
-    NSString *path = [NSString stringWithFormat:@"%@/member/my_whole_list",KURL];
+    NSString *path = [NSString stringWithFormat:@"%@/whole_house_info/person_whole_list",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
-    
+    NSDictionary *dic = @{@"user_id":self.user_id};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [weakSelf.dataArr removeAllObjects];

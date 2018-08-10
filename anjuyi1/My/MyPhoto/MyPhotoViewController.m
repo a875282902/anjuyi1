@@ -10,6 +10,7 @@
 #import "LSYCollerctionViewLayout.h"
 #import "PhotoCollectionViewCell.h"
 #import "MyPhotoModel.h"
+#import "MyPushPhotoDetailsViewController.h"
 
 @interface MyPhotoViewController ()<UICollectionViewDataSource , LSYCollerctionViewLayoutDelegate,UICollectionViewDelegate>
 
@@ -106,25 +107,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     PhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MyPhotoViewController" forIndexPath:indexPath];
-    
-//    [cell setBackgroundColor:[UIColor redColor]];
-//
-//    NSInteger tag = 10;
-//
-//    UILabel *label = (UILabel *)[cell.contentView viewWithTag:tag];
-//
-//    if (!label) {
-//
-//        label = [[UILabel alloc] init];
-//
-//        label.tag = tag;
-//
-//        [cell.contentView addSubview:label];
-//    }
-//
-//    [label setText:[NSString stringWithFormat:@"%@12312",self.dataArr[indexPath.item]]];
-//
-//    [label sizeToFit];
+
     if (indexPath.item < self.dataArr.count) {
         [cell bandDataWithModel:self.dataArr[indexPath.item]];
     }
@@ -135,6 +118,14 @@
 - (CGFloat)waterflowLayout:(LSYCollerctionViewLayout *)waterflowLayout heightForItemAtIndexPath:(NSInteger)index itemWidth:(CGFloat)itemWidth{
     
     return (KScreenWidth-30)/2.0 /( 170/113.0f)+90;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    MyPushPhotoDetailsViewController *VC = [[MyPushPhotoDetailsViewController alloc] init];
+    MyPhotoModel *model  = self.dataArr[indexPath.row];
+    VC.photo_id = model.ID;
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

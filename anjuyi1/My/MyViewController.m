@@ -252,6 +252,7 @@
 - (void)showPerson{
     [self setNavWrite];
     PersonalViewController *controller = [[PersonalViewController alloc] init];
+    controller.user_id = self.data[@"id"];
     BaseNaviViewController *nav = [[BaseNaviViewController alloc] initWithRootViewController:controller];
     [self presentViewController:nav animated:YES completion:nil];
 }

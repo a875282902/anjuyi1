@@ -14,7 +14,9 @@
 #import "YZMenuButton.h"
 #import "DefaultPullDown.h"
 
-@interface FreeOfferViewController ()<SelectLocationVCDelegate,DefaultPullDownDelegate>
+#import "LSYLocation.h"
+
+@interface FreeOfferViewController ()<SelectLocationVCDelegate,DefaultPullDownDelegate,LSYLocationDelegta>
 {
     NSInteger time;
     UIButton *codeBtn;
@@ -28,12 +30,14 @@
 @property (nonatomic,strong)NSMutableArray * textArr;
 @property (nonatomic,strong)NSTimer        * timer;
 @property (nonatomic,strong)UILabel        * location;
+@property (nonatomic,strong)LSYLocation    * locationSevice;
 
 @property (nonatomic,strong)PullDownView     * pullDownView;//下拉选择框
 @property (nonatomic,strong)NSMutableArray   * roomArr;
 @property (nonatomic,strong)NSMutableArray   * hallArr;
 @property (nonatomic,strong)NSMutableArray   * buttonArr;
 @property (nonatomic,strong)NSMutableArray   * selectRoomArr;
+
 
 @end
 
@@ -449,6 +453,19 @@
     }
 }
 
+#pragma mark -- 获取地址
+- (LSYLocation *)locationSevice{
+    
+    if (!_locationSevice) {
+        _locationSevice = [[LSYLocation alloc] init];
+        [_locationSevice setDelegate:self];
+    }
+    return _locationSevice;
+}
+
+- (void)loctionWithProvince:(NSDictionary *)province city:(NSDictionary *)city area:(NSDictionary *)area{
+    [self sureProvince:province city:city area:area];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

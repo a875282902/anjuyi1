@@ -16,14 +16,14 @@
 @interface PushPhotoViewController ()<UIScrollViewDelegate,UITextViewDelegate,PhotoSelectControllerDelegate,SDPhotoBrowserDelegate>
 {
     UILabel *_personPlace;
-    NSDictionary *_labelDic;//标签
-    NSString  *_content;//内容
+    UITextView * _tmpTextView;
     NSString  *_image_url;//图片地址
 }
 
-@property (nonatomic,strong) UIScrollView  * tmpScrollView;//承载视图的view
-@property (nonatomic,strong) NSDictionary  * member_info;//
-@property (nonatomic,strong) UIImageView   * coverImage;//
+@property (nonatomic,strong) UIScrollView     * tmpScrollView;//承载视图的view
+@property (nonatomic,strong) NSDictionary     * member_info;//
+@property (nonatomic,strong) UIImageView      * coverImage;//
+@property (nonatomic,strong) NSMutableArray   * labelArr;//
 
 @end
 
@@ -35,6 +35,7 @@
     
     [self setTitle:@"发布图片"];
     [self baseForDefaultLeftNavButton];
+    self.labelArr = [NSMutableArray array];
     
     [self.view addSubview:self.tmpScrollView];
     
@@ -85,6 +86,9 @@
     
     if (!_tmpScrollView) {
         _tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KViewHeight - 80)];
+        if (@available(iOS 11.0, *)) {
+            [_tmpScrollView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
+        }
         [_tmpScrollView setShowsVerticalScrollIndicator:NO];
         [_tmpScrollView setShowsHorizontalScrollIndicator:NO];
         [_tmpScrollView setDelegate:self];
@@ -131,18 +135,18 @@
 //输入工地状态
 - (CGFloat)createDynamicTextView:(CGFloat)height{
     
-    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(padding, height+10, KScreenWidth - 2*padding,120)];
-    [textView setDelegate:self];
-    [textView setFont:[UIFont systemFontOfSize:14]];
-    [textView setTextColor:[UIColor blackColor]];
-    [textView setTag:1001];
-    [self.tmpScrollView addSubview:textView];
+    _tmpTextView = [[UITextView alloc] initWithFrame:CGRectMake(padding, height+10, KScreenWidth - 2*padding,120)];
+    [_tmpTextView setDelegate:self];
+    [_tmpTextView setFont:[UIFont systemFontOfSize:14]];
+    [_tmpTextView setTextColor:[UIColor blackColor]];
+    [_tmpTextView setTag:1001];
+    [self.tmpScrollView addSubview:_tmpTextView];
     
     _personPlace = [[UILabel alloc] initWithFrame:CGRectMake(5, 9 , KScreenWidth, 14)];
     [_personPlace setTextColor:[UIColor colorWithHexString:@"#999999"]];
     [_personPlace setText:@"请输入你的故事~~~"];
     [_personPlace setFont:[UIFont systemFontOfSize:14]];
-    [textView addSubview:_personPlace];
+    [_tmpTextView addSubview:_personPlace];
     
     [self.tmpScrollView addSubview:[Tools setLineView:CGRectMake(padding, height + 140, KScreenWidth - 20, 1)]];
     
@@ -165,7 +169,6 @@
         [textView setText:[textView.text substringToIndex:1000]];
     }
     
-    _content = textView.text;
 }
 
 // 添加标签
@@ -213,7 +216,6 @@
     [btn setClipsToBounds:YES];
     [btn addTarget:self action:@selector(push) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:btn];
-    
 }
 
 
@@ -221,14 +223,14 @@
 
 - (void)push{
     
-    if (_content.length == 0) {
+    if (_tmpTextView.text.length == 0) {
         [ViewHelps showHUDWithText:@"请输入内容"];
         return;
     }
     NSString * tag_id = @"";
     
-    if (_labelDic) {
-        tag_id = _labelDic[@"id"];
+    if (self.labelArr.count>0) {
+        tag_id = self.labelArr[0][@"id"];
     }
     
     if (_image_url.length == 0) {
@@ -242,7 +244,7 @@
     
     NSDictionary *parameter = @{@"image_url":_image_url,
                                 @"tag_id":tag_id,
-                                @"content":_content};
+                                @"content":_tmpTextView.text};
 
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -274,15 +276,20 @@
 - (void)tap:(UITapGestureRecognizer *)sender{
     LabelViewController *vc = [[LabelViewController alloc] init];
     [vc setSelectLabel:^(NSDictionary *dic) {
-       
-        UILabel *label = (UILabel *)sender.view;
-        [label setText:[NSString stringWithFormat:@"#%@",dic[@"name"]]];
         
-        self->_labelDic = dic;
-        
+        [self.labelArr addObject:dic];
+        [self addLabelToTextView];
     }];
     [self.navigationController pushViewController:vc animated:YES];
     
+}
+
+- (void)addLabelToTextView{
+    
+    NSString *str = [NSString stringWithFormat:@"%@#%@",_tmpTextView.text,[self.labelArr lastObject][@"name"]];
+    [_tmpTextView setText:str];
+    
+    [_personPlace setHidden:YES];
 }
 
 - (void)showBigImage{

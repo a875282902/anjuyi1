@@ -7,6 +7,7 @@
 //
 
 #import "DecorateTableViewCell.h"
+#import "CommentUserModel.h"
 
 @implementation DecorateTableViewCell
 
@@ -25,6 +26,18 @@
     [self.headerImage.layer setCornerRadius:15];
     
     // Initialization code
+}
+
+- (void)bandDataWithModel:(DecorateModel *)model{
+    
+    [self.coverImage sd_setImageWithURL:[NSURL URLWithString:model.cover]];
+    [self.titleLabel setText:model.title];
+    
+    CommentUserModel *userModel = [[CommentUserModel alloc] initWithDictionary:model.house_own_info];
+    [self.headerImage sd_setImageWithURL:[NSURL URLWithString:userModel.head]];
+    [self.nameLabel setText:userModel.position];
+    [self.descLabel setText:model.said];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

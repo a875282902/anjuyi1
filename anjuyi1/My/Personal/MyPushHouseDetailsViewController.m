@@ -459,9 +459,41 @@
 - (void)attentionToAuthor:(UIButton *)sender{
     
     
+    if (!sender.selected) {
+        [self attention:[NSString stringWithFormat:@"%@/follow/insert_follow",KURL] btn:sender];
+    }
+    else{
+        [self attention:[NSString stringWithFormat:@"%@/Follow/cancel_follow",KURL] btn:sender];
+    }
     
 }
 
+- (void)attention:(NSString *)path btn:(UIButton *)sender{
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *dic = @{@"user_id":self.houseInfo[@"house_own_info"][@"id"]};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        
+        [ViewHelps showHUDWithText:responseObject[@"message"]];
+        if ([responseObject[@"code"] integerValue]==200) {
+            sender.selected = !sender.selected;
+        }
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+    
+    
+}
 - (void)checkMoreComment{
     
     [self.commentV openDisplay];

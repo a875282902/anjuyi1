@@ -162,6 +162,9 @@
         [_tmpScrollView setShowsVerticalScrollIndicator:NO];
         [_tmpScrollView setShowsHorizontalScrollIndicator:NO];
         [_tmpScrollView setPagingEnabled:YES];
+        if (@available(iOS 11.0, *)) {
+            [_tmpScrollView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
+        }
         [_tmpScrollView setContentSize:CGSizeMake(KScreenWidth*3, _tmpScrollView.frame.size.height)];
         [_tmpScrollView setDelegate:self];
         [_tmpScrollView setBounces:NO];
@@ -486,6 +489,7 @@
             [ViewHelps showHUDWithText:@"保存成功"];
             
             MyPushHouseViewController * vc = [[MyPushHouseViewController alloc] init];
+            vc.isPresent = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
         else{

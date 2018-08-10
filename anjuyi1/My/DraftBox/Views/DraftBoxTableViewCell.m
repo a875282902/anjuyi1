@@ -8,6 +8,7 @@
 
 #import "DraftBoxTableViewCell.h"
 #import "HouseModel.h"
+#import "CommentUserModel.h"
 
 @implementation DraftBoxTableViewCell
 
@@ -25,9 +26,11 @@
         
         HouseModel *houseModel = (HouseModel *)model;
         
+        CommentUserModel *userModel = [[CommentUserModel alloc] initWithDictionary:houseModel.member_info];
+        
         [self.coverImage sd_setImageWithURL:[NSURL URLWithString:houseModel.cover]];
-        [self.headerImage sd_setImageWithURL:[NSURL URLWithString:houseModel.head]];
-        [self.nameLabel setText:houseModel.nick_name];
+        [self.headerImage sd_setImageWithURL:[NSURL URLWithString:userModel.head]];
+        [self.nameLabel setText:userModel.nick_name];
         [self.titleLabel setText:houseModel.title];
         [self.descLabel setText:[NSString stringWithFormat:@"%@   %@平米",houseModel.door,houseModel.proportion]];
         
@@ -47,7 +50,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    [self setSelectionStyle:(UITableViewCellSelectionStyleNone)];
     // Configure the view for the selected state
 }
 

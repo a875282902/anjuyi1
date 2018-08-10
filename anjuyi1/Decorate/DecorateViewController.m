@@ -11,12 +11,16 @@
 #import "SearchView.h"
 #import "DecorateTableViewCell.h"
 #import "IanScrollView.h"
+#import "BannerModel.h"
+#import "DecorateModel.h"
 
 #import "DesignerViewController.h"//设计师
 #import "MasterViewController.h"//工长
 #import "PlaceSupervisorViewController.h"//监理
 #import "HouseInspectViewController.h"//免费验房
 #import "FreeOfferViewController.h"//免费报价
+
+#import "MyPushHouseDetailsViewController.h"//整屋xiang'q
 
 #define hederHeight MDXFrom6(55)
 
@@ -26,24 +30,126 @@
 @property (nonatomic,strong)NSMutableArray      *   dataArr;
 @property (nonatomic,strong)UIView              *   headerView;
 @property (nonatomic,strong)IanScrollView       *   bannerScroll;
+@property (nonatomic,strong)NSMutableArray      *   bannerArr;
 
 @end
 
 @implementation DecorateViewController
+
+
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    [self getDecorateData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     [self.view setBackgroundColor:[UIColor colorWithHexString:@"#f6f6f6"]];
-    
+    self.bannerArr = [NSMutableArray array];
+    self.dataArr = [NSMutableArray array];
     //搜索框
     SearchView *search = [[SearchView alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(355), 30) Title:@"大家都在搜设计师"];
     [search addTarget:self action:@selector(jumpSearch)];
     [self.navigationItem setTitleView:search];
     
+    
     [self.view addSubview:self.tmpTableView];
     
+    [self getBannerData];
+    
+    [self getDecorateData];
+}
+
+#pragma mark -- 数据
+- (void)getBannerData{
+  
+    NSString *path = [NSString stringWithFormat:@"%@/index/index",KURL];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POST:path parameters:nil success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            [weakSelf.bannerArr removeAllObjects];
+            if ([responseObject[@"datas"][@"slide_img"] isKindOfClass:[NSArray class]] ) {
+                for (NSDictionary *dict in responseObject[@"datas"][@"slide_img"]) {
+                    BannerModel *model = [[BannerModel alloc] initWithDictionary:dict];
+                    
+                    [weakSelf.bannerArr addObject:@{@"images":model.picture}];
+                }
+            }
+            
+        
+            if (weakSelf.bannerArr.count != 0) {
+                [weakSelf.bannerScroll setSlideImagesArray:weakSelf.bannerArr];
+                
+                [weakSelf.bannerScroll startLoading];
+            }
+            
+            
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
+}
+
+- (void)getDecorateData{
+    if (!UTOKEN) {
+        return;
+    }
+    NSString *path = [NSString stringWithFormat:@"%@/Decorate/getRandModel",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in responseObject[@"datas"]) {
+                    DecorateModel *model = [[DecorateModel alloc] initWithDictionary:dic];
+                    [weakSelf.dataArr addObject:model];
+                }
+            }
+            
+            [weakSelf.tmpTableView reloadData];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
 }
 
 #pragma mark --  headerView
@@ -69,7 +175,6 @@
         
 //        [_headerView addSubview:[Tools creatImage:CGRectMake(MDXFrom6(10), MDXFrom6(90), KScreenWidth - MDXFrom6(20), MDXFrom6(210)) image:@"zx_banner"]];
         [_headerView addSubview:self.bannerScroll];
-        [self.bannerScroll startLoading];
         
     }
     return _headerView;
@@ -79,7 +184,6 @@
     
     if (!_bannerScroll) {
         _bannerScroll = [[IanScrollView alloc] initWithFrame:CGRectMake(MDXFrom6(10), MDXFrom6(90), KScreenWidth - MDXFrom6(20), MDXFrom6(210))];
-        [_bannerScroll setSlideImagesArray:@[@{@"images":@""},@{@"images":@""},@{@"images":@""}]];
         [_bannerScroll setPageControlPageIndicatorTintColor:[UIColor whiteColor]];
         [_bannerScroll setPageControlCurrentPageIndicatorTintColor:[UIColor colorWithHexString:@"#3b3b3b"]];
     }
@@ -106,7 +210,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -114,6 +218,10 @@
     DecorateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DecorateTableViewCell"];
     if (!cell) {
         cell = [[DecorateTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"DecorateTableViewCell"];
+    }
+    
+    if (indexPath.row < self.dataArr.count) {
+        [cell bandDataWithModel:self.dataArr[indexPath.row]];
     }
     
     return cell;
@@ -145,7 +253,14 @@
     
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    DecorateModel *model = self.dataArr[indexPath.row];
+    
+    MyPushHouseDetailsViewController *VC  = [[MyPushHouseDetailsViewController alloc] init];
+    VC.house_id = model.whole_hosue_id;
+    [self.navigationController pushViewController:VC animated:YES];
+}
 
 #pragma mark -- click 事件
 //
@@ -205,12 +320,12 @@
 #pragma mark -- delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat sectionHeaderHeight = hederHeight;
-    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
-        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
-    } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
-        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
-    }
+//    CGFloat sectionHeaderHeight = hederHeight;
+//    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+//        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+//    } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+//        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+//    }
 }
 
 

@@ -25,5 +25,6 @@
 @property (nonatomic,copy)NSString *nick_name;
 @property (nonatomic,copy)NSString *title;
 @property (nonatomic,copy)NSString *cover;
+@property (nonatomic,copy)NSDictionary *member_info;
 
 @end
