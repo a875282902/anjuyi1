@@ -209,6 +209,13 @@
 		18339CE020D26D5000165FF2 /* GoodsClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CDF20D26D5000165FF2 /* GoodsClassViewController.m */; };
 		18339CE320D2746D00165FF2 /* ClassListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CE220D2746D00165FF2 /* ClassListView.m */; };
 		18339CE620D276B700165FF2 /* BrandListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CE520D276B700165FF2 /* BrandListView.m */; };
+		18399C2F211D4580007CAD58 /* TopicDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C2E211D4580007CAD58 /* TopicDetailsViewController.m */; };
+		18399C32211D6C08007CAD58 /* TopicCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C31211D6C08007CAD58 /* TopicCommentModel.m */; };
+		18399C36211D76FA007CAD58 /* TopicCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C34211D76FA007CAD58 /* TopicCommentTableViewCell.m */; };
+		18399C37211D76FA007CAD58 /* TopicCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18399C35211D76FA007CAD58 /* TopicCommentTableViewCell.xib */; };
+		18399C3A21206FA5007CAD58 /* AddTopicCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C3921206FA5007CAD58 /* AddTopicCommentViewController.m */; };
+		18399C3D21207177007CAD58 /* AddTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C3C21207177007CAD58 /* AddTopicViewController.m */; };
+		18399C402120824C007CAD58 /* SelectCategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C3F2120824C007CAD58 /* SelectCategy.m */; };
 		1846CFD120F836FB00EA1417 /* PullDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD020F836FB00EA1417 /* PullDownView.m */; };
 		1846CFD420F85B8B00EA1417 /* ProjectAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD320F85B8B00EA1417 /* ProjectAddressViewController.m */; };
 		1846CFD720F88F8900EA1417 /* LabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD620F88F8900EA1417 /* LabelViewController.m */; };
@@ -238,6 +245,10 @@
 		1862840D20F7314B0038A7AC /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862840C20F7314A0038A7AC /* BannerModel.m */; };
 		187C11ED20D0A8E400E8DDC7 /* UIColor+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C11EC20D0A8E400E8DDC7 /* UIColor+Category.m */; };
 		187C11F420D0E42600E8DDC7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C11F320D0E42600E8DDC7 /* LoginViewController.m */; };
+		189AB91C211D2BE2003E04C9 /* TopicListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 189AB91B211D2BE2003E04C9 /* TopicListView.m */; };
+		189AB91F211D2E46003E04C9 /* TopicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 189AB91E211D2E46003E04C9 /* TopicModel.m */; };
+		189AB923211D2FA3003E04C9 /* TopicListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189AB921211D2FA3003E04C9 /* TopicListTableViewCell.m */; };
+		189AB924211D2FA3003E04C9 /* TopicListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189AB922211D2FA3003E04C9 /* TopicListTableViewCell.xib */; };
 		18D3480820DB74B9008FD35E /* SelectCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480720DB74B9008FD35E /* SelectCity.m */; };
 		18D3480C20DB8CFF008FD35E /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480B20DB8CFF008FD35E /* AddressModel.m */; };
 		18EA1BD820E1CCB7000738CC /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA1BD720E1CCB7000738CC /* ShareView.m */; };
@@ -649,6 +660,19 @@
 		18339CE220D2746D00165FF2 /* ClassListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassListView.m; sourceTree = "<group>"; };
 		18339CE420D276B700165FF2 /* BrandListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrandListView.h; sourceTree = "<group>"; };
 		18339CE520D276B700165FF2 /* BrandListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrandListView.m; sourceTree = "<group>"; };
+		18399C2D211D4580007CAD58 /* TopicDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicDetailsViewController.h; sourceTree = "<group>"; };
+		18399C2E211D4580007CAD58 /* TopicDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicDetailsViewController.m; sourceTree = "<group>"; };
+		18399C30211D6C08007CAD58 /* TopicCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicCommentModel.h; sourceTree = "<group>"; };
+		18399C31211D6C08007CAD58 /* TopicCommentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicCommentModel.m; sourceTree = "<group>"; };
+		18399C33211D76FA007CAD58 /* TopicCommentTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicCommentTableViewCell.h; sourceTree = "<group>"; };
+		18399C34211D76FA007CAD58 /* TopicCommentTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicCommentTableViewCell.m; sourceTree = "<group>"; };
+		18399C35211D76FA007CAD58 /* TopicCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopicCommentTableViewCell.xib; sourceTree = "<group>"; };
+		18399C3821206FA5007CAD58 /* AddTopicCommentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTopicCommentViewController.h; sourceTree = "<group>"; };
+		18399C3921206FA5007CAD58 /* AddTopicCommentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTopicCommentViewController.m; sourceTree = "<group>"; };
+		18399C3B21207177007CAD58 /* AddTopicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTopicViewController.h; sourceTree = "<group>"; };
+		18399C3C21207177007CAD58 /* AddTopicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTopicViewController.m; sourceTree = "<group>"; };
+		18399C3E2120824C007CAD58 /* SelectCategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCategy.h; sourceTree = "<group>"; };
+		18399C3F2120824C007CAD58 /* SelectCategy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCategy.m; sourceTree = "<group>"; };
 		1846CFCF20F836FB00EA1417 /* PullDownView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullDownView.h; sourceTree = "<group>"; };
 		1846CFD020F836FB00EA1417 /* PullDownView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullDownView.m; sourceTree = "<group>"; };
 		1846CFD220F85B8B00EA1417 /* ProjectAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectAddressViewController.h; sourceTree = "<group>"; };
@@ -705,6 +729,13 @@
 		187C11EC20D0A8E400E8DDC7 /* UIColor+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Category.m"; sourceTree = "<group>"; };
 		187C11F220D0E42600E8DDC7 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		187C11F320D0E42600E8DDC7 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		189AB91A211D2BE2003E04C9 /* TopicListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicListView.h; sourceTree = "<group>"; };
+		189AB91B211D2BE2003E04C9 /* TopicListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicListView.m; sourceTree = "<group>"; };
+		189AB91D211D2E46003E04C9 /* TopicModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicModel.h; sourceTree = "<group>"; };
+		189AB91E211D2E46003E04C9 /* TopicModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicModel.m; sourceTree = "<group>"; };
+		189AB920211D2FA3003E04C9 /* TopicListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicListTableViewCell.h; sourceTree = "<group>"; };
+		189AB921211D2FA3003E04C9 /* TopicListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicListTableViewCell.m; sourceTree = "<group>"; };
+		189AB922211D2FA3003E04C9 /* TopicListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopicListTableViewCell.xib; sourceTree = "<group>"; };
 		18D3480620DB74B9008FD35E /* SelectCity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCity.h; sourceTree = "<group>"; };
 		18D3480720DB74B9008FD35E /* SelectCity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCity.m; sourceTree = "<group>"; };
 		18D3480A20DB8CFF008FD35E /* AddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
@@ -1717,6 +1748,12 @@
 				180F1A0D211D231D0018F1CD /* Model */,
 				180F1A0A211D23160018F1CD /* TopicListViewController.h */,
 				180F1A0B211D23160018F1CD /* TopicListViewController.m */,
+				18399C2D211D4580007CAD58 /* TopicDetailsViewController.h */,
+				18399C2E211D4580007CAD58 /* TopicDetailsViewController.m */,
+				18399C3B21207177007CAD58 /* AddTopicViewController.h */,
+				18399C3C21207177007CAD58 /* AddTopicViewController.m */,
+				18399C3821206FA5007CAD58 /* AddTopicCommentViewController.h */,
+				18399C3921206FA5007CAD58 /* AddTopicCommentViewController.m */,
 			);
 			path = Topic;
 			sourceTree = "<group>";
@@ -1724,6 +1761,10 @@
 		180F1A0D211D231D0018F1CD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				189AB91D211D2E46003E04C9 /* TopicModel.h */,
+				189AB91E211D2E46003E04C9 /* TopicModel.m */,
+				18399C30211D6C08007CAD58 /* TopicCommentModel.h */,
+				18399C31211D6C08007CAD58 /* TopicCommentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1733,6 +1774,16 @@
 			children = (
 				180F1A0F211D23FF0018F1CD /* ChannelView.h */,
 				180F1A10211D23FF0018F1CD /* ChannelView.m */,
+				189AB91A211D2BE2003E04C9 /* TopicListView.h */,
+				189AB91B211D2BE2003E04C9 /* TopicListView.m */,
+				189AB920211D2FA3003E04C9 /* TopicListTableViewCell.h */,
+				189AB921211D2FA3003E04C9 /* TopicListTableViewCell.m */,
+				189AB922211D2FA3003E04C9 /* TopicListTableViewCell.xib */,
+				18399C33211D76FA007CAD58 /* TopicCommentTableViewCell.h */,
+				18399C34211D76FA007CAD58 /* TopicCommentTableViewCell.m */,
+				18399C35211D76FA007CAD58 /* TopicCommentTableViewCell.xib */,
+				18399C3E2120824C007CAD58 /* SelectCategy.h */,
+				18399C3F2120824C007CAD58 /* SelectCategy.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2124,6 +2175,7 @@
 				0A45D95820CB7CB2000C04B8 /* PlaceSupervisorViewController.xib in Resources */,
 				0AC3190E20BDA0100035800F /* HomeTableViewCell.xib in Resources */,
 				0AD2DECD20CA83B900E53B43 /* OrderCenterTableViewCell.xib in Resources */,
+				18399C37211D76FA007CAD58 /* TopicCommentTableViewCell.xib in Resources */,
 				0A3D7A2420BE44B4009D949B /* DecorateTableViewCell.xib in Resources */,
 				0A7D500120C2B760001BFDBF /* DistributionTableViewCell.xib in Resources */,
 				0A18744E20C8011200451BAA /* test.html in Resources */,
@@ -2132,6 +2184,7 @@
 				0A7D501F20C2F32F001BFDBF /* pdf.pdf in Resources */,
 				0A8E9C8120C9023200C6E176 /* AddressTableViewCell.xib in Resources */,
 				18ED87E521008D7100B38548 /* ChargingCaseTableViewCell.xib in Resources */,
+				189AB924211D2FA3003E04C9 /* TopicListTableViewCell.xib in Resources */,
 				18275128210189FB002A61F8 /* PowerStationListTableViewCell.xib in Resources */,
 				0AD0C62220BEE4D6001A20C4 /* DesignerTableViewCell.xib in Resources */,
 				0AFD6CDA20C4D55E00223512 /* CollectShopTableViewCell.xib in Resources */,
@@ -2202,6 +2255,7 @@
 				1846D05A20FF853700EA1417 /* TextViewController.m in Sources */,
 				0AD2DEBD20CA55EA00E53B43 /* CraftsmenViewController.m in Sources */,
 				0A4A97C720BFD200009D6594 /* ChannelButton.m in Sources */,
+				18399C36211D76FA007CAD58 /* TopicCommentTableViewCell.m in Sources */,
 				180F19CD211978590018F1CD /* ActivityDetailsViewController.m in Sources */,
 				0A5CD82420C593790028F82D /* DefaultPullDown.m in Sources */,
 				0AFEE76B20BD2F50004FA8FC /* BaseViewController.m in Sources */,
@@ -2219,6 +2273,7 @@
 				1846CFF720FDD66500EA1417 /* HouseSpaceTableViewCell.m in Sources */,
 				0A7D503120C3A6E9001BFDBF /* RechargeViewController.m in Sources */,
 				0A38FF0920C6D86800B45CCD /* ShopCartCell.m in Sources */,
+				189AB923211D2FA3003E04C9 /* TopicListTableViewCell.m in Sources */,
 				0A38FEF220C6CD1600B45CCD /* SuspensionButton.m in Sources */,
 				184D07DF20D1250100653D81 /* ServiceAgreementVC.m in Sources */,
 				0AC3190920BD9DF40035800F /* Tools.m in Sources */,
@@ -2254,15 +2309,18 @@
 				0A7D503E20C42567001BFDBF /* MyColletViewController.m in Sources */,
 				0AFD6CE520C4DD5900223512 /* MyCouponsTableViewCell.m in Sources */,
 				0AFEE77020BD2F50004FA8FC /* PushViewController.m in Sources */,
+				189AB91F211D2E46003E04C9 /* TopicModel.m in Sources */,
 				0AD2DED020CA9E2200E53B43 /* OrderCenterDatailsVC.m in Sources */,
 				18275127210189FB002A61F8 /* PowerStationListTableViewCell.m in Sources */,
 				0A5A7B3820C7E0D900153E9A /* UserEvaluationView.m in Sources */,
 				18ED87DF21008D7100B38548 /* ChargingHomeViewController.m in Sources */,
 				0A7D505E20C43891001BFDBF /* MyFriendTableViewCell.m in Sources */,
 				0A45D96220CBB691000C04B8 /* SettlementViewController.m in Sources */,
+				18399C3D21207177007CAD58 /* AddTopicViewController.m in Sources */,
 				182CDA4B21082A5400F28F4C /* MyPushHouseViewController.m in Sources */,
 				18F5B7D820EB1D1000B76A73 /* AddProjectViewController.m in Sources */,
 				0AFEE76520BD2F50004FA8FC /* IanScrollView.m in Sources */,
+				18399C402120824C007CAD58 /* SelectCategy.m in Sources */,
 				182751352101A40A002A61F8 /* PowerStationDetailsViewController.m in Sources */,
 				0A7D500B20C2DC22001BFDBF /* CommentTableViewCell.m in Sources */,
 				180F1A11211D23FF0018F1CD /* ChannelView.m in Sources */,
@@ -2310,6 +2368,7 @@
 				180F19D0211990FE0018F1CD /* ActivityList.m in Sources */,
 				1846CFD720F88F8900EA1417 /* LabelViewController.m in Sources */,
 				0AFD6CE120C4DD0300223512 /* MyCouponsViewController.m in Sources */,
+				18399C2F211D4580007CAD58 /* TopicDetailsViewController.m in Sources */,
 				0A7D504920C42B01001BFDBF /* DraftBoxTableViewCell.m in Sources */,
 				18F5B7D120E9F87200B76A73 /* PushPhotoViewController.m in Sources */,
 				18ED88692100D78400B38548 /* PowerStationViewController.m in Sources */,
@@ -2321,6 +2380,7 @@
 				0A7D506720C43CC7001BFDBF /* CustomerServiceViewController.m in Sources */,
 				1846CFF320FDD3E100EA1417 /* HouseSpace.m in Sources */,
 				1846D00520FE2A8500EA1417 /* AddSpaceImageViewController.m in Sources */,
+				18399C32211D6C08007CAD58 /* TopicCommentModel.m in Sources */,
 				0A55829F20C11B1D00759E6B /* MasterDetailsVC.m in Sources */,
 				0A5A7B2D20C7DB9300153E9A /* SDImageView.m in Sources */,
 				0A7D506320C43C62001BFDBF /* MyTopicViewController.m in Sources */,
@@ -2375,10 +2435,12 @@
 				184D07D920D11C8D00653D81 /* NSString+Predicate.m in Sources */,
 				0AD2DEB920CA51F500E53B43 /* MyArticleViewController.m in Sources */,
 				187C11F420D0E42600E8DDC7 /* LoginViewController.m in Sources */,
+				18399C3A21206FA5007CAD58 /* AddTopicCommentViewController.m in Sources */,
 				0A5CD82120C592C70028F82D /* MyOrderViewController.m in Sources */,
 				18ED87E321008D7100B38548 /* ChargingCaseViewController.m in Sources */,
 				1846CFD120F836FB00EA1417 /* PullDownView.m in Sources */,
 				0AFEE76920BD2F50004FA8FC /* KBTabbar.m in Sources */,
+				189AB91C211D2BE2003E04C9 /* TopicListView.m in Sources */,
 				0A7D503A20C42357001BFDBF /* NavTwoTitle.m in Sources */,
 				0A45D95B20CB8322000C04B8 /* SupervisorDetailsVC.m in Sources */,
 				0A3085BC20C02E1100882805 /* DesignerDetailsVC.m in Sources */,
@@ -2547,7 +2609,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7MT463WE3Z;
+				DEVELOPMENT_TEAM = BM346B8964;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/anjuyi1/BaiduMapAPI",
@@ -2590,8 +2652,9 @@
 					"\"UIKit\"",
 					"-fprofile-instr-generate",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lishuaiying.anjuyi;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.edeco.EdecoIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2604,7 +2667,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7MT463WE3Z;
+				DEVELOPMENT_TEAM = BM346B8964;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/anjuyi1/BaiduMapAPI",
@@ -2647,8 +2710,9 @@
 					"\"UIKit\"",
 					"-fprofile-instr-generate",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lishuaiying.anjuyi;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.edeco.EdecoIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

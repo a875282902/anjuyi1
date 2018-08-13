@@ -15,7 +15,7 @@
 #import "SearchView.h"
 #import "HomeTableViewCell.h"
 
-
+#import "TopicListViewController.h"//话题
 #import "ActivityViewController.h"//活动精选
 
 #import "ChargingHomeViewController.h"//充电桩
@@ -526,7 +526,8 @@
             
         case 1://话题
         {
-            
+            TopicListViewController *VC = [[TopicListViewController alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
             
         }
             break;

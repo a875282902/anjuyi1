@@ -69,15 +69,18 @@ static NSInteger const viewHeight = 50;
         
         UIButton *btn = [Tools creatButton:CGRectMake(x, 15, w, 35) font:[UIFont systemFontOfSize:15] color:TCOLOR title:name image:@""];
         [btn setTag:i];
-        [btn setTitleColor:GCOLOR forState:(UIControlStateNormal)];
+        [btn setTitleColor:GCOLOR forState:(UIControlStateSelected)];
         [btn addTarget:self action:@selector(buttonDidPress:) forControlEvents:(UIControlEventTouchUpInside)];
         [self.tmpScrollView addSubview:btn];
-        
-        [self.buttonArr addObject:btn];
         if (i==0) {
             [btn setSelected:YES];
             [self.lineView setFrame:CGRectMake(x+5, 48, w-10, 2)];
+            [self.tmpScrollView addSubview:self.lineView];
         }
+        x += w+10;
+        
+        [self.buttonArr addObject:btn];
+        
     }
     
 }
@@ -91,12 +94,18 @@ static NSInteger const viewHeight = 50;
         
         [sender setSelected:YES];
         
+        [UIView animateWithDuration:.2 animations:^{
+            [self.lineView setCenter:CGPointMake(sender.center.x, self.lineView.center.y)];
+        }];
+        
         [self.delegate clickBtnIndex:sender.tag];
     }
-    
-    
-    
+
 }
 
+- (void)selectBtnIndex:(NSInteger)index{
+    
+    [self buttonDidPress:self.buttonArr[index]];
+}
 
 @end

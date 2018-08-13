@@ -128,7 +128,6 @@
         }
         [_tmpScrollView setDelegate:self];
         [_tmpScrollView setBackgroundColor:MDRGBA(0, 0, 0, 0)];
-
         [_tmpScrollView setContentSize:CGSizeMake(KScreenWidth, 2*KScreenHeight)];
         [_tmpScrollView setShowsVerticalScrollIndicator:NO];
         [_tmpScrollView setShowsHorizontalScrollIndicator:NO];

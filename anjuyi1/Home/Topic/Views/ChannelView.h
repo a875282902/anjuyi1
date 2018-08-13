@@ -20,4 +20,6 @@
 
 @property (nonatomic,weak)id<ChannelViewDelegate>delegate;
 
+- (void)selectBtnIndex:(NSInteger)index;
+
 @end
