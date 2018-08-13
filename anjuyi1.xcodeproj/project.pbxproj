@@ -216,6 +216,15 @@
 		18399C3A21206FA5007CAD58 /* AddTopicCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C3921206FA5007CAD58 /* AddTopicCommentViewController.m */; };
 		18399C3D21207177007CAD58 /* AddTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C3C21207177007CAD58 /* AddTopicViewController.m */; };
 		18399C402120824C007CAD58 /* SelectCategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C3F2120824C007CAD58 /* SelectCategy.m */; };
+		18399C4821215ADC007CAD58 /* jpush-ios-3.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C4421215ADB007CAD58 /* jpush-ios-3.1.0.a */; };
+		18399C4A21215ADC007CAD58 /* jcore-ios-1.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C4621215ADC007CAD58 /* jcore-ios-1.2.1.a */; };
+		18399C4C21215B1E007CAD58 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C4B21215B1D007CAD58 /* CFNetwork.framework */; };
+		18399C4E21215B35007CAD58 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C4D21215B34007CAD58 /* CoreFoundation.framework */; };
+		18399C5021215B4C007CAD58 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C4F21215B4C007CAD58 /* Foundation.framework */; };
+		18399C5221215B51007CAD58 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5121215B51007CAD58 /* UIKit.framework */; };
+		18399C5421215B5D007CAD58 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5321215B5D007CAD58 /* libz.tbd */; };
+		18399C5621215B65007CAD58 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5521215B65007CAD58 /* UserNotifications.framework */; };
+		18399C5821215B6C007CAD58 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5721215B6C007CAD58 /* libresolv.tbd */; };
 		1846CFD120F836FB00EA1417 /* PullDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD020F836FB00EA1417 /* PullDownView.m */; };
 		1846CFD420F85B8B00EA1417 /* ProjectAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD320F85B8B00EA1417 /* ProjectAddressViewController.m */; };
 		1846CFD720F88F8900EA1417 /* LabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD620F88F8900EA1417 /* LabelViewController.m */; };
@@ -673,6 +682,17 @@
 		18399C3C21207177007CAD58 /* AddTopicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTopicViewController.m; sourceTree = "<group>"; };
 		18399C3E2120824C007CAD58 /* SelectCategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCategy.h; sourceTree = "<group>"; };
 		18399C3F2120824C007CAD58 /* SelectCategy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCategy.m; sourceTree = "<group>"; };
+		18399C4121215A0D007CAD58 /* anjuyi1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = anjuyi1.entitlements; sourceTree = "<group>"; };
+		18399C4321215ADB007CAD58 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		18399C4421215ADB007CAD58 /* jpush-ios-3.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.1.0.a"; sourceTree = "<group>"; };
+		18399C4621215ADC007CAD58 /* jcore-ios-1.2.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jcore-ios-1.2.1.a"; sourceTree = "<group>"; };
+		18399C4B21215B1D007CAD58 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		18399C4D21215B34007CAD58 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		18399C4F21215B4C007CAD58 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		18399C5121215B51007CAD58 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		18399C5321215B5D007CAD58 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		18399C5521215B65007CAD58 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		18399C5721215B6C007CAD58 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		1846CFCF20F836FB00EA1417 /* PullDownView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullDownView.h; sourceTree = "<group>"; };
 		1846CFD020F836FB00EA1417 /* PullDownView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullDownView.m; sourceTree = "<group>"; };
 		1846CFD220F85B8B00EA1417 /* ProjectAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectAddressViewController.h; sourceTree = "<group>"; };
@@ -805,6 +825,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18399C5821215B6C007CAD58 /* libresolv.tbd in Frameworks */,
+				18399C5621215B65007CAD58 /* UserNotifications.framework in Frameworks */,
+				18399C5421215B5D007CAD58 /* libz.tbd in Frameworks */,
+				18ED885A2100D57900B38548 /* Security.framework in Frameworks */,
+				18399C5221215B51007CAD58 /* UIKit.framework in Frameworks */,
+				18399C5021215B4C007CAD58 /* Foundation.framework in Frameworks */,
+				18ED88582100D57300B38548 /* CoreGraphics.framework in Frameworks */,
+				18ED88562100D56C00B38548 /* SystemConfiguration.framework in Frameworks */,
+				18ED885E2100D58C00B38548 /* CoreTelephony.framework in Frameworks */,
+				18399C4E21215B35007CAD58 /* CoreFoundation.framework in Frameworks */,
+				18399C4C21215B1E007CAD58 /* CFNetwork.framework in Frameworks */,
 				182CDAA821098D1E00F28F4C /* libsqlite3.tbd in Frameworks */,
 				18ED885C2100D58000B38548 /* libsqlite3.0.tbd in Frameworks */,
 				1827513221019C28002A61F8 /* CoreData.framework in Frameworks */,
@@ -813,10 +844,6 @@
 				1827512C210194A6002A61F8 /* JavaScriptCore.framework in Frameworks */,
 				1827512A21019480002A61F8 /* Photos.framework in Frameworks */,
 				18ED88602100D59300B38548 /* libstdc++.6.0.9.tbd in Frameworks */,
-				18ED885E2100D58C00B38548 /* CoreTelephony.framework in Frameworks */,
-				18ED885A2100D57900B38548 /* Security.framework in Frameworks */,
-				18ED88582100D57300B38548 /* CoreGraphics.framework in Frameworks */,
-				18ED88562100D56C00B38548 /* SystemConfiguration.framework in Frameworks */,
 				18ED88542100D56600B38548 /* OpenGLES.framework in Frameworks */,
 				18ED88522100D56000B38548 /* QuartzCore.framework in Frameworks */,
 				18ED88502100D55C00B38548 /* CoreLocation.framework in Frameworks */,
@@ -828,8 +855,10 @@
 				18ED88442100D4DE00B38548 /* BaiduMapAPI_Location.framework in Frameworks */,
 				18ED88492100D4DE00B38548 /* BaiduMapAPI_Base.framework in Frameworks */,
 				18ED88462100D4DE00B38548 /* libcrypto.a in Frameworks */,
+				18399C4A21215ADC007CAD58 /* jcore-ios-1.2.1.a in Frameworks */,
 				18ED884B2100D4DE00B38548 /* BaiduMapAPI_Radar.framework in Frameworks */,
 				18ED88452100D4DE00B38548 /* BaiduMapAPI_Map.framework in Frameworks */,
+				18399C4821215ADC007CAD58 /* jpush-ios-3.1.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1476,6 +1505,8 @@
 		0AFEE71120BD2F23004FA8FC /* anjuyi1 */ = {
 			isa = PBXGroup;
 			children = (
+				18399C4221215A3F007CAD58 /* JGPush */,
+				18399C4121215A0D007CAD58 /* anjuyi1.entitlements */,
 				182CDA9E21097D4800F28F4C /* resource */,
 				18ED884D2100D4F700B38548 /* mapapi.bundle */,
 				18ED88392100D4DE00B38548 /* BaiduMapAPI */,
@@ -1862,6 +1893,16 @@
 			path = GoodsClass;
 			sourceTree = "<group>";
 		};
+		18399C4221215A3F007CAD58 /* JGPush */ = {
+			isa = PBXGroup;
+			children = (
+				18399C4621215ADC007CAD58 /* jcore-ios-1.2.1.a */,
+				18399C4421215ADB007CAD58 /* jpush-ios-3.1.0.a */,
+				18399C4321215ADB007CAD58 /* JPUSHService.h */,
+			);
+			path = JGPush;
+			sourceTree = "<group>";
+		};
 		1846CFD820FB8DE600EA1417 /* PushHouse */ = {
 			isa = PBXGroup;
 			children = (
@@ -2071,6 +2112,13 @@
 		E57638EA566F5CBF54092AE1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18399C5721215B6C007CAD58 /* libresolv.tbd */,
+				18399C5521215B65007CAD58 /* UserNotifications.framework */,
+				18399C5321215B5D007CAD58 /* libz.tbd */,
+				18399C5121215B51007CAD58 /* UIKit.framework */,
+				18399C4F21215B4C007CAD58 /* Foundation.framework */,
+				18399C4D21215B34007CAD58 /* CoreFoundation.framework */,
+				18399C4B21215B1D007CAD58 /* CFNetwork.framework */,
 				182CDAA721098D1D00F28F4C /* libsqlite3.tbd */,
 				1827513121019C28002A61F8 /* CoreData.framework */,
 				1827512F210195E5002A61F8 /* MapKit.framework */,
@@ -2124,6 +2172,11 @@
 				TargetAttributes = {
 					0AFEE70E20BD2F23004FA8FC = {
 						CreatedOnToolsVersion = 9.3.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -2607,6 +2660,7 @@
 			baseConfigurationReference = E1C082ED32D6D91A3A95B2F1 /* Pods-anjuyi1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = anjuyi1/anjuyi1.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BM346B8964;
@@ -2616,6 +2670,17 @@
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/anjuyi1/PrefixHeader.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/FMDB\"",
+					"\"${PODS_ROOT}/Headers/Public/IQKeyboardManager\"",
+					"\"${PODS_ROOT}/Headers/Public/MBProgressHUD\"",
+					"\"${PODS_ROOT}/Headers/Public/MJRefresh\"",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"\"$(SRCROOT)/JGPush\"",
+				);
 				INFOPLIST_FILE = anjuyi1/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2625,6 +2690,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/anjuyi1/BaiduMapAPI/thirdlibs",
+					"$(PROJECT_DIR)/anjuyi1/JGPush",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2665,6 +2731,7 @@
 			baseConfigurationReference = C2B52CBD25AF94FEBAF2F3B5 /* Pods-anjuyi1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = anjuyi1/anjuyi1.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BM346B8964;
@@ -2674,6 +2741,17 @@
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/anjuyi1/PrefixHeader.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/FMDB\"",
+					"\"${PODS_ROOT}/Headers/Public/IQKeyboardManager\"",
+					"\"${PODS_ROOT}/Headers/Public/MBProgressHUD\"",
+					"\"${PODS_ROOT}/Headers/Public/MJRefresh\"",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"\"$(SRCROOT)/JGPush\"",
+				);
 				INFOPLIST_FILE = anjuyi1/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2683,6 +2761,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/anjuyi1/BaiduMapAPI/thirdlibs",
+					"$(PROJECT_DIR)/anjuyi1/JGPush",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

@@ -62,6 +62,9 @@
 
 #define KURL @"https://api.ajyvip.com"
 
+//参数
+#define JGAppKey @"24366ef1db5d7e438a2a522c"
+
 #define UTOKEN [[NSUserDefaults standardUserDefaults] valueForKey:@"UTOKEN"]
 
 #ifdef __OBJC__
