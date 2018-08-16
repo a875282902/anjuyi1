@@ -225,6 +225,8 @@
 		18399C5421215B5D007CAD58 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5321215B5D007CAD58 /* libz.tbd */; };
 		18399C5621215B65007CAD58 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5521215B65007CAD58 /* UserNotifications.framework */; };
 		18399C5821215B6C007CAD58 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5721215B6C007CAD58 /* libresolv.tbd */; };
+		18399C5B212167CD007CAD58 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5A212167CD007CAD58 /* UMCommon.framework */; };
+		18399C5D212167D7007CAD58 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5C212167D7007CAD58 /* UMAnalytics.framework */; };
 		1846CFD120F836FB00EA1417 /* PullDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD020F836FB00EA1417 /* PullDownView.m */; };
 		1846CFD420F85B8B00EA1417 /* ProjectAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD320F85B8B00EA1417 /* ProjectAddressViewController.m */; };
 		1846CFD720F88F8900EA1417 /* LabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD620F88F8900EA1417 /* LabelViewController.m */; };
@@ -693,6 +695,8 @@
 		18399C5321215B5D007CAD58 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		18399C5521215B65007CAD58 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		18399C5721215B6C007CAD58 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		18399C5A212167CD007CAD58 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
+		18399C5C212167D7007CAD58 /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMAnalytics.framework; sourceTree = "<group>"; };
 		1846CFCF20F836FB00EA1417 /* PullDownView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullDownView.h; sourceTree = "<group>"; };
 		1846CFD020F836FB00EA1417 /* PullDownView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullDownView.m; sourceTree = "<group>"; };
 		1846CFD220F85B8B00EA1417 /* ProjectAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectAddressViewController.h; sourceTree = "<group>"; };
@@ -825,18 +829,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18ED88562100D56C00B38548 /* SystemConfiguration.framework in Frameworks */,
+				182CDAA821098D1E00F28F4C /* libsqlite3.tbd in Frameworks */,
+				18399C5421215B5D007CAD58 /* libz.tbd in Frameworks */,
+				18ED885E2100D58C00B38548 /* CoreTelephony.framework in Frameworks */,
 				18399C5821215B6C007CAD58 /* libresolv.tbd in Frameworks */,
 				18399C5621215B65007CAD58 /* UserNotifications.framework in Frameworks */,
-				18399C5421215B5D007CAD58 /* libz.tbd in Frameworks */,
 				18ED885A2100D57900B38548 /* Security.framework in Frameworks */,
 				18399C5221215B51007CAD58 /* UIKit.framework in Frameworks */,
 				18399C5021215B4C007CAD58 /* Foundation.framework in Frameworks */,
 				18ED88582100D57300B38548 /* CoreGraphics.framework in Frameworks */,
-				18ED88562100D56C00B38548 /* SystemConfiguration.framework in Frameworks */,
-				18ED885E2100D58C00B38548 /* CoreTelephony.framework in Frameworks */,
+				18399C5B212167CD007CAD58 /* UMCommon.framework in Frameworks */,
 				18399C4E21215B35007CAD58 /* CoreFoundation.framework in Frameworks */,
 				18399C4C21215B1E007CAD58 /* CFNetwork.framework in Frameworks */,
-				182CDAA821098D1E00F28F4C /* libsqlite3.tbd in Frameworks */,
 				18ED885C2100D58000B38548 /* libsqlite3.0.tbd in Frameworks */,
 				1827513221019C28002A61F8 /* CoreData.framework in Frameworks */,
 				18275130210195E5002A61F8 /* MapKit.framework in Frameworks */,
@@ -859,6 +864,7 @@
 				18ED884B2100D4DE00B38548 /* BaiduMapAPI_Radar.framework in Frameworks */,
 				18ED88452100D4DE00B38548 /* BaiduMapAPI_Map.framework in Frameworks */,
 				18399C4821215ADC007CAD58 /* jpush-ios-3.1.0.a in Frameworks */,
+				18399C5D212167D7007CAD58 /* UMAnalytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1505,6 +1511,7 @@
 		0AFEE71120BD2F23004FA8FC /* anjuyi1 */ = {
 			isa = PBXGroup;
 			children = (
+				18399C59212166EC007CAD58 /* U-App */,
 				18399C4221215A3F007CAD58 /* JGPush */,
 				18399C4121215A0D007CAD58 /* anjuyi1.entitlements */,
 				182CDA9E21097D4800F28F4C /* resource */,
@@ -1901,6 +1908,15 @@
 				18399C4321215ADB007CAD58 /* JPUSHService.h */,
 			);
 			path = JGPush;
+			sourceTree = "<group>";
+		};
+		18399C59212166EC007CAD58 /* U-App */ = {
+			isa = PBXGroup;
+			children = (
+				18399C5C212167D7007CAD58 /* UMAnalytics.framework */,
+				18399C5A212167CD007CAD58 /* UMCommon.framework */,
+			);
+			path = "U-App";
 			sourceTree = "<group>";
 		};
 		1846CFD820FB8DE600EA1417 /* PushHouse */ = {
@@ -2667,6 +2683,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/anjuyi1/BaiduMapAPI",
+					"$(PROJECT_DIR)/anjuyi1/U-App",
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/anjuyi1/PrefixHeader.pch";
@@ -2738,6 +2755,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/anjuyi1/BaiduMapAPI",
+					"$(PROJECT_DIR)/anjuyi1/U-App",
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/anjuyi1/PrefixHeader.pch";

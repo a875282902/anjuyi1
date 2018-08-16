@@ -23,6 +23,8 @@
 #import <UserNotifications/UserNotifications.h>
 #endif
 
+#import <UMCommon/UMConfigure.h>
+
 @interface AppDelegate ()<JPUSHRegisterDelegate>
 
 @end
@@ -42,6 +44,8 @@
     }
 
     [self registJGPush:launchOptions];
+    
+    [self umCommnont];
     
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -129,6 +133,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     // Required,For systems with less than or equal to iOS6
     [JPUSHService handleRemoteNotification:userInfo];
+}
+
+#pragma mark -- 友盟统计
+- (void)umCommnont{
+    
+    [UMConfigure initWithAppkey:@"570f1af067e58eab75002315" channel:@"App Store"];
 }
 
 

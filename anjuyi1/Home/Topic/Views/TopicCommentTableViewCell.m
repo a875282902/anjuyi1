@@ -40,10 +40,11 @@
     [self.collectButton setTitle:[NSString stringWithFormat:@"%@",model.collect_num] forState:(UIControlStateNormal)];
     [self.collectButton setSelected:[model.is_collect integerValue]==1?YES:NO];
     
-    [self.descLabel setNumberOfLines:model.isShow?0:3];
-    [self.showAll setSelected:model.isShow];
-    [self.showAll setHidden:model.isShowAllButton];
-
+//    [self.descLabel setNumberOfLines:model.isShow?0:3];
+//    [self.showAll setSelected:model.isShow];
+//    [self.showAll setHidden:model.isShowAllButton];
+    [self.showAll setHidden:YES];
+    [self.descLabel setNumberOfLines:0];
 }
 
 - (IBAction)adopt:(UIButton *)sender {
