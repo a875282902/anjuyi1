@@ -10,4 +10,6 @@
 
 @interface CraftSmenDetailsVC : BaseViewController
 
+@property (nonatomic,strong)NSString *craftsmenType;
+
 @end

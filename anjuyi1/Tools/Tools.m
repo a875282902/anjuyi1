@@ -41,7 +41,7 @@
 + (UIView *)setLineView:(CGRect)rect{
     
     UIView *line = [[UIView alloc] initWithFrame:rect];
-    [line setBackgroundColor:[UIColor colorWithHexString:@"#d1d1d1"]];
+    [line setBackgroundColor:[UIColor colorWithHexString:@"#f6f6f6"]];
     
     return line;
 }

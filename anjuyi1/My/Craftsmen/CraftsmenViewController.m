@@ -8,6 +8,7 @@
 
 #import "CraftsmenViewController.h"
 #import "CraftsmanTypeVC.h"//工匠类型
+#import "NSString+Predicate.h"
 
 @interface CraftsmenViewController ()<UIScrollViewDelegate>
 {
@@ -15,6 +16,8 @@
     UIButton *codeBtn;
 }
 @property (nonatomic,strong)UIScrollView *tmpScrollView;
+
+@property (nonatomic,strong)NSMutableArray *textArr;
 
 @property (nonatomic,strong)NSTimer *timer;
 
@@ -27,6 +30,8 @@
     // Do any additional setup after loading the view.
     [self setTitle:@"工匠汇"];
     [self baseForDefaultLeftNavButton];
+    
+    self.textArr = [NSMutableArray array];
     
     [self.view addSubview:self.tmpScrollView];
     
@@ -69,7 +74,11 @@
         [textField setFont:[UIFont systemFontOfSize:15]];
         [textField setPlaceholder:tArr[i]];
         [textField setValue:[UIColor colorWithHexString:@"#999999"] forKeyPath:@"_placeholderLabel.textColor"];
+        [textField setTag:i];
+        [textField addTarget:self action:@selector(textValueChange:) forControlEvents:(UIControlEventEditingChanged)];
         [self.tmpScrollView addSubview:textField];
+        
+        [self.textArr addObject:@""];
         
         [self.tmpScrollView addSubview:[Tools setLineView:CGRectMake(15, height + 59, KScreenWidth - 30, 1)]];
         
@@ -114,18 +123,56 @@
     [self.tmpScrollView setContentSize:CGSizeMake(KScreenWidth, height)];
 }
 
+
+- (void)textValueChange:(UITextField *)sender{
+    
+    [self.textArr replaceObjectAtIndex:sender.tag withObject:sender.text];
+}
+
+
 - (void)getCode:(UIButton *)sender{
     
-    if (!self.timer) {
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeChange) userInfo:nil repeats:YES];
+    if ([self.textArr[2] length]!= 0) {
+        [ViewHelps showHUDWithText:@"请输入正确的手机号码"];
+        return;
     }
     
-    [sender removeTarget:self action:@selector(getCode:) forControlEvents:(UIControlEventTouchUpInside)];
+    NSString *path = [NSString stringWithFormat:@"%@/login/getMobileCode",KURL];
     
-    [sender setTitle:@"60 S" forState:(UIControlStateNormal)];
+    NSDictionary *dic = @{@"mobile":self.textArr[2]};
     
-    time = 60;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            
+            if (!weakSelf.timer) {
+                weakSelf.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeChange) userInfo:nil repeats:YES];
+            }
+            
+            [sender removeTarget:weakSelf action:@selector(getCode:) forControlEvents:(UIControlEventTouchUpInside)];
+            
+            [sender setTitle:@"60 S" forState:(UIControlStateNormal)];
+            
+            self->time = 60;
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
 }
 
 - (void)timeChange{
@@ -146,8 +193,60 @@
 
 - (void)sureAuthentication{
     
-    CraftsmanTypeVC *vc = [[CraftsmanTypeVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (![self.textArr[0] isValidBankCardNumber]) {
+        [ViewHelps showHUDWithText:@"请输入正确的银行卡号"];
+    }
+    if (!([self.textArr[1] isValidIdentifyFifteen] && [self.textArr[1] isValidIdentifyEighteen])) {
+        
+        [ViewHelps showHUDWithText:@"请输入正确的身份证号"];
+    }
+    
+    if (![self.textArr[2] isValidMobileNumber]) {
+        [ViewHelps showHUDWithText:@"请输入正确的手机号"];
+    }
+    
+    if (![self.textArr[3] isValidRealName]) {
+        [ViewHelps showHUDWithText:@"请输入正确的姓名"];
+    }
+    if ([self.textArr[4] length] != 6) {
+        [ViewHelps showHUDWithText:@"请输入验证码"];
+    }
+    
+    
+    NSString *path = [NSString stringWithFormat:@"%@/craftsman/authentication",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *dic = @{@"bankcard":self.textArr[0],
+                          @"idcard":self.textArr[1],
+                          @"mobile":self.textArr[2],
+                          @"realname":self.textArr[3],
+                          @"code":self.textArr[4]};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+ 
+            CraftsmanTypeVC *vc = [[CraftsmanTypeVC alloc] init];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
     
 }
 

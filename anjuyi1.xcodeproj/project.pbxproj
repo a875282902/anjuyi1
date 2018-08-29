@@ -256,6 +256,8 @@
 		1862840D20F7314B0038A7AC /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862840C20F7314A0038A7AC /* BannerModel.m */; };
 		187C11ED20D0A8E400E8DDC7 /* UIColor+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C11EC20D0A8E400E8DDC7 /* UIColor+Category.m */; };
 		187C11F420D0E42600E8DDC7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C11F320D0E42600E8DDC7 /* LoginViewController.m */; };
+		188C55DF21368DEF00276E2F /* SelectTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 188C55DE21368DEF00276E2F /* SelectTypeView.m */; };
+		188C55E2213693DF00276E2F /* SelectCityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 188C55E1213693DF00276E2F /* SelectCityView.m */; };
 		189AB91C211D2BE2003E04C9 /* TopicListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 189AB91B211D2BE2003E04C9 /* TopicListView.m */; };
 		189AB91F211D2E46003E04C9 /* TopicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 189AB91E211D2E46003E04C9 /* TopicModel.m */; };
 		189AB923211D2FA3003E04C9 /* TopicListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189AB921211D2FA3003E04C9 /* TopicListTableViewCell.m */; };
@@ -753,6 +755,10 @@
 		187C11EC20D0A8E400E8DDC7 /* UIColor+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Category.m"; sourceTree = "<group>"; };
 		187C11F220D0E42600E8DDC7 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		187C11F320D0E42600E8DDC7 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		188C55DD21368DEF00276E2F /* SelectTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectTypeView.h; sourceTree = "<group>"; };
+		188C55DE21368DEF00276E2F /* SelectTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectTypeView.m; sourceTree = "<group>"; };
+		188C55E0213693DF00276E2F /* SelectCityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCityView.h; sourceTree = "<group>"; };
+		188C55E1213693DF00276E2F /* SelectCityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCityView.m; sourceTree = "<group>"; };
 		189AB91A211D2BE2003E04C9 /* TopicListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicListView.h; sourceTree = "<group>"; };
 		189AB91B211D2BE2003E04C9 /* TopicListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicListView.m; sourceTree = "<group>"; };
 		189AB91D211D2E46003E04C9 /* TopicModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicModel.h; sourceTree = "<group>"; };
@@ -1517,7 +1523,6 @@
 				182CDA9E21097D4800F28F4C /* resource */,
 				18ED884D2100D4F700B38548 /* mapapi.bundle */,
 				18ED88392100D4DE00B38548 /* BaiduMapAPI */,
-				0AFEE77120BD2F61004FA8FC /* PrefixHeader.pch */,
 				187C11F120D0E13800E8DDC7 /* Login */,
 				0AFEE75320BD2F50004FA8FC /* Base.lproj */,
 				0AFEE74C20BD2F50004FA8FC /* BaseConfig */,
@@ -1535,6 +1540,7 @@
 				0AFEE71E20BD2F26004FA8FC /* Assets.xcassets */,
 				0AFEE72020BD2F26004FA8FC /* LaunchScreen.storyboard */,
 				0AFEE72320BD2F26004FA8FC /* Info.plist */,
+				0AFEE77120BD2F61004FA8FC /* PrefixHeader.pch */,
 				0AFEE72420BD2F26004FA8FC /* main.m */,
 				0AFEE71B20BD2F23004FA8FC /* anjuyi1.xcdatamodeld */,
 			);
@@ -1598,6 +1604,10 @@
 				182CDAA521097DA900F28F4C /* DBManager.m */,
 				180F19AE211717BF0018F1CD /* LSYLocation.h */,
 				180F19AF211717BF0018F1CD /* LSYLocation.m */,
+				188C55DD21368DEF00276E2F /* SelectTypeView.h */,
+				188C55DE21368DEF00276E2F /* SelectTypeView.m */,
+				188C55E0213693DF00276E2F /* SelectCityView.h */,
+				188C55E1213693DF00276E2F /* SelectCityView.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -2489,10 +2499,12 @@
 				0A5CD84420C67A330028F82D /* SelectTime.m in Sources */,
 				0A7D505520C433CF001BFDBF /* MyAnswerTableViewCell.m in Sources */,
 				0A5CD84F20C695170028F82D /* IntegralMallTableViewCell.m in Sources */,
+				188C55E2213693DF00276E2F /* SelectCityView.m in Sources */,
 				18EA1BDB20E1CD3A000738CC /* SortPullDown.m in Sources */,
 				1846CFE920FD85F100EA1417 /* HousePriceViewController.m in Sources */,
 				18339CDC20D2656800165FF2 /* FreeOfferViewController.m in Sources */,
 				0A7D4FF020C23462001BFDBF /* ProjectCollectionViewCell.m in Sources */,
+				188C55DF21368DEF00276E2F /* SelectTypeView.m in Sources */,
 				0A45D95720CB7CB2000C04B8 /* PlaceSupervisorViewController.m in Sources */,
 				1846D00C20FE389900EA1417 /* SpaceImageListTableViewCell.m in Sources */,
 				18F5B7CB20E9D90F00B76A73 /* AlbumSelectController.m in Sources */,

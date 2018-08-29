@@ -10,7 +10,7 @@
 
 @implementation NSString (Predicate)
 - (BOOL) isValidMobileNumber {
-    NSString* const MOBILE = @"^1(3|4|5|7|8)\\d{9}$";
+    NSString* const MOBILE = @"^1(3|4|5|6|7|8|9)\\d{9}$";
     
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
     return [predicate evaluateWithObject:self];

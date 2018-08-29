@@ -33,7 +33,8 @@
 #import "ContractViewController.h"//合同管理
 #import "DistributionViewController.h"//分销统计
 
-#import "CraftsmenViewController.h"//工匠汇
+#import "CraftsmenViewController.h"
+#import "CraftsmanTypeVC.h"//工匠汇
 #import "OrderCenterViewController.h"//接单中心
 
 
@@ -384,8 +385,7 @@
     switch (sender.view.tag) {
         case 0:
         {
-            CraftsmenViewController *controller = [[CraftsmenViewController alloc] init];
-            [self.navigationController pushViewController:controller animated:YES];
+            [self checkIsRealName];
         }
             break;
         case 3:
@@ -400,6 +400,46 @@
     }
 }
 
+//检测是否实名认证
+- (void)checkIsRealName{
+    
+    
+    NSString *path = [NSString stringWithFormat:@"%@/craftsman/check_authentication",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            CraftsmanTypeVC *controller = [[CraftsmanTypeVC alloc] init];
+            [weakSelf.navigationController pushViewController:controller animated:YES];
+        }
+        else if ([responseObject[@"code"] integerValue] == 202) {
+            
+            CraftsmenViewController *controller = [[CraftsmenViewController alloc] init];
+            [weakSelf.navigationController pushViewController:controller animated:YES];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
+}
 
 #pragma mark -- 选择照片
 - (void)chooseImageFromIphone{

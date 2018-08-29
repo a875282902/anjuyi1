@@ -8,15 +8,31 @@
 //
 
 #import "CraftSmenDetailsVC.h"
+#import "SelectTypeView.h"
+#import "SelectCityView.h"
 
-@interface CraftSmenDetailsVC ()<UIScrollViewDelegate,UITextViewDelegate>
+@interface CraftSmenDetailsVC ()<UIScrollViewDelegate,UITextViewDelegate,SelectTypeViewDelegate,SelectCityViewDelegate>
 {
     UILabel *_personPlace;
     UILabel *_servicePlace;
+    
+    NSString * minPrice;
+    NSString * maxPrice;
+    NSString * personDetails;
+    NSString * serviceDetails;
+    
+    NSDictionary * areaDic;
 }
 
 @property (nonatomic,strong)UIScrollView     *tmpScrollView;
+
 @property (nonatomic,strong)NSMutableArray   *labelArr;
+@property (nonatomic,strong)NSMutableArray   *serviceArr;//保存选择的服务类型
+
+@property (nonatomic,strong)SelectTypeView   *selectType;
+@property (nonatomic,strong)NSDictionary     *typeDic;
+@property (nonatomic,strong)SelectCityView   *selectCity;
+
 
 @end
 
@@ -28,11 +44,50 @@
     [self setTitle:@"工匠汇"];
     [self baseForDefaultLeftNavButton];
     
+    self.labelArr = [NSMutableArray array];
+    self.serviceArr = [NSMutableArray array];
+    
     [self.view addSubview:self.tmpScrollView];
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1)]];
     
     [self setUpUI];
+    
+    [self requestData];
+    
+    [self.view addSubview:self.selectType];
+    
+    [self.view addSubview:self.selectCity];
+}
+
+- (void)requestData{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/Craftsman/get_crafts_info",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:@{@"type":self.craftsmenType} success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            weakSelf.typeDic = responseObject[@"datas"][@"info"];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
 }
 
 -(UIScrollView *)tmpScrollView{
@@ -73,8 +128,9 @@
         
         UILabel *label = [Tools creatLabel:CGRectMake(15, 0, KScreenWidth - 45, 50) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentRight) title:@"请选择"];
         [v addSubview:label];
-        
+        [label setTag:i];
         [self.labelArr addObject:label];
+        [self.serviceArr addObject:@""];
         
         [v addSubview:[Tools creatImage:CGRectMake(KScreenWidth - 21, 20, 6, 10) image:@"arrow_dark"]];
         
@@ -91,6 +147,7 @@
     [minPrice setBorderStyle:(UITextBorderStyleRoundedRect)];
     [minPrice setTextAlignment:(NSTextAlignmentCenter)];
     [minPrice setPlaceholder:@"输入低价"];
+    [minPrice addTarget:self action:@selector(minPriceChangeValue:) forControlEvents:(UIControlEventEditingChanged)];
     [minPrice setKeyboardType:(UIKeyboardTypeNumberPad)];
     [minPrice setFont:[UIFont systemFontOfSize:16]];
     [self.tmpScrollView addSubview:minPrice];
@@ -99,6 +156,7 @@
     [maxPrice setBorderStyle:(UITextBorderStyleRoundedRect)];
     [maxPrice setTextAlignment:(NSTextAlignmentCenter)];
     [maxPrice setPlaceholder:@"输入高价"];
+    [maxPrice addTarget:self action:@selector(maxPriceChangeValue:) forControlEvents:(UIControlEventEditingChanged)];
     [maxPrice setKeyboardType:(UIKeyboardTypeNumberPad)];
     [maxPrice setFont:[UIFont systemFontOfSize:16]];
     [self.tmpScrollView addSubview:maxPrice];
@@ -187,23 +245,157 @@
     [self.tmpScrollView setContentSize:CGSizeMake(KScreenWidth, height)];
 }
 
+
+- (SelectTypeView *)selectType{
+    
+    if (!_selectType) {
+        
+        _selectType = [[SelectTypeView alloc] initWithFrame:CGRectMake(0, 0 , KScreenWidth, KViewHeight)];
+        [_selectType setDelegate:self];
+    }
+    return _selectType;
+}
+- (SelectCityView *)selectCity{
+    
+    if (!_selectCity) {
+        
+        _selectCity = [[SelectCityView alloc] initWithFrame:CGRectMake(0, 0 , KScreenWidth, KViewHeight)];
+        [_selectCity setDelegate:self];
+    }
+    return _selectCity;
+}
+
 #pragma mark -- 点击事件
+//选择服务类型
 - (void)selectMyExperience:(UITapGestureRecognizer *)sender{
+    
+    NSArray *arr = @[@"service_type",@"employment_time",@"single_num"];
+
+    [self.selectType setDataArr:((NSArray *)[self.typeDic valueForKey:arr[sender.view.tag]])];
+    [self.selectType setTag:sender.view.tag];
+    [self.selectType show];
+}
+
+- (void)selectTypeWithInfo:(NSDictionary *)info view:(SelectTypeView *)selectView{
+    
+    UILabel *label = self.labelArr[selectView.tag];
+    
+    [label setText:info[@"value"]];
+    [label setTextColor:TCOLOR];
+    
+    [self.serviceArr replaceObjectAtIndex:selectView.tag withObject:info];
+}
+
+//选择地址
+- (void)selectServiceLocation{
+    
+    [self.selectCity show];
     
 }
 
-- (void)selectServiceLocation{
+- (void)sureProvince:(NSDictionary *)province city:(NSDictionary *)city area:(NSDictionary *)area{
     
+    UILabel *label = self.labelArr[3];
+    [label setText:[NSString stringWithFormat:@"%@  %@ %@",province[@"value"],city[@"value"] ,area[@"value"]]];
+    [label setTextColor:TCOLOR];
     
+    areaDic = area;
+}
+
+//最低价
+- (void)minPriceChangeValue:(UITextField *)sender{
+    
+    minPrice = sender.text;
+}
+
+//最高价
+- (void)maxPriceChangeValue:(UITextField *)sender{
+    
+    maxPrice = sender.text;
 }
 
 - (void)upDataToService{
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    NSArray *arr = @[@"请选择服务类型",@"请选择从业时间",@"请选择接单数"];
+    
+    for (NSInteger i = 0 ; i < self.serviceArr.count; i++) {
+        id obj = self.serviceArr[i];
+        if (![obj isKindOfClass:[NSDictionary class]]) {
+            [ViewHelps showHUDWithText:arr[i]];
+            return;
+        }
+    }
+    
+    if (!minPrice) {
+        [ViewHelps showHUDWithText:@"请输入最低价"];
+        return;
+    }
+    if (!maxPrice) {
+        [ViewHelps showHUDWithText:@"请输入最高价"];
+        return;
+    }
+    if (!personDetails) {
+        [ViewHelps showHUDWithText:@"请输入个人简介"];
+        return;
+    }
+    if (!serviceDetails) {
+        [ViewHelps showHUDWithText:@"请输入服务简介"];
+        return;
+    }
+    
+    if (!areaDic) {
+        [ViewHelps showHUDWithText:@"请选择服务地区"];
+        return;
+    }
+    
+    NSString *path = [NSString stringWithFormat:@"%@/Craftsman/enter_crafts",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *dic = @{@"type":self.craftsmenType,
+                          @"service_craftsman_type":self.serviceArr[0][@"key"],
+                          @"working_craftsman_type":self.serviceArr[1][@"key"],
+                          @"order_craftsman_type":self.serviceArr[2][@"key"],
+                          @"guestLow":minPrice,
+                          @"guestHigh":maxPrice,
+                          @"personal":personDetails,
+                          @"service":serviceDetails,
+                          @"region":areaDic[@"key"]};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
+    
 }
 
 - (void)textViewDidChange:(UITextView *)textView{
 
+    
+    if (textView.text.length>100) {
+        
+        [textView setText:[textView.text substringToIndex:100]];
+    }
+    
     if (textView.tag == 1001) {
         if (textView.text.length == 0) {
             [_personPlace setHidden:NO];
@@ -211,6 +403,8 @@
         else{
             [_personPlace setHidden:YES];
         }
+        
+        personDetails = textView.text;
     }
     else{
         
@@ -220,13 +414,9 @@
         else{
             [_servicePlace setHidden:YES];
         }
-        
+        serviceDetails = textView.text;
     }
     
-    if (textView.text.length>100) {
-        
-        [textView setText:[textView.text substringToIndex:100]];
-    }
 
 }
 

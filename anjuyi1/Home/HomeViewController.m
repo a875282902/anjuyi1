@@ -97,9 +97,11 @@
     [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
+        [weakSelf.dataArr removeAllObjects];
         if ([responseObject[@"code"] integerValue] == 200) {
-            
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                
+            }
             
         }
         else{
