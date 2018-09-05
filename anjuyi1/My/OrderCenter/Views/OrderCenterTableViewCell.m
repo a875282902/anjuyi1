@@ -19,6 +19,14 @@
     return self;
 }
 
+- (void)bandDataWithModel:(OrderCenterModel *)model{
+
+    [self.typeLabel setText:[NSString stringWithFormat:@"类型：%@",model.type]];
+    
+    [self.ModelLabel setText:[NSString stringWithFormat:@"户型：%@%@",model.room,model.hall]];
+    
+    [self.moneyLabel setText:[NSString stringWithFormat:@"预算：%@",model.budget]];
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];

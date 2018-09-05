@@ -14,7 +14,7 @@ NSString * const YZUpdateMenuTitleNote = @"YZUpdateMenuTitleNote";
 
 @interface YZPullDownMenu ()
 /**
- *  下拉菜单所有按钮
+ *  下拉菜单所有按钮YZUpdateMenuTitleNote
  */
 @property (nonatomic, strong) NSMutableArray *menuButtons;
 /**
@@ -151,11 +151,13 @@ NSString * const YZUpdateMenuTitleNote = @"YZUpdateMenuTitleNote";
         NSArray *allValues = note.userInfo.allValues;
         
         // 不需要设置标题,字典个数大于1，或者有数组
-        if (allValues.count > 1 || [allValues.firstObject isKindOfClass:[NSArray class]]) return ;
+        if ([allValues.firstObject isKindOfClass:[NSArray class]]) return ;
         
         // 设置按钮标题
         [btn setTitle:allValues.firstObject forState:UIControlStateNormal];
         
+        
+        [self.delegate pullDownMenu:self selectForColAtIndex:[NSIndexPath indexPathForRow:[allValues.lastObject integerValue] inSection:col]];
     }];
 }
 
@@ -312,7 +314,7 @@ NSString * const YZUpdateMenuTitleNote = @"YZUpdateMenuTitleNote";
     }
     
     // 移除蒙版
-    self.coverView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+//    self.coverView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     
     [UIView animateWithDuration:0.25 animations:^{
         

@@ -10,6 +10,7 @@
 #import "PushPhotoViewController.h"//发布图片
 #import "PushProjectViewController.h"//发布项目
 #import "PushHouseViewController.h"//发布整屋
+#import "PushTaskViewController.h"//发布任务
 
 @implementation PushView
 
@@ -77,6 +78,13 @@
             [self.delegate jumpToViewControllerForPush:nav];
         }
             break;
+        case 3:
+        {
+            PushTaskViewController *controller = [[PushTaskViewController alloc] init];
+            BaseNaviViewController *nav = [[BaseNaviViewController alloc] initWithRootViewController:controller];
+            [self.delegate jumpToViewControllerForPush:nav];
+        }
+            break;
         case 4:
         {
             PushPhotoViewController *controller = [[PushPhotoViewController alloc] init];
@@ -91,6 +99,8 @@
             [self.delegate jumpToViewControllerForPush:nav];
         }
             break;
+            
+            
             
             
         default:

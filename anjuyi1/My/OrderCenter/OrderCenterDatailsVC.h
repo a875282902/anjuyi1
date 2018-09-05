@@ -10,4 +10,6 @@
 
 @interface OrderCenterDatailsVC : BaseViewController
 
+@property (nonatomic,strong) NSString *orderId;
+
 @end

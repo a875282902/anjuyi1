@@ -5,9 +5,9 @@
 //  Created by apple on 2018/6/14.
 //  Copyright © 2018年 lsy. All rights reserved.
 //
-//  免费报价
+//  发布任务
 
-#import "FreeOfferViewController.h"
+#import "PushTaskViewController.h"
 #import "SelectLocationVC.h"//选择地址
 
 #import "PullDownView.h"
@@ -16,7 +16,11 @@
 
 #import "LSYLocation.h"
 
-@interface FreeOfferViewController ()<SelectLocationVCDelegate,DefaultPullDownDelegate,LSYLocationDelegta>
+#import "PhotoSelectController.h"
+
+#define padding 20
+
+@interface PushTaskViewController ()<SelectLocationVCDelegate,DefaultPullDownDelegate,LSYLocationDelegta,UIScrollViewDelegate,PhotoSelectControllerDelegate>
 {
     NSInteger time;
     UIButton *codeBtn;
@@ -25,12 +29,19 @@
     NSDictionary *_area ;
     UIButton * _selectLocationBtn;
     NSInteger       _currentSelect;//当前下拉的view 0为房间 1为室
+    UIButton * _selectTypeBtn;
+    UIButton * _upLoadBtn;
+
 }
+
+@property (nonatomic,strong)UIScrollView   * tmpScrollView;
 
 @property (nonatomic,strong)NSMutableArray * textArr;
 @property (nonatomic,strong)NSTimer        * timer;
 @property (nonatomic,strong)UILabel        * location;
 @property (nonatomic,strong)LSYLocation    * locationSevice;
+@property (nonatomic,strong)UIView         * modelImageView;//户型图的view
+@property (nonatomic,strong)NSMutableArray * modelImageArr;//户型图的图片数组
 
 @property (nonatomic,strong)PullDownView     * pullDownView;//下拉选择框
 @property (nonatomic,strong)NSMutableArray   * roomArr;
@@ -41,33 +52,23 @@
 
 @end
 
-@implementation FreeOfferViewController
-
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    
-    [self setNavigationLeftBarButtonWithImageNamed:@""];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
-
+@implementation PushTaskViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.textArr = [NSMutableArray arrayWithObjects:@"",@"",@"",@"", nil];
+    [self baseForDefaultLeftNavButton];
+    
+    [self setTitle:@"发布任务"];
+    
+    self.textArr = [NSMutableArray arrayWithObjects:@"",@"",@"",@"",@"",@"",@"",@"",@"",@"", nil];
     time = 60;
     self.roomArr = [NSMutableArray array];
     self.hallArr = [NSMutableArray array];
     self.buttonArr = [NSMutableArray array];
     self.selectRoomArr = [NSMutableArray arrayWithObjects:@"",@"",@"", nil];
+    self.modelImageArr = [NSMutableArray arrayWithObjects:@"", nil];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
@@ -81,7 +82,7 @@
 - (void)getRoom{
     
     
-    NSString *path = [NSString stringWithFormat:@"%@/free/offer_info",KURL];
+    NSString *path = [NSString stringWithFormat:@"%@/person_task/get_publish_info",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
     
@@ -150,52 +151,58 @@
 
 #pragma mark --  UI
 
+-(UIScrollView *)tmpScrollView{
+    
+    if (!_tmpScrollView) {
+        _tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 50, KScreenWidth, KViewHeight-50-80)];
+        [_tmpScrollView setShowsVerticalScrollIndicator:NO];
+        [_tmpScrollView setShowsHorizontalScrollIndicator:NO];
+        if (@available(iOS 11.0, *)) {
+            [_tmpScrollView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
+        }
+        [_tmpScrollView setDelegate:self];
+    }
+    return _tmpScrollView;
+}
+
 - (void)setUpUI{
     
-    UIButton *registerb = [Tools creatButton:CGRectMake(MDXFrom6(35), KStatusBarHeight + MDXFrom6(30), MDXFrom6(60), MDXFrom6(30))  font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#e9c700"] title:@"" image:@"ss_back"];
-    [registerb setContentHorizontalAlignment:(UIControlContentHorizontalAlignmentLeft)];
-    [registerb.titleLabel setTextAlignment:(NSTextAlignmentLeft)];
-    [registerb addTarget:self action:@selector(back) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.view addSubview:registerb];
+    UIView * alertView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 50)];
+    [alertView setBackgroundColor:MDRGBA(246, 246, 246, 1)];
+    [self.view addSubview:alertView];
     
-    CGFloat height = KStatusBarHeight + MDXFrom6(90);
+    [alertView addSubview:[Tools creatLabel:CGRectMake(padding, 0, KScreenWidth - 2*padding, 50) font:[UIFont systemFontOfSize:12] color:TCOLOR alignment:(NSTextAlignmentLeft) title:@"发布说明：您发布的任务会由平台上的人员进行接单，请如实填写任务情况。"]];
     
+    [self.view addSubview:self.tmpScrollView];
     
-    [self.view addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(35), height, KScreenWidth - MDXFrom6(70), 22) font:[UIFont systemFontOfSize:21] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:@"免费报价"]];
-    
-    height += 50;
+    CGFloat height = 25.0f;;
     
     height = [self selectLocationView:height];//房屋地址
-
+    
+    height = [self selectRoomTypeView:height];//
+    
     height = [self selectRoomModelView:height];//房屋户型
     
     height = [self inputPersonInfor:height];//个人信息
+    
+    height = [self ceateCoverImage:height];//上传封面
+    
 
+    [self.tmpScrollView setContentSize:CGSizeMake(KScreenWidth, height)];
     
-    height += 40;
-    
-    [self.view addSubview:[Tools creatLabel:CGRectMake(0, height, KScreenWidth, 20) font:[UIFont systemFontOfSize:18] color:[UIColor redColor] alignment:(NSTextAlignmentCenter) title:@"预估价格：23万元"]];
-    
-    height += 60;
-    
-    UIButton *btn = [Tools creatButton:CGRectMake(MDXFrom6(35), height, KScreenWidth - MDXFrom6(70), MDXFrom6(50)) font:[UIFont systemFontOfSize:18] color:[UIColor whiteColor] title:@"提交" image:@""];
-    [btn setBackgroundColor:[UIColor colorWithHexString:@"#ffb638"]];
-    [btn.layer setCornerRadius:5];
-    [btn setClipsToBounds:YES];
-    [btn addTarget:self action:@selector(submit) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.view addSubview:btn];
-    
+    [self createPushButton];
+  
 }
 
 // ---------- 选择地址 -------
 - (CGFloat)selectLocationView:(CGFloat)height{
     
-    [self.view addSubview:[Tools creatImage:CGRectMake(MDXFrom6(35), height + 10, 15, 15) image:@"add_add"]];
+    [self.tmpScrollView addSubview:[Tools creatImage:CGRectMake(MDXFrom6(35), height + 10, 15, 15) image:@"add_add"]];
     
     CGRect rect = [@"北京  朝阳区" boundingRectWithSize:CGSizeMake(1000000, 35) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
     
     self.location = [Tools creatLabel:CGRectMake(MDXFrom6(60), height, rect.size.width , 35) font:[UIFont systemFontOfSize:15] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:@"北京  朝阳区"];
-    [self.view addSubview:self.location];
+    [self.tmpScrollView addSubview:self.location];
     
     UIButton * rechange = [Tools creatButton:CGRectMake(MDXFrom6(80) + rect.size.width, height, MDXFrom6(80), MDXFrom6(35)) font:[UIFont systemFontOfSize:14] color:[UIColor colorWithHexString:@"#23b7b5"] title:@"重新选择" image:@""];
     [rechange setBackgroundColor:[UIColor colorWithHexString:@"#eaf8f8"]];
@@ -203,19 +210,42 @@
     [rechange.layer setBorderColor:[UIColor colorWithHexString:@"#34bab8"].CGColor];
     [rechange.layer setBorderWidth:1];
     [rechange addTarget:self action:@selector(rechangeLocation:) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.view addSubview:rechange];
+    [self.tmpScrollView addSubview:rechange];
     
     _selectLocationBtn = rechange;
     
     return height + 50;
 }
 
+- (CGFloat)selectRoomTypeView:(CGFloat)height{
+    
+       [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(35), height, MDXFrom6(50), 30) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:@"类型："]];
+    
+    for (NSInteger i = 0 ; i < 2 ; i++) {
+        
+        UIButton *btn = [Tools creatButton:CGRectMake(MDXFrom6(20), MDXFrom6(60), KScreenWidth - MDXFrom6(40), MDXFrom6(50)) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#999999"] title:@[@"  家装",@"  工装"][i] image:@"cart_select_no"];
+        [btn setImage:[UIImage imageNamed:@"cart_selected"] forState:(UIControlStateSelected)];
+        [btn addTarget:self action:@selector(selectRoomType:) forControlEvents:(UIControlEventTouchUpInside)];
+        [btn setFrame:CGRectMake(i==0?MDXFrom6(100):MDXFrom6(210), height, MDXFrom6(100), 30)];
+        [btn setTag:i];
+        if (i==0) {
+            _selectTypeBtn = btn;
+            [btn setSelected:YES];
+        }
+        
+        [self.tmpScrollView addSubview:btn];
+        
+    }
+    
+    
+    return height + 40;
+}
+
 // ---------- 选择户型 -------
 - (CGFloat)selectRoomModelView:(CGFloat)height{
     
-    [self.view addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(35), height, MDXFrom6(50), 30) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:@"户型："]];
-    
-    
+    [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(35), height, MDXFrom6(50), 30) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:@"户型："]];
+
     for (NSInteger i = 0 ; i < 2 ; i++) {
         
         YZMenuButton *button = [YZMenuButton buttonWithType:UIButtonTypeCustom];
@@ -230,7 +260,7 @@
         [button setFrame:CGRectMake(i==0?MDXFrom6(100):MDXFrom6(210), height, MDXFrom6(100), 30)];
         [button setTag:i];
         [button addTarget:self action:@selector(selectRoomNum:) forControlEvents:(UIControlEventTouchUpInside)];
-        [self.view addSubview:button];
+        [self.tmpScrollView addSubview:button];
         
         [self.buttonArr addObject:button];
     }
@@ -244,36 +274,75 @@
 - (CGFloat)inputPersonInfor:(CGFloat)height{
     
     // ---------- 输入信息 -------
-    NSArray *tArr = @[@"输入您的住宅面积(整数)",@"输入联系手机号码",@"验证码"];
+    NSArray *tArr = @[@"输入您的住宅面积(整数)",@"输入您的预算（整数万元）",@"输入联系手机号码",@"联系人姓名",@"验证码",@"备注您的要求"];
     
-    for (NSInteger i = 0 ; i <  3; i++) {
+    for (NSInteger i = 0 ; i <  tArr.count; i++) {
         UITextField *userName = [[UITextField alloc] initWithFrame:CGRectMake(MDXFrom6(35), height, MDXFrom6(305), 50)];
         [userName setPlaceholder:tArr[i]];
         [userName setFont:[UIFont systemFontOfSize:16]];
         [userName setClearButtonMode:(UITextFieldViewModeAlways)];
         [userName setTag:i];
         [userName setKeyboardType:(UIKeyboardTypeNumberPad)];
-        [userName addTarget:self action:@selector(textValueChange:) forControlEvents:(UIControlEventEditingChanged)];
-        [self.view addSubview:userName];
+        if (i == 3 || i == 5) {
+            [userName setKeyboardType:(UIKeyboardTypeDefault)];
+        }
         
-        [self.view addSubview:[self creatLine:CGRectMake(MDXFrom6(35), height + 49, MDXFrom6(305), 1)]];
+        [userName addTarget:self action:@selector(textValueChange:) forControlEvents:(UIControlEventEditingChanged)];
+        [self.tmpScrollView addSubview:userName];
+        
+        [self.tmpScrollView addSubview:[self creatLine:CGRectMake(MDXFrom6(35), height + 49, MDXFrom6(305), 1)]];
         
         height += 50;
         
-        if (i == 2) {
+        if (i == 4) {
             UIButton *codeBtn1 = [Tools creatButton:CGRectMake(KScreenWidth - 130, height - 42.5 , 95, 35) font:[UIFont systemFontOfSize:15] color:[UIColor whiteColor] title:@"获取验证码" image:@""];
             [codeBtn1 setBackgroundColor:BTNCOLOR];
             [codeBtn1.layer setCornerRadius:5];
             [codeBtn1 setClipsToBounds:YES];
             [codeBtn1 setTag:1];
             [codeBtn1 addTarget:self action:@selector(getCode:) forControlEvents:(UIControlEventTouchUpInside)];
-            [self.view addSubview:codeBtn1];
+            [self.tmpScrollView addSubview:codeBtn1];
             
             codeBtn = codeBtn1;
         }
     }
     return height;
 }
+
+- (CGFloat)ceateCoverImage:(CGFloat)height{
+    
+    self.modelImageView = [[UIView alloc] initWithFrame:CGRectMake(0, height, KScreenWidth, MDXFrom6(110))];
+    [self.tmpScrollView addSubview:self.modelImageView];
+    
+    
+    UIButton *btn = [Tools creatButton:CGRectMake(MDXFrom6(20), MDXFrom6(20) , MDXFrom6(80), MDXFrom6(80)) font:[UIFont systemFontOfSize:12] color:TCOLOR title:@"上传户型图" image:@""];
+    [btn setBackgroundColor:[UIColor colorWithHexString:@"#efefef"]];
+    [btn.layer setCornerRadius:5];
+    [btn setClipsToBounds:YES];
+    [btn setImage:[UIImage imageNamed:@"up_photo"] forState:(UIControlStateNormal)];
+    [btn addTarget:self action:@selector(addCoverImage:) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    CGFloat offset = MDXFrom6(20);
+    btn.titleEdgeInsets = UIEdgeInsetsMake(0, -btn.imageView.frame.size.width, -btn.imageView.frame.size.height-offset/2, 0);
+    btn.imageEdgeInsets = UIEdgeInsetsMake(-btn.titleLabel.intrinsicContentSize.height-offset/2, 0, 0, -btn.titleLabel.intrinsicContentSize.width);
+    
+    [self.modelImageView addSubview:btn];
+    
+    _upLoadBtn = btn;
+    
+    return height + MDXFrom6(110);
+}
+
+- (void)createPushButton{
+    
+    UIButton *btn = [Tools creatButton:CGRectMake(MDXFrom6(35), KViewHeight -  65, KScreenWidth - MDXFrom6(70), MDXFrom6(50)) font:[UIFont systemFontOfSize:18] color:[UIColor whiteColor] title:@"发布" image:@""];
+    [btn setBackgroundColor:[UIColor colorWithHexString:@"#ffb638"]];
+    [btn.layer setCornerRadius:5];
+    [btn setClipsToBounds:YES];
+    [btn addTarget:self action:@selector(submit) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:btn];
+}
+
 
 - (UIView *)creatLine:(CGRect)rect{
     
@@ -282,10 +351,39 @@
     return v;
 }
 
-#pragma mark -- 点击事件   返回  重新选择
-- (void)back{
+- (void)refreModelImageView{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.modelImageView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    CGFloat y = self.modelImageView.frame.origin.y;
+    CGFloat height = ceil(self.modelImageArr.count/4.0)*MDXFrom6(85)+MDXFrom6(25);
+    
+    
+    [self.modelImageView setFrame:CGRectMake(0, y , KScreenWidth, height)];
+    
+    [self.tmpScrollView setContentSize:CGSizeMake(KScreenWidth, height+y)];
+    
+    [self.modelImageView addSubview:_upLoadBtn];
+    
+    for (NSInteger i = 1 ; i < self.modelImageArr.count; i++) {
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(MDXFrom6(20+85*(i%4)), MDXFrom6(20+85*(i/4)+5) , MDXFrom6(75), MDXFrom6(75))];
+        [imageView setUserInteractionEnabled:YES];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:self.modelImageArr[i]]];
+        [self.modelImageView addSubview:imageView];
+        
+        UIButton *dele = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        [dele setImage:[UIImage imageNamed:@"new_close"] forState:(UIControlStateNormal)];
+        [dele setTag:i];
+        [dele setFrame:CGRectMake(MDXFrom6(64), -5, MDXFrom6(15), MDXFrom6(15))];
+        [dele addTarget:self action:@selector(deleteImage:) forControlEvents:(UIControlEventTouchUpInside)];
+        [imageView addSubview:dele];
+    }
+}
+
+#pragma mark -- 点击事件
+- (void)leftButtonTouchUpInside:(id)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)rechangeLocation:(UIButton *)sender{
@@ -319,6 +417,14 @@
     }
 }
 
+- (void)selectRoomType:(UIButton *)sender{
+    
+    [_selectTypeBtn setSelected:NO];
+    
+    [sender setSelected:YES];
+    _selectTypeBtn = sender;
+}
+
 - (void)textValueChange:(UITextField *)sender{// tag 1 为账号
     
     [self.textArr replaceObjectAtIndex:sender.tag withObject:sender.text];
@@ -348,24 +454,40 @@
     
     [self.pullDownView showOrHidden:NO withFrame:frame button:sender view:((DefaultPullDown *)self.childViewControllers[sender.tag]).view];
 }
-
+//删除图片
+- (void)deleteImage:(UIButton *)sender{
+    
+    [self.modelImageArr removeObjectAtIndex:sender.tag];
+    [self refreModelImageView];
+}
 
 // 提交
 - (void)submit{
+  
+    NSArray * tArr = @[@"您的住宅面积(整数)",@"您的预算（整数万元）",@"联系手机号码",@"联系人姓名",@"验证码",@"备注您的要求"];
     
+    for (NSInteger i = 0 ; i < tArr.count; i ++) {
+        NSString *str = tArr[i];
+        if ([str length]==0) {
+            [ViewHelps showHUDWithText:[NSString stringWithFormat:@"请输入%@",tArr[i]]];
+            return;
+        }
+    }
     
+    if (self.modelImageArr.count<=1) {
+        [ViewHelps showHUDWithText:@"户型图至少上传一张"];
+        return;
+    }
     
-    NSString *path = [NSString stringWithFormat:@"%@/free/free_offer",KURL];
+    NSString *path = [NSString stringWithFormat:@"%@/person_task/publish",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
-    NSDictionary *parameter= @{@"province":_province[@"key"],
-                               @"city":_city[@"key"],
-                               @"area":_area[@"key"],
-                               @"phone":self.textArr[0],
-                               @"code":self.textArr[1],
-                               @"areaop":self.textArr[2],
-                               @"room":self.selectRoomArr[0],
-                               @"hall":self.selectRoomArr[1]};
+    
+    NSMutableDictionary * parameter = [NSMutableDictionary dictionaryWithDictionary:@{@"province":_province[@"key"],@"city":_city[@"key"],@"area":_area[@"key"],@"room":self.selectRoomArr[0],@"hall":self.selectRoomArr[1],@"proportion":self.textArr[0],@"budget":self.textArr[1],@"mobile":self.textArr[2],@"name":self.textArr[3],@"code":self.textArr[4],@"requirements":self.textArr[5],@"type":[NSString stringWithFormat:@"%ld",_selectTypeBtn.tag+1]}];
+
+    for (NSInteger i =1; i < self.modelImageArr.count; i++) {
+        [parameter setValue:self.modelImageArr[i] forKey:[NSString stringWithFormat:@"image_list[%ld]",i-1]];
+    }
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -390,7 +512,7 @@
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [RequestSever showMsgWithError:error];
     }];
-
+    
     
 }
 
@@ -456,7 +578,61 @@
         [codeBtn setTitle:[NSString stringWithFormat:@"%ld S",time] forState:(UIControlStateNormal)];
     }
 }
+#pragma mark -- 封面
 
+- (void)addCoverImage:(UIButton *)sende{
+    
+    PhotoSelectController *vc = [[PhotoSelectController alloc] init];
+    [vc setDelegate:self];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
+    
+}
+
+- (void)selectImage:(UIImage *)image{
+    
+    [self upLoadImage:image];
+}
+
+- (void)upLoadImage:(UIImage *)image{
+    
+    
+    NSString *path = [NSString stringWithFormat:@"%@/Upload/upload",KURL];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest uploadFileWithInferface:path parameters:nil fileData:UIImagePNGRepresentation(image) serverName:@"file" saveName:@"232323.png" mimeType:(MCPNGImageFileType) progress:^(float progress) {
+        NSLog(@"%.2f",progress);
+    } success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            NSLog(@"成功");
+            
+            if ([responseObject[@"datas"][@"route"] integerValue]==200) {
+                
+                [weakSelf.modelImageArr addObject:responseObject[@"datas"][@"fullPath"]];
+                
+                [weakSelf refreModelImageView];
+            }
+            else{
+                [ViewHelps showHUDWithText:@"图片加载失败，请重新选择"];
+            }
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+    
+}
 #pragma mark -- 获取地址
 - (LSYLocation *)locationSevice{
     

@@ -14,18 +14,30 @@
 #import "OrderCenterTableViewCell.h"
 #import "OrderCenterDatailsVC.h"
 
+#import "OrderCenterModel.h"
+
 #define YZScreenW [UIScreen mainScreen].bounds.size.width
 #define YZScreenH [UIScreen mainScreen].bounds.size.height
 
-@interface OrderCenterViewController ()<YZPullDownMenuDataSource,UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic, strong) NSArray     * titles;
+@interface OrderCenterViewController ()<YZPullDownMenuDataSource,YZPullDownMenuDelegate,UITableViewDelegate,UITableViewDataSource>
+{
+    NSDictionary * _typeDic;
+    NSDictionary * _roomDic;
+    NSDictionary * _moneyDic;//保存 筛选的信息
+}
 
-@property (nonatomic, strong) UITableView * tmpTableView;
-
+@property (nonatomic, strong) NSArray        * titles;
+@property (nonatomic, strong) UITableView    * tmpTableView;
+@property (nonatomic, strong) NSMutableArray * dataArr;
+@property (nonatomic, assign) NSInteger        page;
+@property (nonatomic, strong) NSArray        * typeArr;
+@property (nonatomic, strong) NSArray        * roomArr;
+@property (nonatomic, strong) NSArray        * moneyArr;
 
 @end
 
 @implementation OrderCenterViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,30 +49,214 @@
     
     [self baseForDefaultLeftNavButton];
     
+    self.dataArr = [NSMutableArray array];
+    self.page = 1;
     
     [self.view addSubview:self.tmpTableView];
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1.5)]];
-    
-    // 创建下拉菜单
-    YZPullDownMenu *menu = [[YZPullDownMenu alloc] init];
-    menu.frame = CGRectMake(0,0, YZScreenW, 44);
-    menu.coverColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-    [self.view addSubview:menu];
-    
-    [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1.5)]];
-    
-    [self.view addSubview:[Tools setLineView:CGRectMake(0, 42.5, KScreenWidth, 1.5)]];
-    
-    // 设置下拉菜单代理
-    menu.dataSource = self;
-    
-    // 初始化标题
-    _titles = @[@"全部类型",@"全部房型",@"发布来源"];
-    
-    // 添加子控制器
+
     [self setupAllChildViewController];
+    
+    [self getTypeInfo];
+    
+    [self load];
+    
+    [self pullDownRefresh];
 }
+
+
+#pragma mark -- refresh
+- (void)load{
+    __weak typeof(self) weakSelf = self;
+    
+    self.tmpTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.page = 1;
+        [weakSelf.dataArr removeAllObjects];
+        [weakSelf.tmpTableView.mj_footer resetNoMoreData];
+        [weakSelf pullDownRefresh];
+    }];
+    
+    self.tmpTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        weakSelf.page ++;
+        [weakSelf pullUpLoadMore];
+    }];
+    
+}
+//下拉刷新
+- (void)pullDownRefresh{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/task/page_index",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
+    
+    [parameter setValue:[NSString stringWithFormat:@"%ld",self.page] forKey:@"page"];
+    if (_typeDic) {
+        [parameter setValue:_typeDic[@"value"] forKey:@"type"];
+    }
+    if (_roomDic) {
+        [parameter setValue:_roomDic[@"room"] forKey:@"room"];
+        [parameter setValue:_roomDic[@"hall"] forKey:@"hall"];
+    }
+    if (_moneyDic) {
+        [parameter setValue:_moneyDic[@"min"] forKey:@"min"];
+        [parameter setValue:_moneyDic[@"max"] forKey:@"max"];
+    }
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:parameter success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                
+                for (NSDictionary *dic in responseObject[@"datas"]) {
+                    
+                    OrderCenterModel *model = [[OrderCenterModel alloc] initWithDictionary:dic];
+                    [weakSelf.dataArr addObject:model];
+                }
+            }
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        [weakSelf.tmpTableView.mj_header endRefreshing];
+        [weakSelf.tmpTableView reloadData];
+        
+        if (weakSelf.dataArr.count < weakSelf.page *10) {
+            [weakSelf.tmpTableView.mj_footer endRefreshingWithNoMoreData];
+        }
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+        [weakSelf.tmpTableView.mj_header endRefreshing];
+        
+    }];
+
+}
+//上拉加载
+- (void)pullUpLoadMore{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/task/page_index",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
+    
+    [parameter setValue:[NSString stringWithFormat:@"%ld",self.page] forKey:@"page"];
+    if (_typeDic) {
+        [parameter setValue:_typeDic[@"value"] forKey:@"type"];
+    }
+    if (_roomDic) {
+        [parameter setValue:_roomDic[@"room"] forKey:@"room"];
+        [parameter setValue:_roomDic[@"hall"] forKey:@"hall"];
+    }
+    if (_moneyDic) {
+        [parameter setValue:_moneyDic[@"min"] forKey:@"min"];
+        [parameter setValue:_moneyDic[@"max"] forKey:@"max"];
+    }
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:parameter success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                
+                for (NSDictionary *dic in responseObject[@"datas"]) {
+                    
+                    OrderCenterModel *model = [[OrderCenterModel alloc] initWithDictionary:dic];
+                    [weakSelf.dataArr addObject:model];
+                }
+                
+                 [weakSelf.tmpTableView.mj_footer endRefreshing];
+                [weakSelf.tmpTableView reloadData];
+            }
+            else{
+                weakSelf.page -- ;
+                [weakSelf.tmpTableView.mj_footer endRefreshingWithNoMoreData];
+            }
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+            [weakSelf.tmpTableView.mj_footer endRefreshing];
+        }
+        
+        if (weakSelf.dataArr.count < weakSelf.page *10) {
+            [weakSelf.tmpTableView.mj_footer endRefreshingWithNoMoreData];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        weakSelf.page -- ;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+        [weakSelf.tmpTableView.mj_footer endRefreshing];
+        
+    }];
+}
+
+//获取筛选类型
+- (void)getTypeInfo{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/task/get_list_info",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            weakSelf.typeArr =responseObject[@"datas"][@"type"];
+            weakSelf.roomArr =responseObject[@"datas"][@"room_hall"];
+            weakSelf.moneyArr =responseObject[@"datas"][@"money"];
+            
+            NSArray *arr = weakSelf.childViewControllers;
+            SortPullDown *sort1 = arr[0];
+            [sort1 setTitleArray:weakSelf.typeArr];
+            SortPullDown *sort2 = arr[1];
+            [sort2 setTitleArray:weakSelf.roomArr];
+            SortPullDown *sort3 = arr[2];
+            [sort3 setTitleArray:weakSelf.moneyArr];
+            
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
+    
+}
+
 #pragma mark -- tableView
 - (UITableView *)tmpTableView{
     
@@ -79,7 +275,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -91,6 +287,10 @@
     
     [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
     
+    if (indexPath.row < self.dataArr.count) {
+    
+        [cell bandDataWithModel:self.dataArr[indexPath.row]];
+    }
     return cell;
 }
 
@@ -102,7 +302,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    OrderCenterModel *model = self.dataArr[indexPath.row];
+    
     OrderCenterDatailsVC *vc = [[OrderCenterDatailsVC alloc] init];
+    vc.orderId = model.ID;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -110,15 +313,30 @@
 - (void)setupAllChildViewController
 {
     
+    // 创建下拉菜单
+    YZPullDownMenu *menu = [[YZPullDownMenu alloc] init];
+    menu.frame = CGRectMake(0,0, YZScreenW, 44);
+    [menu setDelegate:self];
+    menu.coverColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.8];
+    [self.view addSubview:menu];
+    
+    [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1.5)]];
+    
+    [self.view addSubview:[Tools setLineView:CGRectMake(0, 42.5, KScreenWidth, 1.5)]];
+    
+    // 设置下拉菜单代理
+    menu.dataSource = self;
+    
+    // 初始化标题
+    _titles = @[@"全部类型",@"全部房型",@"预算范围"];
+    
     SortPullDown *sort = [[SortPullDown alloc] init];
-    sort.titleArray = @[@"全部",@"电商",@"租赁",@"安装"];
-    DefaultPullDown *sort2 = [[DefaultPullDown alloc] init];
-    sort2.titleArray = @[@"全部",@"待支付",@"待发货",@"待收货",@"待评价",@"订单完成"];
+    SortPullDown *sort2 = [[SortPullDown alloc] init];
     SortPullDown *sort3 = [[SortPullDown alloc] init];
-    sort3.titleArray = @[@"全部",@"电商",@"租赁",@"安装"];
     [self addChildViewController:sort];
     [self addChildViewController:sort2];
     [self addChildViewController:sort3];
+    
 }
 
 #pragma mark - YZPullDownMenuDataSource
@@ -145,6 +363,7 @@
 // 返回下拉菜单每列对应的控制器
 - (UIViewController *)pullDownMenu:(YZPullDownMenu *)pullDownMenu viewControllerForColAtIndex:(NSInteger)index
 {
+    
     return self.childViewControllers[index];
 }
 
@@ -152,6 +371,22 @@
 - (CGFloat)pullDownMenu:(YZPullDownMenu *)pullDownMenu heightForColAtIndex:(NSInteger)index
 {
     return 180;
+}
+
+- (void)pullDownMenu:(YZPullDownMenu *)pullDownMenu selectForColAtIndex:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section == 0) {
+        
+        _typeDic = self.typeArr[indexPath.row];
+    }
+    else if (indexPath.section == 1){
+        _roomDic = self.roomArr[indexPath.row];
+    }
+    else{
+        _moneyDic = self.moneyArr[indexPath.row];
+    }
+ 
+    [self.tmpTableView.mj_header beginRefreshing];
 }
 
 - (void)didReceiveMemoryWarning {

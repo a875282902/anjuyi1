@@ -31,6 +31,13 @@ static NSString * const ID = @"cell";
     
 }
 
+- (void)setTitleArray:(NSArray *)titleArray{
+    
+    _titleArray = titleArray;
+    
+    [self.tableView reloadData];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -46,7 +53,15 @@ static NSString * const ID = @"cell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SortCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    cell.textLabel.text = _titleArray[indexPath.row];
+    
+    if ([_titleArray[indexPath.row] isKindOfClass:[NSString class]]) {
+        cell.textLabel.text = _titleArray[indexPath.row];
+    }
+    else{
+         cell.textLabel.text = _titleArray[indexPath.row][@"name"];
+        
+    }
+    
     if (indexPath.row == 0) {
         [cell setSelected:YES animated:NO];
     }
@@ -63,7 +78,7 @@ static NSString * const ID = @"cell";
     SortCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     // 更新菜单标题
-    [[NSNotificationCenter defaultCenter] postNotificationName:YZUpdateMenuTitleNote object:self userInfo:@{@"title":cell.textLabel.text}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:YZUpdateMenuTitleNote object:self userInfo:@{@"title":cell.textLabel.text,@"index":[NSString stringWithFormat:@"%ld",indexPath.row]}];
     
     
 }

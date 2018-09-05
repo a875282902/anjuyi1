@@ -8,9 +8,11 @@
 
 #import "OrderCenterDatailsVC.h"
 
-@interface OrderCenterDatailsVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface OrderCenterDatailsVC ()<UIScrollViewDelegate>
 
 @property (nonatomic,strong)UITableView *tmpTableView;
+@property (nonatomic,strong)UIScrollView *tmpScrollView;
+@property (nonatomic,strong)NSDictionary *data;
 
 @end
 
@@ -21,80 +23,117 @@
     // Do any additional setup after loading the view.
     [self setTitle:@"订单详情"];
     [self baseForDefaultLeftNavButton];
-    [self.view addSubview:self.tmpTableView];
+    
+    [self.view addSubview:self.tmpScrollView];
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1)]];
+    
+    [self requestOrderInfo];
 }
 
-#pragma mark -- tableView
-- (UITableView *)tmpTableView{
+- (void)requestOrderInfo{
     
-    if (!_tmpTableView) {
-        _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-KTopHeight) style:(UITableViewStylePlain)];
+    
+    NSString *path = [NSString stringWithFormat:@"%@/task/detail",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:@{@"id":self.orderId} success:^(id  _Nullable responseObject) {
         
-        if (@available(iOS 11.0, *)) {
-            [_tmpTableView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            weakSelf.data = responseObject[@"datas"];
+            
+            [weakSelf setUpContentView];
         }
-        [_tmpTableView setShowsVerticalScrollIndicator:NO];
-        [_tmpTableView setShowsHorizontalScrollIndicator:NO];
-        [_tmpTableView setDataSource:self];
-        [_tmpTableView setDelegate:self];
-    }
-    return _tmpTableView;
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
+    
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 8;
+#pragma mark -- scrollview
+-(UIScrollView *)tmpScrollView{
+    
+    if (!_tmpScrollView) {
+        _tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KViewHeight - 90)];
+        [_tmpScrollView setShowsVerticalScrollIndicator:NO];
+        [_tmpScrollView setShowsHorizontalScrollIndicator:NO];
+        if (@available(iOS 11.0, *)) {
+            [_tmpScrollView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
+        }
+        [_tmpScrollView setDelegate:self];
+    }
+    return _tmpScrollView;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderCenterDatailsVCCell"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleValue1) reuseIdentifier:@"OrderCenterDatailsVCCell"];
-    }
-    
-    [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
+- (void)setUpContentView{
     
     NSArray *tArr = @[@"地区",@"类型",@"户型",@"预算",@"户主名字",@"户型面积",@"户型图",@"备注"];
+    NSArray *dArr = @[[NSString stringWithFormat:@"%@ %@ %@",self.data[@"province"],self.data[@"city"],self.data[@"area"]],
+                      self.data[@"type"],
+                      [NSString stringWithFormat:@"%@%@",self.data[@"room"],self.data[@"hall"]],
+                      [NSString stringWithFormat:@"%@元",self.data[@"budget"]],
+                      self.data[@"name"],
+                      [NSString stringWithFormat:@"%@平米",self.data[@"proportion"]]];
     
-    [cell.textLabel setText:tArr[indexPath.row]];
-    [cell.textLabel setFont:[UIFont systemFontOfSize:16]];
-    [cell.textLabel setTextColor:[UIColor colorWithHexString:@"#666666"]];
     
-    NSTextAttachment *attchImage = [[NSTextAttachment alloc] init];
-    // 表情图片
-    attchImage.image = [UIImage imageNamed:@"js_center_img"];
-    // 设置图片大小
-    attchImage.bounds = CGRectMake(0, 0, 100, 100);
+    CGFloat height = 0;
     
+    for (NSInteger i = 0 ; i < 6; i++) {
+        
+        [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(10, height, 70, 45) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#666666"] alignment:(NSTextAlignmentLeft) title:tArr[i]]];
+        
+        [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(90, height, KScreenWidth - 100, 45) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#000000"] alignment:(NSTextAlignmentRight) title:dArr[i]]];
+        
+        [self.tmpScrollView addSubview:[Tools setLineView:CGRectMake(0, height+44, KScreenWidth, 1)]];
+        
+        height += 45;
+    }
     
 
-    [cell.detailTextLabel setAttributedText:[[NSAttributedString alloc] initWithString:tArr[indexPath.row]]];
+    [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(10, height, 70, 45) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#666666"] alignment:(NSTextAlignmentLeft) title:@"户型图"]];
+    [self.tmpScrollView addSubview:[Tools creatImage:CGRectMake(KScreenWidth - 160, height +10, 150, 150) url:self.data[@"doorimg1"] image:@""]];
+    [self.tmpScrollView addSubview:[Tools setLineView:CGRectMake(0, height+169, KScreenWidth, 1)]];
     
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    height+= 170;
     
-    return 90;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(10, height, 70, 45) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#666666"] alignment:(NSTextAlignmentLeft) title:@"备注"]];
     
-    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 90)];
-    [v setBackgroundColor:[UIColor whiteColor]];
+    [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(90, height, KScreenWidth - 100, 45) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#000000"] alignment:(NSTextAlignmentRight) title:self.data[@"requirements"]]];
     
-    UIButton *btn = [Tools creatButton:CGRectMake(10,20, KScreenWidth -20, 50) font:[UIFont systemFontOfSize:16] color:[UIColor whiteColor] title:@"接受订单" image:@""];
+    [self.tmpScrollView addSubview:[Tools setLineView:CGRectMake(0, height+44, KScreenWidth, 1)]];
+    
+    height += 45;
+    
+    
+    [self.tmpScrollView setContentSize:CGSizeMake(KScreenWidth, height+20)];
+    
+    UIButton *btn = [Tools creatButton:CGRectMake(10,KViewHeight - 70, KScreenWidth -20, 50) font:[UIFont systemFontOfSize:16] color:[UIColor whiteColor] title:@"接受订单" image:@""];
     [btn setBackgroundColor:MDRGBA(255, 181, 0, 1)];
     [btn.layer setCornerRadius:5];
     [btn setClipsToBounds:YES];
     [btn addTarget:self action:@selector(acceptOrders) forControlEvents:(UIControlEventTouchUpInside)];
-    [v addSubview:btn];
-    
-    
-    return v;
+    [self.view addSubview:btn];
 }
+
+
 
 - (void)acceptOrders{
     

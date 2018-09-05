@@ -227,6 +227,7 @@
 		18399C5821215B6C007CAD58 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5721215B6C007CAD58 /* libresolv.tbd */; };
 		18399C5B212167CD007CAD58 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5A212167CD007CAD58 /* UMCommon.framework */; };
 		18399C5D212167D7007CAD58 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5C212167D7007CAD58 /* UMAnalytics.framework */; };
+		1845C5AD213F722C00EC84F3 /* OrderCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845C5AC213F722C00EC84F3 /* OrderCenterModel.m */; };
 		1846CFD120F836FB00EA1417 /* PullDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD020F836FB00EA1417 /* PullDownView.m */; };
 		1846CFD420F85B8B00EA1417 /* ProjectAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD320F85B8B00EA1417 /* ProjectAddressViewController.m */; };
 		1846CFD720F88F8900EA1417 /* LabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD620F88F8900EA1417 /* LabelViewController.m */; };
@@ -264,6 +265,7 @@
 		189AB924211D2FA3003E04C9 /* TopicListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189AB922211D2FA3003E04C9 /* TopicListTableViewCell.xib */; };
 		18D3480820DB74B9008FD35E /* SelectCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480720DB74B9008FD35E /* SelectCity.m */; };
 		18D3480C20DB8CFF008FD35E /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480B20DB8CFF008FD35E /* AddressModel.m */; };
+		18D8544C213CCD3500C6C358 /* PushTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D8544B213CCD3500C6C358 /* PushTaskViewController.m */; };
 		18EA1BD820E1CCB7000738CC /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA1BD720E1CCB7000738CC /* ShareView.m */; };
 		18EA1BDB20E1CD3A000738CC /* SortPullDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA1BDA20E1CD3A000738CC /* SortPullDown.m */; };
 		18EA1BDF20E1CD9A000738CC /* SortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA1BDD20E1CD9A000738CC /* SortCell.m */; };
@@ -699,6 +701,8 @@
 		18399C5721215B6C007CAD58 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		18399C5A212167CD007CAD58 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
 		18399C5C212167D7007CAD58 /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMAnalytics.framework; sourceTree = "<group>"; };
+		1845C5AB213F722C00EC84F3 /* OrderCenterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderCenterModel.h; sourceTree = "<group>"; };
+		1845C5AC213F722C00EC84F3 /* OrderCenterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderCenterModel.m; sourceTree = "<group>"; };
 		1846CFCF20F836FB00EA1417 /* PullDownView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullDownView.h; sourceTree = "<group>"; };
 		1846CFD020F836FB00EA1417 /* PullDownView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullDownView.m; sourceTree = "<group>"; };
 		1846CFD220F85B8B00EA1417 /* ProjectAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectAddressViewController.h; sourceTree = "<group>"; };
@@ -770,6 +774,8 @@
 		18D3480720DB74B9008FD35E /* SelectCity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCity.m; sourceTree = "<group>"; };
 		18D3480A20DB8CFF008FD35E /* AddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
 		18D3480B20DB8CFF008FD35E /* AddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
+		18D8544A213CCD3500C6C358 /* PushTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushTaskViewController.h; sourceTree = "<group>"; };
+		18D8544B213CCD3500C6C358 /* PushTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushTaskViewController.m; sourceTree = "<group>"; };
 		18EA1BD620E1CCB7000738CC /* ShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
 		18EA1BD720E1CCB7000738CC /* ShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
 		18EA1BD920E1CD3A000738CC /* SortPullDown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortPullDown.h; sourceTree = "<group>"; };
@@ -1440,6 +1446,7 @@
 		0AD2DEC420CA82E500E53B43 /* OrderCenter */ = {
 			isa = PBXGroup;
 			children = (
+				1845C5AA213F721200EC84F3 /* Model */,
 				0AD2DEC820CA83A200E53B43 /* Views */,
 				0AD2DEC520CA832000E53B43 /* OrderCenterViewController.h */,
 				0AD2DEC620CA832000E53B43 /* OrderCenterViewController.m */,
@@ -1724,6 +1731,7 @@
 		0AFEE75B20BD2F50004FA8FC /* Push */ = {
 			isa = PBXGroup;
 			children = (
+				18D85449213CCAD100C6C358 /* PushTask */,
 				1846CFD820FB8DE600EA1417 /* PushHouse */,
 				18F5B7D220EB1CDA00B76A73 /* PushProject */,
 				18F5B7CE20E9F7D600B76A73 /* PushPhoto */,
@@ -1929,6 +1937,15 @@
 			path = "U-App";
 			sourceTree = "<group>";
 		};
+		1845C5AA213F721200EC84F3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1845C5AB213F722C00EC84F3 /* OrderCenterModel.h */,
+				1845C5AC213F722C00EC84F3 /* OrderCenterModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		1846CFD820FB8DE600EA1417 /* PushHouse */ = {
 			isa = PBXGroup;
 			children = (
@@ -2012,6 +2029,15 @@
 				18D3480B20DB8CFF008FD35E /* AddressModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		18D85449213CCAD100C6C358 /* PushTask */ = {
+			isa = PBXGroup;
+			children = (
+				18D8544A213CCD3500C6C358 /* PushTaskViewController.h */,
+				18D8544B213CCD3500C6C358 /* PushTaskViewController.m */,
+			);
+			path = PushTask;
 			sourceTree = "<group>";
 		};
 		18ED87D021008D7100B38548 /* Charging */ = {
@@ -2338,6 +2364,7 @@
 				180F19CD211978590018F1CD /* ActivityDetailsViewController.m in Sources */,
 				0A5CD82420C593790028F82D /* DefaultPullDown.m in Sources */,
 				0AFEE76B20BD2F50004FA8FC /* BaseViewController.m in Sources */,
+				18D8544C213CCD3500C6C358 /* PushTaskViewController.m in Sources */,
 				0A5582A620C1298000759E6B /* ProjectTableViewCell.m in Sources */,
 				0AD2DEA920CA194A00E53B43 /* PersonalProfileVC.m in Sources */,
 				0A7D4FF720C2B723001BFDBF /* DistributionViewController.m in Sources */,
@@ -2450,6 +2477,7 @@
 				18399C2F211D4580007CAD58 /* TopicDetailsViewController.m in Sources */,
 				0A7D504920C42B01001BFDBF /* DraftBoxTableViewCell.m in Sources */,
 				18F5B7D120E9F87200B76A73 /* PushPhotoViewController.m in Sources */,
+				1845C5AD213F722C00EC84F3 /* OrderCenterModel.m in Sources */,
 				18ED88692100D78400B38548 /* PowerStationViewController.m in Sources */,
 				0A18745120C8B70F00451BAA /* GoodsStandardView.m in Sources */,
 				0A3085B820C02B4F00882805 /* MasterViewController.m in Sources */,

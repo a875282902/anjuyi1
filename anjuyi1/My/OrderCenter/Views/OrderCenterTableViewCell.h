@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OrderCenterModel.h"
 
 @interface OrderCenterTableViewCell : UITableViewCell
 
@@ -15,5 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ModelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
+
+- (void)bandDataWithModel:(OrderCenterModel *)model;
 
 @end

@@ -56,6 +56,12 @@
 
 @end
 
+@protocol YZPullDownMenuDelegate <NSObject>
+
+- (void)pullDownMenu:(YZPullDownMenu *)pullDownMenu selectForColAtIndex:(NSIndexPath *)indexPath;
+
+@end
+
 
 /**
  *  更新菜单标题，就发送这个通知（YZUpdateMenuTitleNote）
@@ -85,6 +91,9 @@ extern NSString * const YZUpdateMenuTitleNote;
  *  下拉菜单数据源
  */
 @property (nonatomic, weak) id<YZPullDownMenuDataSource> dataSource;
+
+
+@property (nonatomic, weak) id<YZPullDownMenuDelegate> delegate;
 /**
  *  分割线颜色
  */

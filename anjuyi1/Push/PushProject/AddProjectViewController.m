@@ -263,12 +263,17 @@
 
 - (CGFloat)ceateCoverImage:(CGFloat)height{
     
-    UIButton *btn = [Tools creatButton:CGRectMake(MDXFrom6(20), height + MDXFrom6(20) , MDXFrom6(80), MDXFrom6(80)) font:[UIFont systemFontOfSize:16] color:[UIColor whiteColor] title:@"" image:@""];
+    UIButton *btn = [Tools creatButton:CGRectMake(MDXFrom6(20), height + MDXFrom6(20) , MDXFrom6(80), MDXFrom6(80)) font:[UIFont systemFontOfSize:12] color:TCOLOR title:@"上传封面" image:@""];
     [btn setBackgroundColor:[UIColor colorWithHexString:@"#efefef"]];
     [btn.layer setCornerRadius:5];
     [btn setClipsToBounds:YES];
     [btn setImage:[UIImage imageNamed:@"up_photo"] forState:(UIControlStateNormal)];
     [btn addTarget:self action:@selector(addCoverImage:) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    CGFloat offset = MDXFrom6(20);
+    btn.titleEdgeInsets = UIEdgeInsetsMake(0, -btn.imageView.frame.size.width, -btn.imageView.frame.size.height-offset/2, 0);
+    btn.imageEdgeInsets = UIEdgeInsetsMake(-btn.titleLabel.intrinsicContentSize.height-offset/2, 0, 0, -btn.titleLabel.intrinsicContentSize.width);
+    
     [self.tmpScrollView addSubview:btn];
     
     
