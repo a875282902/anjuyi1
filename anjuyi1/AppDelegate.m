@@ -89,6 +89,7 @@
                           channel:@"App Store"
                  apsForProduction:NO];
 }
+
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     

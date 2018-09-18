@@ -21,6 +21,10 @@
 
 @property (nonatomic,strong)NSMutableArray * fieldArr;
 
+@property (nonatomic,strong)NSMutableArray * sureArr;
+
+@property (nonatomic,strong)NSMutableArray * priceArr;
+
 @end
 
 @implementation ScreeningView
@@ -36,6 +40,8 @@
         
         self.textArr = [NSMutableArray arrayWithObjects:@"",@"", NULL];
         self.fieldArr = [NSMutableArray array];
+        self.sureArr = [NSMutableArray array];
+        self.priceArr = [NSMutableArray array];
         
     }
     return self;
@@ -75,6 +81,8 @@
     
     CGFloat height = MDXFrom6(30);
     
+    [self.sureArr removeAllObjects];
+    
     for (NSInteger i = 0 ; i < self.typeArr.count ; i++) {
         UILabel *typeLabel = [Tools creatLabel:CGRectMake(MDXFrom6(20), height, self.backView.frame.size.width - MDXFrom6(40), MDXFrom6(20)) font:[UIFont systemFontOfSize:17] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:self.typeArr[i]];
         [self.tmpScrollView addSubview:typeLabel];
@@ -104,7 +112,18 @@
         
         for (NSInteger j = 0 ; j < [self.dataArr[i] count]; j++) {
             
-            ChannelButton *stautsBtn = [self creatButton:CGRectMake(MDXFrom6(20+95*(j%3)), height+MDXFrom6(45*(j/3)), MDXFrom6(85), i==1?MDXFrom6(40):MDXFrom6(35)) font:[UIFont systemFontOfSize:i==1?12:14] color:[UIColor colorWithHexString:@"#3b3b3b"] title:self.dataArr[i][j]];
+            NSString *title = @"";
+            
+            if ([self.dataArr[i][j] isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *dic = self.dataArr[i][j];
+                title = [NSString stringWithFormat:@"%@-%@\n%@的选择",dic[@"min"],dic[@"max"],dic[@"Percentage"]];
+                [self.priceArr addObject:self.dataArr[i][j]];
+            }
+            else{
+                title = self.dataArr[i][j];
+            }
+
+            ChannelButton *stautsBtn = [self creatButton:CGRectMake(MDXFrom6(20+95*(j%3)), height+MDXFrom6(45*(j/3)), MDXFrom6(85), i==1?MDXFrom6(40):MDXFrom6(35)) font:[UIFont systemFontOfSize:i==1?12:14] color:[UIColor colorWithHexString:@"#3b3b3b"] title:title];
             [stautsBtn.layer setCornerRadius:5];
             [stautsBtn setClipsToBounds:YES];
             [stautsBtn setBackgroundColor:[UIColor colorWithHexString:@"#efefef"]];
@@ -120,6 +139,8 @@
         }
         
         [self.btnArr addObject:tmpBtn];
+        
+        [self.sureArr addObject:@"-1"];
         
         height += MDXFrom6(45)* ceil([self.dataArr[i] count]/3.0) +MDXFrom6(40);
     }
@@ -141,12 +162,27 @@
 //价钱区间
 - (void)textValueChange:(UITextField *)sender{
     
+    if (![self.sureArr[1] isKindOfClass:[NSDictionary class]]) {
+        if ([self.sureArr[1] integerValue]>=0) {
+            for (ChannelButton *btn in self.btnArr[1]) {
+                [btn setSelected:NO];
+            }
+            
+            [self.sureArr replaceObjectAtIndex:1 withObject:@"-1"];
+        }
+        
+    }
+
     [self.textArr replaceObjectAtIndex:sender.tag withObject:sender.text];
+    
+    NSDictionary *dic = @{@"min":self.textArr[0],
+                          @"max":self.textArr[1]};
+    [self.sureArr replaceObjectAtIndex:1 withObject:dic];
 }
 
 //确定选择
 - (void)sure{
-    
+    [self.delegate sureScreenData:self.sureArr];
     [self hidden];
 }
 //重置
@@ -173,7 +209,7 @@
     else{
     
         NSInteger i = sender.tag/100;
-    //    NSInteger j = sender.tag%100;
+        NSInteger j = sender.tag%100;
         
         for (ChannelButton *btn in self.btnArr[i]) {
             [btn setSelected:NO];
@@ -181,7 +217,18 @@
         
         [sender setSelected:YES];
         
+        [self.sureArr replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%ld",j]];
         
+        if (i == 1) {
+            NSDictionary *dic = self.priceArr[j];
+            [((UITextField *)self.fieldArr[0]) setText:[NSString stringWithFormat:@"%@",dic[@"min"]]];
+            [((UITextField *)self.fieldArr[1]) setText:[NSString stringWithFormat:@"%@",dic[@"max"]]];
+            
+            self.textArr = [NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%@",dic[@"min"]],[NSString stringWithFormat:@"%@",dic[@"max"]], nil];
+            
+        }
+        
+
     }
 }
 

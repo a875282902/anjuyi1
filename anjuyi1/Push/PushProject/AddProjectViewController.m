@@ -9,15 +9,17 @@
 #import "AddProjectViewController.h"
 #import "ProjectAddressViewController.h"
 #import "PhotoSelectController.h"
-#import "SelectLocationVC.h"
+#import "SelectCityView.h"
 
 #import "PullDownView.h"
 #import "YZMenuButton.h"
 #import "DefaultPullDown.h"
 
+#import "LSYLocation.h"
+
 #define padding 20
 
-@interface AddProjectViewController ()<UIScrollViewDelegate,PhotoSelectControllerDelegate,DefaultPullDownDelegate,SelectLocationVCDelegate>
+@interface AddProjectViewController ()<UIScrollViewDelegate,PhotoSelectControllerDelegate,DefaultPullDownDelegate,SelectCityViewDelegate,LSYLocationDelegta>
 {
     NSDictionary  * _provincesDic;//保存省
     NSDictionary  * _cityDic;//保存城市
@@ -38,8 +40,8 @@
 @property (nonatomic,strong)NSMutableArray   * buttonArr;
 @property (nonatomic,strong)NSMutableArray   * selectRoomArr;
 
-
-
+@property (nonatomic,strong)LSYLocation      * locationSevice;
+@property (nonatomic,strong)SelectCityView   * selectCityView;
 @end
 
 @implementation AddProjectViewController
@@ -64,6 +66,10 @@
     [self createPushButton];
     
     [self getRoom];
+    
+    [self.locationSevice beginUpdatingLocation];
+    
+    [self.view addSubview:self.selectCityView];
 }
 
 #pragma mark -- data
@@ -198,6 +204,15 @@
 
     return height + 50;
 }
+- (SelectCityView *)selectCityView{
+    
+    if (!_selectCityView) {
+        
+        _selectCityView = [[SelectCityView alloc] initWithFrame:CGRectMake(0, 0 , KScreenWidth, KViewHeight)];
+        [_selectCityView setDelegate:self];
+    }
+    return _selectCityView;
+}
 
 // ---------- 选择户型 -------
 - (CGFloat)selectRoomModelView:(CGFloat)height{
@@ -292,10 +307,8 @@
 
 #pragma mark  -- 点击事件  选择地址
 - (void)rechangeLocation:(UIButton *)sender{
-    
-    SelectLocationVC *vc = [[SelectLocationVC alloc] init];
-    [vc setDelegate:self];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.view endEditing:YES];
+    [self.selectCityView show];
 }
 
 - (void)sureProvince:(NSDictionary *)province city:(NSDictionary *)city area:(NSDictionary *)area{
@@ -470,6 +483,19 @@
     }];
 
     
+}
+#pragma mark -- 获取地址
+- (LSYLocation *)locationSevice{
+    
+    if (!_locationSevice) {
+        _locationSevice = [[LSYLocation alloc] init];
+        [_locationSevice setDelegate:self];
+    }
+    return _locationSevice;
+}
+
+- (void)loctionWithProvince:(NSDictionary *)province city:(NSDictionary *)city area:(NSDictionary *)area{
+    [self sureProvince:province city:city area:area];
 }
 
 - (void)didReceiveMemoryWarning {

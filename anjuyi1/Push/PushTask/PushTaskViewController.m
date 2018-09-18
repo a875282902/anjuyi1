@@ -8,7 +8,7 @@
 //  发布任务
 
 #import "PushTaskViewController.h"
-#import "SelectLocationVC.h"//选择地址
+#import "SelectCityView.h"//选择地址
 
 #import "PullDownView.h"
 #import "YZMenuButton.h"
@@ -20,7 +20,7 @@
 
 #define padding 20
 
-@interface PushTaskViewController ()<SelectLocationVCDelegate,DefaultPullDownDelegate,LSYLocationDelegta,UIScrollViewDelegate,PhotoSelectControllerDelegate>
+@interface PushTaskViewController ()<SelectCityViewDelegate,DefaultPullDownDelegate,LSYLocationDelegta,UIScrollViewDelegate,PhotoSelectControllerDelegate>
 {
     NSInteger time;
     UIButton *codeBtn;
@@ -48,6 +48,8 @@
 @property (nonatomic,strong)NSMutableArray   * hallArr;
 @property (nonatomic,strong)NSMutableArray   * buttonArr;
 @property (nonatomic,strong)NSMutableArray   * selectRoomArr;
+
+@property (nonatomic,strong)SelectCityView   * selectCityView;//选择城市
 
 
 @end
@@ -77,6 +79,8 @@
     [self getRoom];
     
     [self.locationSevice beginUpdatingLocation];
+    
+    [self.view addSubview:self.selectCityView];
     
 }
 - (void)getRoom{
@@ -192,6 +196,15 @@
     
     [self createPushButton];
   
+}
+- (SelectCityView *)selectCityView{
+    
+    if (!_selectCityView) {
+        
+        _selectCityView = [[SelectCityView alloc] initWithFrame:CGRectMake(0, 0 , KScreenWidth, KViewHeight)];
+        [_selectCityView setDelegate:self];
+    }
+    return _selectCityView;
 }
 
 // ---------- 选择地址 -------
@@ -388,9 +401,7 @@
 
 - (void)rechangeLocation:(UIButton *)sender{
     
-    SelectLocationVC *vc = [[SelectLocationVC alloc] init];
-    [vc setDelegate:self];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.selectCityView show];
 }
 
 - (void)sureProvince:(NSDictionary *)province city:(NSDictionary *)city area:(NSDictionary *)area{

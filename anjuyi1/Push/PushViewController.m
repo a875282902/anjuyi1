@@ -85,6 +85,8 @@
             [self presentViewController:nav animated:YES completion:nil];
         }
             break;
+        
+            
         case 4:
         {
             PushPhotoViewController *controller = [[PushPhotoViewController alloc] init];

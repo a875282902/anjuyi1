@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import <IQKeyboardManager.h>
 
 @interface BaseViewController ()<UIGestureRecognizerDelegate>
 {
@@ -16,6 +17,7 @@
 @end
 
 @implementation BaseViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,6 +34,8 @@
     // 一定要禁止系统自带的滑动手势
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+    
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:19.0f]}];
     
     
@@ -47,7 +51,7 @@
         return NO;
     }
     
-    return NO;
+    return YES;
 }
 
 /*设置导航栏左侧的按钮 和点击事件*/

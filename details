@@ -1,8 +1,9 @@
 
 PersonalViewController 个人主页（需要user_id）
+MasterDetailsVC  工长主页 （需要工长的用户 user_id）
 MyPushHouseViewController 整屋列表（需要user_id）
 MyPushHouseDetailsViewController 整屋详情 （需要house_id）
 
 
 MyPhotoViewController  图片列表 ()
-MyPushPhotoDetailsViewController  我的图片详情 (需要image_id)
+MyPushPhotoDetailsViewController  图片详情 (需要image_id)

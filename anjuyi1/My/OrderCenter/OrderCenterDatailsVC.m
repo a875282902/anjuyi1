@@ -138,6 +138,36 @@
 - (void)acceptOrders{
     
     
+    NSString *path = [NSString stringWithFormat:@"%@/person_task/receive_order",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:@{@"id":self.orderId} success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            [ViewHelps showHUDWithText:@"接单成功"];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning {

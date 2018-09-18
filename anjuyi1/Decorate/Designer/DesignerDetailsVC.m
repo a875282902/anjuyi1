@@ -9,15 +9,21 @@
 
 #import "DesignerDetailsVC.h"
 
+#import "MyPushPhotoDetailsViewController.h"//图片详情
+#import "MyPushHouseDetailsViewController.h"//整屋详情详情
+
 @interface DesignerDetailsVC ()<UIScrollViewDelegate>
 {
     UIButton *backBtn;
     UIButton *shareBtn;
+    UIImageView *headerBackImage;
 }
 
 @property (nonatomic,strong)UIScrollView   *  tmpScrollView;
 
 @property (nonatomic,strong)UIView         *  navView;
+
+@property (nonatomic,strong)NSDictionary   *  data;
 
 @end
 
@@ -44,11 +50,47 @@
 
     [self.view addSubview:self.tmpScrollView];
     
-    [self setUpScrollView];
-    
     [self.view addSubview:self.navView];
+    
+    [self getDesignerInfo];
 }
 
+- (void)getDesignerInfo{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/designer/designer_detail",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:@{@"user_id":self.designerID} success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            weakSelf.data = responseObject[@"datas"];
+            [weakSelf setUpScrollView];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
+}
+
+
+#pragma mark -- ui
 - (UIScrollView *)tmpScrollView{
     //designer_xq_banner
     if (!_tmpScrollView) {
@@ -90,43 +132,50 @@
     
     UIImageView *headerBack = [Tools creatImage:CGRectMake(0, 0, KScreenWidth, MDXFrom6(286.5)) image:@"designer_xq_banner"];
     [self.tmpScrollView addSubview:headerBack];
-
+    
+    headerBackImage = headerBack;
+    
     height = KStatusBarHeight +MDXFrom6(65);
     
-    [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(15), height, MDXFrom6(345), MDXFrom6(32)) font:[UIFont systemFontOfSize:30] color:[UIColor whiteColor] alignment:(NSTextAlignmentLeft) title:@"name"]];
+    [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(15), height, MDXFrom6(345), MDXFrom6(32)) font:[UIFont systemFontOfSize:30] color:[UIColor whiteColor] alignment:(NSTextAlignmentLeft) title:self.data[@"member_info"][@"nickname"]]];
     
-    UIImageView *headerImage = [Tools creatImage:CGRectMake(MDXFrom6(300), height, MDXFrom6(60), MDXFrom6(60)) url:@"" image:@"fb_tx_img"];
+    UIImageView *headerImage = [Tools creatImage:CGRectMake(MDXFrom6(300), height, MDXFrom6(60), MDXFrom6(60)) url:self.data[@"member_info"][@"head"] image:@"fb_tx_img"];
     [headerImage setClipsToBounds:YES];
     [headerImage.layer setCornerRadius:MDXFrom6(30)];
     [self.tmpScrollView addSubview:headerImage];
     
-    UILabel *typeLabel = [Tools creatLabel:CGRectMake(MDXFrom6(300), height+MDXFrom6(70), MDXFrom6(60), MDXFrom6(20)) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] alignment:(NSTextAlignmentCenter) title:@"名家汇"];
+    UILabel *typeLabel = [Tools creatLabel:CGRectMake(MDXFrom6(300), height+MDXFrom6(70), MDXFrom6(60), MDXFrom6(20)) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] alignment:(NSTextAlignmentCenter) title:@"设计师"];
     [typeLabel.layer setCornerRadius:5];
     [typeLabel setBackgroundColor:[UIColor colorWithHexString:@"#2CB7B5"]];
     [typeLabel setClipsToBounds:YES];
     [self.tmpScrollView addSubview:typeLabel];
     
-
+    
     height += MDXFrom6(42);
     
-    [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(15), height, MDXFrom6(345), MDXFrom6(20)) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] alignment:(NSTextAlignmentLeft) title:@"location"]];
+    [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(15), height, MDXFrom6(345), MDXFrom6(20)) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] alignment:(NSTextAlignmentLeft) title:self.data[@"member_info"][@"address"]]];
     
     height += MDXFrom6(25);
     
-    [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(15), height, MDXFrom6(345), MDXFrom6(20)) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] alignment:(NSTextAlignmentLeft) title:@"Job"]];
+    [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(15), height, MDXFrom6(345), MDXFrom6(20)) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] alignment:(NSTextAlignmentLeft) title:@"设计师"]];
     
     height = MDXFrom6(226.5);
     
     NSArray *tArr = @[@"关注",@"被关注",@"已预约"];
+    NSArray *dArr = @[self.data[@"follow"][@"follow_num"],
+                      self.data[@"follow"][@"fan_num"],
+                      @"123"];
+    
     for (NSInteger i = 0; i < 3 ; i++) {
         [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(75*i), height, MDXFrom6(75), MDXFrom6(20)) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] alignment:(NSTextAlignmentCenter) title:tArr[i]]];
-        [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(75*i), height+MDXFrom6(30), MDXFrom6(75), MDXFrom6(20)) font:[UIFont boldSystemFontOfSize:18] color:[UIColor whiteColor] alignment:(NSTextAlignmentCenter) title:@"12313"]];
+        [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(75*i), height+MDXFrom6(30), MDXFrom6(75), MDXFrom6(20)) font:[UIFont boldSystemFontOfSize:18] color:[UIColor whiteColor] alignment:(NSTextAlignmentCenter) title:dArr[i]]];
     }
     
     UIButton *likeBtn = [Tools creatButton:CGRectMake(MDXFrom6(260), height, MDXFrom6(100), MDXFrom6(35)) font:[UIFont boldSystemFontOfSize:14] color:[UIColor whiteColor] title:@"关注" image:@"designer_xq_add"];
     [likeBtn setBackgroundColor:MDRGBA(255, 180, 0, 1)];
     [likeBtn.layer setCornerRadius:MDXFrom6(17.5f)];
     [likeBtn setClipsToBounds:YES];
+    [likeBtn setSelected:[self.data[@"is_follow"] integerValue]==0?YES:NO];//0 关注
     [likeBtn addTarget:self action:@selector(like:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.tmpScrollView addSubview:likeBtn];
     
@@ -135,7 +184,11 @@
     
     height = MDXFrom6(286.5);
     
-    NSArray *tArr2 = @[@"图片",@"整屋",@"评价",@"回答"];
+    NSArray *tArr2 = @[@"图片",@"整屋",@"攻略",@"回答"];
+    NSArray *dArr2 = @[self.data[@"image_num"],
+                       self.data[@"house_num"],
+                       self.data[@"strategy_num"],
+                       self.data[@"answer_num"]];
     
     for (NSInteger i = 0 ; i < 4 ; i++) {
         UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth*i/4, height, KScreenWidth/4, MDXFrom6(80))];
@@ -145,8 +198,8 @@
         
         [backView addSubview:[Tools creatLabel:CGRectMake(0, MDXFrom6(17), KScreenWidth/4, MDXFrom6(20)) font:[UIFont systemFontOfSize:14] color:[UIColor colorWithHexString:@"#333333"] alignment:(NSTextAlignmentCenter) title:tArr2[i]]];
         
-        [backView addSubview:[Tools creatLabel:CGRectMake(0, MDXFrom6(44), KScreenWidth/4, MDXFrom6(25)) font:[UIFont boldSystemFontOfSize:18] color:[UIColor colorWithHexString:@"#000000"] alignment:(NSTextAlignmentCenter) title:@"21312"]];
-    
+        [backView addSubview:[Tools creatLabel:CGRectMake(0, MDXFrom6(44), KScreenWidth/4, MDXFrom6(25)) font:[UIFont boldSystemFontOfSize:18] color:[UIColor colorWithHexString:@"#000000"] alignment:(NSTextAlignmentCenter) title:dArr2[i]]];
+        
         [backView addSubview:[Tools setLineView:CGRectMake(KScreenWidth/4-1.5, MDXFrom6(15), 1.5, MDXFrom6(50))]];
     }
     
@@ -155,13 +208,17 @@
     [self.tmpScrollView addSubview:[Tools setLineView:CGRectMake(0, height, KScreenWidth, 1.5)]];
     
     //服务信息
-    height = [self setUpService:height];
-    
+    if (self.data[@"service"]) {
+        height = [self setUpService:height];
+    }
     //整屋
-    height = [self setUpAllHouse:height];
-
+    if (self.data[@"house_list"] && [self.data[@"house_list"] count]>0) {
+        height = [self setUpAllHouse:height];
+    }
     //图片
-    height = [self setUpPhoto:height];
+    if (self.data[@"img_list"] && [self.data[@"img_list"] count]>0) {
+        height = [self setUpPhoto:height];
+    }
     
     [self.tmpScrollView setContentSize:CGSizeMake(KScreenWidth, height)];
 }
@@ -184,6 +241,10 @@
     CGFloat serviceH = 0.0f;//服务view 的高度自适应
     
     NSArray *tArr3 = @[@"服务地区",@"服务范围",@"服务报价",@"服务介绍"];
+    NSArray *dArr3 = @[self.data[@"service"][@"service_region"],
+                       self.data[@"service"][@"service"],
+                       [NSString stringWithFormat:@"%@-%@元/m²",self.data[@"service"][@"guestLow"],self.data[@"service"][@"guestHigh"]],
+                       self.data[@"service"][@"personal"]];
     
     for (NSInteger i = 0 ; i < 4 ; i ++) {
         
@@ -191,9 +252,9 @@
         
         [serviceView addSubview:[Tools creatLabel:CGRectMake(0, serviceH, MDXFrom6(90), MDXFrom6(20)) font:[UIFont systemFontOfSize:14] color:[UIColor colorWithHexString:@"#666666"] alignment:(NSTextAlignmentCenter) title:tArr3[i]]];
         
-        CGFloat sDetailsH = [@"打赏大开始打赏大开始打赏大开始看的是看" boundingRectWithSize:CGSizeMake(MDXFrom6(230), 1000000) options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height +MDXFrom6(5);
+        CGFloat sDetailsH = [dArr3[i] boundingRectWithSize:CGSizeMake(MDXFrom6(230), 1000000) options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height +MDXFrom6(5);
         
-        [serviceView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(90), serviceH, MDXFrom6(230), sDetailsH) font:[UIFont systemFontOfSize:14] color:[UIColor colorWithHexString:@"#000000"] alignment:(NSTextAlignmentLeft) title:@"打赏大开始打赏大开始打赏大开始看的是看"]];
+        [serviceView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(90), serviceH, MDXFrom6(230), sDetailsH) font:[UIFont systemFontOfSize:14] color:[UIColor colorWithHexString:@"#000000"] alignment:(NSTextAlignmentLeft) title:dArr3[i]]];
         
         serviceH += sDetailsH+MDXFrom6(15);
         
@@ -222,9 +283,13 @@
     [allHouseScroll setShowsHorizontalScrollIndicator:NO];
     [self.tmpScrollView addSubview:allHouseScroll];
     
-    [allHouseScroll setContentSize:CGSizeMake(MDXFrom6(15+225*3), MDXFrom6(205))];
+    NSArray *arr = self.data[@"house_list"];
     
-    for (NSInteger i = 0 ; i <  3; i++) {
+    [allHouseScroll setContentSize:CGSizeMake(MDXFrom6(15+225*arr.count), MDXFrom6(205))];
+    
+    for (NSInteger i = 0 ; i <  arr.count; i++) {
+        
+        NSDictionary *dic = arr[i];
         
         UIView *back = [[UIView alloc] initWithFrame:CGRectMake(MDXFrom6(15+225*i), 0, MDXFrom6(205), MDXFrom6(205))];
         [back addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectAllHouse:)]];
@@ -235,11 +300,11 @@
         [back setClipsToBounds:YES];
         [allHouseScroll addSubview:back];
         
-        [back addSubview:[Tools creatImage:CGRectMake(0, 0, MDXFrom6(205), MDXFrom6(110)) url:@"" image:@"designer_xq_zw_case"]];
+        [back addSubview:[Tools creatImage:CGRectMake(0, 0, MDXFrom6(205), MDXFrom6(110)) url:dic[@"cover"] image:@"designer_xq_zw_case"]];
         
-        [back addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(10), MDXFrom6(120), MDXFrom6(185), MDXFrom6(40)) font:[UIFont systemFontOfSize:MDXFrom6(15)] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:@"当下最流行的的房子的案例案例和那里"]];
+        [back addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(10), MDXFrom6(120), MDXFrom6(185), MDXFrom6(40)) font:[UIFont systemFontOfSize:MDXFrom6(15)] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:dic[@"title"]]];
         
-        [back addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(10), MDXFrom6(170), MDXFrom6(185), MDXFrom6(20)) font:[UIFont systemFontOfSize:MDXFrom6(12)] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:@"两室  99平米"]];
+        [back addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(10), MDXFrom6(170), MDXFrom6(185), MDXFrom6(20)) font:[UIFont systemFontOfSize:MDXFrom6(12)] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:[NSString stringWithFormat:@"%@ %@平米",dic[@"door"],dic[@"proportion"]]]];
     }
     
     
@@ -262,16 +327,20 @@
     
     height += MDXFrom6(55);
     
-    for (NSInteger i = 0; i < 9; i++) {
+    NSArray *arr = self.data[@"img_list"];
+    
+    for (NSInteger i = 0; i < arr.count; i++) {
         
-        UIImageView *imageview = [Tools creatImage:CGRectMake(MDXFrom6(15+120*(i%3)), MDXFrom6(120*(i/3))+height, MDXFrom6(105), MDXFrom6(105)) url:@"" image:@"designer_xq_img_case"];
+        UIImageView *imageview = [Tools creatImage:CGRectMake(MDXFrom6(15+120*(i%3)), MDXFrom6(120*(i/3))+height, MDXFrom6(105), MDXFrom6(105)) url:arr[i][@"cover"] image:@"designer_xq_img_case"];
         [imageview.layer setCornerRadius:5];
         [imageview setClipsToBounds:YES];
+        [imageview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showImageDetails:)]];
+        [imageview setTag:i];
         [self.tmpScrollView addSubview:imageview];
         
     }
     
-    return height += ceil(9/3.0)*MDXFrom6(120);
+    return height += ceil(arr.count/3.0)*MDXFrom6(120);
 }
 
 
@@ -297,7 +366,7 @@
     
 }
 
-//展示整屋的
+//展示整屋的列表
 - (void)showAllHouse{
     
     
@@ -305,15 +374,24 @@
 
 //整屋案例
 - (void)selectAllHouse:(UITapGestureRecognizer *)sender{
-    
+    NSArray *arr = self.data[@"house_list"];
+    MyPushHouseDetailsViewController *vc = [[MyPushHouseDetailsViewController alloc] init];
+    vc.house_id = arr[sender.view.tag][@"id"];
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
-
+//展示图片列表
 - (void)showPhoto{
     
     
 }
-
+//展示图片详情
+- (void)showImageDetails:(UITapGestureRecognizer *)sender{
+     NSArray *arr = self.data[@"img_list"];
+    MyPushPhotoDetailsViewController *vc = [[MyPushPhotoDetailsViewController alloc] init];
+    vc.photo_id = arr[sender.view.tag][@"id"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 #pragma mark -- delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -331,6 +409,15 @@
             [backBtn setImage:[UIImage imageNamed:@"my_back"] forState:(UIControlStateNormal)];
         }
        
+        
+        CGPoint point = scrollView.contentOffset;
+        
+        if (point.y < 0) {
+            CGRect rect = headerBackImage.frame;
+            rect.origin.y =point.y ;
+            rect.size.height =MDXFrom6(286.5) - point.y;
+            headerBackImage.frame = rect;
+        }
     }
     
 }

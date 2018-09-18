@@ -10,4 +10,6 @@
 
 @interface MasterDetailsVC : BaseViewController
 
+@property (nonatomic,strong) NSString *masterID;
+
 @end

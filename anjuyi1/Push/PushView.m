@@ -9,6 +9,7 @@
 #import "PushView.h"
 #import "PushPhotoViewController.h"//发布图片
 #import "PushProjectViewController.h"//发布项目
+#import "AuxiliaryOrderViewController.h"//辅助下单
 #import "PushHouseViewController.h"//发布整屋
 #import "PushTaskViewController.h"//发布任务
 
@@ -74,6 +75,13 @@
         case 1:
         {
             PushProjectViewController *controller = [[PushProjectViewController alloc] init];
+            BaseNaviViewController *nav = [[BaseNaviViewController alloc] initWithRootViewController:controller];
+            [self.delegate jumpToViewControllerForPush:nav];
+        }
+            break;
+        case 2:
+        {
+            AuxiliaryOrderViewController *controller = [[AuxiliaryOrderViewController alloc] init];
             BaseNaviViewController *nav = [[BaseNaviViewController alloc] initWithRootViewController:controller];
             [self.delegate jumpToViewControllerForPush:nav];
         }

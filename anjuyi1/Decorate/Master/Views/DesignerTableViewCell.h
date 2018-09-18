@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MasterModel.h"
 
 @interface DesignerTableViewCell : UITableViewCell
 
@@ -20,5 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *descImage3;
 @property (weak, nonatomic) IBOutlet UIView *backView;
 
+
+- (void)bandDataWithModel:(MasterModel *)model;
 
 @end

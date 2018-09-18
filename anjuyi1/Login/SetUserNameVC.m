@@ -54,7 +54,7 @@
     
     // ----  输入密码
     UITextField *userName = [[UITextField alloc] initWithFrame:CGRectMake(MDXFrom6(35), height, MDXFrom6(305), 60)];
-    [userName setPlaceholder:@"输入密码"];
+    [userName setPlaceholder:@"输入昵称"];
     [userName setFont:[UIFont systemFontOfSize:16]];
     [userName setTag:1];
     [userName addTarget:self action:@selector(textValueChange:) forControlEvents:(UIControlEventEditingChanged)];
@@ -101,7 +101,7 @@
 #pragma mark -- 下一步
 - (void)nextSteps{
 
-    if ([userNames isValidAlphaNumberPassword] || [userNames isValidNumberAndLetterPassword]) {
+    if ([userNames isValidAlphaNumberPassword]) {
         
         ServiceAgreementVC *vc = [[ServiceAgreementVC alloc] init];
         vc.phone = self.phone;

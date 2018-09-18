@@ -8,10 +8,11 @@
 //  免费验房
 
 #import "HouseInspectViewController.h"
-#import "SelectLocationVC.h"//选择地址
+//#import "SelectLocationVC.h"//选择地址
+#import "SelectCityView.h"
 #import "LSYLocation.h"
 
-@interface HouseInspectViewController ()<SelectLocationVCDelegate,LSYLocationDelegta>
+@interface HouseInspectViewController ()<LSYLocationDelegta,SelectCityViewDelegate>
 {
     NSInteger time;
     UIButton *codeBtn;
@@ -25,6 +26,7 @@
 @property (nonatomic,strong)NSTimer        * timer;
 @property (nonatomic,strong)UILabel        * location;
 @property (nonatomic,strong)LSYLocation    * locationSevice;
+@property (nonatomic,strong)SelectCityView * selectCityView;
 
 @end
 
@@ -58,6 +60,8 @@
     
     
     [self.locationSevice beginUpdatingLocation];
+    
+    [self.view addSubview:self.selectCityView];
     
 }
 
@@ -153,9 +157,17 @@
 
 - (void)rechangeLocation:(UIButton *)sender{
     
-    SelectLocationVC *vc = [[SelectLocationVC alloc] init];
-    [vc setDelegate:self];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.selectCityView show];
+}
+
+- (SelectCityView *)selectCityView{
+    
+    if (!_selectCityView) {
+        
+        _selectCityView = [[SelectCityView alloc] initWithFrame:CGRectMake(0, 0 , KScreenWidth, KScreenHeight)];
+        [_selectCityView setDelegate:self];
+    }
+    return _selectCityView;
 }
 
 - (void)sureProvince:(NSDictionary *)province city:(NSDictionary *)city area:(NSDictionary *)area{

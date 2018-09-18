@@ -18,6 +18,28 @@
     return self;
 }
 
+- (void)bandDataWithModel:(MasterModel *)model{
+    
+    [self.headerImage sd_setImageWithURL:[NSURL URLWithString:model.head]];
+    
+    [self.nameLabel setText:model.nickname];
+    
+    [self.priceLabel setText:[NSString stringWithFormat:@"设计报价%@-%@元/m²",model.guestLow,model.guestHigh]];
+    
+    [self.typeLabel setText:model.type];
+    if (model.image_list.count >0) {
+         [self.descImage1 sd_setImageWithURL:[NSURL URLWithString:model.image_list[0]]];
+    }
+   
+    if (model.image_list.count>1) {
+       [self.descImage2 sd_setImageWithURL:[NSURL URLWithString:model.image_list[1]]];
+    }
+    if (model.image_list.count >2) {
+        [self.descImage3 sd_setImageWithURL:[NSURL URLWithString:model.image_list[2]]];
+    }
+    
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     

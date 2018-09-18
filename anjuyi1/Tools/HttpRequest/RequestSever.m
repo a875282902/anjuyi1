@@ -32,6 +32,10 @@
             
             string = @"转换JSON 格式错误";
         }
+        else if (error.code == 3840){
+            
+            string = @"返回格式不是JSON";
+        }
         else if (error.code == -1016){
             
             string = @"请求的内容格式和解析用方法不匹配";

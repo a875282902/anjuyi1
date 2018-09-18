@@ -20,7 +20,8 @@
 #import "HouseInspectViewController.h"//免费验房
 #import "FreeOfferViewController.h"//免费报价
 
-#import "MyPushHouseDetailsViewController.h"//整屋xiang'q
+#import "MyPushHouseDetailsViewController.h"//整屋详情
+
 
 #define hederHeight MDXFrom6(55)
 
