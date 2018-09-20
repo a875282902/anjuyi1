@@ -38,7 +38,7 @@
     NSString *str = userModel.nick_name;
     
     if ([model.reply_name isKindOfClass:[NSString class]]) {
-        str = [NSString stringWithFormat:@"%@回复%@",str,model.reply_name];
+        str = [NSString stringWithFormat:@"%@  回复 %@",str,model.reply_name];
     }
     
     NSMutableAttributedString *attS = [[NSMutableAttributedString alloc] initWithString:str];

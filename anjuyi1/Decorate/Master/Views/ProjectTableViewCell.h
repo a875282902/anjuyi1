@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProjectModel.h"
 
 @protocol ProjectTableViewCellDelegate <NSObject>
 
@@ -26,5 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *likeLabel;
 
 @property (nonatomic,weak)id<ProjectTableViewCellDelegate>delegate;
+
+- (void)bandDataWithModel:(ProjectModel *)model;
 
 @end

@@ -7,3 +7,14 @@ MyPushHouseDetailsViewController 整屋详情 （需要house_id）
 
 MyPhotoViewController  图片列表 ()
 MyPushPhotoDetailsViewController  图片详情 (需要image_id)
+
+
+ProjectListVC 项目列表 （需要用户 user_id）
+
+ProjectDetailsVC 项目详情 （需要 projectID 项目id ） 包含节点信息
+
+NodeDetailsViewController 节点信息 （需要 节点id ）
+
+
+CommentDetalisViewController 评论详情 (需要 eva_id)
+

@@ -1,5 +1,5 @@
 //
-//  CommentViewController.h
+//  MyCommentDetailsVC.h
 //  anjuyi1
 //
 //  Created by 李 on 2018/6/2.
@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface CommentViewController : BaseViewController
+@interface MyCommentDetailsVC : BaseViewController
 
 @end

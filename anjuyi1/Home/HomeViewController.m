@@ -62,6 +62,8 @@
     
     [self load];
     
+    [self.tmpTableView.mj_header beginRefreshing];
+    
 }
 
 #pragma mark -- refresh
@@ -94,14 +96,18 @@
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+    [HttpRequest POSTWithHeader:header url:path parameters:@{@"is_rand":@"1"} success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [weakSelf.dataArr removeAllObjects];
         if ([responseObject[@"code"] integerValue] == 200) {
             if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
                 
+                for (NSDictionary *dic in responseObject[@"datas"]) {
+                    [weakSelf.dataArr addObject:dic];
+                }
             }
+            
             
         }
         else{
@@ -110,6 +116,7 @@
         }
         
         [weakSelf.tmpTableView.mj_header endRefreshing];
+        [weakSelf.tmpTableView reloadData];
     } failure:^(NSError * _Nullable error) {
         
         [weakSelf.tmpTableView.mj_header endRefreshing];
@@ -121,15 +128,47 @@
 
 - (void)pullUpLoadMore{
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        //        [footer setState:(MJRefreshStateNoMoreData)];
-//        [footer endRefreshing];
-//        [footer endRefreshingWithNoMoreData];
-        [self.tmpTableView reloadData];
-    });
+    NSString *path = [NSString stringWithFormat:@"%@/index/getRandModel",KURL];
+    
+    NSDictionary *header;
+    
+    if (UTOKEN) {
+        header = @{@"token":UTOKEN};
+    }
+    
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:@{@"is_rand":@"2"} success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                
+                for (NSDictionary *dic in responseObject[@"datas"]) {
+                    [weakSelf.dataArr addObject:dic];
+                }
+            }
+
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        [weakSelf.tmpTableView.mj_footer endRefreshing];
+        [weakSelf.tmpTableView reloadData];
+    } failure:^(NSError * _Nullable error) {
+        
+        [weakSelf.tmpTableView.mj_footer endRefreshing];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
 }
-
-
 - (void)getIndexData{
     NSString *path = [NSString stringWithFormat:@"%@/index/index",KURL];
     
@@ -311,7 +350,7 @@
         [_tmpTableView setShowsVerticalScrollIndicator:NO];
         [_tmpTableView setShowsHorizontalScrollIndicator:NO];
         [_tmpTableView setTableHeaderView:self.headerView];
-        [_tmpTableView setTableFooterView:self.footView];
+//        [_tmpTableView setTableFooterView:self.footView];
         [_tmpTableView setDataSource:self];
         [_tmpTableView setDelegate:self];
     }
@@ -327,9 +366,9 @@
     
     if (section == 0) {
     
-        return 1;
+        return self.dataArr.count;
     }
-    return 20;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -352,28 +391,30 @@
         
         [cell.contentView.subviews respondsToSelector:@selector(removeFromSuperview)];
         
-        [cell.contentView addSubview:[self creatLikeView]];
+        [cell.contentView addSubview:[self creatLikeView:indexPath.row]];
         
         return cell;
     }
   
 }
 
-- (UIView *)creatLikeView{
+- (UIView *)creatLikeView:(NSInteger)index{
+    
+    NSDictionary *dic = self.dataArr[index];
     
     UIView *likeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, MDXFrom6(440))];
     [likeView setBackgroundColor:[UIColor whiteColor]];
     
     UIImageView *hederImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(40), MDXFrom6(40))];
+    [hederImage sd_setImageWithURL:[NSURL URLWithString:dic[@"member_info"][@"head"]]];
     [hederImage setCenter:CGPointMake(MDXFrom6(30), MDXFrom6(40))];
-    [hederImage setBackgroundColor:[UIColor redColor]];
     [hederImage.layer setCornerRadius:MDXFrom6(20)];
     [hederImage setClipsToBounds:YES];
     [likeView addSubview:hederImage];
     
-    [likeView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(60), MDXFrom6(20), MDXFrom6(250), MDXFrom6(20)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#000000"] alignment:(NSTextAlignmentLeft) title:@"我是小房主"]];
+    [likeView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(60), MDXFrom6(20), MDXFrom6(250), MDXFrom6(20)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#000000"] alignment:(NSTextAlignmentLeft) title:dic[@"member_info"][@"nickname"]]];
     
-    [likeView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(60), MDXFrom6(40), MDXFrom6(250), MDXFrom6(20)) font:[UIFont systemFontOfSize:10] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:@"我是小房主"]];
+    [likeView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(60), MDXFrom6(40), MDXFrom6(250), MDXFrom6(20)) font:[UIFont systemFontOfSize:10] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:dic[@"member_info"][@"position"]]];
     
     UIButton *attention = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [attention setFrame:CGRectMake(0, 0, MDXFrom6(60), MDXFrom6(25))];
@@ -383,6 +424,8 @@
     [attention.layer setBorderWidth:MDXFrom6(1)];
     [attention setClipsToBounds:YES];
     [attention setTitle:@"+关注" forState:(UIControlStateNormal)];
+    [attention setTitle:@"已关注" forState:(UIControlStateSelected)];
+    [attention setSelected:([dic[@"is_collect"] integerValue])==0?NO:YES];
     [attention.titleLabel setFont:[UIFont systemFontOfSize:12]];
     [attention setTitleColor:[UIColor colorWithHexString:@"#E77C03"] forState:(UIControlStateNormal)];
     [attention addTarget:self action:@selector(attentionType:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -390,8 +433,8 @@
     
     //
     UIImageView *coverImage = [[UIImageView alloc] initWithFrame:CGRectMake(MDXFrom6(10), MDXFrom6(75), KScreenWidth - MDXFrom6(20), MDXFrom6(225))];
-    [coverImage setBackgroundColor:[UIColor redColor]];
     [coverImage.layer setCornerRadius:MDXFrom6(5)];
+    [coverImage sd_setImageWithURL:[NSURL URLWithString:dic[@"cover"]]];
     [coverImage setClipsToBounds:YES];
     [likeView addSubview:coverImage];
     
@@ -402,7 +445,7 @@
     
     [back addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(10), MDXFrom6(10), back.frame.size.width - MDXFrom6(20), MDXFrom6(20)) font:[UIFont systemFontOfSize:14] color:[UIColor whiteColor] alignment:(NSTextAlignmentLeft) title:@"换新房后没钱装修"]];
     
-    [back addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(10), MDXFrom6(40), back.frame.size.width - MDXFrom6(20), MDXFrom6(40)) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] alignment:(NSTextAlignmentLeft) title:@"换新房后没钱装修换新房后没钱装修换新房后没钱装修换新房后没钱装修换新房后没钱装修换新房后没钱装修换新房后没钱装修"]];
+    [back addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(10), MDXFrom6(40), back.frame.size.width - MDXFrom6(20), MDXFrom6(40)) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] alignment:(NSTextAlignmentLeft) title:dic[@"content"]]];
     
     // 分享
     UIButton *shareBtn = [Tools creatButton:CGRectMake(MDXFrom6(10), MDXFrom6(310), MDXFrom6(25), MDXFrom6(23)) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] title:@"" image:@"fw"];
@@ -410,17 +453,17 @@
     [likeView addSubview:shareBtn];
     
     // 评论
-    UIButton *commentBtn = [Tools creatButton:CGRectMake(MDXFrom6(145), MDXFrom6(310), MDXFrom6(70), MDXFrom6(23)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#000000"] title:@"12312" image:@"com"];
+    UIButton *commentBtn = [Tools creatButton:CGRectMake(MDXFrom6(145), MDXFrom6(310), MDXFrom6(70), MDXFrom6(23)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#000000"] title:[NSString stringWithFormat:@"%@",dic[@"evaluate_num"]] image:@"com"];
     [commentBtn addTarget:self action:@selector(comment) forControlEvents:(UIControlEventTouchUpInside)];
     [likeView addSubview:commentBtn];
     
     //  收藏
-    UIButton *likeBtn = [Tools creatButton:CGRectMake(MDXFrom6(225), MDXFrom6(310), MDXFrom6(70), MDXFrom6(23)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#000000"] title:@"12312" image:@"colle"];
+    UIButton *likeBtn = [Tools creatButton:CGRectMake(MDXFrom6(225), MDXFrom6(310), MDXFrom6(70), MDXFrom6(23)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#000000"] title:[NSString stringWithFormat:@"%@",dic[@"collect_num"]] image:@"colle"];
     [likeBtn addTarget:self action:@selector(collect) forControlEvents:(UIControlEventTouchUpInside)];
     [likeView addSubview:likeBtn];
     
     // 点赞
-    UIButton *zanBtn = [Tools creatButton:CGRectMake(MDXFrom6(305), MDXFrom6(310), MDXFrom6(70), MDXFrom6(23)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#000000"] title:@"999931" image:@"like"];
+    UIButton *zanBtn = [Tools creatButton:CGRectMake(MDXFrom6(305), MDXFrom6(310), MDXFrom6(70), MDXFrom6(23)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#000000"] title:[NSString stringWithFormat:@"%@",dic[@"zan_num"]] image:@"like"];
     [zanBtn addTarget:self action:@selector(like) forControlEvents:(UIControlEventTouchUpInside)];
     [likeView addSubview:zanBtn];
     
@@ -434,12 +477,15 @@
     [likeView addSubview:activityScroll];
     //storage Charging  shop
     NSArray *arr = @[@"gue_bg_img",@"gue_bg_img1",@"gue_bg_img2"];
-    for (NSInteger i = 0 ; i < 3; i++) {
+    
+    NSArray *dArr = dic[@"tag_list"];
+    
+    for (NSInteger i = 0 ; i < dArr.count; i++) {
         
-        UIImageView *image =[self setImageViewWithFrame:CGRectMake(MDXFrom6(10)+MDXFrom6(130*i), 0,MDXFrom6(120), MDXFrom6(65)) andImageName:arr[i] andTag:(i+100) image:@""];
+        UIImageView *image =[self setImageViewWithFrame:CGRectMake(MDXFrom6(10)+MDXFrom6(130*i), 0,MDXFrom6(120), MDXFrom6(65)) andImageName:arr[arc4random()%3-1] andTag:(i+100) image:@""];
         [activityScroll addSubview:image];
         
-        [image addSubview:[Tools creatLabel:CGRectMake(0, 0, MDXFrom6(120), MDXFrom6(65)) font:[UIFont systemFontOfSize:12] color:[UIColor blackColor] alignment:(NSTextAlignmentCenter) title:@"验收毛培f昂\n需要注意哪些问题"]];
+        [image addSubview:[Tools creatLabel:CGRectMake(0, 0, MDXFrom6(120), MDXFrom6(65)) font:[UIFont systemFontOfSize:12] color:[UIColor blackColor] alignment:(NSTextAlignmentCenter) title:dArr[i][@"name"]]];
     }
     
     return likeView;

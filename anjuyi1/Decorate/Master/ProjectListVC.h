@@ -10,4 +10,6 @@
 
 @interface ProjectListVC : BaseViewController
 
+@property (nonatomic,strong)NSString * user_id;
+
 @end

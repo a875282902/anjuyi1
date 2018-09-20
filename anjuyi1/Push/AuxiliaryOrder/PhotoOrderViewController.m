@@ -179,7 +179,7 @@
 
 //提交订单
 - (void)pushOrder{
-    
+ 
     if (self.imageArr.count == 0) {
         [ViewHelps showHUDWithText:@"至少选择一张图片"];
         return;
@@ -196,19 +196,14 @@
     NSString *path = [NSString stringWithFormat:@"%@/auxiliary_order/phone_order",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
-    
-    
+
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    PhotoOrderInfoViewController *vc = [[PhotoOrderInfoViewController alloc] init];
-    
-    [weakSelf.navigationController pushViewController:vc animated:YES];
-    
     [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
         
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         
         if ([responseObject[@"code"] integerValue] == 200) {
             
@@ -225,7 +220,7 @@
         
     } failure:^(NSError * _Nullable error) {
         
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [RequestSever showMsgWithError:error];
     }];
 

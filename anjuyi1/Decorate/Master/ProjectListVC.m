@@ -11,6 +11,7 @@
 #import "ProjectTableViewCell.h"
 #import "ProjectDetailsVC.h"
 #import "SubscribeVisitVC.h"//预约参观
+#import "ProjectModel.h"
 
 @interface ProjectListVC ()<UITableViewDelegate , UITableViewDataSource,ProjectTableViewCellDelegate>
 
@@ -28,7 +29,9 @@
     [self setNavigationLeftBarButtonWithImageNamed:@"ss_back"];
     [self setNavigationRightBarButtonWithImageNamed:@"fw"];
     
-    [self setTitle:@"张建德的项目"];
+    self.dataArr = [NSMutableArray array];
+    
+    [self setTitle:@"项目列表"];
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:17.0f]}];
     
@@ -36,7 +39,52 @@
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1)]];
     
+    [self getProjectListData];
+    
 }
+
+#pragma mark -- 获取数据
+- (void)getProjectListData{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/project_info/project_list",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:@{@"user_id":self.user_id} success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in responseObject[@"datas"]) {
+                    ProjectModel *model = [[ProjectModel alloc] initWithDictionary:dic];
+                    [weakSelf.dataArr addObject:model];
+                }
+                
+                [weakSelf.tmpTableView reloadData];
+            }
+            
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
+}
+
 #pragma mark -- tableView
 - (UITableView *)tmpTableView{
     
@@ -55,7 +103,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -68,6 +116,9 @@
     [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
     [cell setDelegate:self];
 
+    if (indexPath.row < self.dataArr.count) {
+        [cell bandDataWithModel:self.dataArr[indexPath.row]];
+    }
     
     return cell;
 }
@@ -79,7 +130,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    ProjectModel *model = self.dataArr[indexPath.row];
+    
     ProjectDetailsVC *controll = [[ProjectDetailsVC alloc] init];
+    controll.projectID = model.ID;
     [self.navigationController pushViewController:controll animated:YES];
 }
 

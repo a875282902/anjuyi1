@@ -10,4 +10,6 @@
 
 @interface ProjectDetailsVC : BaseViewController
 
+@property (nonatomic,strong)NSString *projectID;
+
 @end

@@ -54,8 +54,10 @@
     
     __weak typeof(self) weakSelf = self;
     
+    [MBProgressHUD showHUDAddedTo:self animated:YES];
+    
     [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
-        
+        [MBProgressHUD hideHUDForView:self animated:YES];
         if ([responseObject[@"code"] integerValue] == 200) {
             if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
                 for (NSDictionary *dic in responseObject[@"datas"]) {
@@ -71,7 +73,7 @@
         
         [weakSelf.tmpTableView reloadData];
     } failure:^(NSError * _Nullable error) {
-        
+        [MBProgressHUD hideHUDForView:self animated:YES];
         [RequestSever showMsgWithError:error];
     }];
 

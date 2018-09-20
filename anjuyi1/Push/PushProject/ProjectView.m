@@ -103,7 +103,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    [self.delegate selectProjectNode:self.dataArr[indexPath.item][@"id"]];
 }
 
 

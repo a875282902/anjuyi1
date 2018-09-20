@@ -8,13 +8,19 @@
 // 项目详情
 
 #import "ProjectDetailsVC.h"
-#import "ProjectCollectionViewCell.h"
+#import "NodeDetailsViewController.h"
 
-@interface ProjectDetailsVC ()<UICollectionViewDelegate,UICollectionViewDataSource>
+#import "ProjectView.h"//项目
 
-@property (nonatomic,strong)UICollectionView * tmpCollectionView;
+@interface ProjectDetailsVC ()<UIScrollViewDelegate,ProjectViewDelegate>
+{
+    NSString *_projiectNode;
+}
 
-@property (nonatomic,strong)NSMutableArray   * dataArr;
+@property (nonatomic,strong)UIScrollView     * tmpScrollView;
+
+@property (nonatomic,strong)NSMutableArray   * projectViewArr;
+@property (nonatomic,strong)NSMutableArray   * stautsArr;//状态view的数组
 
 @end
 
@@ -26,20 +32,26 @@
     [self setNavigationLeftBarButtonWithImageNamed:@"ss_back"];
     [self setNavigationRightBarButtonWithImageNamed:@"fw"];
     
-    [self setTitle:@"张建德的项目"];
+    [self setTitle:@"项目详情"];
+    
+    self.projectViewArr = [NSMutableArray array];
+    self.stautsArr = [NSMutableArray array];
+    
+    [self.view addSubview:self.tmpScrollView];
     
     [self setUpProgressView];
     
-    [self.view addSubview:self.tmpCollectionView];
+    [self setContentView];
+    
+    [self getProjectNodeData:@"1"];
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1)]];
 }
-
+#pragma mark --  UI
 //显示阶段的view
 - (void)setUpProgressView{
     
     UIView *progressView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, MDXFrom6(100))];
-    [progressView setBackgroundColor:[UIColor colorWithHexString:@"#eeeeee"]];
     [self.view addSubview:progressView];
     
     NSArray *tArr = @[@"施工准备",@"水电工程",@"泥木工程",@"油漆工程",@"竣工"];
@@ -52,12 +64,16 @@
         [back setTag:i];
         [progressView addSubview:back];
         
-        [back addSubview:[Tools creatImage:CGRectMake(MDXFrom6(27.5), MDXFrom6(25), MDXFrom6(20), MDXFrom6(20)) image:@"project_process_xz"]];
+        UIImageView * imageView = [Tools creatImage:CGRectMake(MDXFrom6(27.5), MDXFrom6(25), MDXFrom6(20), MDXFrom6(20)) image:i==0 ?@"project_process_xz":@"project_process"];
+        
+        [back addSubview:imageView];
+        
+        [self.stautsArr addObject:imageView];
         
         [back addSubview:[Tools creatLabel:CGRectMake(0, MDXFrom6(55), KScreenWidth/5, MDXFrom6(20)) font:[UIFont systemFontOfSize:MDXFrom6(14)] color:[UIColor colorWithHexString:@"#3b3b3b"] alignment:(NSTextAlignmentCenter) title:tArr[i]]];
         
         if (i != 0) {
-             [back addSubview:[Tools creatImage:CGRectMake(0, MDXFrom6(33), MDXFrom6(27.5), MDXFrom6(4)) image:@"project_process_line"]];
+            [back addSubview:[Tools creatImage:CGRectMake(0, MDXFrom6(33), MDXFrom6(27.5), MDXFrom6(4)) image:@"project_process_line"]];
         }
         
         if (i != 4) {
@@ -66,48 +82,88 @@
         
     }
 }
-
-
-#pragma mark -tmpCollectionView
--(UICollectionView *)tmpCollectionView{
+-(UIScrollView *)tmpScrollView{
     
-    if (!_tmpCollectionView) {
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        [layout setItemSize:CGSizeMake(MDXFrom6(167), MDXFrom6(230))];
-        [layout setSectionInset:UIEdgeInsetsMake(MDXFrom6(5), MDXFrom6(10), MDXFrom6(5), MDXFrom6(10))];
-        
-        _tmpCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, MDXFrom6(100), KScreenWidth, KScreenHeight-KTopHeight - MDXFrom6(100)) collectionViewLayout:layout];
-        [_tmpCollectionView setBackgroundColor:[UIColor whiteColor]];
-        [_tmpCollectionView setDelegate:self];
-        [_tmpCollectionView setDataSource:self];
-        [_tmpCollectionView registerClass:[ProjectCollectionViewCell class] forCellWithReuseIdentifier:@"ProjectCollectionViewCell"];
+    if (!_tmpScrollView) {
+        _tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, MDXFrom6(100), KScreenWidth, KViewHeight - MDXFrom6(100) )];
+        [_tmpScrollView setShowsVerticalScrollIndicator:NO];
+        [_tmpScrollView setShowsHorizontalScrollIndicator:NO];
+        if (@available(iOS 11.0, *)) {
+            [_tmpScrollView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
+        }
+        [_tmpScrollView setPagingEnabled:YES];
+        [_tmpScrollView setContentSize:CGSizeMake(KScreenWidth*5, self.tmpScrollView.frame.size.height)];
+        [_tmpScrollView setDelegate:self];
     }
-    return _tmpCollectionView;
+    return _tmpScrollView;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+- (void)setContentView{
     
-    return 10;
+    for (NSInteger i = 0 ; i < 5 ; i ++) {
+        ProjectView *v = [[ProjectView alloc] initWithFrame:CGRectMake(KScreenWidth*i, 0, KScreenWidth, i==4?self.tmpScrollView.frame.size.height-MDXFrom6(65): self.tmpScrollView.frame.size.height)];
+        [v setDelegate:self];
+        [self.tmpScrollView addSubview:v];
+        
+        [self.projectViewArr addObject:v];
+    }
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+- (void)selectProjectNode:(NSString *)nodeID{
     
-    ProjectCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ProjectCollectionViewCell" forIndexPath:indexPath];
-
-    return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+    NodeDetailsViewController *vc = [[NodeDetailsViewController alloc] init];
+    vc.nodeID = nodeID;
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
-
+#pragma mark -- 数据
+- (void)getProjectNodeData:(NSString *)type{
+    
+    
+    _projiectNode = type;
+    //项目类型 1 施工准备 2、水电工程 3、泥木工程 4、油漆工程 5、竣工
+    
+    ProjectView *v = self.projectViewArr[[type integerValue]-1];
+    [v refreDataWithID:self.projectID andType:type];
+    
+    [self.tmpScrollView setContentOffset:CGPointMake(KScreenWidth *([type integerValue]-1), 0)];
+}
 
 #pragma mark -- 点击事件
 - (void)selectPhase:(UITapGestureRecognizer *)sender{
     
+    for (UIImageView *imgev in self.stautsArr) {
+        [imgev setImage:[UIImage imageNamed:@"project_process"]];
+    }
+    
+    [((UIImageView *)self.stautsArr[sender.view.tag]) setImage:[UIImage imageNamed:@"project_process_xz"]];
+    
+    [self getProjectNodeData:[NSString stringWithFormat:@"%ld",sender.view.tag+1]];
+}
+#pragma mark -- scrollVIew 协议 、、 数据刷新
+- (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if (scrollView == self.tmpScrollView) {
+        
+        // 如果在拖动结束的时候，没有减速的过程
+        if (!decelerate){
+            
+            NSInteger page = scrollView.contentOffset.x/KScreenWidth;
+            
+            UIView *v = ((UIImageView *)self.stautsArr[page]).superview;
+            [self selectPhase:[v.gestureRecognizers firstObject]];
+        }
+    }
     
 }
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    if (scrollView == self.tmpScrollView) {
+        NSInteger page = scrollView.contentOffset.x/KScreenWidth;
+        
+        UIView *v = ((UIImageView *)self.stautsArr[page]).superview;
+        [self selectPhase:[v.gestureRecognizers firstObject]];
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -8,9 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol ProjectViewDelegate <NSObject>
+
+- (void)selectProjectNode:(NSString *)nodeID;
+
+@end
+
 @interface ProjectView : UIView
 
 
 - (void)refreDataWithID:(NSString *)projectID andType:(NSString *)type;
+
+@property (nonatomic,weak)id<ProjectViewDelegate>delegate;
 
 @end

@@ -33,12 +33,29 @@
     [self.checkBtn.layer setCornerRadius:2.5];
     
 }
+
+- (void)bandDataWithModel:(ProjectModel *)model{
+    
+    [self.headerImgea sd_setImageWithURL:[NSURL URLWithString:model.foreman[@"head"]]];
+    
+    [self.nameLabel setText:model.foreman[@"nickname"]];
+    
+    [self.coverImage sd_setImageWithURL:[NSURL URLWithString:model.picture]];
+    [self.titleLabel setText:model.nameregister];
+    [self.typeLabel setText:[NSString stringWithFormat:@"%@ %@m²",model.room_hall,model.areaop]];
+    [self.viewsLabel setText:[NSString stringWithFormat:@"%@",model.visits]];
+    [self.likeLabel setText:[NSString stringWithFormat:@"%@",model.zan]];
+}
+
 - (IBAction)subscribeVisit:(UIButton *)sender {
     
     [self.delegate subscribeVisitWithCell:self];
 }
 - (IBAction)checkCase:(UIButton *)sender {
+    
 }
+
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

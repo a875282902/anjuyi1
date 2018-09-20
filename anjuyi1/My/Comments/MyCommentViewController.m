@@ -7,18 +7,18 @@
 //
 //  评论
 
-#import "CommentViewController.h"
+#import "MyCommentViewController.h"
 #import "CommentTableViewCell.h"
-#import "CommentDetailsVC.h"
+#import "MyCommentDetailsVC.h"
 
-@interface CommentViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface MyCommentViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView    * tmpTableView;
 
 @property (nonatomic,strong) NSMutableArray * dataArr;
 @end
 
-@implementation CommentViewController
+@implementation MyCommentViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -150,7 +150,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    CommentDetailsVC *controller = [[CommentDetailsVC alloc] init];
+    MyCommentDetailsVC *controller = [[MyCommentDetailsVC alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
     
 }

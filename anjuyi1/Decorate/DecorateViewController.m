@@ -22,6 +22,7 @@
 
 #import "MyPushHouseDetailsViewController.h"//整屋详情
 
+#import "ShowWebViewController.h"
 
 #define hederHeight MDXFrom6(55)
 
@@ -68,7 +69,7 @@
 #pragma mark -- 数据
 - (void)getBannerData{
   
-    NSString *path = [NSString stringWithFormat:@"%@/index/index",KURL];
+    NSString *path = [NSString stringWithFormat:@"%@/Decorate/index",KURL];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -81,6 +82,7 @@
         if ([responseObject[@"code"] integerValue] == 200) {
             
             [weakSelf.bannerArr removeAllObjects];
+            
             if ([responseObject[@"datas"][@"slide_img"] isKindOfClass:[NSArray class]] ) {
                 for (NSDictionary *dict in responseObject[@"datas"][@"slide_img"]) {
                     BannerModel *model = [[BannerModel alloc] initWithDictionary:dict];
@@ -92,7 +94,12 @@
         
             if (weakSelf.bannerArr.count != 0) {
                 [weakSelf.bannerScroll setSlideImagesArray:weakSelf.bannerArr];
-                
+                [weakSelf.bannerScroll setIanEcrollViewSelectAction:^(NSInteger index) {
+                    
+                    ShowWebViewController *vc = [[ShowWebViewController alloc] init];
+                    vc.url = responseObject[@"datas"][@"slide_img"][index][@"url"];
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                }];
                 [weakSelf.bannerScroll startLoading];
             }
             
@@ -106,7 +113,7 @@
         
     } failure:^(NSError * _Nullable error) {
         
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [RequestSever showMsgWithError:error];
     }];
 

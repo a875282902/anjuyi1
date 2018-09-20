@@ -303,7 +303,7 @@
         NSDictionary *dic = arr[i];
         
         UIView *back = [[UIView alloc] initWithFrame:CGRectMake(MDXFrom6(15+225*i), 0, MDXFrom6(205), MDXFrom6(205))];
-        [back addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectAllHouse:)]];
+        [back addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showProjectDetails:)]];
         [back setTag:i];
         [back.layer setCornerRadius:5];
         [back.layer setBorderColor:[UIColor colorWithHexString:@"#efefef"].CGColor];
@@ -447,13 +447,20 @@
 - (void)showProject{
     
     ProjectListVC *controller = [[ProjectListVC alloc] init];
+    controller.user_id = self.data[@"member_info"][@"id"];
     [self.navigationController pushViewController:controller animated:YES];
     
 }
 
-- (void)showProjectDetails:(UIButton *)sender{
-    
+- (void)showProjectDetails:(id)sender{
+    NSArray * arr = self.data[@"project_list"];
     ProjectDetailsVC *controll = [[ProjectDetailsVC alloc] init];
+    if ([sender isKindOfClass:[UIButton class]]) {
+        controll.projectID = arr[((UIButton *)sender).tag][@"id"];
+    }
+    else{
+        controll.projectID = arr[((UITapGestureRecognizer *)sender).view.tag][@"id"];
+    }
     [self.navigationController pushViewController:controll animated:YES];
 }
 

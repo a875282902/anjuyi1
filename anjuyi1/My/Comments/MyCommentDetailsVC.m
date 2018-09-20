@@ -8,13 +8,13 @@
 //
 //  评论详情
 
-#import "CommentDetailsVC.h"
+#import "MyCommentDetailsVC.h"
 
-@interface CommentDetailsVC ()
+@interface MyCommentDetailsVC ()
 
 @end
 
-@implementation CommentDetailsVC
+@implementation MyCommentDetailsVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
