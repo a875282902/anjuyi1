@@ -14,6 +14,7 @@
 #import "PersonalViewController.h"//个人主页
 
 #import "MyPhotoViewController.h"//我的图片
+#import "MyPushHouseViewController.h"
 #import "MyArticleViewController.h"//我的文章
 #import "MyProjectViewController.h"//我的项目
 #import "ProjectListVC.h"
@@ -184,7 +185,7 @@
         @"my_shop_collect",@"my_line_cus",@"my_order",@"my_coupon",
         @"my_wallt",@"my_acc",@"my_comment",@"my_distribution"];
     
-    NSArray *tArr = @[@"我的图片",@"我的文章",@"我的项目",@"我的收藏",
+    NSArray *tArr = @[@"我的图片",@"我的整屋",@"我的项目",@"我的收藏",
                       @"草稿箱",@"我的回答",@"关注的好友",@"关注的话题",
                       @"商品收藏",@"在线客服",@"我的订单",@"我的优惠券",
                       @"我的钱包",@"积分商城",@"我的评论",@"分销统计"];
@@ -275,7 +276,8 @@
             break;
         case 1:
         {
-            MyArticleViewController *controller = [[MyArticleViewController alloc] init];
+            MyPushHouseViewController *controller = [[MyPushHouseViewController alloc] init];
+            controller.isPresent = NO;
             [self.navigationController pushViewController:controller animated:YES];
             
         }

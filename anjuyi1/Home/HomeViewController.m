@@ -20,6 +20,7 @@
 
 #import "ChargingHomeViewController.h"//充电桩
 
+#import "SearchViewController.h"
 
 #define hederHeight MDXFrom6(55)
 
@@ -560,7 +561,8 @@
 //跳转到搜索页
 - (void)jumpSearch{
     
-    
+    SearchViewController *vc = [[SearchViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)selectActivity:(UITapGestureRecognizer *)sender{

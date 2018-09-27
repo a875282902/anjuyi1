@@ -113,7 +113,11 @@
      
         NSString *str = [NSString stringWithFormat:@"#%@",self.dataArr[i][@"name"]];
         
-        NSAttributedString *atts = [[NSAttributedString alloc] initWithString:str];
+        NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        style.lineBreakMode = NSLineBreakByWordWrapping;
+        style.alignment = NSTextAlignmentLeft;
+        
+        NSAttributedString *atts = [[NSAttributedString alloc] initWithString:str attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14],NSParagraphStyleAttributeName:style}];
         
         CGRect rext = [atts boundingRectWithSize:CGSizeMake(10000, 30) options:(NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin) context:nil];
         

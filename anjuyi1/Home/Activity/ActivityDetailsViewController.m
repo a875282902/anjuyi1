@@ -8,7 +8,7 @@
 
 #import "ActivityDetailsViewController.h"
 #import "ActivityList.h"
-#import "PushPhotoDetailsViewController.h"
+#import "PhotoDetailsViewController.h"
 #import "AddActivityPhotoViewController.h"
 
 @interface ActivityDetailsViewController ()<UIScrollViewDelegate,ActivityListDelegate>
@@ -268,7 +268,7 @@
 
 -  (void)selectPhotoToShow:(NSString *)photoId{
     
-    PushPhotoDetailsViewController *vc = [[PushPhotoDetailsViewController alloc] init];
+    PhotoDetailsViewController *vc = [[PhotoDetailsViewController alloc] init];
     vc.photo_id = photoId;
     [self.navigationController pushViewController:vc animated:YES];
 }

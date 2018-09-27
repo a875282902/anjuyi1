@@ -6,12 +6,12 @@
 //  Copyright © 2018年 lsy. All rights reserved.
 //
 
-#import "MyPushHouseViewController.h"
+#import "HouseListViewController.h"
 #import "DraftBoxTableViewCell.h"
 #import "HouseModel.h"
-#import "MyPushHouseDetailsViewController.h"
+#import "HouseDetailsViewController.h"
 
-@interface MyPushHouseViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface HouseListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView    * tmpTableView;
 @property (nonatomic, strong) NSMutableArray * dataArr;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation MyPushHouseViewController
+@implementation HouseListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,7 +30,7 @@
     self.navView = [[NavTwoTitle alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(200), 44) WithTitle1:@"我的整屋" WithTitle2:@"0篇"];
     
     [self.navigationItem setTitleView:self.navView];
-
+    
     
     self.dataArr = [NSMutableArray array];
     
@@ -46,7 +46,7 @@
 -(void)leftButtonTouchUpInside:(id)sender{
     
     if (self.isPresent) {
-         [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
     else{
         [self.navigationController popViewControllerAnimated:YES];
@@ -55,15 +55,16 @@
 
 - (void)getHouseList{
     
-    NSString *path = [NSString stringWithFormat:@"%@/member/my_whole_list",KURL];
+    NSString *path = [NSString stringWithFormat:@"%@/whole_house_info/person_whole_list",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *dic = @{@"user_id":self.user_id};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [weakSelf.dataArr removeAllObjects];
@@ -92,7 +93,7 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [RequestSever showMsgWithError:error];
     }];
-
+    
 }
 
 #pragma mark -- tableView
@@ -141,7 +142,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     HouseModel *model  = self.dataArr[indexPath.row];
-    MyPushHouseDetailsViewController *vc = [[MyPushHouseDetailsViewController alloc] init];
+    HouseDetailsViewController *vc = [[HouseDetailsViewController alloc] init];
     [vc setHouse_id:model.ID];
     [self.navigationController pushViewController:vc animated:YES];
     

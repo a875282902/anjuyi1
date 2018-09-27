@@ -24,6 +24,8 @@
 
 #import "ShowWebViewController.h"
 
+#import "SearchViewController.h"
+
 #define hederHeight MDXFrom6(55)
 
 @interface DecorateViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -274,7 +276,8 @@
 //
 - (void)jumpSearch{
     
-    
+    SearchViewController *vc = [[SearchViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)selectService:(UITapGestureRecognizer *)sender{

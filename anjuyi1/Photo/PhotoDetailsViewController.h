@@ -1,5 +1,5 @@
 //
-//  PushPhotoDetailsViewController.h
+//  PhotoDetailsViewController.h
 //  anjuyi1
 //
 //  Created by apple on 2018/8/9.
@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface PushPhotoDetailsViewController : BaseViewController
+@interface PhotoDetailsViewController : BaseViewController
 @property (nonatomic,strong) NSString *photo_id;
 @end

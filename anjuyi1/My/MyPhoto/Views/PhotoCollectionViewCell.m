@@ -73,6 +73,11 @@
     [self.headerImage sd_setImageWithURL:[NSURL URLWithString:model.head]];
     [self.nameLabel setText:model.nick_name];
     [self.likeLabel setText:model.collect_num];
+    
+    if (model.member_info) {
+        [self.headerImage sd_setImageWithURL:[NSURL URLWithString:model.member_info[@"head"]]];
+        [self.nameLabel setText:model.member_info[@"nickname"]];
+    }
 }
 
 @end

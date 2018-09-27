@@ -10,7 +10,6 @@
 
 @interface MyPushHouseViewController : BaseViewController
 
-@property (nonatomic,strong)NSString *user_id;
 @property (nonatomic,assign)BOOL isPresent;
 
 @end

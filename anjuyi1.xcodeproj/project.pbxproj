@@ -163,7 +163,7 @@
 		180F19CA211943A90018F1CD /* ActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180F19C8211943A90018F1CD /* ActivityTableViewCell.xib */; };
 		180F19CD211978590018F1CD /* ActivityDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19CC211978590018F1CD /* ActivityDetailsViewController.m */; };
 		180F19D0211990FE0018F1CD /* ActivityList.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19CF211990FE0018F1CD /* ActivityList.m */; };
-		180F1A05211C2E700018F1CD /* PushPhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F1A04211C2E6F0018F1CD /* PushPhotoDetailsViewController.m */; };
+		180F1A05211C2E700018F1CD /* PhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F1A04211C2E6F0018F1CD /* PhotoDetailsViewController.m */; };
 		180F1A08211C41260018F1CD /* AddActivityPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F1A07211C41260018F1CD /* AddActivityPhotoViewController.m */; };
 		180F1A0C211D23160018F1CD /* TopicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F1A0B211D23160018F1CD /* TopicListViewController.m */; };
 		180F1A11211D23FF0018F1CD /* ChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F1A10211D23FF0018F1CD /* ChannelView.m */; };
@@ -180,7 +180,6 @@
 		1827513221019C28002A61F8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1827513121019C28002A61F8 /* CoreData.framework */; };
 		182751352101A40A002A61F8 /* PowerStationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182751342101A40A002A61F8 /* PowerStationDetailsViewController.m */; };
 		182751382101C1D5002A61F8 /* ProwerStationDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 182751372101C1D5002A61F8 /* ProwerStationDetails.m */; };
-		182CDA3C21070F5F00F28F4C /* HouseDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDA3B21070F5F00F28F4C /* HouseDetailsViewController.m */; };
 		182CDA3F21071D8900F28F4C /* HouseQA.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDA3E21071D8900F28F4C /* HouseQA.m */; };
 		182CDA452107256E00F28F4C /* EditHouseQAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDA442107256E00F28F4C /* EditHouseQAViewController.m */; };
 		182CDA4821081A9300F28F4C /* PushView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDA4721081A9300F28F4C /* PushView.m */; };
@@ -213,6 +212,20 @@
 		1838260F2151FED9004C40CA /* CommentDetalisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838260D2151FED9004C40CA /* CommentDetalisViewController.m */; };
 		183826102151FED9004C40CA /* CommentDetalisViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1838260E2151FED9004C40CA /* CommentDetalisViewController.xib */; };
 		1838261421522641004C40CA /* MyProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838261321522641004C40CA /* MyProjectViewController.m */; };
+		18382618215A0E48004C40CA /* PhotoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18382617215A0E47004C40CA /* PhotoListViewController.m */; };
+		1838261D215A22B1004C40CA /* MyProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838261B215A22B1004C40CA /* MyProjectTableViewCell.m */; };
+		1838261E215A22B1004C40CA /* MyProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1838261C215A22B1004C40CA /* MyProjectTableViewCell.xib */; };
+		18382625215B18F6004C40CA /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18382624215B18F6004C40CA /* SearchResultsViewController.m */; };
+		18382628215B1998004C40CA /* SearchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18382627215B1998004C40CA /* SearchListView.m */; };
+		1838262B215B317E004C40CA /* SearchPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838262A215B317E004C40CA /* SearchPhotoView.m */; };
+		18382631215B354D004C40CA /* HouseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838262F215B354D004C40CA /* HouseTableViewCell.m */; };
+		18382632215B354E004C40CA /* HouseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18382630215B354D004C40CA /* HouseTableViewCell.xib */; };
+		18382635215B3804004C40CA /* SearchHouseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18382634215B3804004C40CA /* SearchHouseView.m */; };
+		1838263B215B8607004C40CA /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18382639215B8607004C40CA /* UserTableViewCell.m */; };
+		1838263C215B8607004C40CA /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1838263A215B8607004C40CA /* UserTableViewCell.xib */; };
+		1838263F215C7690004C40CA /* SearchPromptTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838263E215C7690004C40CA /* SearchPromptTableViewController.m */; };
+		18382643215C8645004C40CA /* HouseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18382642215C8645004C40CA /* HouseListViewController.m */; };
+		18382646215C86EC004C40CA /* HouseDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18382645215C86EC004C40CA /* HouseDetailsViewController.m */; };
 		18399C2F211D4580007CAD58 /* TopicDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C2E211D4580007CAD58 /* TopicDetailsViewController.m */; };
 		18399C32211D6C08007CAD58 /* TopicCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C31211D6C08007CAD58 /* TopicCommentModel.m */; };
 		18399C36211D76FA007CAD58 /* TopicCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C34211D76FA007CAD58 /* TopicCommentTableViewCell.m */; };
@@ -608,8 +621,8 @@
 		180F19CC211978590018F1CD /* ActivityDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailsViewController.m; sourceTree = "<group>"; };
 		180F19CE211990FE0018F1CD /* ActivityList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivityList.h; sourceTree = "<group>"; };
 		180F19CF211990FE0018F1CD /* ActivityList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivityList.m; sourceTree = "<group>"; };
-		180F1A03211C2E6F0018F1CD /* PushPhotoDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushPhotoDetailsViewController.h; sourceTree = "<group>"; };
-		180F1A04211C2E6F0018F1CD /* PushPhotoDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushPhotoDetailsViewController.m; sourceTree = "<group>"; };
+		180F1A03211C2E6F0018F1CD /* PhotoDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoDetailsViewController.h; sourceTree = "<group>"; };
+		180F1A04211C2E6F0018F1CD /* PhotoDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoDetailsViewController.m; sourceTree = "<group>"; };
 		180F1A06211C41260018F1CD /* AddActivityPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddActivityPhotoViewController.h; sourceTree = "<group>"; };
 		180F1A07211C41260018F1CD /* AddActivityPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddActivityPhotoViewController.m; sourceTree = "<group>"; };
 		180F1A0A211D23160018F1CD /* TopicListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicListViewController.h; sourceTree = "<group>"; };
@@ -636,8 +649,6 @@
 		182751342101A40A002A61F8 /* PowerStationDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PowerStationDetailsViewController.m; sourceTree = "<group>"; };
 		182751362101C1D5002A61F8 /* ProwerStationDetails.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProwerStationDetails.h; sourceTree = "<group>"; };
 		182751372101C1D5002A61F8 /* ProwerStationDetails.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProwerStationDetails.m; sourceTree = "<group>"; };
-		182CDA3A21070F5F00F28F4C /* HouseDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseDetailsViewController.h; sourceTree = "<group>"; };
-		182CDA3B21070F5F00F28F4C /* HouseDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseDetailsViewController.m; sourceTree = "<group>"; };
 		182CDA3D21071D8900F28F4C /* HouseQA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseQA.h; sourceTree = "<group>"; };
 		182CDA3E21071D8900F28F4C /* HouseQA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseQA.m; sourceTree = "<group>"; };
 		182CDA432107256E00F28F4C /* EditHouseQAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditHouseQAViewController.h; sourceTree = "<group>"; };
@@ -696,6 +707,31 @@
 		1838260E2151FED9004C40CA /* CommentDetalisViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentDetalisViewController.xib; sourceTree = "<group>"; };
 		1838261221522641004C40CA /* MyProjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyProjectViewController.h; sourceTree = "<group>"; };
 		1838261321522641004C40CA /* MyProjectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyProjectViewController.m; sourceTree = "<group>"; };
+		18382616215A0E47004C40CA /* PhotoListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoListViewController.h; sourceTree = "<group>"; };
+		18382617215A0E47004C40CA /* PhotoListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoListViewController.m; sourceTree = "<group>"; };
+		1838261A215A22B1004C40CA /* MyProjectTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyProjectTableViewCell.h; sourceTree = "<group>"; };
+		1838261B215A22B1004C40CA /* MyProjectTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyProjectTableViewCell.m; sourceTree = "<group>"; };
+		1838261C215A22B1004C40CA /* MyProjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProjectTableViewCell.xib; sourceTree = "<group>"; };
+		18382623215B18F6004C40CA /* SearchResultsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
+		18382624215B18F6004C40CA /* SearchResultsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
+		18382626215B1998004C40CA /* SearchListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchListView.h; sourceTree = "<group>"; };
+		18382627215B1998004C40CA /* SearchListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchListView.m; sourceTree = "<group>"; };
+		18382629215B317E004C40CA /* SearchPhotoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchPhotoView.h; sourceTree = "<group>"; };
+		1838262A215B317E004C40CA /* SearchPhotoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchPhotoView.m; sourceTree = "<group>"; };
+		1838262E215B354D004C40CA /* HouseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseTableViewCell.h; sourceTree = "<group>"; };
+		1838262F215B354D004C40CA /* HouseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseTableViewCell.m; sourceTree = "<group>"; };
+		18382630215B354D004C40CA /* HouseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HouseTableViewCell.xib; sourceTree = "<group>"; };
+		18382633215B3804004C40CA /* SearchHouseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchHouseView.h; sourceTree = "<group>"; };
+		18382634215B3804004C40CA /* SearchHouseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchHouseView.m; sourceTree = "<group>"; };
+		18382638215B8607004C40CA /* UserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell.h; sourceTree = "<group>"; };
+		18382639215B8607004C40CA /* UserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
+		1838263A215B8607004C40CA /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		1838263D215C7690004C40CA /* SearchPromptTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchPromptTableViewController.h; sourceTree = "<group>"; };
+		1838263E215C7690004C40CA /* SearchPromptTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchPromptTableViewController.m; sourceTree = "<group>"; };
+		18382641215C8645004C40CA /* HouseListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseListViewController.h; sourceTree = "<group>"; };
+		18382642215C8645004C40CA /* HouseListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseListViewController.m; sourceTree = "<group>"; };
+		18382644215C86EC004C40CA /* HouseDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseDetailsViewController.h; sourceTree = "<group>"; };
+		18382645215C86EC004C40CA /* HouseDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseDetailsViewController.m; sourceTree = "<group>"; };
 		18399C2D211D4580007CAD58 /* TopicDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicDetailsViewController.h; sourceTree = "<group>"; };
 		18399C2E211D4580007CAD58 /* TopicDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicDetailsViewController.m; sourceTree = "<group>"; };
 		18399C30211D6C08007CAD58 /* TopicCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicCommentModel.h; sourceTree = "<group>"; };
@@ -1584,6 +1620,7 @@
 				0AFEE72E20BD2F4F004FA8FC /* Category */,
 				0AFEE73120BD2F4F004FA8FC /* Decorate */,
 				180F1A02211C2E540018F1CD /* Photo */,
+				18382640215C861D004C40CA /* House */,
 				0AFEE74320BD2F50004FA8FC /* Home */,
 				0AFEE72B20BD2F4F004FA8FC /* Mall */,
 				0AFEE75820BD2F50004FA8FC /* My */,
@@ -1844,8 +1881,10 @@
 		180F1A02211C2E540018F1CD /* Photo */ = {
 			isa = PBXGroup;
 			children = (
-				180F1A03211C2E6F0018F1CD /* PushPhotoDetailsViewController.h */,
-				180F1A04211C2E6F0018F1CD /* PushPhotoDetailsViewController.m */,
+				18382616215A0E47004C40CA /* PhotoListViewController.h */,
+				18382617215A0E47004C40CA /* PhotoListViewController.m */,
+				180F1A03211C2E6F0018F1CD /* PhotoDetailsViewController.h */,
+				180F1A04211C2E6F0018F1CD /* PhotoDetailsViewController.m */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -1974,10 +2013,58 @@
 		1838261121522630004C40CA /* MyProject */ = {
 			isa = PBXGroup;
 			children = (
+				18382619215A2291004C40CA /* Views */,
 				1838261221522641004C40CA /* MyProjectViewController.h */,
 				1838261321522641004C40CA /* MyProjectViewController.m */,
 			);
 			path = MyProject;
+			sourceTree = "<group>";
+		};
+		18382619215A2291004C40CA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1838261A215A22B1004C40CA /* MyProjectTableViewCell.h */,
+				1838261B215A22B1004C40CA /* MyProjectTableViewCell.m */,
+				1838261C215A22B1004C40CA /* MyProjectTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1838262C215B3508004C40CA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				18382629215B317E004C40CA /* SearchPhotoView.h */,
+				1838262A215B317E004C40CA /* SearchPhotoView.m */,
+				18382633215B3804004C40CA /* SearchHouseView.h */,
+				18382634215B3804004C40CA /* SearchHouseView.m */,
+				18382626215B1998004C40CA /* SearchListView.h */,
+				18382627215B1998004C40CA /* SearchListView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1838262D215B3513004C40CA /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				1838262E215B354D004C40CA /* HouseTableViewCell.h */,
+				1838262F215B354D004C40CA /* HouseTableViewCell.m */,
+				18382630215B354D004C40CA /* HouseTableViewCell.xib */,
+				18382638215B8607004C40CA /* UserTableViewCell.h */,
+				18382639215B8607004C40CA /* UserTableViewCell.m */,
+				1838263A215B8607004C40CA /* UserTableViewCell.xib */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		18382640215C861D004C40CA /* House */ = {
+			isa = PBXGroup;
+			children = (
+				18382641215C8645004C40CA /* HouseListViewController.h */,
+				18382642215C8645004C40CA /* HouseListViewController.m */,
+				18382644215C86EC004C40CA /* HouseDetailsViewController.h */,
+				18382645215C86EC004C40CA /* HouseDetailsViewController.m */,
+			);
+			path = House;
 			sourceTree = "<group>";
 		};
 		18399C4221215A3F007CAD58 /* JGPush */ = {
@@ -2011,8 +2098,14 @@
 		1845C6172146687200EC84F3 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				1838262D215B3513004C40CA /* TableViewCell */,
+				1838262C215B3508004C40CA /* Views */,
 				1845C618214668B800EC84F3 /* SearchViewController.h */,
 				1845C619214668B800EC84F3 /* SearchViewController.m */,
+				1838263D215C7690004C40CA /* SearchPromptTableViewController.h */,
+				1838263E215C7690004C40CA /* SearchPromptTableViewController.m */,
+				18382623215B18F6004C40CA /* SearchResultsViewController.h */,
+				18382624215B18F6004C40CA /* SearchResultsViewController.m */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -2044,8 +2137,6 @@
 				1846D05020FEE93100EA1417 /* EditSpaceImageViewController.m */,
 				182CDA432107256E00F28F4C /* EditHouseQAViewController.h */,
 				182CDA442107256E00F28F4C /* EditHouseQAViewController.m */,
-				182CDA3A21070F5F00F28F4C /* HouseDetailsViewController.h */,
-				182CDA3B21070F5F00F28F4C /* HouseDetailsViewController.m */,
 			);
 			path = PushHouse;
 			sourceTree = "<group>";
@@ -2359,11 +2450,13 @@
 				18EA1BE020E1CD9A000738CC /* SortCell.xib in Resources */,
 				0AFEE72220BD2F26004FA8FC /* LaunchScreen.storyboard in Resources */,
 				0AFEE76D20BD2F50004FA8FC /* LaunchScreen.storyboard in Resources */,
+				18382632215B354E004C40CA /* HouseTableViewCell.xib in Resources */,
 				0A5A7B2B20C7DB9300153E9A /* LICENSE in Resources */,
 				0A5CD85020C695170028F82D /* IntegralMallTableViewCell.xib in Resources */,
 				0A7D505F20C43891001BFDBF /* MyFriendTableViewCell.xib in Resources */,
 				0A38FF0A20C6D86800B45CCD /* ShopCartCell.xib in Resources */,
 				182CDAA021097D4900F28F4C /* city.db in Resources */,
+				1838261E215A22B1004C40CA /* MyProjectTableViewCell.xib in Resources */,
 				0A5CD83120C61A110028F82D /* MyOrderTableViewCell.xib in Resources */,
 				0A8E9C7620C8FD9600C6E176 /* IntegralPayTableViewCell.xib in Resources */,
 				0A5A7B2F20C7DB9300153E9A /* SDPhotoBrowserd.podspec in Resources */,
@@ -2377,6 +2470,7 @@
 				0A7D505620C433CF001BFDBF /* MyAnswerTableViewCell.xib in Resources */,
 				182CDB1D2112D8A200F28F4C /* SpaceImageTableViewCell.xib in Resources */,
 				0A45D95820CB7CB2000C04B8 /* PlaceSupervisorViewController.xib in Resources */,
+				1838263C215B8607004C40CA /* UserTableViewCell.xib in Resources */,
 				0AC3190E20BDA0100035800F /* HomeTableViewCell.xib in Resources */,
 				0AD2DECD20CA83B900E53B43 /* OrderCenterTableViewCell.xib in Resources */,
 				18399C37211D76FA007CAD58 /* TopicCommentTableViewCell.xib in Resources */,
@@ -2455,7 +2549,6 @@
 				18ED87E221008D7100B38548 /* ShowDetailsViewController.m in Sources */,
 				18339CE620D276B700165FF2 /* BrandListView.m in Sources */,
 				0A5CD83C20C664FF0028F82D /* RecordsTableView.m in Sources */,
-				182CDA3C21070F5F00F28F4C /* HouseDetailsViewController.m in Sources */,
 				0A8E9C8020C9023200C6E176 /* AddressTableViewCell.m in Sources */,
 				1838261421522641004C40CA /* MyProjectViewController.m in Sources */,
 				1846D05A20FF853700EA1417 /* TextViewController.m in Sources */,
@@ -2480,13 +2573,14 @@
 				182CDA4821081A9300F28F4C /* PushView.m in Sources */,
 				0A7D500E20C2E894001BFDBF /* MyCommentDetailsVC.m in Sources */,
 				1846CFF720FDD66500EA1417 /* HouseSpaceTableViewCell.m in Sources */,
+				18382625215B18F6004C40CA /* SearchResultsViewController.m in Sources */,
 				0A7D503120C3A6E9001BFDBF /* RechargeViewController.m in Sources */,
 				0A38FF0920C6D86800B45CCD /* ShopCartCell.m in Sources */,
 				189AB923211D2FA3003E04C9 /* TopicListTableViewCell.m in Sources */,
 				0A38FEF220C6CD1600B45CCD /* SuspensionButton.m in Sources */,
 				184D07DF20D1250100653D81 /* ServiceAgreementVC.m in Sources */,
 				0AC3190920BD9DF40035800F /* Tools.m in Sources */,
-				180F1A05211C2E700018F1CD /* PushPhotoDetailsViewController.m in Sources */,
+				180F1A05211C2E700018F1CD /* PhotoDetailsViewController.m in Sources */,
 				18F5B7CA20E9D90F00B76A73 /* MaskView.m in Sources */,
 				182CDA5521083EAF00F28F4C /* HouseCommentView.m in Sources */,
 				0AD2DEB220CA443B00E53B43 /* ChangepasswordVC.m in Sources */,
@@ -2511,6 +2605,7 @@
 				0A5CD81D20C5927F0028F82D /* UIView+YZCategory.m in Sources */,
 				0AD2DEB520CA444800E53B43 /* ChangePhoneVC.m in Sources */,
 				0A7D505A20C437C5001BFDBF /* MyFriendViewController.m in Sources */,
+				1838261D215A22B1004C40CA /* MyProjectTableViewCell.m in Sources */,
 				18EA1BD820E1CCB7000738CC /* ShareView.m in Sources */,
 				1846CFD420F85B8B00EA1417 /* ProjectAddressViewController.m in Sources */,
 				0AFEE71D20BD2F23004FA8FC /* anjuyi1.xcdatamodeld in Sources */,
@@ -2531,6 +2626,7 @@
 				182CDA4B21082A5400F28F4C /* MyPushHouseViewController.m in Sources */,
 				18F5B7D820EB1D1000B76A73 /* AddProjectViewController.m in Sources */,
 				0AFEE76520BD2F50004FA8FC /* IanScrollView.m in Sources */,
+				18382631215B354D004C40CA /* HouseTableViewCell.m in Sources */,
 				18399C402120824C007CAD58 /* SelectCategy.m in Sources */,
 				182751352101A40A002A61F8 /* PowerStationDetailsViewController.m in Sources */,
 				0A7D500B20C2DC22001BFDBF /* CommentTableViewCell.m in Sources */,
@@ -2573,6 +2669,7 @@
 				0AD2DEA620CA192C00E53B43 /* ChangeNameViewController.m in Sources */,
 				0A8E9C7520C8FD9600C6E176 /* IntegralPayTableViewCell.m in Sources */,
 				0AFEE72520BD2F26004FA8FC /* main.m in Sources */,
+				1838263F215C7690004C40CA /* SearchPromptTableViewController.m in Sources */,
 				0A4A97C420BFCFAB009D6594 /* MoreChannel.m in Sources */,
 				188ABC272150D7D200F4C910 /* NodeDetailsViewController.m in Sources */,
 				180F1A08211C41260018F1CD /* AddActivityPhotoViewController.m in Sources */,
@@ -2589,8 +2686,10 @@
 				18ED88692100D78400B38548 /* PowerStationViewController.m in Sources */,
 				0A18745120C8B70F00451BAA /* GoodsStandardView.m in Sources */,
 				0A3085B820C02B4F00882805 /* MasterViewController.m in Sources */,
+				1838263B215B8607004C40CA /* UserTableViewCell.m in Sources */,
 				180F19C021193E580018F1CD /* ActivityViewController.m in Sources */,
 				0A5CD84B20C68FBB0028F82D /* IntegralMallViewController.m in Sources */,
+				1838262B215B317E004C40CA /* SearchPhotoView.m in Sources */,
 				1827511A210177DF002A61F8 /* CustomPaopaotView.m in Sources */,
 				0A7D506720C43CC7001BFDBF /* CustomerServiceViewController.m in Sources */,
 				1846CFF320FDD3E100EA1417 /* HouseSpace.m in Sources */,
@@ -2612,6 +2711,7 @@
 				1846CFFF20FDDE9300EA1417 /* HouseCoverView.m in Sources */,
 				1846D05420FF229700EA1417 /* PushProjectNodeViewController.m in Sources */,
 				18ED87E421008D7100B38548 /* ChargingCaseTableViewCell.m in Sources */,
+				18382618215A0E48004C40CA /* PhotoListViewController.m in Sources */,
 				1827511D210179EF002A61F8 /* CustomAnnotationView.m in Sources */,
 				182CDB1C2112D8A200F28F4C /* SpaceImageTableViewCell.m in Sources */,
 				182CDA5221083DA200F28F4C /* MyPushHouseDetailsViewController.m in Sources */,
@@ -2623,8 +2723,10 @@
 				0A8E9C7B20C9018E00C6E176 /* AddressViewController.m in Sources */,
 				18D3480820DB74B9008FD35E /* SelectCity.m in Sources */,
 				18D3480C20DB8CFF008FD35E /* AddressModel.m in Sources */,
+				18382628215B1998004C40CA /* SearchListView.m in Sources */,
 				0A1CA5B620C951CE00BA7AD3 /* PersonDetailsViewController.m in Sources */,
 				182CDA3F21071D8900F28F4C /* HouseQA.m in Sources */,
+				18382646215C86EC004C40CA /* HouseDetailsViewController.m in Sources */,
 				0A7D4FF320C2A92B001BFDBF /* SettingViewController.m in Sources */,
 				0AFEE71420BD2F23004FA8FC /* AppDelegate.m in Sources */,
 				180588A120DC9B7300883523 /* EditAddressViewController.m in Sources */,
@@ -2634,6 +2736,7 @@
 				0AFEE76220BD2F50004FA8FC /* ViewHelps.m in Sources */,
 				184D07DC20D122D300653D81 /* SetUserNameVC.m in Sources */,
 				0A5A7B2E20C7DB9300153E9A /* SDPhotoBrowserd.m in Sources */,
+				18382643215C8645004C40CA /* HouseListViewController.m in Sources */,
 				0A5CD84420C67A330028F82D /* SelectTime.m in Sources */,
 				0A7D505520C433CF001BFDBF /* MyAnswerTableViewCell.m in Sources */,
 				0A5CD84F20C695170028F82D /* IntegralMallTableViewCell.m in Sources */,
@@ -2642,6 +2745,7 @@
 				183826012151ED99004C40CA /* NodeCommentView.m in Sources */,
 				1846CFE920FD85F100EA1417 /* HousePriceViewController.m in Sources */,
 				18339CDC20D2656800165FF2 /* FreeOfferViewController.m in Sources */,
+				18382635215B3804004C40CA /* SearchHouseView.m in Sources */,
 				0A7D4FF020C23462001BFDBF /* ProjectCollectionViewCell.m in Sources */,
 				188C55DF21368DEF00276E2F /* SelectTypeView.m in Sources */,
 				0A45D95720CB7CB2000C04B8 /* PlaceSupervisorViewController.m in Sources */,

@@ -11,6 +11,9 @@
 
 #import "MyPushHouseViewController.h"//整屋
 #import "MyPushPhotoDetailsViewController.h"//图片详情
+#import "MyPushHouseDetailsViewController.h"
+#import "MyPhotoViewController.h"
+
 
 @interface PersonalViewController ()<UIScrollViewDelegate>
 {
@@ -368,10 +371,15 @@
 - (void)selectType:(UITapGestureRecognizer *)sender{
     
     switch (sender.view.tag) {
+        case 0:
+        {
+            MyPhotoViewController *VC = [[MyPhotoViewController alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
+        }
+            break;
         case 1:
         {
             MyPushHouseViewController *VC = [[MyPushHouseViewController alloc] init];
-            VC.user_id =self.user_id;
             [self.navigationController pushViewController:VC animated:YES];
         }
             break;
@@ -384,19 +392,29 @@
 
 //展示整屋的
 - (void)showAllHouse{
-    
+    MyPushHouseViewController *VC = [[MyPushHouseViewController alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 //整屋案例
 - (void)selectAllHouse:(UITapGestureRecognizer *)sender{
     
+    NSArray *arr = self.personalInfo[@"house_list"];
+    NSDictionary *dic = arr[sender.view.tag];
+    
+    MyPushHouseDetailsViewController *vc = [[MyPushHouseDetailsViewController alloc] init];
+    vc.house_id = dic[@"id"];
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 - (void)showPhoto{
    
+    MyPhotoViewController *vc = [[MyPhotoViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void) showSingeImage:(UITapGestureRecognizer *)sender{
+- (void)showSingeImage:(UITapGestureRecognizer *)sender{
     
     MyPushPhotoDetailsViewController *VC = [[MyPushPhotoDetailsViewController alloc] init];
     VC.photo_id =self.imageArr[sender.view.tag][@"id"];
