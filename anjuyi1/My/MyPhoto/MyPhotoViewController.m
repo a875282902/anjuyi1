@@ -18,6 +18,7 @@
 @property (nonatomic , strong) UICollectionView * tmpCollertionView;
 @property (nonatomic , strong) NSMutableArray   * dataArr;
 @property (nonatomic , strong) NavTwoTitle      * navTwoTitle;
+@property (nonatomic , assign) NSInteger          page;
 @end
 
 @implementation MyPhotoViewController
@@ -35,7 +36,124 @@
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1.5)]];
     
-    [self getPhotoListData];
+    [self load];
+
+    [self.tmpCollertionView.mj_header beginRefreshing];
+}
+#pragma mark -- refresh
+- (void)load{
+    __weak typeof(self) weakSelf = self;
+    
+    self.tmpCollertionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.page = 1;
+        [weakSelf.dataArr removeAllObjects];
+        [weakSelf.tmpCollertionView.mj_footer resetNoMoreData];
+        [weakSelf pullDownRefresh];
+    }];
+    
+    self.tmpCollertionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        weakSelf.page ++;
+        [weakSelf pullUpLoadMore];
+    }];
+    
+}
+//下拉刷新
+- (void)pullDownRefresh{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/member/my_image",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *parameter = @{@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:parameter success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                
+                for (NSDictionary *dic in responseObject[@"datas"]) {
+                    MyPhotoModel *model = [[MyPhotoModel alloc] initWithDictionary:dic];
+                    [weakSelf.dataArr addObject:model];
+                }
+                
+                [weakSelf.navTwoTitle refreNum:[NSString stringWithFormat:@"%ld张",weakSelf.dataArr.count]];
+            }
+            
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        if (weakSelf.dataArr.count < weakSelf.page *10) {
+            [weakSelf.tmpCollertionView.mj_footer endRefreshingWithNoMoreData];
+        }
+
+        [weakSelf.tmpCollertionView.mj_header endRefreshing];
+        
+        [weakSelf.tmpCollertionView reloadData];
+        
+    } failure:^(NSError * _Nullable error) {
+        [weakSelf.tmpCollertionView.mj_header endRefreshing];
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+    
+}
+//上拉加载
+- (void)pullUpLoadMore{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/member/my_image",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *parameter = @{@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:parameter success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                
+                for (NSDictionary *dic in responseObject[@"datas"]) {
+                    MyPhotoModel *model = [[MyPhotoModel alloc] initWithDictionary:dic];
+                    [weakSelf.dataArr addObject:model];
+                }
+                
+                [weakSelf.navTwoTitle refreNum:[NSString stringWithFormat:@"%ld张",weakSelf.dataArr.count]];
+                [weakSelf.tmpCollertionView.mj_footer endRefreshing];
+            }
+            
+        }
+        else{
+            weakSelf.page --;
+            [weakSelf.tmpCollertionView.mj_footer endRefreshing];
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        if (weakSelf.dataArr.count < weakSelf.page *10) {
+            [weakSelf.tmpCollertionView.mj_footer endRefreshingWithNoMoreData];
+        }
+        else{
+            [weakSelf.tmpCollertionView.mj_footer endRefreshing];
+        }
+        
+        [weakSelf.tmpCollertionView reloadData];
+        
+    } failure:^(NSError * _Nullable error) {
+        [weakSelf.tmpCollertionView.mj_footer endRefreshing];
+        weakSelf.page --;
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+    
 }
 
 
