@@ -255,6 +255,7 @@
 		18399C5821215B6C007CAD58 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5721215B6C007CAD58 /* libresolv.tbd */; };
 		18399C5B212167CD007CAD58 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5A212167CD007CAD58 /* UMCommon.framework */; };
 		18399C5D212167D7007CAD58 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5C212167D7007CAD58 /* UMAnalytics.framework */; };
+		184238AA216C6FDE000A7D18 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 184238A9216C6FDE000A7D18 /* libc++.tbd */; };
 		1845C5AD213F722C00EC84F3 /* OrderCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845C5AC213F722C00EC84F3 /* OrderCenterModel.m */; };
 		1845C61A214668B800EC84F3 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845C619214668B800EC84F3 /* SearchViewController.m */; };
 		1846CFD120F836FB00EA1417 /* PullDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846CFD020F836FB00EA1417 /* PullDownView.m */; };
@@ -337,7 +338,6 @@
 		18ED885A2100D57900B38548 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED88592100D57800B38548 /* Security.framework */; };
 		18ED885C2100D58000B38548 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED885B2100D58000B38548 /* libsqlite3.0.tbd */; };
 		18ED885E2100D58C00B38548 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED885D2100D58B00B38548 /* CoreTelephony.framework */; };
-		18ED88602100D59300B38548 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED885F2100D59300B38548 /* libstdc++.6.0.9.tbd */; };
 		18ED88692100D78400B38548 /* PowerStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED88682100D78400B38548 /* PowerStationViewController.m */; };
 		18F5B7CA20E9D90F00B76A73 /* MaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5B7C220E9D90F00B76A73 /* MaskView.m */; };
 		18F5B7CB20E9D90F00B76A73 /* AlbumSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5B7C320E9D90F00B76A73 /* AlbumSelectController.m */; };
@@ -795,6 +795,7 @@
 		18399C5721215B6C007CAD58 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		18399C5A212167CD007CAD58 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
 		18399C5C212167D7007CAD58 /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMAnalytics.framework; sourceTree = "<group>"; };
+		184238A9216C6FDE000A7D18 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		1845C5AB213F722C00EC84F3 /* OrderCenterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderCenterModel.h; sourceTree = "<group>"; };
 		1845C5AC213F722C00EC84F3 /* OrderCenterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderCenterModel.m; sourceTree = "<group>"; };
 		1845C618214668B800EC84F3 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
@@ -962,6 +963,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				184238AA216C6FDE000A7D18 /* libc++.tbd in Frameworks */,
 				18ED88562100D56C00B38548 /* SystemConfiguration.framework in Frameworks */,
 				182CDAA821098D1E00F28F4C /* libsqlite3.tbd in Frameworks */,
 				18399C5421215B5D007CAD58 /* libz.tbd in Frameworks */,
@@ -981,7 +983,6 @@
 				1827512E210194AC002A61F8 /* WebKit.framework in Frameworks */,
 				1827512C210194A6002A61F8 /* JavaScriptCore.framework in Frameworks */,
 				1827512A21019480002A61F8 /* Photos.framework in Frameworks */,
-				18ED88602100D59300B38548 /* libstdc++.6.0.9.tbd in Frameworks */,
 				18ED88542100D56600B38548 /* OpenGLES.framework in Frameworks */,
 				18ED88522100D56000B38548 /* QuartzCore.framework in Frameworks */,
 				18ED88502100D55C00B38548 /* CoreLocation.framework in Frameworks */,
@@ -2476,6 +2477,7 @@
 		E57638EA566F5CBF54092AE1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				184238A9216C6FDE000A7D18 /* libc++.tbd */,
 				18399C5721215B6C007CAD58 /* libresolv.tbd */,
 				18399C5521215B65007CAD58 /* UserNotifications.framework */,
 				18399C5321215B5D007CAD58 /* libz.tbd */,
