@@ -10,6 +10,9 @@
 
 @interface HouseInfoViewController : BaseViewController
 
+//type == 2 为从个人中心过来的
+@property (nonatomic,assign)NSInteger type;
+
 @property (nonatomic,strong)NSString *house_id;
 
 @end

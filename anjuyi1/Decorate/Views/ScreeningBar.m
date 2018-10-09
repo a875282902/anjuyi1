@@ -24,20 +24,24 @@
     if (self == [super initWithFrame:frame]) {
         self.btnArr = [NSMutableArray array];
         [self setBackgroundColor:[UIColor whiteColor]];
-        [self setUpUI];
+
     }
     return self;
 }
 
+- (void)setTitleArr:(NSArray *)titleArr{
+    
+    _titleArr = titleArr;
+    
+    [self setUpUI];
+}
+
 - (void)setUpUI{
     
-    NSArray *tarr = @[@"综合排序",@"关注最多",@"价格",@"筛选"];
     NSArray *iarr = @[@"designer_list_px",@"",@"designer_list_jgb",@"designer_list_sx"];
     
     for (NSInteger i = 0 ; i < Knum; i ++) {
-        UIButton *btn = [Tools creatButton:CGRectMake(KScreenWidth*i/Knum, 0, KScreenWidth/Knum, self.frame.size.height) font:[UIFont systemFontOfSize:14] color:[UIColor colorWithHexString:@"#3b3b3b"] title:tarr[i] image:iarr[i]];
-        
-        
+        UIButton *btn = [Tools creatButton:CGRectMake(KScreenWidth*i/Knum, 0, KScreenWidth/Knum, self.frame.size.height) font:[UIFont systemFontOfSize:14] color:[UIColor colorWithHexString:@"#3b3b3b"] title:self.titleArr[i] image:iarr[i]];
         [btn setTag:i];
         [btn addTarget:self action:@selector(buttonDidPress:) forControlEvents:(UIControlEventTouchUpInside)];
         [self addSubview:btn];

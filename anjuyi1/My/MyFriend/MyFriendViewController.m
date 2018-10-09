@@ -13,6 +13,7 @@
 @interface MyFriendViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)UITableView *tmpTableView;
+@property (nonatomic,strong)NSMutableArray *dataArr;
 
 @end
 
@@ -23,13 +24,54 @@
     // Do any additional setup after loading the view.
     
     [self setTitle:@"关注的好友"];
+    self.dataArr = [NSMutableArray array];
     
     [self baseForDefaultLeftNavButton];
     
     [self.view addSubview:self.tmpTableView];
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1.5)]];
+    
+    [self requestData];
 }
+
+- (void)requestData{
+    
+    
+    NSString *path = [NSString stringWithFormat:@"%@/member/my_follow",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            [weakSelf.dataArr removeAllObjects];
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                weakSelf.dataArr = [NSMutableArray arrayWithArray:responseObject[@"datas"]];
+            }
+            
+            [weakSelf.tmpTableView reloadData];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
+}
+
 #pragma mark -- tableView
 - (UITableView *)tmpTableView{
     
@@ -48,7 +90,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -60,12 +102,53 @@
     
     [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
     
+    if (indexPath.row <self.dataArr.count) {
+        [cell bandDataWithDictionary:self.dataArr[indexPath.row]];
+        
+        [cell.likeButton setTag:indexPath.row];
+        [cell.likeButton addTarget:self action:@selector(cancelAttention:) forControlEvents:(UIControlEventTouchUpInside)];
+    }
+    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return 75;
+}
+
+- (void)cancelAttention:(UIButton *)sender{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/Follow/cancel_follow",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *dic = @{@"user_id":self.dataArr[sender.tag][@"user_id"]};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            [ViewHelps showHUDWithText:@"取消成功"];
+            [weakSelf requestData];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
 }
 
 

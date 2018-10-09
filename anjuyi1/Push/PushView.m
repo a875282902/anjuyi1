@@ -7,6 +7,7 @@
 //
 
 #import "PushView.h"
+#import "PushStrategyViewController.h"//发布攻略
 #import "PushPhotoViewController.h"//发布图片
 #import "PushProjectViewController.h"//发布项目
 #import "AuxiliaryOrderViewController.h"//辅助下单
@@ -20,23 +21,55 @@
     if (self == [super initWithFrame:frame]) {
         [self setBackgroundColor:[UIColor colorWithHexString:@"#7dd3d3"]];
         
-        [self setUpUserUI];
+        [self getPersonInfo];
         
         [self pushBtn];
     }
     return self;
     
 }
+- (void)getPersonInfo{
+    
+   
+    NSString *path = [NSString stringWithFormat:@"%@/Member/get_member_info",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    [MBProgressHUD showHUDAddedTo:self animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            [weakSelf setUpUserUI:responseObject[@"datas"]];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
 
-- (void)setUpUserUI{
+    
+}
+- (void)setUpUserUI:(NSDictionary *)dic{
     
     UIImageView *headerImage = [[UIImageView alloc] initWithFrame:CGRectMake(MDXFrom6(40), MDXFrom6(70)+KStatusBarHeight, MDXFrom6(60), MDXFrom6(60))];
-    [headerImage setImage:[UIImage imageNamed:@"fb_tx_img"]];
+    [headerImage sd_setImageWithURL:[NSURL URLWithString:dic[@"head"]]];
     [headerImage.layer setCornerRadius:MDXFrom6(30)];
     [headerImage setClipsToBounds:YES];
     [self addSubview:headerImage];
     
-    [self addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(120), MDXFrom6(70)+KStatusBarHeight, MDXFrom6(250), MDXFrom6(60)) font:[UIFont systemFontOfSize:18] color:[UIColor colorWithHexString:@"#ffffff"] alignment:(NSTextAlignmentLeft) title:@"九溪设计"]];
+    [self addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(120), MDXFrom6(70)+KStatusBarHeight, MDXFrom6(250), MDXFrom6(60)) font:[UIFont systemFontOfSize:18] color:[UIColor colorWithHexString:@"#ffffff"] alignment:(NSTextAlignmentLeft) title:dic[@"nickname"]]];
 }
 
 - (void)pushBtn{
@@ -72,6 +105,12 @@
     [self setHidden:YES];
     
     switch (sender.view.tag) {
+        case 0:{
+            PushStrategyViewController *controller = [[PushStrategyViewController alloc] init];
+            BaseNaviViewController *nav = [[BaseNaviViewController alloc] initWithRootViewController:controller];
+            [self.delegate jumpToViewControllerForPush:nav];
+        }
+            break;
         case 1:
         {
             PushProjectViewController *controller = [[PushProjectViewController alloc] init];

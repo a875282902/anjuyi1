@@ -8,10 +8,11 @@
 //  快速下单
 
 #import "QuickOrderViewController.h"
-#import "ProjectAddressViewController.h"//选择城市
-#import "SelectCity.h"//选择框
+#import "SelectCityView.h"//选择城市
+#import "SelectView.h"//选择框
+#import "LSYLocation.h"
 
-@interface QuickOrderViewController ()<ProjectAddressViewControllerDelegate,UIScrollViewDelegate,SelectCityDelegate>
+@interface QuickOrderViewController ()<UIScrollViewDelegate,SelectViewDelegate,LSYLocationDelegta,SelectCityViewDelegate>
 {
     NSInteger time;
     UIButton *codeBtn;
@@ -28,7 +29,10 @@
 @property (nonatomic,strong)UIScrollView   * tmpScrollView;
 @property (nonatomic,strong)NSTimer        * timer;
 @property (nonatomic,strong)UILabel        * location;
-@property (nonatomic,strong)SelectCity     * selectDemand;
+@property (nonatomic,strong)SelectView     * selectDemand;
+
+@property (nonatomic,strong)LSYLocation    * locationSevice;
+@property (nonatomic,strong)SelectCityView * selectCityView;//选择城市
 
 @end
 
@@ -55,6 +59,10 @@
     [self setUpUI];
     
     [self.view addSubview:self.selectDemand];
+    
+    [self.locationSevice beginUpdatingLocation];
+    
+    [self.view addSubview:self.selectCityView];
     
 }
 #pragma mark -- network
@@ -93,11 +101,11 @@
     }];
 }
 
-- (SelectCity *)selectDemand{
+- (SelectView *)selectDemand{
     
     if (!_selectDemand) {
         
-        _selectDemand = [[SelectCity alloc] initWithFrame:CGRectMake(0, 0 , KScreenWidth, KViewHeight)];
+        _selectDemand = [[SelectView alloc] initWithFrame:CGRectMake(0, 0 , KScreenWidth, KViewHeight)];
         [_selectDemand setDelegate:self];
     }
     return _selectDemand;
@@ -248,7 +256,19 @@
     [v setBackgroundColor:[UIColor colorWithHexString:@"#d1d1d1"]];
     return v;
 }
+#pragma mark -- 获取地址
+- (LSYLocation *)locationSevice{
+    
+    if (!_locationSevice) {
+        _locationSevice = [[LSYLocation alloc] init];
+        [_locationSevice setDelegate:self];
+    }
+    return _locationSevice;
+}
 
+- (void)loctionWithProvince:(NSDictionary *)province city:(NSDictionary *)city area:(NSDictionary *)area{
+    [self sureProvince:province city:city area:area];
+}
 #pragma mark -- 点击事件   选择需求类型  重新选择
 
 - (void)selectDemandType:(UITapGestureRecognizer *)sender{
@@ -257,7 +277,7 @@
     [self.selectDemand show];
 }
 
-- (void)selectCityWithInfo:(NSDictionary *)info view:(SelectCity *)selectCity{
+- (void)selectCityWithInfo:(NSDictionary *)info view:(SelectView *)selectCity{
     
     [_demandType setText:info[@"name"]];
     [_demandType setTextColor:[UIColor blackColor]];
@@ -266,9 +286,17 @@
 
 - (void)rechangeLocation:(UIButton *)sender{
     
-    ProjectAddressViewController *vc = [[ProjectAddressViewController alloc] init];
-    [vc setDelegate:self];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.selectCityView show];
+}
+
+- (SelectCityView *)selectCityView{
+    
+    if (!_selectCityView) {
+        
+        _selectCityView = [[SelectCityView alloc] initWithFrame:CGRectMake(0, 0 , KScreenWidth, KViewHeight)];
+        [_selectCityView setDelegate:self];
+    }
+    return _selectCityView;
 }
 
 - (void)sureProvince:(NSDictionary *)province city:(NSDictionary *)city area:(NSDictionary *)area{

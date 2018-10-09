@@ -3,6 +3,7 @@ PersonalViewController 个人主页（需要user_id）
 MasterDetailsVC  工长主页 （需要工长的用户 user_id）
 
 HouseListViewController 整屋列表（需要user_id）
+HouseCaseListViewController 整屋随机列表
 HouseDetailsViewController 整屋详情 （需要house_id）
 
 
@@ -11,7 +12,7 @@ PhotoDetailsViewController  图片详情 (需要image_id)
 
 
 ProjectListVC 项目列表 （需要用户 user_id）
-
+ProjectCaseListViewController 所有项目列表
 ProjectDetailsVC 项目详情 （需要 projectID 项目id ） 包含节点信息
 
 NodeDetailsViewController 节点信息 （需要 节点id ）

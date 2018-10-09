@@ -20,7 +20,7 @@
 #import "HouseInspectViewController.h"//免费验房
 #import "FreeOfferViewController.h"//免费报价
 
-#import "MyPushHouseDetailsViewController.h"//整屋详情
+#import "HouseDetailsViewController.h"//整屋详情
 
 #import "ShowWebViewController.h"
 
@@ -267,7 +267,7 @@
     
     DecorateModel *model = self.dataArr[indexPath.row];
     
-    MyPushHouseDetailsViewController *VC  = [[MyPushHouseDetailsViewController alloc] init];
+    HouseDetailsViewController *VC  = [[HouseDetailsViewController alloc] init];
     VC.house_id = model.whole_hosue_id;
     [self.navigationController pushViewController:VC animated:YES];
 }

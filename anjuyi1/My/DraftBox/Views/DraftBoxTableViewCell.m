@@ -9,6 +9,7 @@
 #import "DraftBoxTableViewCell.h"
 #import "HouseModel.h"
 #import "CommentUserModel.h"
+#import "StrategyModel.h"
 
 @implementation DraftBoxTableViewCell
 
@@ -33,8 +34,23 @@
         [self.nameLabel setText:userModel.nick_name];
         [self.titleLabel setText:houseModel.title];
         [self.descLabel setText:[NSString stringWithFormat:@"%@   %@平米",houseModel.door,houseModel.proportion]];
-        
+        [self.typeLabel setText:userModel.level];
     }
+    
+    if ([model isKindOfClass:[StrategyModel class]]) {
+        
+        StrategyModel *strategyModel = (StrategyModel *)model;
+        
+        CommentUserModel *userModel = [[CommentUserModel alloc] initWithDictionary:strategyModel.member_info];
+        
+        [self.coverImage sd_setImageWithURL:[NSURL URLWithString:strategyModel.img]];
+        [self.headerImage sd_setImageWithURL:[NSURL URLWithString:userModel.head]];
+        [self.nameLabel setText:userModel.nick_name];
+        [self.titleLabel setText:strategyModel.title];
+        [self.descLabel setText:strategyModel.door];
+        [self.typeLabel setHidden:YES];
+    }
+    
 }
 
 - (void)awakeFromNib {

@@ -111,4 +111,7 @@ extern NSString * const YZUpdateMenuTitleNote;
  *  刷新下拉菜单
  */
 - (void)reload;
+
+- (void)cancel;
+
 @end

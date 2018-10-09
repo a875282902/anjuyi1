@@ -26,9 +26,9 @@
     
 }
 
-- (void)refreDataWithID:(NSString *)projectID andType:(NSString *)type{
+- (void)refreDataWithID:(NSString *)projectID andType:(NSString *)type cate:(NSInteger)cate{
     
-    NSString *path = [NSString stringWithFormat:@"%@/project/get_project_article",KURL];
+    NSString *path = [NSString stringWithFormat:@"%@/%@",KURL,cate == 1?@"project/get_project_article":@"ProjectInfo/article_list"];
     
     NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *paramet = @{@"id":projectID,

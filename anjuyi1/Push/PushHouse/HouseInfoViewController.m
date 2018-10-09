@@ -112,7 +112,7 @@
 - (void)setUpUI{
     
 
-    NSArray *tArr = @[@"删除",@"保存",@"预览"];
+    NSArray *tArr = @[@"删除",@"发布",@"预览"];
 
     NSMutableArray *bArr = [NSMutableArray array];
     
@@ -486,11 +486,14 @@
         
         if ([responseObject[@"code"] integerValue] == 200) {
             
-            [ViewHelps showHUDWithText:@"保存成功"];
-            
-            MyPushHouseViewController * vc = [[MyPushHouseViewController alloc] init];
-            vc.isPresent = YES;
-            [self.navigationController pushViewController:vc animated:YES];
+            [ViewHelps showHUDWithText:@"发布成功"];
+            if (weakSelf.type == 2) {
+                [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            }else{
+                MyPushHouseViewController * vc = [[MyPushHouseViewController alloc] init];
+                vc.isPresent = YES;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
         }
         else{
             

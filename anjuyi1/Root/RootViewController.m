@@ -20,14 +20,19 @@
 @interface RootViewController ()<PushViewDelegate>
 
 @property (nonatomic,strong)  PushView *pushView ;
+@property (nonatomic,strong)  UIButton *pushButton ;
 
 @end
 
 @implementation RootViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hiddenPushButton) name:@"hiddenPushButton" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noHiddenPushButton) name:@"noHiddenPushButton" object:nil];
     
     HomeViewController *hvc = [[HomeViewController alloc] init];
     [self addChildController:hvc title:@"首页" imageName:@"nav_sy" selectedImageName:@"nav_sy_xz" navVc:[UINavigationController class]];
@@ -46,9 +51,9 @@
     //  设置tabbar
     //    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
     // 设置自定义的tabbar
-    [self setCustomtabbar];
+//    [self setCustomtabbar];
     
-    
+    [self setUpPushButton];
     
 }
 
@@ -60,7 +65,23 @@
     
     [tabbar.centerBtn addTarget:self action:@selector(centerBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
+}
+
+- (void)hiddenPushButton{
+    [self.pushButton setHidden:YES];
+}
+- (void)noHiddenPushButton{
+    [self.pushButton setHidden:NO];
+}
+
+- (void)setUpPushButton{
     
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setImage:[UIImage imageNamed:@"nav_fb"] forState:UIControlStateNormal];
+    btn.frame = CGRectMake(KScreenWidth - 80, KScreenHeight - KTabBarHeight - 80, 64, 64);
+    [btn addTarget:self action:@selector(centerBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:btn];
+    self.pushButton = btn;
 }
 
 - (void)centerBtnClick:(UIButton *)btn{

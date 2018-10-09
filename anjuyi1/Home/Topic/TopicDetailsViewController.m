@@ -249,12 +249,35 @@
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, KScreenHeight - 80, KScreenWidth, 1)]];
     
-    UIButton *btn = [Tools creatButton:CGRectMake((KScreenWidth- 200)/2,KScreenHeight -  17.5 - 45, 200, 45) font:[UIFont systemFontOfSize:18] color:[UIColor whiteColor] title:@"参与话题" image:@""];
-    [btn setBackgroundColor:GCOLOR];
-    [btn.layer setCornerRadius:22.5];
-    [btn setClipsToBounds:YES];
-    [btn addTarget:self action:@selector(participaTopic) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.view addSubview:btn];
+    if ([self.topicInfo[@"status"] integerValue]==0) {
+        
+        UIButton *btn = [Tools creatButton:CGRectMake(MDXFrom6(20),KScreenHeight -  17.5 - 45, MDXFrom6(160), 45) font:[UIFont systemFontOfSize:18] color:[UIColor whiteColor] title:@"参与话题" image:@""];
+        [btn setBackgroundColor:GCOLOR];
+        [btn.layer setCornerRadius:22.5];
+        [btn setClipsToBounds:YES];
+        [btn addTarget:self action:@selector(participaTopic) forControlEvents:(UIControlEventTouchUpInside)];
+        [self.view addSubview:btn];
+        
+        if ([self.topicInfo[@"is_author"] integerValue]==0) {
+ 
+            UIButton *btn1 = [Tools creatButton:CGRectMake(MDXFrom6(195),KScreenHeight -  17.5 - 45, MDXFrom6(160), 45) font:[UIFont systemFontOfSize:18] color:[UIColor whiteColor] title:@"关注" image:@""];
+            [btn1 setBackgroundColor:GCOLOR];
+            [btn1 setTitle:@"已关注" forState:(UIControlStateSelected)];
+            [btn1.layer setCornerRadius:22.5];
+            [btn1 setClipsToBounds:YES];
+            [btn1 addTarget:self action:@selector(follwTopic:) forControlEvents:(UIControlEventTouchUpInside)];
+            [self.view addSubview:btn1];
+            
+            if ([self.topicInfo[@"is_follow"] integerValue]==1) {
+                [btn1 setSelected:YES];
+            }
+        }
+        else{
+            [btn setFrame:CGRectMake((KScreenWidth - 200)/2.0, KScreenHeight -  17.5 - 45, 200, 45)];
+        }
+        
+    }
+    
     
     
 }
@@ -493,6 +516,40 @@
     AddTopicCommentViewController *vc = [[AddTopicCommentViewController alloc] init];
     vc.topic_id = self.topic_id;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)follwTopic:(UIButton *)sender{
+    
+        
+    NSString *path = [NSString stringWithFormat:@"%@/topic/follow_topic",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:@{@"topic_id":self.topic_id} success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            [sender setSelected:!sender.selected];
+            [ViewHelps showHUDWithText:sender.selected?@"关注成功":@"取消成功"];
+            
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
+    
 }
 
 

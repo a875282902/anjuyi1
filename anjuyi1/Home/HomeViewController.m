@@ -15,10 +15,15 @@
 #import "SearchView.h"
 #import "HomeTableViewCell.h"
 
+#import "UIButton+Caregory.h"
+
+#import "HouseCaseListViewController.h"//整屋案例
 #import "TopicListViewController.h"//话题
 #import "ActivityViewController.h"//活动精选
 
 #import "ChargingHomeViewController.h"//充电桩
+
+#import "StrategyViewController.h"
 
 #import "SearchViewController.h"
 
@@ -62,6 +67,8 @@
     [self getIndexData];
     
     [self load];
+    
+    [self getMessageNum];//获取消息个数
     
     [self.tmpTableView.mj_header beginRefreshing];
     
@@ -388,9 +395,9 @@
             cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"HomeViewControllerTableViewCell1"];
         }
         
-        [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
+//        [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
         
-        [cell.contentView.subviews respondsToSelector:@selector(removeFromSuperview)];
+        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
         [cell.contentView addSubview:[self creatLikeView:indexPath.row]];
         
@@ -470,24 +477,30 @@
     
     [likeView addSubview:[Tools setLineView:CGRectMake(0, MDXFrom6(345), KScreenWidth, 1)]];
     
+    NSArray *dArr = dic[@"tag_list"];
+    
     
     UIScrollView * activityScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, MDXFrom6(355), KScreenWidth, MDXFrom6(65))];
     [activityScroll setShowsVerticalScrollIndicator:NO];
     [activityScroll setShowsHorizontalScrollIndicator:NO];
     [activityScroll setContentSize:CGSizeMake(MDXFrom6(500), activityScroll.frame.size.height)];
-    [likeView addSubview:activityScroll];
+    
+    if (dArr.count>0) {
+     [likeView addSubview:activityScroll];
+    }
+
     //storage Charging  shop
     NSArray *arr = @[@"gue_bg_img",@"gue_bg_img1",@"gue_bg_img2"];
     
-    NSArray *dArr = dic[@"tag_list"];
-    
     for (NSInteger i = 0 ; i < dArr.count; i++) {
         
-        UIImageView *image =[self setImageViewWithFrame:CGRectMake(MDXFrom6(10)+MDXFrom6(130*i), 0,MDXFrom6(120), MDXFrom6(65)) andImageName:arr[arc4random()%3-1] andTag:(i+100) image:@""];
+        UIImageView *image =[self setImageViewWithFrame:CGRectMake(MDXFrom6(10)+MDXFrom6(130*i), 0,MDXFrom6(120), MDXFrom6(65)) andImageName:arr[arc4random()%3] andTag:(i+100) image:@""];
         [activityScroll addSubview:image];
         
         [image addSubview:[Tools creatLabel:CGRectMake(0, 0, MDXFrom6(120), MDXFrom6(65)) font:[UIFont systemFontOfSize:12] color:[UIColor blackColor] alignment:(NSTextAlignmentCenter) title:dArr[i][@"name"]]];
     }
+    
+    [activityScroll setContentSize:CGSizeMake(MDXFrom6(130*dArr.count), MDXFrom6(120))];
     
     return likeView;
 }
@@ -497,7 +510,13 @@
         return 120;
     }
     if (indexPath.section == 0) {
-        return MDXFrom6(440);
+        NSDictionary *dic = self.dataArr[indexPath.row];
+        if ([dic[@"tag_list"] count] == 0) {
+            return MDXFrom6(355);
+        }
+        else{
+            return MDXFrom6(440);
+        }
     }
     
     return 0;
@@ -570,7 +589,7 @@
     switch (sender.view.tag) {
         case 0://整屋案例
             {
-                
+                [self.tabBarController setSelectedIndex:1];
             }
             break;
             
@@ -675,6 +694,45 @@
     } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
         scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
     }
+}
+
+
+#pragma mark -- 获取消息数
+- (void)getMessageNum{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/message/get_noread_message_number",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            if ([responseObject[@"datas"][@"number"] integerValue] > 0) {
+                UIButton *btn = [Tools creatButton:CGRectMake(0,0, 25,44) font:[UIFont systemFontOfSize:16] color:[UIColor whiteColor] title:@"" image:@"inform"];
+                [btn addTarget:self action:@selector(rightButtonTouchUpInside:) forControlEvents:(UIControlEventTouchUpInside)];
+                [btn setNumb:responseObject[@"datas"][@"number"]];
+                [weakSelf.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:btn]];
+            }
+
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -14,6 +14,9 @@
 #import "CommentModel.h"
 #import "QuestionTableViewCell.h"
 
+#import "HouseInfoViewController.h"
+#import "BaseNaviViewController.h"
+
 @interface MyPushHouseDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UIButton *backBtn;
@@ -242,7 +245,7 @@
     [attentionbtn setBackgroundColor:MDRGBA(219, 245, 245, 1)];
     [attentionbtn.layer setCornerRadius:16.5];
     [attentionbtn setSelected:[self.houseInfo[@"is_follow"] integerValue]==0?NO:YES];
-    [attentionbtn addTarget:self action:@selector(attentionToAuthor:) forControlEvents:(UIControlEventTouchUpInside)];
+    [attentionbtn addTarget:self action:@selector(editHouse:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.infoView addSubview:attentionbtn];
 
     height += 83+15;
@@ -455,44 +458,14 @@
 }
 
 // 关注
-- (void)attentionToAuthor:(UIButton *)sender{
+- (void)editHouse:(UIButton *)sender{
     
-    
-    if (!sender.selected) {
-        [self attention:[NSString stringWithFormat:@"%@/follow/insert_follow",KURL] btn:sender];
-    }
-    else{
-        [self attention:[NSString stringWithFormat:@"%@/Follow/cancel_follow",KURL] btn:sender];
-    }
-    
+    HouseInfoViewController *vc = [[HouseInfoViewController alloc] init];
+    vc.house_id = self.house_id;
+    BaseNaviViewController *nav = [[BaseNaviViewController alloc] initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
-- (void)attention:(NSString *)path btn:(UIButton *)sender{
-    
-    NSDictionary *header = @{@"token":UTOKEN};
-    NSDictionary *dic = @{@"user_id":self.houseInfo[@"house_own_info"][@"id"]};
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    __weak typeof(self) weakSelf = self;
-    
-    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
-        
-        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        
-        [ViewHelps showHUDWithText:responseObject[@"message"]];
-        if ([responseObject[@"code"] integerValue]==200) {
-            sender.selected = !sender.selected;
-        }
-        
-    } failure:^(NSError * _Nullable error) {
-        
-        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        [RequestSever showMsgWithError:error];
-    }];
-    
-    
-}
 - (void)checkMoreComment{
     
     [self.commentV openDisplay];

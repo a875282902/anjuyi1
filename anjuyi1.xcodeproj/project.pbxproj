@@ -152,6 +152,10 @@
 		0AFEE76F20BD2F50004FA8FC /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEE75A20BD2F50004FA8FC /* MyViewController.m */; };
 		0AFEE77020BD2F50004FA8FC /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEE75C20BD2F50004FA8FC /* PushViewController.m */; };
 		0AFEE84020BD30C8004FA8FC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0AFEE83F20BD30C8004FA8FC /* Podfile */; };
+		1801CE07215F1F5C0060DB0E /* HouseCaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1801CE06215F1F5C0060DB0E /* HouseCaseListViewController.m */; };
+		1801CE0B215F28430060DB0E /* StrategyCaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1801CE0A215F28430060DB0E /* StrategyCaseListViewController.m */; };
+		1801CE0E215F285E0060DB0E /* StrategyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1801CE0D215F285E0060DB0E /* StrategyViewController.m */; };
+		1801CE12215F29B60060DB0E /* StrategyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1801CE11215F29B60060DB0E /* StrategyModel.m */; };
 		180588A120DC9B7300883523 /* EditAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180588A020DC9B7300883523 /* EditAddressViewController.m */; };
 		180F19B0211717BF0018F1CD /* LSYLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19AF211717BF0018F1CD /* LSYLocation.m */; };
 		180F19B62117FE9D0018F1CD /* MyCollectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F19B52117FE9D0018F1CD /* MyCollectView.m */; };
@@ -202,6 +206,12 @@
 		182CDB252113FED400F28F4C /* MyPushPhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDB242113FED400F28F4C /* MyPushPhotoDetailsViewController.m */; };
 		182CDB292114167300F28F4C /* PhotoCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDB282114167300F28F4C /* PhotoCommentView.m */; };
 		182CDB2C211428D200F28F4C /* EditPushPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDB2B211428D200F28F4C /* EditPushPhotoViewController.m */; };
+		182D5A04216AED5800391D06 /* MyStrategyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182D5A03216AED5800391D06 /* MyStrategyListViewController.m */; };
+		182D5A0A216B01B200391D06 /* MasterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182D5A09216B01B200391D06 /* MasterListViewController.m */; };
+		182D5A0E216B044700391D06 /* ProjectCaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182D5A0D216B044700391D06 /* ProjectCaseListViewController.m */; };
+		182D5A11216B30E200391D06 /* StrategyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182D5A10216B30E200391D06 /* StrategyListViewController.m */; };
+		182D5A1D216C48F900391D06 /* EditProjiecViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182D5A1C216C48F900391D06 /* EditProjiecViewController.m */; };
+		182D5A23216C5CFD00391D06 /* EditProjectNodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182D5A22216C5CFD00391D06 /* EditProjectNodeViewController.m */; };
 		18339CD520D24FD500165FF2 /* SelectLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD420D24FD500165FF2 /* SelectLocationVC.m */; };
 		18339CD920D25B6600165FF2 /* HouseInspectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CD820D25B6600165FF2 /* HouseInspectViewController.m */; };
 		18339CDC20D2656800165FF2 /* FreeOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339CDB20D2656800165FF2 /* FreeOfferViewController.m */; };
@@ -226,6 +236,7 @@
 		1838263F215C7690004C40CA /* SearchPromptTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838263E215C7690004C40CA /* SearchPromptTableViewController.m */; };
 		18382643215C8645004C40CA /* HouseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18382642215C8645004C40CA /* HouseListViewController.m */; };
 		18382646215C86EC004C40CA /* HouseDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18382645215C86EC004C40CA /* HouseDetailsViewController.m */; };
+		1838264A215CAA16004C40CA /* PushStrategyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18382649215CAA16004C40CA /* PushStrategyViewController.m */; };
 		18399C2F211D4580007CAD58 /* TopicDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C2E211D4580007CAD58 /* TopicDetailsViewController.m */; };
 		18399C32211D6C08007CAD58 /* TopicCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C31211D6C08007CAD58 /* TopicCommentModel.m */; };
 		18399C36211D76FA007CAD58 /* TopicCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C34211D76FA007CAD58 /* TopicCommentTableViewCell.m */; };
@@ -272,6 +283,8 @@
 		184D07D920D11C8D00653D81 /* NSString+Predicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07D720D11C8D00653D81 /* NSString+Predicate.m */; };
 		184D07DC20D122D300653D81 /* SetUserNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07DB20D122D300653D81 /* SetUserNameVC.m */; };
 		184D07DF20D1250100653D81 /* ServiceAgreementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D07DE20D1250100653D81 /* ServiceAgreementVC.m */; };
+		185CC11E215DDDC6005D21B1 /* UIButton+Caregory.m in Sources */ = {isa = PBXBuildFile; fileRef = 185CC11D215DDDC6005D21B1 /* UIButton+Caregory.m */; };
+		185CC121215DFF51005D21B1 /* DesignerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185CC120215DFF51005D21B1 /* DesignerListViewController.m */; };
 		1862840D20F7314B0038A7AC /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862840C20F7314A0038A7AC /* BannerModel.m */; };
 		187C11ED20D0A8E400E8DDC7 /* UIColor+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C11EC20D0A8E400E8DDC7 /* UIColor+Category.m */; };
 		187C11F420D0E42600E8DDC7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C11F320D0E42600E8DDC7 /* LoginViewController.m */; };
@@ -286,11 +299,13 @@
 		188ABC272150D7D200F4C910 /* NodeDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188ABC262150D7D200F4C910 /* NodeDetailsViewController.m */; };
 		188C55DF21368DEF00276E2F /* SelectTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 188C55DE21368DEF00276E2F /* SelectTypeView.m */; };
 		188C55E2213693DF00276E2F /* SelectCityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 188C55E1213693DF00276E2F /* SelectCityView.m */; };
+		188DB34F21606A54007E53AE /* StrategyDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DB34E21606A54007E53AE /* StrategyDetailsViewController.m */; };
+		188DB35221606B25007E53AE /* StrategyCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DB35121606B25007E53AE /* StrategyCommentView.m */; };
 		189AB91C211D2BE2003E04C9 /* TopicListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 189AB91B211D2BE2003E04C9 /* TopicListView.m */; };
 		189AB91F211D2E46003E04C9 /* TopicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 189AB91E211D2E46003E04C9 /* TopicModel.m */; };
 		189AB923211D2FA3003E04C9 /* TopicListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189AB921211D2FA3003E04C9 /* TopicListTableViewCell.m */; };
 		189AB924211D2FA3003E04C9 /* TopicListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189AB922211D2FA3003E04C9 /* TopicListTableViewCell.xib */; };
-		18D3480820DB74B9008FD35E /* SelectCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480720DB74B9008FD35E /* SelectCity.m */; };
+		18D3480820DB74B9008FD35E /* SelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480720DB74B9008FD35E /* SelectView.m */; };
 		18D3480C20DB8CFF008FD35E /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480B20DB8CFF008FD35E /* AddressModel.m */; };
 		18D8544C213CCD3500C6C358 /* PushTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D8544B213CCD3500C6C358 /* PushTaskViewController.m */; };
 		18EA1BD820E1CCB7000738CC /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA1BD720E1CCB7000738CC /* ShareView.m */; };
@@ -601,6 +616,14 @@
 		0AFEE75D20BD2F50004FA8FC /* PushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushViewController.h; sourceTree = "<group>"; };
 		0AFEE77120BD2F61004FA8FC /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		0AFEE83F20BD30C8004FA8FC /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1801CE05215F1F5C0060DB0E /* HouseCaseListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseCaseListViewController.h; sourceTree = "<group>"; };
+		1801CE06215F1F5C0060DB0E /* HouseCaseListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseCaseListViewController.m; sourceTree = "<group>"; };
+		1801CE09215F28430060DB0E /* StrategyCaseListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StrategyCaseListViewController.h; sourceTree = "<group>"; };
+		1801CE0A215F28430060DB0E /* StrategyCaseListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StrategyCaseListViewController.m; sourceTree = "<group>"; };
+		1801CE0C215F285E0060DB0E /* StrategyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StrategyViewController.h; sourceTree = "<group>"; };
+		1801CE0D215F285E0060DB0E /* StrategyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StrategyViewController.m; sourceTree = "<group>"; };
+		1801CE10215F29B60060DB0E /* StrategyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StrategyModel.h; sourceTree = "<group>"; };
+		1801CE11215F29B60060DB0E /* StrategyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StrategyModel.m; sourceTree = "<group>"; };
 		1805889F20DC9B7300883523 /* EditAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditAddressViewController.h; sourceTree = "<group>"; };
 		180588A020DC9B7300883523 /* EditAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditAddressViewController.m; sourceTree = "<group>"; };
 		180F19AE211717BF0018F1CD /* LSYLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSYLocation.h; sourceTree = "<group>"; };
@@ -688,6 +711,18 @@
 		182CDB282114167300F28F4C /* PhotoCommentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoCommentView.m; sourceTree = "<group>"; };
 		182CDB2A211428D200F28F4C /* EditPushPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditPushPhotoViewController.h; sourceTree = "<group>"; };
 		182CDB2B211428D200F28F4C /* EditPushPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPushPhotoViewController.m; sourceTree = "<group>"; };
+		182D5A02216AED5800391D06 /* MyStrategyListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyStrategyListViewController.h; sourceTree = "<group>"; };
+		182D5A03216AED5800391D06 /* MyStrategyListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyStrategyListViewController.m; sourceTree = "<group>"; };
+		182D5A08216B01B200391D06 /* MasterListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterListViewController.h; sourceTree = "<group>"; };
+		182D5A09216B01B200391D06 /* MasterListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterListViewController.m; sourceTree = "<group>"; };
+		182D5A0C216B044700391D06 /* ProjectCaseListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectCaseListViewController.h; sourceTree = "<group>"; };
+		182D5A0D216B044700391D06 /* ProjectCaseListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectCaseListViewController.m; sourceTree = "<group>"; };
+		182D5A0F216B30E200391D06 /* StrategyListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StrategyListViewController.h; sourceTree = "<group>"; };
+		182D5A10216B30E200391D06 /* StrategyListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StrategyListViewController.m; sourceTree = "<group>"; };
+		182D5A1B216C48F900391D06 /* EditProjiecViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProjiecViewController.h; sourceTree = "<group>"; };
+		182D5A1C216C48F900391D06 /* EditProjiecViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProjiecViewController.m; sourceTree = "<group>"; };
+		182D5A21216C5CFD00391D06 /* EditProjectNodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProjectNodeViewController.h; sourceTree = "<group>"; };
+		182D5A22216C5CFD00391D06 /* EditProjectNodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProjectNodeViewController.m; sourceTree = "<group>"; };
 		18339CD320D24FD500165FF2 /* SelectLocationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectLocationVC.h; sourceTree = "<group>"; };
 		18339CD420D24FD500165FF2 /* SelectLocationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectLocationVC.m; sourceTree = "<group>"; };
 		18339CD720D25B6600165FF2 /* HouseInspectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseInspectViewController.h; sourceTree = "<group>"; };
@@ -732,6 +767,8 @@
 		18382642215C8645004C40CA /* HouseListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseListViewController.m; sourceTree = "<group>"; };
 		18382644215C86EC004C40CA /* HouseDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseDetailsViewController.h; sourceTree = "<group>"; };
 		18382645215C86EC004C40CA /* HouseDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseDetailsViewController.m; sourceTree = "<group>"; };
+		18382648215CAA16004C40CA /* PushStrategyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushStrategyViewController.h; sourceTree = "<group>"; };
+		18382649215CAA16004C40CA /* PushStrategyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushStrategyViewController.m; sourceTree = "<group>"; };
 		18399C2D211D4580007CAD58 /* TopicDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicDetailsViewController.h; sourceTree = "<group>"; };
 		18399C2E211D4580007CAD58 /* TopicDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicDetailsViewController.m; sourceTree = "<group>"; };
 		18399C30211D6C08007CAD58 /* TopicCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicCommentModel.h; sourceTree = "<group>"; };
@@ -812,6 +849,10 @@
 		184D07DB20D122D300653D81 /* SetUserNameVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetUserNameVC.m; sourceTree = "<group>"; };
 		184D07DD20D1250100653D81 /* ServiceAgreementVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServiceAgreementVC.h; sourceTree = "<group>"; };
 		184D07DE20D1250100653D81 /* ServiceAgreementVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServiceAgreementVC.m; sourceTree = "<group>"; };
+		185CC11C215DDDC6005D21B1 /* UIButton+Caregory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+Caregory.h"; sourceTree = "<group>"; };
+		185CC11D215DDDC6005D21B1 /* UIButton+Caregory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Caregory.m"; sourceTree = "<group>"; };
+		185CC11F215DFF51005D21B1 /* DesignerListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DesignerListViewController.h; sourceTree = "<group>"; };
+		185CC120215DFF51005D21B1 /* DesignerListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DesignerListViewController.m; sourceTree = "<group>"; };
 		1862840B20F7314A0038A7AC /* BannerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerModel.h; sourceTree = "<group>"; };
 		1862840C20F7314A0038A7AC /* BannerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerModel.m; sourceTree = "<group>"; };
 		187C11EB20D0A8E400E8DDC7 /* UIColor+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Category.h"; sourceTree = "<group>"; };
@@ -839,6 +880,10 @@
 		188C55DE21368DEF00276E2F /* SelectTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectTypeView.m; sourceTree = "<group>"; };
 		188C55E0213693DF00276E2F /* SelectCityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCityView.h; sourceTree = "<group>"; };
 		188C55E1213693DF00276E2F /* SelectCityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCityView.m; sourceTree = "<group>"; };
+		188DB34D21606A54007E53AE /* StrategyDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StrategyDetailsViewController.h; sourceTree = "<group>"; };
+		188DB34E21606A54007E53AE /* StrategyDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StrategyDetailsViewController.m; sourceTree = "<group>"; };
+		188DB35021606B25007E53AE /* StrategyCommentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StrategyCommentView.h; sourceTree = "<group>"; };
+		188DB35121606B25007E53AE /* StrategyCommentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StrategyCommentView.m; sourceTree = "<group>"; };
 		189AB91A211D2BE2003E04C9 /* TopicListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicListView.h; sourceTree = "<group>"; };
 		189AB91B211D2BE2003E04C9 /* TopicListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicListView.m; sourceTree = "<group>"; };
 		189AB91D211D2E46003E04C9 /* TopicModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicModel.h; sourceTree = "<group>"; };
@@ -846,8 +891,8 @@
 		189AB920211D2FA3003E04C9 /* TopicListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicListTableViewCell.h; sourceTree = "<group>"; };
 		189AB921211D2FA3003E04C9 /* TopicListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicListTableViewCell.m; sourceTree = "<group>"; };
 		189AB922211D2FA3003E04C9 /* TopicListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopicListTableViewCell.xib; sourceTree = "<group>"; };
-		18D3480620DB74B9008FD35E /* SelectCity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCity.h; sourceTree = "<group>"; };
-		18D3480720DB74B9008FD35E /* SelectCity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCity.m; sourceTree = "<group>"; };
+		18D3480620DB74B9008FD35E /* SelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectView.h; sourceTree = "<group>"; };
+		18D3480720DB74B9008FD35E /* SelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectView.m; sourceTree = "<group>"; };
 		18D3480A20DB8CFF008FD35E /* AddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
 		18D3480B20DB8CFF008FD35E /* AddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
 		18D8544A213CCD3500C6C358 /* PushTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushTaskViewController.h; sourceTree = "<group>"; };
@@ -964,6 +1009,8 @@
 			children = (
 				0AD0C61A20BEE1EC001A20C4 /* DesignerViewController.h */,
 				0AD0C61B20BEE1EC001A20C4 /* DesignerViewController.m */,
+				185CC11F215DFF51005D21B1 /* DesignerListViewController.h */,
+				185CC120215DFF51005D21B1 /* DesignerListViewController.m */,
 				0A3085BA20C02E1100882805 /* DesignerDetailsVC.h */,
 				0A3085BB20C02E1100882805 /* DesignerDetailsVC.m */,
 			);
@@ -1171,6 +1218,8 @@
 				0AD2DED220CAA73900E53B43 /* Views */,
 				0A3085B620C02B4F00882805 /* MasterViewController.h */,
 				0A3085B720C02B4F00882805 /* MasterViewController.m */,
+				182D5A08216B01B200391D06 /* MasterListViewController.h */,
+				182D5A09216B01B200391D06 /* MasterListViewController.m */,
 				0A55829D20C11B1D00759E6B /* MasterDetailsVC.h */,
 				0A55829E20C11B1D00759E6B /* MasterDetailsVC.m */,
 				0A5582A020C124B200759E6B /* ProjectListVC.h */,
@@ -1452,8 +1501,8 @@
 				0A8E9C7F20C9023200C6E176 /* AddressTableViewCell.xib */,
 				0AD2DEAA20CA19E900E53B43 /* DateView.h */,
 				0AD2DEAB20CA19E900E53B43 /* DateView.m */,
-				18D3480620DB74B9008FD35E /* SelectCity.h */,
-				18D3480720DB74B9008FD35E /* SelectCity.m */,
+				18D3480620DB74B9008FD35E /* SelectView.h */,
+				18D3480720DB74B9008FD35E /* SelectView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1619,8 +1668,10 @@
 				0AFEE74C20BD2F50004FA8FC /* BaseConfig */,
 				0AFEE72E20BD2F4F004FA8FC /* Category */,
 				0AFEE73120BD2F4F004FA8FC /* Decorate */,
+				1801CE08215F28150060DB0E /* Strategy */,
 				180F1A02211C2E540018F1CD /* Photo */,
 				18382640215C861D004C40CA /* House */,
+				182D5A0B216B042000391D06 /* Project */,
 				0AFEE74320BD2F50004FA8FC /* Home */,
 				0AFEE72B20BD2F4F004FA8FC /* Mall */,
 				0AFEE75820BD2F50004FA8FC /* My */,
@@ -1660,6 +1711,8 @@
 				0AFEE73020BD2F4F004FA8FC /* UIImage+Category.h */,
 				187C11EB20D0A8E400E8DDC7 /* UIColor+Category.h */,
 				187C11EC20D0A8E400E8DDC7 /* UIColor+Category.m */,
+				185CC11C215DDDC6005D21B1 /* UIButton+Caregory.h */,
+				185CC11D215DDDC6005D21B1 /* UIButton+Caregory.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1789,6 +1842,7 @@
 		0AFEE75820BD2F50004FA8FC /* My */ = {
 			isa = PBXGroup;
 			children = (
+				182D5A01216AED3100391D06 /* MyStrategy */,
 				1838261121522630004C40CA /* MyProject */,
 				0AD2DEC420CA82E500E53B43 /* OrderCenter */,
 				0AD2DEBA20CA55E100E53B43 /* Craftsmen */,
@@ -1820,6 +1874,7 @@
 		0AFEE75B20BD2F50004FA8FC /* Push */ = {
 			isa = PBXGroup;
 			children = (
+				18382647215CA9F5004C40CA /* PushStrategy */,
 				188ABC0F214A44A900F4C910 /* AuxiliaryOrder */,
 				18D85449213CCAD100C6C358 /* PushTask */,
 				1846CFD820FB8DE600EA1417 /* PushHouse */,
@@ -1831,6 +1886,32 @@
 				182CDA4721081A9300F28F4C /* PushView.m */,
 			);
 			path = Push;
+			sourceTree = "<group>";
+		};
+		1801CE08215F28150060DB0E /* Strategy */ = {
+			isa = PBXGroup;
+			children = (
+				188DB34921606208007E53AE /* Views */,
+				1801CE0F215F29A40060DB0E /* Model */,
+				1801CE0C215F285E0060DB0E /* StrategyViewController.h */,
+				1801CE0D215F285E0060DB0E /* StrategyViewController.m */,
+				182D5A0F216B30E200391D06 /* StrategyListViewController.h */,
+				182D5A10216B30E200391D06 /* StrategyListViewController.m */,
+				1801CE09215F28430060DB0E /* StrategyCaseListViewController.h */,
+				1801CE0A215F28430060DB0E /* StrategyCaseListViewController.m */,
+				188DB34D21606A54007E53AE /* StrategyDetailsViewController.h */,
+				188DB34E21606A54007E53AE /* StrategyDetailsViewController.m */,
+			);
+			path = Strategy;
+			sourceTree = "<group>";
+		};
+		1801CE0F215F29A40060DB0E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1801CE10215F29B60060DB0E /* StrategyModel.h */,
+				1801CE11215F29B60060DB0E /* StrategyModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		180F19B921192FC20018F1CD /* Model */ = {
@@ -1986,6 +2067,24 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		182D5A01216AED3100391D06 /* MyStrategy */ = {
+			isa = PBXGroup;
+			children = (
+				182D5A02216AED5800391D06 /* MyStrategyListViewController.h */,
+				182D5A03216AED5800391D06 /* MyStrategyListViewController.m */,
+			);
+			path = MyStrategy;
+			sourceTree = "<group>";
+		};
+		182D5A0B216B042000391D06 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				182D5A0C216B044700391D06 /* ProjectCaseListViewController.h */,
+				182D5A0D216B044700391D06 /* ProjectCaseListViewController.m */,
+			);
+			path = Project;
+			sourceTree = "<group>";
+		};
 		18339CD620D25A2B00165FF2 /* HouseInspect */ = {
 			isa = PBXGroup;
 			children = (
@@ -2016,6 +2115,10 @@
 				18382619215A2291004C40CA /* Views */,
 				1838261221522641004C40CA /* MyProjectViewController.h */,
 				1838261321522641004C40CA /* MyProjectViewController.m */,
+				182D5A1B216C48F900391D06 /* EditProjiecViewController.h */,
+				182D5A1C216C48F900391D06 /* EditProjiecViewController.m */,
+				182D5A21216C5CFD00391D06 /* EditProjectNodeViewController.h */,
+				182D5A22216C5CFD00391D06 /* EditProjectNodeViewController.m */,
 			);
 			path = MyProject;
 			sourceTree = "<group>";
@@ -2061,10 +2164,21 @@
 			children = (
 				18382641215C8645004C40CA /* HouseListViewController.h */,
 				18382642215C8645004C40CA /* HouseListViewController.m */,
+				1801CE05215F1F5C0060DB0E /* HouseCaseListViewController.h */,
+				1801CE06215F1F5C0060DB0E /* HouseCaseListViewController.m */,
 				18382644215C86EC004C40CA /* HouseDetailsViewController.h */,
 				18382645215C86EC004C40CA /* HouseDetailsViewController.m */,
 			);
 			path = House;
+			sourceTree = "<group>";
+		};
+		18382647215CA9F5004C40CA /* PushStrategy */ = {
+			isa = PBXGroup;
+			children = (
+				18382648215CAA16004C40CA /* PushStrategyViewController.h */,
+				18382649215CAA16004C40CA /* PushStrategyViewController.m */,
+			);
+			path = PushStrategy;
 			sourceTree = "<group>";
 		};
 		18399C4221215A3F007CAD58 /* JGPush */ = {
@@ -2207,6 +2321,15 @@
 				188ABC232150CAE200F4C910 /* ProjectModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		188DB34921606208007E53AE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				188DB35021606B25007E53AE /* StrategyCommentView.h */,
+				188DB35121606B25007E53AE /* StrategyCommentView.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		18D3480920DB8CE2008FD35E /* Model */ = {
@@ -2414,6 +2537,9 @@
 					0AFEE70E20BD2F23004FA8FC = {
 						CreatedOnToolsVersion = 9.3.1;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -2541,7 +2667,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				182D5A0E216B044700391D06 /* ProjectCaseListViewController.m in Sources */,
 				18F5B7CC20E9D90F00B76A73 /* PhotoSelectController.m in Sources */,
+				188DB35221606B25007E53AE /* StrategyCommentView.m in Sources */,
 				0AC3190120BD88DA0035800F /* SearchView.m in Sources */,
 				182CDA5F2108605400F28F4C /* HouseCommentTableViewCell.m in Sources */,
 				0A7D505120C432A6001BFDBF /* MyAnswerViewController.m in Sources */,
@@ -2565,6 +2693,7 @@
 				0AD2DEA920CA194A00E53B43 /* PersonalProfileVC.m in Sources */,
 				0A7D4FF720C2B723001BFDBF /* DistributionViewController.m in Sources */,
 				18275116210171F3002A61F8 /* PowerStatonModel.m in Sources */,
+				1801CE12215F29B60060DB0E /* StrategyModel.m in Sources */,
 				0AFEE76120BD2F50004FA8FC /* HttpRequest.m in Sources */,
 				0AD2DEC020CA5F3200E53B43 /* CraftsmanTypeVC.m in Sources */,
 				0A5A7B2C20C7DB9300153E9A /* SDLoadingView.m in Sources */,
@@ -2573,6 +2702,7 @@
 				182CDA4821081A9300F28F4C /* PushView.m in Sources */,
 				0A7D500E20C2E894001BFDBF /* MyCommentDetailsVC.m in Sources */,
 				1846CFF720FDD66500EA1417 /* HouseSpaceTableViewCell.m in Sources */,
+				182D5A1D216C48F900391D06 /* EditProjiecViewController.m in Sources */,
 				18382625215B18F6004C40CA /* SearchResultsViewController.m in Sources */,
 				0A7D503120C3A6E9001BFDBF /* RechargeViewController.m in Sources */,
 				0A38FF0920C6D86800B45CCD /* ShopCartCell.m in Sources */,
@@ -2600,7 +2730,9 @@
 				18EA1BDF20E1CD9A000738CC /* SortCell.m in Sources */,
 				18275120210188EA002A61F8 /* PowerStationList.m in Sources */,
 				0A45D94B20CB68C7000C04B8 /* SubscribeVisitVC.m in Sources */,
+				185CC11E215DDDC6005D21B1 /* UIButton+Caregory.m in Sources */,
 				18339CD920D25B6600165FF2 /* HouseInspectViewController.m in Sources */,
+				1801CE0B215F28430060DB0E /* StrategyCaseListViewController.m in Sources */,
 				0A7D501B20C2F141001BFDBF /* ContractDetailsVC.m in Sources */,
 				0A5CD81D20C5927F0028F82D /* UIView+YZCategory.m in Sources */,
 				0AD2DEB520CA444800E53B43 /* ChangePhoneVC.m in Sources */,
@@ -2615,6 +2747,7 @@
 				0AFD6CE520C4DD5900223512 /* MyCouponsTableViewCell.m in Sources */,
 				0AFEE77020BD2F50004FA8FC /* PushViewController.m in Sources */,
 				189AB91F211D2E46003E04C9 /* TopicModel.m in Sources */,
+				185CC121215DFF51005D21B1 /* DesignerListViewController.m in Sources */,
 				0AD2DED020CA9E2200E53B43 /* OrderCenterDatailsVC.m in Sources */,
 				1838260F2151FED9004C40CA /* CommentDetalisViewController.m in Sources */,
 				18275127210189FB002A61F8 /* PowerStationListTableViewCell.m in Sources */,
@@ -2634,7 +2767,9 @@
 				0A45D95F20CBB0C8000C04B8 /* StandardView.m in Sources */,
 				1846CFE620FC451C00EA1417 /* HouseCityViewController.m in Sources */,
 				182CDB2C211428D200F28F4C /* EditPushPhotoViewController.m in Sources */,
+				1838264A215CAA16004C40CA /* PushStrategyViewController.m in Sources */,
 				180F19C521193E780018F1CD /* ActivityModel.m in Sources */,
+				182D5A11216B30E200391D06 /* StrategyListViewController.m in Sources */,
 				0A7D504520C42A66001BFDBF /* DraftBoxViewController.m in Sources */,
 				1845C61A214668B800EC84F3 /* SearchViewController.m in Sources */,
 				0A3D7A2320BE44B4009D949B /* DecorateTableViewCell.m in Sources */,
@@ -2642,11 +2777,13 @@
 				0A7D501220C2EDC6001BFDBF /* ContractViewController.m in Sources */,
 				1846D00820FE2AAA00EA1417 /* SpaceImageListViewController.m in Sources */,
 				182751382101C1D5002A61F8 /* ProwerStationDetails.m in Sources */,
+				188DB34F21606A54007E53AE /* StrategyDetailsViewController.m in Sources */,
 				0AD0C62520BF7E1E001A20C4 /* ScreeningBar.m in Sources */,
 				0A7D503720C41B31001BFDBF /* PhotoCollectionViewCell.m in Sources */,
 				0AD2DECC20CA83B900E53B43 /* OrderCenterTableViewCell.m in Sources */,
 				188ABC17214A4D3B00F4C910 /* PhotoOrderViewController.m in Sources */,
 				0A5CD83020C61A110028F82D /* MyOrderTableViewCell.m in Sources */,
+				182D5A23216C5CFD00391D06 /* EditProjectNodeViewController.m in Sources */,
 				0A5A7B2020C7DA3400153E9A /* GoodsDetailsViewController.m in Sources */,
 				0AFEE76A20BD2F50004FA8FC /* BaseNaviViewController.m in Sources */,
 				0AFEE76720BD2F50004FA8FC /* HomeViewController.m in Sources */,
@@ -2721,7 +2858,7 @@
 				18339CE020D26D5000165FF2 /* GoodsClassViewController.m in Sources */,
 				182CDB292114167300F28F4C /* PhotoCommentView.m in Sources */,
 				0A8E9C7B20C9018E00C6E176 /* AddressViewController.m in Sources */,
-				18D3480820DB74B9008FD35E /* SelectCity.m in Sources */,
+				18D3480820DB74B9008FD35E /* SelectView.m in Sources */,
 				18D3480C20DB8CFF008FD35E /* AddressModel.m in Sources */,
 				18382628215B1998004C40CA /* SearchListView.m in Sources */,
 				0A1CA5B620C951CE00BA7AD3 /* PersonDetailsViewController.m in Sources */,
@@ -2743,6 +2880,7 @@
 				188C55E2213693DF00276E2F /* SelectCityView.m in Sources */,
 				18EA1BDB20E1CD3A000738CC /* SortPullDown.m in Sources */,
 				183826012151ED99004C40CA /* NodeCommentView.m in Sources */,
+				1801CE0E215F285E0060DB0E /* StrategyViewController.m in Sources */,
 				1846CFE920FD85F100EA1417 /* HousePriceViewController.m in Sources */,
 				18339CDC20D2656800165FF2 /* FreeOfferViewController.m in Sources */,
 				18382635215B3804004C40CA /* SearchHouseView.m in Sources */,
@@ -2753,11 +2891,14 @@
 				18F5B7CB20E9D90F00B76A73 /* AlbumSelectController.m in Sources */,
 				0AFEE76F20BD2F50004FA8FC /* MyViewController.m in Sources */,
 				0AFEE75E20BD2F50004FA8FC /* MallViewController.m in Sources */,
+				182D5A04216AED5800391D06 /* MyStrategyListViewController.m in Sources */,
 				180F19C9211943A90018F1CD /* ActivityTableViewCell.m in Sources */,
+				182D5A0A216B01B200391D06 /* MasterListViewController.m in Sources */,
 				188ABC1E214F441B00F4C910 /* MasterModel.m in Sources */,
 				0A5582AA20C1339800759E6B /* ProjectDetailsVC.m in Sources */,
 				0AFEE75F20BD2F50004FA8FC /* UIImage+Category.m in Sources */,
 				184D07D920D11C8D00653D81 /* NSString+Predicate.m in Sources */,
+				1801CE07215F1F5C0060DB0E /* HouseCaseListViewController.m in Sources */,
 				0AD2DEB920CA51F500E53B43 /* MyArticleViewController.m in Sources */,
 				187C11F420D0E42600E8DDC7 /* LoginViewController.m in Sources */,
 				18399C3A21206FA5007CAD58 /* AddTopicCommentViewController.m in Sources */,
@@ -2933,8 +3074,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = anjuyi1/anjuyi1.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer: jie zhang (VMV9JJ9ERS)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = BM346B8964;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2993,8 +3134,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cc.edeco.EdecoIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "5a451de9-23a6-4ebf-88e8-f585a93ecc41";
+				PROVISIONING_PROFILE_SPECIFIER = dev_pro;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3005,8 +3146,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = anjuyi1/anjuyi1.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Edeco Network Technology Co., Ltd. (BM346B8964)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = BM346B8964;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3065,8 +3206,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cc.edeco.EdecoIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "b6860761-b018-40ce-8e08-54458c574349";
+				PROVISIONING_PROFILE_SPECIFIER = dis_pro;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

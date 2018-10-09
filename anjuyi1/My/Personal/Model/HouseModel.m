@@ -15,7 +15,10 @@
     if ([key isEqualToString:@"id"]) {
         self.ID = value;
     }
-    
+    else if ([key isEqualToString:@"house_own_info"] )
+    {
+        self.member_info = value;
+    }
     else{
         
         [super setValue:value forKey:key];

@@ -62,7 +62,6 @@
 
 -(void)leftButtonTouchUpInside:(id)sender{
     
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

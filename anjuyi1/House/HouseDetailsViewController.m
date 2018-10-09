@@ -14,6 +14,8 @@
 #import "CommentModel.h"
 #import "QuestionTableViewCell.h"
 
+#import "CommentDetalisViewController.h"
+
 @interface HouseDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UIButton *backBtn;
@@ -408,6 +410,19 @@
         }
         return cell;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section > self.dataArr.count) {
+        CommentModel *model = self.commentArr[indexPath.row];
+        CommentDetalisViewController *vc = [[CommentDetalisViewController alloc] init];
+        vc.type = 2;
+        vc.eva_id = model.commit_id ;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

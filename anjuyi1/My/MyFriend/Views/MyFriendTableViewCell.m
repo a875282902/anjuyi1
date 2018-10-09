@@ -17,6 +17,15 @@
     }
     return self;
 }
+
+- (void)bandDataWithDictionary:(NSDictionary *)dic{
+    
+    [self.nameLabel setText:dic[@"nick_name"]];
+    [self.headerImage sd_setImageWithURL:[NSURL URLWithString:dic[@"head"]]];
+    [self.typeLabel setText:dic[@"level"]];
+}
+
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

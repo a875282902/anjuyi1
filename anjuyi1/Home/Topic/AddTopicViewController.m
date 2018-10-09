@@ -7,9 +7,9 @@
 //
 
 #import "AddTopicViewController.h"
-#import "SelectCity.h"
+#import "SelectView.h"
 
-@interface AddTopicViewController ()<UITextViewDelegate,SelectCityDelegate>
+@interface AddTopicViewController ()<UITextViewDelegate,SelectViewDelegate>
 {
     NSString *_titie;
     NSString *_content;
@@ -23,7 +23,7 @@
     UILabel *_placeholdLabel;
 }
 
-@property (nonatomic,strong) SelectCity *selectCity;
+@property (nonatomic,strong) SelectView *SelectView;
 
 @end
 
@@ -43,7 +43,7 @@
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1)]];
     
-    [self.view addSubview:self.selectCity];
+    [self.view addSubview:self.SelectView];
     
 }
 
@@ -106,15 +106,15 @@
 }
 
 
-- (SelectCity *)selectCity{
+- (SelectView *)SelectView{
     
-    if (!_selectCity) {
+    if (!_SelectView) {
         
-        _selectCity = [[SelectCity alloc] initWithFrame:CGRectMake(0, 0 , KScreenWidth, KViewHeight)];
-        [_selectCity setDataArr:self.cateArr];
-        [_selectCity setDelegate:self];
+        _SelectView = [[SelectView alloc] initWithFrame:CGRectMake(0, 0 , KScreenWidth, KViewHeight)];
+        [_SelectView setDataArr:self.cateArr];
+        [_SelectView setDelegate:self];
     }
-    return _selectCity;
+    return _SelectView;
 }
 - (void)textFieldValueChange:(UITextField *)sender{
     if (sender.text.length>15) {
@@ -144,10 +144,10 @@
 
 - (void)selectTagLabel{
     [self.view endEditing:YES];
-    [self.selectCity show];
+    [self.SelectView show];
 }
 
-- (void)selectCityWithInfo:(NSDictionary *)info view:(SelectCity *)selectCity{
+- (void)SelectViewWithInfo:(NSDictionary *)info view:(SelectView *)SelectView{
     
     [_tagLabel setText:info[@"name"]];
     

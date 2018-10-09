@@ -12,7 +12,7 @@
 @property (nonatomic,strong)NSString * eva_id;
 
 /**
- * 1 图片 2 整屋 3 项目
+ * 1 图片 2 整屋 3 项目  4攻略
  **/
 @property (nonatomic,assign)NSInteger  type;
 @end

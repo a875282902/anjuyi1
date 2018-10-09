@@ -16,6 +16,8 @@
 
 @interface ScreeningBar : UIView
 
+@property (nonatomic,strong)NSArray *titleArr;
+
 @property (nonatomic,weak)id<ScreeningBarDelegate>delegate;
 
 @end

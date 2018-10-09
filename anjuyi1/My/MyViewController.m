@@ -18,6 +18,7 @@
 #import "MyArticleViewController.h"//我的文章
 #import "MyProjectViewController.h"//我的项目
 #import "ProjectListVC.h"
+#import "MyStrategyListViewController.h"//我的攻略
 #import "MyColletViewController.h"//我的收藏
 
 #import "DraftBoxViewController.h"//草稿箱
@@ -180,15 +181,15 @@
 - (CGFloat)setUpButton:(CGFloat)height{
     
     NSArray *iArr =
-      @[@"my_img",@"my_house",@"my_pro",@"collect",
-        @"my_draft",@"my_interlocution",@"my_friend",@"my_topic",
-        @"my_shop_collect",@"my_line_cus",@"my_order",@"my_coupon",
-        @"my_wallt",@"my_acc",@"my_comment",@"my_distribution"];
+      @[@"my_img",@"my_house",@"my_pro",@"my_distribution",
+        @"collect",@"my_draft",@"my_interlocution",@"my_friend",
+        @"my_topic",@"my_shop_collect",@"my_line_cus",@"my_order",
+        @"my_coupon",@"my_wallt",@"my_acc",@"my_comment"];
     
-    NSArray *tArr = @[@"我的图片",@"我的整屋",@"我的项目",@"我的收藏",
-                      @"草稿箱",@"我的回答",@"关注的好友",@"关注的话题",
-                      @"商品收藏",@"在线客服",@"我的订单",@"我的优惠券",
-                      @"我的钱包",@"积分商城",@"我的评论",@"分销统计"];
+    NSArray *tArr = @[@"我的图片",@"我的整屋",@"我的项目",@"我的攻略",
+                      @"我的收藏",@"草稿箱",@"我的回答",@"关注的好友",
+                      @"关注的话题",@"商品收藏",@"在线客服",@"我的订单",
+                      @"我的优惠券",@"我的钱包",@"积分商城",@"我的评论"];
     
     for (NSInteger i = 0 ; i < 16 ; i ++) {
         UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth*(i%4)/4,height+ MDXFrom6(80*ceil(i/4)), KScreenWidth/4, MDXFrom6(80))];
@@ -284,97 +285,103 @@
             break;
         case 2:
         {
-            ProjectListVC *controller = [[ProjectListVC alloc] init];
-            controller.user_id = self.data[@"id"];
+            MyProjectViewController *controller = [[MyProjectViewController alloc]init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }
             break;
         case 3:
         {
-            MyColletViewController *controller = [[MyColletViewController alloc] init];
+            MyStrategyListViewController *controller = [[MyStrategyListViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }
             break;
         case 4:
         {
-            DraftBoxViewController *controller = [[DraftBoxViewController alloc] init];
+            MyColletViewController *controller = [[MyColletViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }
             break;
         case 5:
         {
-            MyAnswerViewController *controller = [[MyAnswerViewController alloc] init];
+            DraftBoxViewController *controller = [[DraftBoxViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }
             break;
         case 6:
         {
-            MyFriendViewController *controller = [[MyFriendViewController alloc] init];
+            MyAnswerViewController *controller = [[MyAnswerViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }
             break;
         case 7:
         {
-            MyTopicViewController *controller = [[MyTopicViewController alloc] init];
+            MyFriendViewController *controller = [[MyFriendViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }
             break;
         case 8:
         {
-            CollectShopViewController *controller = [[CollectShopViewController alloc] init];
+            MyTopicViewController *controller = [[MyTopicViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }
             break;
         case 9:
         {
-            CustomerServiceViewController *controller = [[CustomerServiceViewController alloc] init];
+            CollectShopViewController *controller = [[CollectShopViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }
             break;
         case 10:
         {
-            MyOrderViewController *controller = [[MyOrderViewController alloc] init];
+            CustomerServiceViewController *controller = [[CustomerServiceViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }
             break;
         case 11:
         {
-            MyCouponsViewController *controller = [[MyCouponsViewController alloc] init];
+            MyOrderViewController *controller = [[MyOrderViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }
             break;
         case 12:
         {
-            MyWalletViewController *controller = [[MyWalletViewController alloc] init];
+            MyCouponsViewController *controller = [[MyCouponsViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }
             break;
         case 13:
         {
-            IntegralMallViewController *controller = [[IntegralMallViewController alloc] init];
+            MyWalletViewController *controller = [[MyWalletViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }
             break;
         case 14:
         {
-            MyCommentViewController *controller = [[MyCommentViewController alloc] init];
+            IntegralMallViewController *controller = [[IntegralMallViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }
             break;
         case 15:
+        {
+            MyCommentViewController *controller = [[MyCommentViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            
+        }
+            break;
+        case 16:
         {
             DistributionViewController *controller = [[DistributionViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];

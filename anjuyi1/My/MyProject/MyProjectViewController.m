@@ -11,8 +11,10 @@
 #import "MyProjectTableViewCell.h"
 #import "ProjectDetailsVC.h"
 #import "ProjectModel.h"
+#import "ProjectTableViewCell.h"
+#import "EditProjiecViewController.h"
 
-@interface MyProjectViewController ()<UITableViewDelegate , UITableViewDataSource>
+@interface MyProjectViewController ()<UITableViewDelegate , UITableViewDataSource,ProjectTableViewCellDelegate>
 
 @property (nonatomic,strong) UITableView    * tmpTableView;
 @property (nonatomic,strong) NSMutableArray * dataArr;
@@ -106,17 +108,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    MyProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyProjectTableViewCell"];
+    ProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyProjectTableViewCell"];
     if (!cell) {
-        cell = [[MyProjectTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"MyProjectTableViewCell"];
+        cell = [[ProjectTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"MyProjectTableViewCell"];
     }
     
     [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
-//    [cell setDelegate:self];
-//    
-//    if (indexPath.row < self.dataArr.count) {
-//        [cell bandDataWithModel:self.dataArr[indexPath.row]];
-//    }
+    [cell setDelegate:self];
+    
+    if (indexPath.row < self.dataArr.count) {
+        [cell bandDataWithModel:self.dataArr[indexPath.row]];
+    }
     
     return cell;
 }
@@ -130,9 +132,15 @@
     
     ProjectModel *model = self.dataArr[indexPath.row];
     
-    ProjectDetailsVC *controll = [[ProjectDetailsVC alloc] init];
-    controll.projectID = model.ID;
-    [self.navigationController pushViewController:controll animated:YES];
+    if ([model.complete integerValue] == 1) {//1 未完成 2 已完成
+        EditProjiecViewController *vc = [[EditProjiecViewController  alloc] init];
+        vc.projectID = model.ID;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        ProjectDetailsVC *controll = [[ProjectDetailsVC alloc] init];
+        controll.projectID = model.ID;
+        [self.navigationController pushViewController:controll animated:YES];
+    }
 }
 
 

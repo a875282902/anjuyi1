@@ -344,7 +344,7 @@
     //项目类型 1 施工准备 2、水电工程 3、泥木工程 4、油漆工程 5、竣工
     
     ProjectView *v = self.projectViewArr[[type integerValue]-1];
-    [v refreDataWithID:_currentProjectInfo[@"id"] andType:type];
+    [v refreDataWithID:_currentProjectInfo[@"id"] andType:type cate:1];
     
     [self.tmpScrollView setContentOffset:CGPointMake(KScreenWidth *([type integerValue]-1), 0)];
 }

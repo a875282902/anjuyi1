@@ -7,9 +7,9 @@
 //
 
 #import "EditAddressViewController.h"
-#import "SelectCity.h"
+#import "SelectView.h"
 
-@interface EditAddressViewController ()<UIScrollViewDelegate,SelectCityDelegate>
+@interface EditAddressViewController ()<UIScrollViewDelegate,SelectViewDelegate>
 {
     NSDictionary  * provincesDic;//保存省
     NSDictionary  * cityDic;//保存城市
@@ -19,7 +19,7 @@
 
 @property (nonatomic,strong)UIScrollView    * tmpScrollView;
 @property (nonatomic,strong)NSMutableArray  * textArr;
-@property (nonatomic,strong)SelectCity      * selectCity;
+@property (nonatomic,strong)SelectView      * SelectView;
 @property (nonatomic,strong)NSMutableArray  * cityArr;
 
 @end
@@ -42,7 +42,7 @@
     
     [self getLocationDetails];
     
-    [[UIApplication sharedApplication].keyWindow addSubview:self.selectCity];
+    [[UIApplication sharedApplication].keyWindow addSubview:self.SelectView];
 }
 
 - (void)getLocationDetails{
@@ -137,7 +137,7 @@
         else{
             
             UILabel *label =[Tools creatLabel:CGRectMake(MDXFrom6(45), 0, KScreenWidth - MDXFrom6(60), MDXFrom6(50)) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:tArr[i]];
-            [label addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectCity:)]];
+            [label addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SelectView:)]];
             [label setTag:i];
             [backView addSubview:label];
             
@@ -170,7 +170,7 @@
 }
 
 
-- (void)selectCity:(UITapGestureRecognizer *)sender{
+- (void)SelectView:(UITapGestureRecognizer *)sender{
     
     [self.view endEditing:YES];
     
@@ -291,9 +291,9 @@
                 for (NSDictionary *dic in responseObject[@"datas"]) {
                     [self.cityArr addObject:dic];
                 }
-                [self.selectCity setDataArr:self.cityArr];
-                [self.selectCity setTag:tag];
-                [self.selectCity show];
+                [self.SelectView setDataArr:self.cityArr];
+                [self.SelectView setTag:tag];
+                [self.SelectView show];
             }
             
         }
@@ -310,28 +310,28 @@
     }];
 }
 
-- (SelectCity *)selectCity{
+- (SelectView *)SelectView{
     
-    if (!_selectCity) {
+    if (!_SelectView) {
         
-        _selectCity = [[SelectCity alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
-        [_selectCity setDelegate:self];
+        _SelectView = [[SelectView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+        [_SelectView setDelegate:self];
     }
-    return _selectCity;
+    return _SelectView;
 }
 
-- (void)selectCityWithInfo:(NSDictionary *)info view:(SelectCity *)selectCity{
+- (void)SelectViewWithInfo:(NSDictionary *)info view:(SelectView *)SelectView{
     
     [selectLabel setTextColor:[UIColor blackColor]];
     [selectLabel setText:[info valueForKey:@"value"]];
     
-    if (selectCity.tag == 2) {
+    if (SelectView.tag == 2) {
         provincesDic = info;
     }
-    if (selectCity.tag == 3) {
+    if (SelectView.tag == 3) {
         cityDic = info;
     }
-    if (selectCity.tag == 4) {
+    if (SelectView.tag == 4) {
         countyDic = info;
     }
 }

@@ -6,13 +6,13 @@
 //  Copyright © 2018年 lsy. All rights reserved.
 //
 
-#import "SelectCity.h"
+#import "SelectView.h"
 
 static CGFloat vHeight = 250;
 
 static CGFloat sHeight = 50;
 
-@interface SelectCity()<UIPickerViewDelegate,UIPickerViewDataSource>
+@interface SelectView()<UIPickerViewDelegate,UIPickerViewDataSource>
 {
     NSDictionary *currentDic;
 }
@@ -25,7 +25,7 @@ static CGFloat sHeight = 50;
 
 @end
 
-@implementation SelectCity
+@implementation SelectView
 
 
 - (instancetype)initWithFrame:(CGRect)frame{

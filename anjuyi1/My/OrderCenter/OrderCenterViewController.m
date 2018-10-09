@@ -24,6 +24,7 @@
     NSDictionary * _typeDic;
     NSDictionary * _roomDic;
     NSDictionary * _moneyDic;//保存 筛选的信息
+    YZPullDownMenu * _downMenu;
 }
 
 @property (nonatomic, strong) NSArray        * titles;
@@ -37,6 +38,12 @@
 @end
 
 @implementation OrderCenterViewController
+
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    [_downMenu cancel];
+}
 
 
 - (void)viewDidLoad {
@@ -319,6 +326,8 @@
     [menu setDelegate:self];
     menu.coverColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.8];
     [self.view addSubview:menu];
+    
+    _downMenu = menu;
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1.5)]];
     

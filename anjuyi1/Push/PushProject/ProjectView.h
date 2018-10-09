@@ -17,8 +17,16 @@
 
 @interface ProjectView : UIView
 
-
-- (void)refreDataWithID:(NSString *)projectID andType:(NSString *)type;
+/**
+ *  @author LSY
+ *
+ *  @brief  刷新
+ *
+ *  @param projectID  项目id
+ *  @param type  项目状态
+ *  @param cate  1 发布还是 2查看
+ */
+- (void)refreDataWithID:(NSString *)projectID andType:(NSString *)type cate:(NSInteger)cate;
 
 @property (nonatomic,weak)id<ProjectViewDelegate>delegate;
 

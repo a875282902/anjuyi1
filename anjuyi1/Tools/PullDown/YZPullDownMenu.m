@@ -380,4 +380,11 @@ NSString * const YZUpdateMenuTitleNote = @"YZUpdateMenuTitleNote";
     [[NSNotificationCenter defaultCenter] removeObserver:_observer];
 }
 
+- (void)cancel{
+    
+    [self clear];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:_observer];
+}
+
 @end

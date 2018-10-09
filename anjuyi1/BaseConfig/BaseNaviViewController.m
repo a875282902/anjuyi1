@@ -49,10 +49,14 @@
     
     if (self.childViewControllers.count==1) {
         viewController.hidesBottomBarWhenPushed = YES; //viewController是将要被push的控制器
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"hiddenPushButton" object:nil];
     }
+    
     [super pushViewController:viewController animated:animated];
 }
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 

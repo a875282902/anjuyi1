@@ -35,7 +35,7 @@
     
     CommentUserModel *userModel = [[CommentUserModel alloc] initWithDictionary:model.house_own_info];
     [self.headerImage sd_setImageWithURL:[NSURL URLWithString:userModel.head]];
-    [self.nameLabel setText:userModel.position];
+    [self.nameLabel setText:userModel.nick_name];
     [self.descLabel setText:model.said];
     
 }

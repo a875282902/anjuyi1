@@ -174,6 +174,13 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CommentModel *model = self.dataArr[indexPath.row];
+    self.selectCommentDetails(model.commit_id);
+    
+}
+
 #pragma mark -- 事件
 
 - (void)closeDisplay{

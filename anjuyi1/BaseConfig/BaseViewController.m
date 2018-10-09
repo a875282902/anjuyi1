@@ -92,7 +92,11 @@
 
 - (void) leftButtonTouchUpInside:(id)sender
 {
+    
     if (sender && [sender isKindOfClass:[UIButton class]]) {
+        if (self.navigationController.childViewControllers.count <= 2) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"noHiddenPushButton" object:nil];
+        }
         
         [self.navigationController popViewControllerAnimated:YES];
     

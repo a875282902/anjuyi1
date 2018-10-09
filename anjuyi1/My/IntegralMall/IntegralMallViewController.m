@@ -58,6 +58,7 @@
 - (ScreeningBar *)screeningBar{
     if (!_screeningBar) {
         _screeningBar = [[ScreeningBar alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, MDXFrom6(45))];
+        [_screeningBar setTitleArr:@[@"综合排序",@"关注最多",@"价格",@"筛选"]];
         [_screeningBar setDelegate:self];
     }
     return _screeningBar;

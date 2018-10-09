@@ -9,8 +9,14 @@
 
 #import "DesignerDetailsVC.h"
 
-#import "MyPushPhotoDetailsViewController.h"//图片详情
-#import "MyPushHouseDetailsViewController.h"//整屋详情详情
+#import "PhotoDetailsViewController.h"//图片详情
+#import "HouseDetailsViewController.h"//整屋详情详情
+
+#import "HouseListViewController.h"//整屋列表
+#import "PhotoListViewController.h"//图片列表
+
+#import "StrategyListViewController.h"//攻略列表
+
 
 @interface DesignerDetailsVC ()<UIScrollViewDelegate>
 {
@@ -171,14 +177,15 @@
         [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(75*i), height+MDXFrom6(30), MDXFrom6(75), MDXFrom6(20)) font:[UIFont boldSystemFontOfSize:18] color:[UIColor whiteColor] alignment:(NSTextAlignmentCenter) title:dArr[i]]];
     }
     
-    UIButton *likeBtn = [Tools creatButton:CGRectMake(MDXFrom6(260), height, MDXFrom6(100), MDXFrom6(35)) font:[UIFont boldSystemFontOfSize:14] color:[UIColor whiteColor] title:@"关注" image:@"designer_xq_add"];
+    UIButton *likeBtn = [Tools creatButton:CGRectMake(MDXFrom6(260), height, MDXFrom6(100), MDXFrom6(35)) font:[UIFont boldSystemFontOfSize:14] color:[UIColor whiteColor] title:@"关注" image:@""];
     [likeBtn setBackgroundColor:MDRGBA(255, 180, 0, 1)];
+    [likeBtn setTitle:@"已关注" forState:(UIControlStateSelected)];
     [likeBtn.layer setCornerRadius:MDXFrom6(17.5f)];
     [likeBtn setClipsToBounds:YES];
-    [likeBtn setSelected:[self.data[@"is_follow"] integerValue]==0?YES:NO];//0 关注
+    [likeBtn setSelected:[self.data[@"is_follow"] integerValue]==1?YES:NO];//是否关注 1 关注 0 未关注
     [likeBtn addTarget:self action:@selector(like:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.tmpScrollView addSubview:likeBtn];
-    
+
     [likeBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0,8)];
     [likeBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0)];
     
@@ -357,38 +364,99 @@
 //关注
 - (void)like:(UIButton *)sender{
     
-    [ViewHelps showHUDWithText:@"关注"];
+    if (!sender.selected) {
+        [self attention:[NSString stringWithFormat:@"%@/follow/insert_follow",KURL] btn:sender];
+    }
+    else{
+        [self attention:[NSString stringWithFormat:@"%@/Follow/cancel_follow",KURL] btn:sender];
+    }
+    
 }
 
+- (void)attention:(NSString *)path btn:(UIButton *)sender{
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *dic = @{@"user_id":self.data[@"member_info"][@"id"]};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        
+        [ViewHelps showHUDWithText:responseObject[@"message"]];
+        if ([responseObject[@"code"] integerValue]==200) {
+            sender.selected = !sender.selected;
+        }
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+    
+    
+}
 //选择图片 整屋 评价 回答
 - (void)selectType:(UITapGestureRecognizer *)sender{
     
-    
+    switch (sender.view.tag) {
+        case 0:
+            {
+                PhotoListViewController *vc = [[PhotoListViewController alloc] init];
+                vc.user_id = self.data[@"member_info"][@"id"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            break;
+        case 1:
+        {
+            HouseListViewController *vc = [[HouseListViewController alloc] init];
+            vc.user_id = self.data[@"member_info"][@"id"];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 2:
+        {
+            StrategyListViewController *vc = [[StrategyListViewController alloc] init];
+            vc.user_id =self.data[@"member_info"][@"id"];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 //展示整屋的列表
 - (void)showAllHouse{
     
-    
+    HouseListViewController *vc = [[HouseListViewController alloc] init];
+    vc.user_id = self.data[@"member_info"][@"id"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //整屋案例
 - (void)selectAllHouse:(UITapGestureRecognizer *)sender{
     NSArray *arr = self.data[@"house_list"];
-    MyPushHouseDetailsViewController *vc = [[MyPushHouseDetailsViewController alloc] init];
+    HouseDetailsViewController *vc = [[HouseDetailsViewController alloc] init];
     vc.house_id = arr[sender.view.tag][@"id"];
     [self.navigationController pushViewController:vc animated:YES];
     
 }
 //展示图片列表
 - (void)showPhoto{
-    
-    
+
+    PhotoListViewController *vc = [[PhotoListViewController alloc] init];
+    vc.user_id = self.data[@"member_info"][@"id"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 //展示图片详情
 - (void)showImageDetails:(UITapGestureRecognizer *)sender{
      NSArray *arr = self.data[@"img_list"];
-    MyPushPhotoDetailsViewController *vc = [[MyPushPhotoDetailsViewController alloc] init];
+    PhotoDetailsViewController *vc = [[PhotoDetailsViewController alloc] init];
     vc.photo_id = arr[sender.view.tag][@"id"];
     [self.navigationController pushViewController:vc animated:YES];
 }

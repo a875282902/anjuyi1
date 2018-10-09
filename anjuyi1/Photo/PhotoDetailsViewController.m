@@ -13,6 +13,8 @@
 #import "HouseCommentTableViewCell.h"
 #import "CommentModel.h"
 
+#import "CommentDetalisViewController.h"
+
 @interface PhotoDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UIButton *backBtn;
@@ -145,6 +147,16 @@
     if (!_commentV) {
         _commentV = [[PhotoCommentView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
         
+        WKSELF;
+        
+        [_commentV setSelectCommentDetails:^(NSString *eva_id) {
+           
+            CommentDetalisViewController *vc = [[CommentDetalisViewController alloc] init];
+            vc.eva_id = eva_id;
+            vc.type = 1;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+            
+        }];
         [_commentV setPhoto_id:self.photo_id];
     }
     return _commentV;
@@ -360,6 +372,17 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CommentModel *model = self.commentArr[indexPath.row];
+    
+    CommentDetalisViewController *vc = [[CommentDetalisViewController alloc] init];
+    vc.eva_id = model.commit_id;
+    vc.type = 1;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
 #pragma mark -- 点击事件
 - (void)back{
     
@@ -368,7 +391,7 @@
 }
 
 - (void)share{
-    [self checkMoreComment];
+
 }
 
 

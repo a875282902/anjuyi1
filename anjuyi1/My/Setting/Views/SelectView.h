@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@class SelectCity;
+@class SelectView;
 
-@protocol SelectCityDelegate <NSObject>
+@protocol SelectViewDelegate <NSObject>
 
-- (void)selectCityWithInfo:(NSDictionary *)info view:(SelectCity *)selectCity;
+- (void)selectCityWithInfo:(NSDictionary *)info view:(SelectView *)selectCity;
 
 @end
 
-@interface SelectCity : UIView
+@interface SelectView : UIView
 
 @property (nonatomic,strong)NSMutableArray *dataArr;
 
@@ -24,7 +24,7 @@
 
 - (void)hidden;
 
-@property (nonatomic,weak)id<SelectCityDelegate>delegate;
+@property (nonatomic,weak)id<SelectViewDelegate>delegate;
 
 
 @end

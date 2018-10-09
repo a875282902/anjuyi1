@@ -38,7 +38,7 @@
 
 - (void)getCommentInfo{
     
-    NSArray * uArr = @[@"",@"index/image_evaluate_detail",@"whole_house_info/whole_evaluate_detail",@"project_info/project_evaluate_detail"];
+    NSArray * uArr = @[@"",@"index/image_evaluate_detail",@"whole_house_info/whole_evaluate_detail",@"project_info/project_evaluate_detail",@"strategy_info/evaluate_detail"];
     
     NSString *path = [NSString stringWithFormat:@"%@/%@",KURL,uArr[self.type]];
     

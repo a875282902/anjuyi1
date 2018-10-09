@@ -17,8 +17,6 @@
 
 @property (nonatomic,strong)NSMutableArray * btnArr;
 
-@property (nonatomic,strong)NSMutableArray * textArr;
-
 @property (nonatomic,strong)NSMutableArray * fieldArr;
 
 @end
@@ -33,8 +31,7 @@
         
         [self setBackgroundColor:MDRGBA(0, 0, 0, 0.8)];
         [self setUpView];
-        
-        self.textArr = [NSMutableArray arrayWithObjects:@"",@"", NULL];
+    
         self.fieldArr = [NSMutableArray array];
         
     }
@@ -135,13 +132,6 @@
     return btn;
 }
 #pragma mark -- 事件
-
-//价钱区间
-- (void)textValueChange:(UITextField *)sender{
-    
-    [self.textArr replaceObjectAtIndex:sender.tag withObject:sender.text];
-}
-
 //确定选择
 - (void)sure{
     

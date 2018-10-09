@@ -11,6 +11,8 @@
 @interface PhotoCommentView : UIView
 @property (nonatomic,strong)NSString *photo_id;
 
+@property (nonatomic,copy)void(^selectCommentDetails)(NSString *eva_id);
+
 - (void)openDisplay;
 
 - (void)addComment;

@@ -114,9 +114,9 @@
     
     height += 40;
     
-    NSArray *tArr = @[@"服务类型",@"从业时间",@"接单数量"];
+    NSArray *tArr = @[@"服务类型",@"从业时间",@"接单数量",@"等级"];
     
-    for (NSInteger i = 0 ; i < 3 ; i ++) {
+    for (NSInteger i = 0 ; i < 4 ; i ++) {
         UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, height, KScreenWidth, 50)];
         [v addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectMyExperience:)]];
         [v setTag:i];
@@ -269,7 +269,7 @@
 //选择服务类型
 - (void)selectMyExperience:(UITapGestureRecognizer *)sender{
     
-    NSArray *arr = @[@"service_type",@"employment_time",@"single_num"];
+    NSArray *arr = @[@"service_type",@"employment_time",@"single_num",@"level"];
 
     [self.selectType setDataArr:((NSArray *)[self.typeDic valueForKey:arr[sender.view.tag]])];
     [self.selectType setTag:sender.view.tag];
@@ -295,7 +295,7 @@
 
 - (void)sureProvince:(NSDictionary *)province city:(NSDictionary *)city area:(NSDictionary *)area{
     
-    UILabel *label = self.labelArr[3];
+    UILabel *label = self.labelArr[4];
     [label setText:[NSString stringWithFormat:@"%@  %@ %@",province[@"value"],city[@"value"] ,area[@"value"]]];
     [label setTextColor:TCOLOR];
     

@@ -27,7 +27,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor brownColor];
     
-    self.navView = [[NavTwoTitle alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(200), 44) WithTitle1:@"我的整屋" WithTitle2:@"0篇"];
+    self.navView = [[NavTwoTitle alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(200), 44) WithTitle1:@"整屋" WithTitle2:@"0篇"];
     
     [self.navigationItem setTitleView:self.navView];
     
@@ -119,9 +119,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    DraftBoxTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyPushHouseViewControllerCell"];
+    DraftBoxTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HouseListViewController"];
     if (!cell) {
-        cell = [[DraftBoxTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"MyPushHouseViewControllerCell"];
+        cell = [[DraftBoxTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"HouseListViewController"];
     }
     
     [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];

@@ -18,6 +18,9 @@
 
 @property (nonatomic, weak) id<LSYLocationDelegta> delegate;
 
+/*
+ * 开始定位
+ */
 - (void)beginUpdatingLocation;
 
 - (void)endLocation;

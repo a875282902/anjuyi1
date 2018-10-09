@@ -8,10 +8,10 @@
 //  录入地址
 
 #import "SelectLocationVC.h"
-#import "SelectCity.h"
+#import "SelectView.h"
 #import "DBManager.h"
 
-@interface SelectLocationVC ()<UIScrollViewDelegate,SelectCityDelegate>
+@interface SelectLocationVC ()<UIScrollViewDelegate,SelectViewDelegate>
 {
     NSDictionary  * provincesDic;//保存省
     NSDictionary  * cityDic;//保存城市
@@ -21,7 +21,7 @@
 
 @property (nonatomic,strong)UIScrollView   * tmpScrollView;
 @property (nonatomic,strong)NSMutableArray * textArr;
-@property (nonatomic,strong)SelectCity     * selectCity;
+@property (nonatomic,strong)SelectView     * SelectView;
 @property (nonatomic,strong)NSMutableArray * cityArr;
 @property (nonatomic,strong)DBManager      * dbManager;
 
@@ -47,7 +47,7 @@
     
     [self setUpUI];
     
-    [self.view addSubview:self.selectCity];
+    [self.view addSubview:self.SelectView];
 }
 
 
@@ -102,7 +102,7 @@
         else{
             
             UILabel *label =[Tools creatLabel:CGRectMake(MDXFrom6(45), 0, KScreenWidth - MDXFrom6(60), MDXFrom6(50)) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:tArr[i]];
-            [label addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectCity:)]];
+            [label addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SelectView:)]];
             [label setTag:i];
             [backView addSubview:label];
             
@@ -129,7 +129,7 @@
     [self.textArr replaceObjectAtIndex:textField.tag withObject:textField.text];
 }
 
-- (void)selectCity:(UITapGestureRecognizer *)sender{
+- (void)SelectView:(UITapGestureRecognizer *)sender{
     
     //tag  1为城市 2为区
     
@@ -181,39 +181,39 @@
      for (NSDictionary *dic in arr) {
          [self.cityArr addObject:dic];
      }
-     [self.selectCity setDataArr:self.cityArr];
-     [self.selectCity setTag:tag];
-     [self.selectCity show];
+     [self.SelectView setDataArr:self.cityArr];
+     [self.SelectView setTag:tag];
+     [self.SelectView show];
 
 
 
 }
 
-- (SelectCity *)selectCity{
+- (SelectView *)SelectView{
     
-    if (!_selectCity) {
+    if (!_SelectView) {
         
-        _selectCity = [[SelectCity alloc] initWithFrame:CGRectMake(0, 0 , KScreenWidth, KViewHeight)];
-        [_selectCity setDelegate:self];
+        _SelectView = [[SelectView alloc] initWithFrame:CGRectMake(0, 0 , KScreenWidth, KViewHeight)];
+        [_SelectView setDelegate:self];
     }
-    return _selectCity;
+    return _SelectView;
 }
 
-- (void)selectCityWithInfo:(NSDictionary *)info view:(SelectCity *)selectCity{
+- (void)SelectViewWithInfo:(NSDictionary *)info view:(SelectView *)SelectView{
     
     [selectLabel setTextColor:[UIColor blackColor]];
     [selectLabel setText:[info valueForKey:@"value"]];
     
-    if (selectCity.tag == 0) {
+    if (SelectView.tag == 0) {
         provincesDic = info;
         cityDic = nil;
         countyDic = nil;
     }
-    if (selectCity.tag == 1) {
+    if (SelectView.tag == 1) {
         cityDic = info;
         countyDic = nil;
     }
-    if (selectCity.tag == 2) {
+    if (SelectView.tag == 2) {
         countyDic = info;
     }
 }

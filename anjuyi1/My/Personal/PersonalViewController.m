@@ -14,6 +14,7 @@
 #import "MyPushHouseDetailsViewController.h"
 #import "MyPhotoViewController.h"
 
+#import "MyCommentViewController.h"
 
 @interface PersonalViewController ()<UIScrollViewDelegate>
 {
@@ -367,7 +368,7 @@
     }];
     
 }
-//选择图片 整屋 评价 回答
+//选择图片 整屋 攻略 回答
 - (void)selectType:(UITapGestureRecognizer *)sender{
     
     switch (sender.view.tag) {
@@ -380,6 +381,12 @@
         case 1:
         {
             MyPushHouseViewController *VC = [[MyPushHouseViewController alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
+        }
+            break;
+        case 2:
+        {
+            MyCommentViewController *VC = [[MyCommentViewController alloc] init];
             [self.navigationController pushViewController:VC animated:YES];
         }
             break;

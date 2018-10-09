@@ -89,7 +89,9 @@
         
         height += MDXFrom6(20+20);
         
-        if (i==1) {
+        NSArray * arr = self.dataArr[i];
+        
+        if (arr.count >0 && [arr[0] isKindOfClass:[NSDictionary class]]) {
             for (NSInteger i = 0 ; i < 2 ; i ++) {
                 UITextField *textFeild = [[UITextField alloc] initWithFrame:CGRectMake(MDXFrom6(20+140*i), height, MDXFrom6(135), MDXFrom6(35))];
                 [textFeild setPlaceholder:i==0?@"最低价":@"最高价"];
@@ -194,6 +196,10 @@
         }
     }
     
+    for (NSInteger i = 0 ; i < self.sureArr.count; i++) {
+        [self.sureArr replaceObjectAtIndex:i withObject:@"-1"];
+    }
+    
     for (UITextField *text in self.fieldArr) {
         [text setText:@""];
     }
@@ -205,6 +211,9 @@
     
     if (sender.selected) {
         [sender setSelected:NO];
+        
+        NSInteger i = sender.tag/100;
+        [self.sureArr replaceObjectAtIndex:i withObject:@"-1"];
     }
     else{
     
@@ -219,7 +228,9 @@
         
         [self.sureArr replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%ld",j]];
         
-        if (i == 1) {
+        NSArray *arr = self.dataArr[i];
+        
+        if (arr.count >0 && [arr[0] isKindOfClass:[NSDictionary class]]) {
             NSDictionary *dic = self.priceArr[j];
             [((UITextField *)self.fieldArr[0]) setText:[NSString stringWithFormat:@"%@",dic[@"min"]]];
             [((UITextField *)self.fieldArr[1]) setText:[NSString stringWithFormat:@"%@",dic[@"max"]]];
@@ -227,8 +238,6 @@
             self.textArr = [NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%@",dic[@"min"]],[NSString stringWithFormat:@"%@",dic[@"max"]], nil];
             
         }
-        
-
     }
 }
 

@@ -9,5 +9,13 @@
 #import "CommentModel.h"
 
 @implementation CommentModel
-
+- (void)setValue:(id)value forKey:(NSString *)key{
+    
+    if ([key isEqualToString:@"id"]) {
+        self.commit_id = value;
+    }
+    else{
+        [super setValue:value forKey:key];
+    }
+}
 @end

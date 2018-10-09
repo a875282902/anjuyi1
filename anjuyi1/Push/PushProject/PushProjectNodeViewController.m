@@ -16,7 +16,6 @@
 @interface PushProjectNodeViewController ()<UIScrollViewDelegate,UITextViewDelegate,PhotoSelectControllerDelegate,SDPhotoBrowserDelegate>
 {
     UILabel *_personPlace;
-    NSDictionary *_labelDic;//标签
     NSString  *_content;//内容
     NSString  *_image_url;//图片地址
 }
@@ -123,7 +122,7 @@
     
     height = [self createDynamicTextView:height];
     
-    height = [self createAddLabel:height];
+//    height = [self createAddLabel:height];
     
     height = [self createImageView:height];
     
@@ -275,19 +274,19 @@
     
 }
 
-- (void)tap:(UITapGestureRecognizer *)sender{
-    LabelViewController *vc = [[LabelViewController alloc] init];
-    [vc setSelectLabel:^(NSDictionary *dic) {
-        
-        UILabel *label = (UILabel *)sender.view;
-        [label setText:[NSString stringWithFormat:@"#%@",dic[@"name"]]];
-        
-        self->_labelDic = dic;
-        
-    }];
-    [self.navigationController pushViewController:vc animated:YES];
-    
-}
+//- (void)tap:(UITapGestureRecognizer *)sender{
+//    LabelViewController *vc = [[LabelViewController alloc] init];
+//    [vc setSelectLabel:^(NSDictionary *dic) {
+//
+//        UILabel *label = (UILabel *)sender.view;
+//        [label setText:[NSString stringWithFormat:@"#%@",dic[@"name"]]];
+//
+//        self->_labelDic = dic;
+//
+//    }];
+//    [self.navigationController pushViewController:vc animated:YES];
+//
+//}
 
 - (void)showBigImage{
     if (_image_url.length != 0) {
