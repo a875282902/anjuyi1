@@ -29,8 +29,14 @@
     [self.levelLabel setText:userModel.level];
     
     [self.timeLabel setText:model.create_time];
-    [self.adoptButton setSelected:[model.isBest integerValue]==0?YES:NO];
-    [self.cainaImage setHidden:[model.isBest integerValue]==0?YES:NO];
+    
+    if (model.isAuthor) {
+        [self.adoptButton setHidden:NO];
+        [self.cainaImage setHidden:NO];
+        [self.adoptButton setSelected:[model.isBest integerValue]==0?YES:NO];
+        [self.cainaImage setHidden:[model.isBest integerValue]==0?YES:NO];
+    }
+    
     
     [self.descLabel setText:model.content];
     
@@ -45,6 +51,7 @@
 //    [self.showAll setHidden:model.isShowAllButton];
     [self.showAll setHidden:YES];
     [self.descLabel setNumberOfLines:0];
+
 }
 
 - (IBAction)adopt:(UIButton *)sender {

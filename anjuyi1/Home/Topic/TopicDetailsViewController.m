@@ -33,7 +33,11 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
-
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -317,7 +321,10 @@
         if ([model.isBest integerValue] == 1) {
             self.adoptIndex = indexPath;
         }
-        
+        if ([self.topicInfo[@"is_author"] integerValue]==1) {
+            model.isAuthor = YES;
+        }
+
         [cell bandDataWithModel:model];
         [cell setDelegate:self];
     }

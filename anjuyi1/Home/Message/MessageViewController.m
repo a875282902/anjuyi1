@@ -7,54 +7,45 @@
 //
 //  我的收藏
 
-#import "MyColletViewController.h"
-#import "MyCollectView.h"
-#import "MyCollectPhotoView.h"
+#import "MessageViewController.h"
+#import "MessageListVIew.h"
+#import "MessageDetailViewController.h"
 
-@interface MyColletViewController ()<UIScrollViewDelegate>
+@interface MessageViewController ()<UIScrollViewDelegate,MessageListVIewDelegate>
 
 @property (nonatomic,strong) NSMutableArray * channelArr;
-@property (nonatomic,strong) NavTwoTitle    * navView;
 @property (nonatomic,strong) UIView         * lineView;
 @property (nonatomic,strong) UIScrollView   * tmpScrollView;
 
 @end
 
-@implementation MyColletViewController
+@implementation MessageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     [self baseForDefaultLeftNavButton];
-    [self.navigationItem setTitleView:self.navView];
+    [self setTitle:@"消息中心"];
     
     self.channelArr = [NSMutableArray array];
     
     [self setUpChannelView];
-
+    
     [self.view addSubview:self.tmpScrollView];
     
     [self setUpScrollView];
 }
 
 #pragma mark -- UI
-- (NavTwoTitle *)navView {
-    
-    if (!_navView) {
-        _navView = [[NavTwoTitle alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(200), 44) WithTitle1:@"我的收藏" WithTitle2:@"0篇"];
-    }
-    return _navView;
-}
-
 - (void)setUpChannelView{
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 55)];
     [self.view addSubview:backView];
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1.5)]];
-    
-    NSArray *tArr = @[@"整屋",@"攻略",@"图片",@"话题"];
+    //0 全部 1 系统 2评论 3 点赞 4 收藏
+    NSArray *tArr = @[@"全部",@"系统",@"评论",@"点赞",@"收藏"];
     CGFloat x = 0;
     for (NSInteger i = 0 ; i < [tArr count] ; i ++) {
         
@@ -79,11 +70,11 @@
             [backView addSubview:self.lineView];
         }
     }
-
+    
     if (x<KScreenWidth) {
         [backView setFrame:CGRectMake((KScreenWidth-x)/2.0, 0, x, 55)];
     }
-
+    
 }
 
 #pragma mark -- scrollview
@@ -97,7 +88,7 @@
         if (@available(iOS 11.0, *)) {
             [_tmpScrollView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
         }
-        [_tmpScrollView setContentSize:CGSizeMake(KScreenWidth *4, KViewHeight - 55)];
+        [_tmpScrollView setContentSize:CGSizeMake(KScreenWidth *5, KViewHeight - 55)];
         [_tmpScrollView setDelegate:self];
     }
     return _tmpScrollView;
@@ -106,23 +97,11 @@
 - (void)setUpScrollView{
     WKSELF;
     for (NSInteger i = 0 ; i < 4 ; i ++) {
-        if (i==2) {
-            MyCollectPhotoView *v =  [[MyCollectPhotoView  alloc] initWithFrame:CGRectMake(KScreenWidth *i, 0, KScreenWidth, self.tmpScrollView.frame.size.height)];
-            [v  setIndex:i];
-            [v setPush:^(BaseViewController * _Nonnull vc) {
-                [weakSelf.navigationController pushViewController:vc animated:YES];
-            }];
-            
-            [self.tmpScrollView addSubview:v ];
-        }
-        else{
-        MyCollectView *collectV = [[MyCollectView alloc] initWithFrame:CGRectMake(KScreenWidth *i, 0, KScreenWidth, self.tmpScrollView.frame.size.height)];
-        [collectV setIndex:i];
-        [collectV setPush:^(BaseViewController * _Nonnull vc) {
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        }];
-        [self.tmpScrollView addSubview:collectV];
-        }
+       
+        MessageListVIew *messageList = [[MessageListVIew alloc] initWithFrame:CGRectMake(KScreenWidth *i, 0, KScreenWidth, self.tmpScrollView.frame.size.height)];
+        [messageList setDelegate:self];
+        [messageList setType:[NSString stringWithFormat:@"%ld",i]];
+        [self.tmpScrollView addSubview:messageList];
     }
 }
 
@@ -144,6 +123,14 @@
         }];
     }
 }
+
+- (void)pushShowDetail:(NSString *)message_id{
+    
+    MessageDetailViewController *vc = [[MessageDetailViewController alloc] init];
+    vc.message_id = message_id;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 #pragma mark -- scrollVIew 协议 、、 数据刷新
 - (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
@@ -174,13 +161,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

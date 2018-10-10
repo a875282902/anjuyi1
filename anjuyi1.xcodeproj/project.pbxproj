@@ -309,6 +309,12 @@
 		18D3480820DB74B9008FD35E /* SelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480720DB74B9008FD35E /* SelectView.m */; };
 		18D3480C20DB8CFF008FD35E /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480B20DB8CFF008FD35E /* AddressModel.m */; };
 		18D8544C213CCD3500C6C358 /* PushTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D8544B213CCD3500C6C358 /* PushTaskViewController.m */; };
+		18E17EB2216D9DA800677BA0 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E17EB1216D9DA800677BA0 /* MessageViewController.m */; };
+		18E17EB6216DA3CE00677BA0 /* MessageListVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E17EB5216DA3CE00677BA0 /* MessageListVIew.m */; };
+		18E17EBA216DA3E700677BA0 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E17EB8216DA3E700677BA0 /* MessageTableViewCell.m */; };
+		18E17EBB216DA3E700677BA0 /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E17EB9216DA3E700677BA0 /* MessageTableViewCell.xib */; };
+		18E17EBE216DD41800677BA0 /* MessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E17EBD216DD41800677BA0 /* MessageDetailViewController.m */; };
+		18E280A0216CA801008CDF1B /* MyCollectPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E2809F216CA801008CDF1B /* MyCollectPhotoView.m */; };
 		18EA1BD820E1CCB7000738CC /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA1BD720E1CCB7000738CC /* ShareView.m */; };
 		18EA1BDB20E1CD3A000738CC /* SortPullDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA1BDA20E1CD3A000738CC /* SortPullDown.m */; };
 		18EA1BDF20E1CD9A000738CC /* SortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA1BDD20E1CD9A000738CC /* SortCell.m */; };
@@ -898,6 +904,17 @@
 		18D3480B20DB8CFF008FD35E /* AddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
 		18D8544A213CCD3500C6C358 /* PushTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushTaskViewController.h; sourceTree = "<group>"; };
 		18D8544B213CCD3500C6C358 /* PushTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushTaskViewController.m; sourceTree = "<group>"; };
+		18E17EB0216D9DA800677BA0 /* MessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		18E17EB1216D9DA800677BA0 /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		18E17EB4216DA3CE00677BA0 /* MessageListVIew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageListVIew.h; sourceTree = "<group>"; };
+		18E17EB5216DA3CE00677BA0 /* MessageListVIew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageListVIew.m; sourceTree = "<group>"; };
+		18E17EB7216DA3E700677BA0 /* MessageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
+		18E17EB8216DA3E700677BA0 /* MessageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
+		18E17EB9216DA3E700677BA0 /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
+		18E17EBC216DD41800677BA0 /* MessageDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDetailViewController.h; sourceTree = "<group>"; };
+		18E17EBD216DD41800677BA0 /* MessageDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageDetailViewController.m; sourceTree = "<group>"; };
+		18E2809E216CA801008CDF1B /* MyCollectPhotoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCollectPhotoView.h; sourceTree = "<group>"; };
+		18E2809F216CA801008CDF1B /* MyCollectPhotoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCollectPhotoView.m; sourceTree = "<group>"; };
 		18EA1BD620E1CCB7000738CC /* ShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
 		18EA1BD720E1CCB7000738CC /* ShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
 		18EA1BD920E1CD3A000738CC /* SortPullDown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortPullDown.h; sourceTree = "<group>"; };
@@ -1106,6 +1123,8 @@
 			children = (
 				180F19B42117FE9D0018F1CD /* MyCollectView.h */,
 				180F19B52117FE9D0018F1CD /* MyCollectView.m */,
+				18E2809E216CA801008CDF1B /* MyCollectPhotoView.h */,
+				18E2809F216CA801008CDF1B /* MyCollectPhotoView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1788,6 +1807,7 @@
 		0AFEE74320BD2F50004FA8FC /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				18E17EAF216D9D6300677BA0 /* Message */,
 				180F1A09211D22F80018F1CD /* Topic */,
 				180F19BD21193E440018F1CD /* Activity */,
 				18ED87D021008D7100B38548 /* Charging */,
@@ -2351,6 +2371,30 @@
 			path = PushTask;
 			sourceTree = "<group>";
 		};
+		18E17EAF216D9D6300677BA0 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				18E17EB3216DA3AD00677BA0 /* Views */,
+				18E17EB0216D9DA800677BA0 /* MessageViewController.h */,
+				18E17EB1216D9DA800677BA0 /* MessageViewController.m */,
+				18E17EBC216DD41800677BA0 /* MessageDetailViewController.h */,
+				18E17EBD216DD41800677BA0 /* MessageDetailViewController.m */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		18E17EB3216DA3AD00677BA0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				18E17EB4216DA3CE00677BA0 /* MessageListVIew.h */,
+				18E17EB5216DA3CE00677BA0 /* MessageListVIew.m */,
+				18E17EB7216DA3E700677BA0 /* MessageTableViewCell.h */,
+				18E17EB8216DA3E700677BA0 /* MessageTableViewCell.m */,
+				18E17EB9216DA3E700677BA0 /* MessageTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		18ED87D021008D7100B38548 /* Charging */ = {
 			isa = PBXGroup;
 			children = (
@@ -2597,6 +2641,7 @@
 				0A5582A720C1298000759E6B /* ProjectTableViewCell.xib in Resources */,
 				0A7D505620C433CF001BFDBF /* MyAnswerTableViewCell.xib in Resources */,
 				182CDB1D2112D8A200F28F4C /* SpaceImageTableViewCell.xib in Resources */,
+				18E17EBB216DA3E700677BA0 /* MessageTableViewCell.xib in Resources */,
 				0A45D95820CB7CB2000C04B8 /* PlaceSupervisorViewController.xib in Resources */,
 				1838263C215B8607004C40CA /* UserTableViewCell.xib in Resources */,
 				0AC3190E20BDA0100035800F /* HomeTableViewCell.xib in Resources */,
@@ -2691,6 +2736,7 @@
 				188ABC0E214A394400F4C910 /* ProjectView.m in Sources */,
 				0AFEE76B20BD2F50004FA8FC /* BaseViewController.m in Sources */,
 				18D8544C213CCD3500C6C358 /* PushTaskViewController.m in Sources */,
+				18E17EBE216DD41800677BA0 /* MessageDetailViewController.m in Sources */,
 				0A5582A620C1298000759E6B /* ProjectTableViewCell.m in Sources */,
 				0AD2DEA920CA194A00E53B43 /* PersonalProfileVC.m in Sources */,
 				0A7D4FF720C2B723001BFDBF /* DistributionViewController.m in Sources */,
@@ -2712,6 +2758,7 @@
 				0A38FEF220C6CD1600B45CCD /* SuspensionButton.m in Sources */,
 				184D07DF20D1250100653D81 /* ServiceAgreementVC.m in Sources */,
 				0AC3190920BD9DF40035800F /* Tools.m in Sources */,
+				18E17EBA216DA3E700677BA0 /* MessageTableViewCell.m in Sources */,
 				180F1A05211C2E700018F1CD /* PhotoDetailsViewController.m in Sources */,
 				18F5B7CA20E9D90F00B76A73 /* MaskView.m in Sources */,
 				182CDA5521083EAF00F28F4C /* HouseCommentView.m in Sources */,
@@ -2732,6 +2779,7 @@
 				18EA1BDF20E1CD9A000738CC /* SortCell.m in Sources */,
 				18275120210188EA002A61F8 /* PowerStationList.m in Sources */,
 				0A45D94B20CB68C7000C04B8 /* SubscribeVisitVC.m in Sources */,
+				18E280A0216CA801008CDF1B /* MyCollectPhotoView.m in Sources */,
 				185CC11E215DDDC6005D21B1 /* UIButton+Caregory.m in Sources */,
 				18339CD920D25B6600165FF2 /* HouseInspectViewController.m in Sources */,
 				1801CE0B215F28430060DB0E /* StrategyCaseListViewController.m in Sources */,
@@ -2774,12 +2822,14 @@
 				182D5A11216B30E200391D06 /* StrategyListViewController.m in Sources */,
 				0A7D504520C42A66001BFDBF /* DraftBoxViewController.m in Sources */,
 				1845C61A214668B800EC84F3 /* SearchViewController.m in Sources */,
+				18E17EB2216D9DA800677BA0 /* MessageViewController.m in Sources */,
 				0A3D7A2320BE44B4009D949B /* DecorateTableViewCell.m in Sources */,
 				0A5CD81620C592460028F82D /* YZPullDownMenu.m in Sources */,
 				0A7D501220C2EDC6001BFDBF /* ContractViewController.m in Sources */,
 				1846D00820FE2AAA00EA1417 /* SpaceImageListViewController.m in Sources */,
 				182751382101C1D5002A61F8 /* ProwerStationDetails.m in Sources */,
 				188DB34F21606A54007E53AE /* StrategyDetailsViewController.m in Sources */,
+				18E17EB6216DA3CE00677BA0 /* MessageListVIew.m in Sources */,
 				0AD0C62520BF7E1E001A20C4 /* ScreeningBar.m in Sources */,
 				0A7D503720C41B31001BFDBF /* PhotoCollectionViewCell.m in Sources */,
 				0AD2DECC20CA83B900E53B43 /* OrderCenterTableViewCell.m in Sources */,

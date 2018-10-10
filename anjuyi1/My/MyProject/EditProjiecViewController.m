@@ -12,7 +12,9 @@
 
 #import "ProjectView.h"
 
-@interface EditProjiecViewController ()<UIScrollViewDelegate>
+#import "EditProjectNodeViewController.h"
+
+@interface EditProjiecViewController ()<UIScrollViewDelegate,ProjectViewDelegate>
 {
     NSString     * _projiectNode;//节点信息
 }
@@ -141,11 +143,18 @@
     
     for (NSInteger i = 0 ; i < 5 ; i ++) {
         ProjectView *v = [[ProjectView alloc] initWithFrame:CGRectMake(KScreenWidth*i, 0, KScreenWidth, i==4?self.tmpScrollView.frame.size.height-MDXFrom6(65): self.tmpScrollView.frame.size.height)];
-        
+        [v setDelegate:self];
         [self.tmpScrollView addSubview:v];
         
         [self.projectViewArr addObject:v];
     }
+}
+
+- (void)selectProjectNode:(NSString *)nodeID{
+    
+    EditProjectNodeViewController *vc = [[EditProjectNodeViewController alloc] init];
+    vc.article_id = nodeID;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -189,8 +198,6 @@
 - (void)getProjectNodeData:(NSString *)type{
     
     if ([_projiectNode isEqualToString:type]) {
-        
-        [self hiddenFinishButton];
         
         return;
     }
@@ -279,15 +286,6 @@
     
 }
 
-- (void)hiddenFinishButton{
-    
-    for (UIImageView *image in self.stautsArr) {
-        
-        [image setImage:[UIImage imageNamed:@"project_process"]];
-    }
-    [((UIImageView *)self.stautsArr[0]) setImage:[UIImage imageNamed:@"project_process_xz"]];
-    [self.finishButton setHidden:YES];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

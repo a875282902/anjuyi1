@@ -42,6 +42,8 @@
 #import "CraftsmanTypeVC.h"//工匠汇
 #import "OrderCenterViewController.h"//接单中心
 
+#import "UIButton+Caregory.h"
+#import "MessageViewController.h"
 
 @interface MyViewController ()<UIScrollViewDelegate,PhotoSelectControllerDelegate>
 {
@@ -84,7 +86,9 @@
     
     [self.view addSubview:self.tmpScrollView];
 
-    [self setNavigationDoubleRightBarButtonWithImageNamed:@"my_notice" imageNamed2:@"my_set"];
+    [self getMessageNum];
+    
+//    [self setNavigationDoubleRightBarButtonWithImageNamed:@"my_notice" imageNamed2:@"my_set"];
     
 }
 #pragma mark -- 获取个人信息
@@ -120,8 +124,6 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [RequestSever showMsgWithError:error];
     }];
-    
-    
 }
 
 #pragma mark -- UI
@@ -244,7 +246,8 @@
     [self setNavWrite];
     
     if (sender.tag == 1) {
-        
+        MessageViewController *vc = [[MessageViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else{
         
@@ -556,7 +559,48 @@
     
     [self.navigationController.navigationBar setBackgroundImage:tmpImage forBarMetrics:UIBarMetricsDefault];
 }
+#pragma mark -- 获取消息数
+- (void)getMessageNum{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/message/get_noread_message_number",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
 
+        if ([responseObject[@"code"] integerValue] == 200) {
+            UIButton *btn = [Tools creatButton:CGRectMake(0,0, 25,44) font:[UIFont systemFontOfSize:16] color:[UIColor whiteColor] title:@"" image:@"my_notice"];
+            [btn setTag:1];
+            [btn addTarget:self action:@selector(doubleRightButtonTouchUpInside:) forControlEvents:(UIControlEventTouchUpInside)];
+            
+            UIButton *btn1 = [Tools creatButton:CGRectMake(0,0, 25,44) font:[UIFont systemFontOfSize:16] color:[UIColor whiteColor] title:@"" image:@"my_set"];
+            [btn1 setTag:0];
+            [btn1 addTarget:self action:@selector(doubleRightButtonTouchUpInside:) forControlEvents:(UIControlEventTouchUpInside)];
+            [weakSelf.navigationItem setRightBarButtonItems:@[[[UIBarButtonItem alloc] initWithCustomView:btn1],[[UIBarButtonItem alloc] initWithCustomView:btn]]];
+            
+            if ([responseObject[@"datas"][@"number"] integerValue] > 0) {
+                [btn setNumb:responseObject[@"datas"][@"number"]];
+            }
+            
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

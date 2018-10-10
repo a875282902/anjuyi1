@@ -29,4 +29,5 @@
 @property (nonatomic,copy)NSString *is_collect;
 @property (nonatomic,assign)BOOL   isShow;
 @property (nonatomic,assign)BOOL   isShowAllButton;
+@property (nonatomic,assign)BOOL   isAuthor;
 @end

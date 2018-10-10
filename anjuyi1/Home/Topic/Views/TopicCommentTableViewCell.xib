@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,7 +25,7 @@
                             <constraint firstAttribute="width" constant="43" id="oeW-Ds-nXR"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ht_ycn" translatesAutoresizingMaskIntoConstraints="NO" id="IMD-lH-RRp">
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ht_ycn" translatesAutoresizingMaskIntoConstraints="NO" id="IMD-lH-RRp">
                         <rect key="frame" x="83" y="19" width="56" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="2a8-5F-4su"/>
@@ -42,8 +42,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ve-hy-8GI">
-                        <rect key="frame" x="294" y="25.5" width="85" height="33"/>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ve-hy-8GI">
+                        <rect key="frame" x="294" y="25" width="85" height="33"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="85" id="3E9-Ng-d0X"/>
                             <constraint firstAttribute="height" constant="33" id="WaN-oQ-uo2"/>
@@ -126,7 +126,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMA-5v-gUt">
-                        <rect key="frame" x="228" y="250" width="68" height="18"/>
+                        <rect key="frame" x="228" y="250.5" width="68" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="7tt-1H-thm"/>
                             <constraint firstAttribute="width" priority="100" constant="68" id="i7f-B3-yZp"/>

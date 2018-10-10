@@ -331,8 +331,6 @@
     
     if ([_projiectNode isEqualToString:type]) {
         
-        [self hiddenFinishButton];
-        
         return;
     }
     
@@ -428,7 +426,7 @@
 - (void)hiddenFinishButton{
     
     for (UIImageView *image in self.stautsArr) {
-        
+
         [image setImage:[UIImage imageNamed:@"project_process"]];
     }
     [((UIImageView *)self.stautsArr[0]) setImage:[UIImage imageNamed:@"project_process_xz"]];

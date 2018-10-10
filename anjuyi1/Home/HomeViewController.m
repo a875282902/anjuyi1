@@ -17,13 +17,15 @@
 
 #import "UIButton+Caregory.h"
 
+#import "MessageViewController.h"
+
 #import "HouseCaseListViewController.h"//整屋案例
 #import "TopicListViewController.h"//话题
 #import "ActivityViewController.h"//活动精选
 
 #import "ChargingHomeViewController.h"//充电桩
 
-#import "StrategyViewController.h"
+
 
 #import "SearchViewController.h"
 
@@ -60,7 +62,7 @@
     [search addTarget:self action:@selector(jumpSearch)];
     [self.navigationItem setTitleView:search];
     
-    [self setNavigationRightBarButtonWithImageNamed:@"inform"];
+//    [self setNavigationRightBarButtonWithImageNamed:@"inform"];
     
     [self.view addSubview:self.tmpTableView];
     
@@ -584,6 +586,12 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)rightButtonTouchUpInside:(id)sender{
+    
+    MessageViewController *vc = [[MessageViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)selectActivity:(UITapGestureRecognizer *)sender{
     
     switch (sender.view.tag) {
@@ -713,12 +721,11 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
         if ([responseObject[@"code"] integerValue] == 200) {
-            
+            UIButton *btn = [Tools creatButton:CGRectMake(0,0, 25,44) font:[UIFont systemFontOfSize:16] color:[UIColor whiteColor] title:@"" image:@"inform"];
+            [btn addTarget:self action:@selector(rightButtonTouchUpInside:) forControlEvents:(UIControlEventTouchUpInside)];
+            [weakSelf.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:btn]];
             if ([responseObject[@"datas"][@"number"] integerValue] > 0) {
-                UIButton *btn = [Tools creatButton:CGRectMake(0,0, 25,44) font:[UIFont systemFontOfSize:16] color:[UIColor whiteColor] title:@"" image:@"inform"];
-                [btn addTarget:self action:@selector(rightButtonTouchUpInside:) forControlEvents:(UIControlEventTouchUpInside)];
                 [btn setNumb:responseObject[@"datas"][@"number"]];
-                [weakSelf.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:btn]];
             }
 
         }

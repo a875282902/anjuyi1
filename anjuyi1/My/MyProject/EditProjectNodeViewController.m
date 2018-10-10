@@ -23,6 +23,7 @@
 @property (nonatomic,strong) UIScrollView  * tmpScrollView;//承载视图的view
 @property (nonatomic,strong) NSDictionary  * member_info;//
 @property (nonatomic,strong) UIImageView   * coverImage;//
+@property (nonatomic,strong) NSDictionary  * nodeInfo;//
 
 @end
 
@@ -62,7 +63,7 @@
         if ([responseObject[@"code"] integerValue] == 200) {
             
             weakSelf.member_info = responseObject[@"datas"];
-            [weakSelf setUpUI];
+            [weakSelf getNodeInfo];
         }
         else{
             
@@ -80,7 +81,36 @@
 
 - (void)getNodeInfo{
     
+    NSString *path = [NSString stringWithFormat:@"%@/project/get_article_info",KURL];
     
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *dic = @{@"article_id":self.article_id};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            weakSelf.nodeInfo = responseObject[@"datas"];
+            [weakSelf setUpUI];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
 }
 
 #pragma mark -- scrollview
@@ -128,7 +158,7 @@
     
     //    height = [self createAddLabel:height];
     
-    height = [self createImageView:height];
+    height = [self createImageView:height+20];
     
     [self.tmpScrollView setContentSize:CGSizeMake(KScreenWidth, height)];
     
@@ -139,12 +169,16 @@
     
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(padding, height+10, KScreenWidth - 2*padding,120)];
     [textView setDelegate:self];
+    [textView setText:self.nodeInfo[@"text"]];
     [textView setFont:[UIFont systemFontOfSize:14]];
     [textView setTextColor:[UIColor blackColor]];
     [textView setTag:1001];
     [self.tmpScrollView addSubview:textView];
     
+    _content = self.nodeInfo[@"text"];
+    
     _personPlace = [[UILabel alloc] initWithFrame:CGRectMake(5, 9 , KScreenWidth, 14)];
+    [_personPlace setHidden:YES];
     [_personPlace setTextColor:[UIColor colorWithHexString:@"#999999"]];
     [_personPlace setText:@"记录今天工地动态"];
     [_personPlace setFont:[UIFont systemFontOfSize:14]];
@@ -191,6 +225,9 @@
     [self.coverImage addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showBigImage)]];
     [self.tmpScrollView addSubview:self.coverImage];
     
+    [self.coverImage sd_setImageWithURL:[NSURL URLWithString:self.nodeInfo[@"img_url"]]];
+    _image_url = self.nodeInfo[@"img_url"];
+    
     return height + 100;
 }
 
@@ -221,7 +258,7 @@
         return;
     }
     
-    NSString *path = [NSString stringWithFormat:@"%@/project/add_project_article",KURL];
+    NSString *path = [NSString stringWithFormat:@"%@/project/update_article_info",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
     

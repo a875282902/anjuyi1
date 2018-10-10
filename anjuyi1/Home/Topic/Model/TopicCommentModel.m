@@ -15,6 +15,7 @@
     if (self == [super initWithDictionary:dic]) {
         
         self.isShow = NO;
+        self.isAuthor = NO;
     }
     return self;
 }

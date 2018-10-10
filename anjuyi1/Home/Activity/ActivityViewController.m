@@ -99,7 +99,9 @@
             
             [ViewHelps showHUDWithText:responseObject[@"message"]];
         }
-        
+        if (weakSelf.dataArr.count<self->_page *10) {
+            [weakSelf.tmpTableView.mj_footer endRefreshingWithNoMoreData];
+        }
         
     } failure:^(NSError * _Nullable error) {
         
@@ -146,7 +148,8 @@
         
         
     } failure:^(NSError * _Nullable error) {
-        
+        self->_page --;
+        [weakSelf.tmpTableView.mj_footer endRefreshing];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [RequestSever showMsgWithError:error];
     }];
