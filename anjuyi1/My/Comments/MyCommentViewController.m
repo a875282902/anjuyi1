@@ -10,6 +10,7 @@
 #import "MyCommentViewController.h"
 #import "CommentTableViewCell.h"
 #import "MyCommentDetailsVC.h"
+#import "CommentDetalisViewController.h"
 
 @interface MyCommentViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -84,9 +85,9 @@
     
     NSString * str = dict[@"content"];
     
-    CGFloat h = [str boundingRectWithSize:CGSizeMake(MDXFrom6(290), 1000) options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil].size.height;
+    CGFloat h = [str boundingRectWithSize:CGSizeMake(MDXFrom6(290), 1000) options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil].size.height;
     
-    CGFloat w = [str boundingRectWithSize:CGSizeMake(1000000, 16) options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil].size.width+MDXFrom6(10);
+    CGFloat w = [str boundingRectWithSize:CGSizeMake(1000000, 16) options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil].size.width+MDXFrom6(10);
     
     [dict setValue:[NSString stringWithFormat:@"%.2f",h] forKey:@"titleHight"];
     [dict setValue:[NSString stringWithFormat:@"%.2f",w] forKey:@"titleWidth"];
@@ -149,8 +150,17 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *dic = self.dataArr[indexPath.row];
     
-    MyCommentDetailsVC *controller = [[MyCommentDetailsVC alloc] init];
+    NSInteger type = [dic[@"type"] integerValue];
+    //项目1 整屋 2 文章 3 图片 4 活动精选 5
+    if (type == 1) type =3;
+    if (type == 4||type == 5) type =1;
+    if (type == 3) type =4;
+    CommentDetalisViewController *controller = [[CommentDetalisViewController alloc] init];
+    controller.eva_id = dic[@"id"];
+
+    controller.type = type;
     [self.navigationController pushViewController:controller animated:YES];
     
 }

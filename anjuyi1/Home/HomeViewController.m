@@ -24,14 +24,17 @@
 #import "ActivityViewController.h"//活动精选
 
 #import "ChargingHomeViewController.h"//充电桩
+#import "StoresViewController.h"//附近社区门店
 
 #import "PhotoDetailsViewController.h"
 
 #import "SearchViewController.h"
 
+#import <StoreKit/StoreKit.h>
+
 #define hederHeight MDXFrom6(55)
 
-@interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource,SKStoreProductViewControllerDelegate>
 
 @property (nonatomic,strong)UITableView     *    tmpTableView;
 @property (nonatomic,strong)NSMutableArray  *    dataArr;
@@ -73,6 +76,7 @@
     
     [self.tmpTableView.mj_header beginRefreshing];
     
+    [self promptUpdate];
 }
 
 #pragma mark -- refresh
@@ -122,8 +126,12 @@
  
         }
         else{
-            
-            [ViewHelps showHUDWithText:responseObject[@"message"]];
+            if ([responseObject[@"message"] isEqualToString:@"token过期，请重新登录"]) {
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UTOKEN"];
+            }
+            else{
+                [ViewHelps showHUDWithText:responseObject[@"message"]];
+            }
         }
         
         [weakSelf.tmpTableView.mj_header endRefreshing];
@@ -652,7 +660,8 @@
             
         case 2://自营社区门店
         {
-            
+            StoresViewController *VC = [[StoresViewController alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
             
         }
             break;
@@ -757,6 +766,93 @@
     }];
 }
 
+#pragma mark -- 版本更新
+- (void)promptUpdate{
+    
+    NSString *appCurVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSLog(@"当前应用软件版本:%@",appCurVersion);
+    
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"noprompt"] && [[[NSUserDefaults standardUserDefaults] valueForKey:@"noprompt"] floatValue] == [appCurVersion floatValue]) {
+        
+    }
+    else{
+
+        [HttpRequest POST:[NSString stringWithFormat:@"https://itunes.apple.com/lookup?id=%@",APPID] parameters:nil success:^(id  _Nullable responseObject) {
+            
+            NSArray *array = responseObject[@"results"];
+            NSDictionary *dict = [array lastObject];
+            NSLog(@"当前版本为：%@", dict[@"version"]);
+            
+            if ([appCurVersion floatValue]<[dict[@"version"] floatValue]) {
+                [self creatAlertViewControllerWithMessage:@"提示更新"];
+            }
+            else{
+                
+            }
+            
+        } failure:^(NSError * _Nullable error) {
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [RequestSever showMsgWithError:error];
+        }];
+
+    }
+}
+
+- (void)creatAlertViewControllerWithMessage:(NSString *)message{
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:(UIAlertControllerStyleAlert)];
+    
+    UIAlertAction *trueA = [UIAlertAction actionWithTitle:@"更新" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        
+        [self openAppSore];
+    }];
+    
+    UIAlertAction *falseA = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    UIAlertAction *falseB = [UIAlertAction actionWithTitle:@"不再提醒" style:(UIAlertActionStyleDestructive) handler:^(UIAlertAction * _Nonnull action) {
+        
+        
+        [[NSUserDefaults standardUserDefaults] setValue:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] forKey:@"noprompt"];
+        
+    }];
+    
+    [alert addAction:trueA];
+    
+    [alert addAction:falseA];
+    
+    [alert addAction:falseB];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
+- (void)openAppSore{
+    SKStoreProductViewController *storeProductViewContorller = [[SKStoreProductViewController alloc] init];
+    //设置代理请求为当前控制器本身
+    storeProductViewContorller.delegate = self;
+    //加载一个新的视图展示
+    [storeProductViewContorller loadProductWithParameters:
+     //appId唯一的
+     @{SKStoreProductParameterITunesItemIdentifier : APPID} completionBlock:^(BOOL result, NSError *error) {
+         //block回调
+         if(error){
+             NSLog(@"error %@ with userInfo %@",error,[error userInfo]);
+         }else{
+             //模态弹出appstore
+             [self presentViewController:storeProductViewContorller animated:YES completion:^{
+                 
+             }
+              ];
+         }
+     }];
+  
+}
+//取消按钮监听
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

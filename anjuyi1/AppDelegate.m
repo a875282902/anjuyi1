@@ -33,7 +33,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     BMKMapManager *man = [[BMKMapManager alloc]init];
-    BOOL ret = [man start:@"4tH1ZZT4xHAGKw5w2Yzs9113ylv534HL"  generalDelegate:nil];
+    BOOL ret = [man start:MAPKEY generalDelegate:nil];
     if (!ret) {
         NSLog(@"manager start failed!");
     }

@@ -12,6 +12,7 @@
 #import "AccountSecurityVC.h"//账号安全
 #import "LoginViewController.h"
 #import "BaseNaviViewController.h"
+#import "AboutUsViewController.h"
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -117,6 +118,10 @@
     
     if (indexPath.row == 3) {
         [self clearCache];
+    }
+    if (indexPath.row == 4) {
+        AboutUsViewController *controller = [[AboutUsViewController alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
     }
     if (indexPath.row == 0) {
         PersonDetailsViewController *controller = [[PersonDetailsViewController alloc] init];

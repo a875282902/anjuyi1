@@ -72,6 +72,10 @@
 #define JGAppKey @"24366ef1db5d7e438a2a522c"
 
 #define SEARCHARR @"searchArr"
+//应用的id 用于获取当前版本和更新应用
+#define APPID @"1068413188"
+//百度地图key
+#define MAPKEY @"HvhydCHlfApZjcberj33DoMIDNdCF3Vc"
 
 #define UTOKEN [[NSUserDefaults standardUserDefaults] valueForKey:@"UTOKEN"]
 

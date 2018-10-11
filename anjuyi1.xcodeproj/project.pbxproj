@@ -307,9 +307,14 @@
 		189AB923211D2FA3003E04C9 /* TopicListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189AB921211D2FA3003E04C9 /* TopicListTableViewCell.m */; };
 		189AB924211D2FA3003E04C9 /* TopicListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189AB922211D2FA3003E04C9 /* TopicListTableViewCell.xib */; };
 		189D1AF9216F1EDC00FB0B93 /* AnswerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 189D1AF8216F1EDC00FB0B93 /* AnswerModel.m */; };
+		189D1AFB216F271A00FB0B93 /* MyCommentDetailsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189D1AFA216F271A00FB0B93 /* MyCommentDetailsVC.xib */; };
+		189D1AFE216F2D1900FB0B93 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189D1AFD216F2D1900FB0B93 /* AboutUsViewController.m */; };
+		189D1B00216F330900FB0B93 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 189D1AFF216F330900FB0B93 /* StoreKit.framework */; };
 		18D3480820DB74B9008FD35E /* SelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480720DB74B9008FD35E /* SelectView.m */; };
 		18D3480C20DB8CFF008FD35E /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480B20DB8CFF008FD35E /* AddressModel.m */; };
 		18D8544C213CCD3500C6C358 /* PushTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D8544B213CCD3500C6C358 /* PushTaskViewController.m */; };
+		18E16316216F435000113D5D /* StoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E16315216F435000113D5D /* StoresViewController.m */; };
+		18E16319216F439A00113D5D /* StoresDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E16318216F439A00113D5D /* StoresDetailViewController.m */; };
 		18E17EB2216D9DA800677BA0 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E17EB1216D9DA800677BA0 /* MessageViewController.m */; };
 		18E17EB6216DA3CE00677BA0 /* MessageListVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E17EB5216DA3CE00677BA0 /* MessageListVIew.m */; };
 		18E17EBA216DA3E700677BA0 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E17EB8216DA3E700677BA0 /* MessageTableViewCell.m */; };
@@ -901,12 +906,20 @@
 		189AB922211D2FA3003E04C9 /* TopicListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopicListTableViewCell.xib; sourceTree = "<group>"; };
 		189D1AF7216F1EDC00FB0B93 /* AnswerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnswerModel.h; sourceTree = "<group>"; };
 		189D1AF8216F1EDC00FB0B93 /* AnswerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnswerModel.m; sourceTree = "<group>"; };
+		189D1AFA216F271A00FB0B93 /* MyCommentDetailsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCommentDetailsVC.xib; sourceTree = "<group>"; };
+		189D1AFC216F2D1900FB0B93 /* AboutUsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
+		189D1AFD216F2D1900FB0B93 /* AboutUsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
+		189D1AFF216F330900FB0B93 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		18D3480620DB74B9008FD35E /* SelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectView.h; sourceTree = "<group>"; };
 		18D3480720DB74B9008FD35E /* SelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectView.m; sourceTree = "<group>"; };
 		18D3480A20DB8CFF008FD35E /* AddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
 		18D3480B20DB8CFF008FD35E /* AddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
 		18D8544A213CCD3500C6C358 /* PushTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushTaskViewController.h; sourceTree = "<group>"; };
 		18D8544B213CCD3500C6C358 /* PushTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushTaskViewController.m; sourceTree = "<group>"; };
+		18E16314216F435000113D5D /* StoresViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoresViewController.h; sourceTree = "<group>"; };
+		18E16315216F435000113D5D /* StoresViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoresViewController.m; sourceTree = "<group>"; };
+		18E16317216F439A00113D5D /* StoresDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoresDetailViewController.h; sourceTree = "<group>"; };
+		18E16318216F439A00113D5D /* StoresDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoresDetailViewController.m; sourceTree = "<group>"; };
 		18E17EB0216D9DA800677BA0 /* MessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		18E17EB1216D9DA800677BA0 /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		18E17EB4216DA3CE00677BA0 /* MessageListVIew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageListVIew.h; sourceTree = "<group>"; };
@@ -983,6 +996,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				189D1B00216F330900FB0B93 /* StoreKit.framework in Frameworks */,
 				184238AA216C6FDE000A7D18 /* libc++.tbd in Frameworks */,
 				18ED88562100D56C00B38548 /* SystemConfiguration.framework in Frameworks */,
 				182CDAA821098D1E00F28F4C /* libsqlite3.tbd in Frameworks */,
@@ -1367,6 +1381,7 @@
 				0A7D500720C2DC08001BFDBF /* MyCommentViewController.m */,
 				0A7D500C20C2E894001BFDBF /* MyCommentDetailsVC.h */,
 				0A7D500D20C2E894001BFDBF /* MyCommentDetailsVC.m */,
+				189D1AFA216F271A00FB0B93 /* MyCommentDetailsVC.xib */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -1514,6 +1529,8 @@
 				0AD2DEB120CA443B00E53B43 /* ChangepasswordVC.m */,
 				0AD2DEB320CA444800E53B43 /* ChangePhoneVC.h */,
 				0AD2DEB420CA444800E53B43 /* ChangePhoneVC.m */,
+				189D1AFC216F2D1900FB0B93 /* AboutUsViewController.h */,
+				189D1AFD216F2D1900FB0B93 /* AboutUsViewController.m */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1812,6 +1829,7 @@
 		0AFEE74320BD2F50004FA8FC /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				18E16313216F432600113D5D /* Store */,
 				18E17EAF216D9D6300677BA0 /* Message */,
 				180F1A09211D22F80018F1CD /* Topic */,
 				180F19BD21193E440018F1CD /* Activity */,
@@ -2376,6 +2394,17 @@
 			path = PushTask;
 			sourceTree = "<group>";
 		};
+		18E16313216F432600113D5D /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				18E16314216F435000113D5D /* StoresViewController.h */,
+				18E16315216F435000113D5D /* StoresViewController.m */,
+				18E16317216F439A00113D5D /* StoresDetailViewController.h */,
+				18E16318216F439A00113D5D /* StoresDetailViewController.m */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
 		18E17EAF216D9D6300677BA0 /* Message */ = {
 			isa = PBXGroup;
 			children = (
@@ -2526,6 +2555,7 @@
 		E57638EA566F5CBF54092AE1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				189D1AFF216F330900FB0B93 /* StoreKit.framework */,
 				184238A9216C6FDE000A7D18 /* libc++.tbd */,
 				18399C5721215B6C007CAD58 /* libresolv.tbd */,
 				18399C5521215B65007CAD58 /* UserNotifications.framework */,
@@ -2652,6 +2682,7 @@
 				0AC3190E20BDA0100035800F /* HomeTableViewCell.xib in Resources */,
 				0AD2DECD20CA83B900E53B43 /* OrderCenterTableViewCell.xib in Resources */,
 				18399C37211D76FA007CAD58 /* TopicCommentTableViewCell.xib in Resources */,
+				189D1AFB216F271A00FB0B93 /* MyCommentDetailsVC.xib in Resources */,
 				188ABC14214A44DC00F4C910 /* AuxiliaryOrderViewController.xib in Resources */,
 				0A3D7A2420BE44B4009D949B /* DecorateTableViewCell.xib in Resources */,
 				0A7D500120C2B760001BFDBF /* DistributionTableViewCell.xib in Resources */,
@@ -2734,6 +2765,7 @@
 				1846D05A20FF853700EA1417 /* TextViewController.m in Sources */,
 				0AD2DEBD20CA55EA00E53B43 /* CraftsmenViewController.m in Sources */,
 				188ABC13214A44DC00F4C910 /* AuxiliaryOrderViewController.m in Sources */,
+				18E16319216F439A00113D5D /* StoresDetailViewController.m in Sources */,
 				0A4A97C720BFD200009D6594 /* ChannelButton.m in Sources */,
 				18399C36211D76FA007CAD58 /* TopicCommentTableViewCell.m in Sources */,
 				180F19CD211978590018F1CD /* ActivityDetailsViewController.m in Sources */,
@@ -2804,6 +2836,7 @@
 				0AFEE77020BD2F50004FA8FC /* PushViewController.m in Sources */,
 				189AB91F211D2E46003E04C9 /* TopicModel.m in Sources */,
 				185CC121215DFF51005D21B1 /* DesignerListViewController.m in Sources */,
+				189D1AFE216F2D1900FB0B93 /* AboutUsViewController.m in Sources */,
 				0AD2DED020CA9E2200E53B43 /* OrderCenterDatailsVC.m in Sources */,
 				1838260F2151FED9004C40CA /* CommentDetalisViewController.m in Sources */,
 				18275127210189FB002A61F8 /* PowerStationListTableViewCell.m in Sources */,
@@ -2820,6 +2853,7 @@
 				182751352101A40A002A61F8 /* PowerStationDetailsViewController.m in Sources */,
 				0A7D500B20C2DC22001BFDBF /* CommentTableViewCell.m in Sources */,
 				180F1A11211D23FF0018F1CD /* ChannelView.m in Sources */,
+				18E16316216F435000113D5D /* StoresViewController.m in Sources */,
 				0A45D95F20CBB0C8000C04B8 /* StandardView.m in Sources */,
 				1846CFE620FC451C00EA1417 /* HouseCityViewController.m in Sources */,
 				182CDB2C211428D200F28F4C /* EditPushPhotoViewController.m in Sources */,

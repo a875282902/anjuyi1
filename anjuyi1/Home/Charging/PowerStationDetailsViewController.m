@@ -34,6 +34,10 @@
 
 @implementation PowerStationDetailsViewController
 
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+    return NO;
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     
@@ -67,10 +71,10 @@
     [self setTitle:@"电站详情"];
     [self.view addSubview:self.mapView];
     
-    //    _locService = [[BMKLocationService alloc]init];
-    //    _locService.delegate = self;
-    //    //启动LocationService
-    //    [_locService startUserLocationService];
+    _locService = [[BMKLocationService alloc]init];
+    _locService.delegate = self;
+    //启动LocationService
+    [_locService startUserLocationService];
     [self.view addSubview:self.stationDetails];
     [self.view addSubview:self.GPSView];
     
@@ -168,6 +172,8 @@
     [self.mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
     
     [self getPowerStationData:userLocation.location.coordinate];
+    
+    [self.locService stopUserLocationService];
 }
 
 

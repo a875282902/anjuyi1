@@ -11,6 +11,11 @@
 #import "MyCommentDetailsVC.h"
 
 @interface MyCommentDetailsVC ()
+@property (weak, nonatomic) IBOutlet UIImageView *headerImage;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descLabel;
 
 @end
 

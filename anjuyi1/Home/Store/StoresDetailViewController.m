@@ -1,39 +1,38 @@
 //
-//  PowerStationViewController.m
+//  PowerStationDetailsViewController.m
 //  anjuyi1
 //
 //  Created by apple on 2018/7/19.
 //  Copyright © 2018年 lsy. All rights reserved.
 //
 
-#import "PowerStationViewController.h"
-
+#import "StoresDetailViewController.h"
 #import <BaiduMapAPI_Map/BMKMapView.h>
 #import <BaiduMapAPI_Location/BMKLocationService.h>
 #import <BaiduMapAPI_Map/BMKPointAnnotation.h>
 #import <BaiduMapAPI_Map/BMKPinAnnotationView.h>
-
 #import "PowerStatonModel.h"
 #import "CustomAnnotationView.h"
-#import "PowerStationList.h"
-#import "PowerStationDetailsViewController.h"
+#import "ProwerStationDetails.h"
 
-@interface PowerStationViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate>
+@interface StoresDetailViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate>
 {
     CLLocationCoordinate2D _myLocation;
     NSString  * _stationListType;
 }
 
-@property (nonatomic,strong)BMKMapView         * mapView;
-@property (nonatomic,strong)BMKLocationService * locService;
-@property (nonatomic,strong)BMKPointAnnotation * myPoint;
-@property (nonatomic,strong)NSMutableArray     * dataArr;
-@property (nonatomic,strong)NSMutableArray     * pointArr;
-@property (nonatomic,strong)PowerStationList   * powerStationList;
+@property (nonatomic,strong)BMKMapView              * mapView;
+@property (nonatomic,strong)BMKLocationService      * locService;
+@property (nonatomic,strong)BMKPointAnnotation      * myPoint;
+@property (nonatomic,strong)NSMutableArray          * dataArr;
+@property (nonatomic,strong)NSMutableArray          * pointArr;
+@property (nonatomic,strong)NSMutableDictionary     * data;
+@property (nonatomic,strong)ProwerStationDetails    * stationDetails;
+@property (nonatomic,strong)UIView                  * GPSView;
 
 @end
 
-@implementation PowerStationViewController
+@implementation StoresDetailViewController
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     return NO;
@@ -69,33 +68,39 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self baseForDefaultLeftNavButton];
-    [self setTitle:@"附近电站"];
+    [self setTitle:@"社区门店详情"];
     [self.view addSubview:self.mapView];
     
     _locService = [[BMKLocationService alloc]init];
     _locService.delegate = self;
     //启动LocationService
     [_locService startUserLocationService];
+    [self.view addSubview:self.stationDetails];
+    [self.view addSubview:self.GPSView];
     
-    self.powerStationList = [[PowerStationList alloc] initWithFrame:CGRectMake(0, KViewHeight - 290, KScreenWidth, 290)];
+}
+
+- (ProwerStationDetails *)stationDetails{
+    if (!_stationDetails) {
+        _stationDetails = [[ProwerStationDetails alloc] initWithFrame:CGRectMake(0, MDXFrom6(200), KScreenWidth, KViewHeight - MDXFrom6(200))];
+    }
+    return _stationDetails;
+}
+
+-(UIView *)GPSView{
     
-     __block PowerStationViewController* weakSlef = self;
-    
-    [self.powerStationList setSelectStaionListType:^(NSInteger index) {
+    if (!_GPSView) {
+        _GPSView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+        [_GPSView setBackgroundColor:GCOLOR];
+        [_GPSView.layer setCornerRadius:30];
+        [_GPSView setClipsToBounds:YES];
+        [_GPSView setCenter:CGPointMake(KScreenWidth - 50, MDXFrom6(200))];
         
-        weakSlef-> _stationListType = [NSString stringWithFormat:@"%ld",(1-index)];
+        [_GPSView addSubview:[Tools creatImage:CGRectMake(17.4, 10, 25, 25) image:@"direction-w"]];
+        [_GPSView addSubview:[Tools creatLabel:CGRectMake(0, 38, 60, 12) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] alignment:(NSTextAlignmentCenter) title:@"到这去"]];
         
-        [weakSlef getPowerStationData:weakSlef->_myLocation];
-    }];
-    
-    [self.powerStationList setSelectStaionToShowDetails:^(PowerStatonModel *model) {
-        PowerStationDetailsViewController *vc = [[PowerStationDetailsViewController alloc] init];
-        vc.station_id = model.ID;
-        [weakSlef.navigationController pushViewController:vc animated:YES];
-    }];
-    
-    [self.view addSubview:self.powerStationList];
-    
+    }
+    return _GPSView;
 }
 
 - (void)getPowerStationData:(CLLocationCoordinate2D)coordinate2D{
@@ -103,13 +108,13 @@
     if (self.pointArr.count >0) {
         [self.mapView removeAnnotations:self.pointArr];
     }
-  
+    
     self.dataArr = [NSMutableArray array];
     self.pointArr = [NSMutableArray array];
     
-    NSString *path = [NSString stringWithFormat:@"%@/Charging/charging_store_list",KURL];
+    NSString *path = [NSString stringWithFormat:@"%@/community/community_detail",KURL];
     
-    NSDictionary * dic = @{@"lng":[NSString stringWithFormat:@"%f",coordinate2D.longitude],@"lat":[NSString stringWithFormat:@"%f",coordinate2D.latitude],@"order":_stationListType,@"page":@"1"};
+    NSDictionary * dic = @{@"lng":[NSString stringWithFormat:@"%f",coordinate2D.longitude],@"lat":[NSString stringWithFormat:@"%f",coordinate2D.latitude],@"id":self.stores_id};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -120,21 +125,12 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
         if ([responseObject[@"code"] integerValue] == 200) {
-            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+            if ([responseObject[@"datas"] isKindOfClass:[NSDictionary class]]) {
                 
-                for (NSDictionary *dic in responseObject[@"datas"]) {
-                    PowerStatonModel *model = [[PowerStatonModel alloc] initWithDictionary:dic];
-                    [weakSelf.dataArr addObject:model];
-                    
-                    BMKPointAnnotation * point = [[BMKPointAnnotation alloc]init];
-                    [point setCoordinate:CLLocationCoordinate2DMake([model.lat floatValue], [model.lng floatValue])];
-                    [weakSelf.mapView addAnnotation:point];
-                    
-                    [weakSelf.pointArr addObject:point];
-                }
-                
-                [weakSelf.powerStationList setDataArr:weakSelf.dataArr type:self->_stationListType];
+                weakSelf.data = [NSMutableDictionary dictionaryWithDictionary:responseObject[@"datas"]];
             }
+            
+            [weakSelf.stationDetails setStationData:weakSelf.data];
             
         }
         else{
@@ -148,13 +144,13 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [RequestSever showMsgWithError:error];
     }];
-
+    
 }
 
 - (BMKMapView *)mapView{
     
     if (!_mapView) {
-        _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KViewHeight - 290)];
+        _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth,MDXFrom6(200))];
     }
     return _mapView;
 }
@@ -176,7 +172,7 @@
     [self.mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
     
     [self getPowerStationData:userLocation.location.coordinate];
-
+    
     [self.locService stopUserLocationService];
 }
 
