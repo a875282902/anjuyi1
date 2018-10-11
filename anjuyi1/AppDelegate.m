@@ -12,8 +12,6 @@
 #import "RegisterViewController.h"
 #import "BaseNaviViewController.h"
 
-#import "AddProjectViewController.h"
-
 #import <BaiduMapAPI_Base/BMKMapManager.h>
 
 // 引入JPush功能所需头文件
@@ -52,16 +50,8 @@
     
     [self.window setBackgroundColor:[UIColor whiteColor]];
     
-    if (!UTOKEN) {
-        [self.window setRootViewController:[[BaseNaviViewController alloc] initWithRootViewController:[[RegisterViewController alloc] init]]];
-    }
-    else{
-        [self.window setRootViewController:[[RootViewController alloc] init]];
-    }
+    [self.window setRootViewController:[[RootViewController alloc] init]];
 
-   
-//    [self.window setRootViewController:[[BaseNaviViewController alloc] initWithRootViewController:[[AddProjectViewController alloc] init]]];
-    
     [self.window makeKeyAndVisible];
     
     [HttpRequest checkReachabilityStatus:^(NSString *status) {

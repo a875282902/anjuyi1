@@ -37,27 +37,6 @@
     
 }
 
-#pragma mark -- refresh
-- (void)load{
-    __weak typeof(self) weakSelf = self;
-    
-    self.tmpCollectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [weakSelf pullDownRefresh];
-    }];
-    
-    self.tmpCollectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [weakSelf pullUpLoadMore];
-    }];
-    
-}
-//下拉刷新
-- (void)pullDownRefresh{
-    
-}
-//上拉加载
-- (void)pullUpLoadMore{
-    
-}
 
 - (NSMutableArray *)dataArr{
     
@@ -71,13 +50,11 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/Activity/get_image_list",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *dic = @{@"type":[NSString stringWithFormat:@"%ld",(long)self.type],@"activity_id":self.activity_id};
-    
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
         
         if ([responseObject[@"code"] integerValue] == 200) {
             if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {

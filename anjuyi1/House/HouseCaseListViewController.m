@@ -140,7 +140,6 @@
     
     
     NSString *path = [NSString stringWithFormat:@"%@/whole_house_info/house_list",KURL];
-    NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",_page],
                           @"type":[NSString stringWithFormat:@"%@",_type],
                           @"room":[NSString stringWithFormat:@"%@",_room],
@@ -150,7 +149,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -188,7 +187,7 @@
 //上拉加载
 - (void)pullUpLoadMore{
     NSString *path = [NSString stringWithFormat:@"%@/whole_house_info/house_list",KURL];
-    NSDictionary *header = @{@"token":UTOKEN};
+
     NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",_page],
                           @"type":[NSString stringWithFormat:@"%@",_type],
                           @"room":[NSString stringWithFormat:@"%@",_room],
@@ -198,7 +197,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         

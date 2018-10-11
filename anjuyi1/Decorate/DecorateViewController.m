@@ -122,19 +122,23 @@
 }
 
 - (void)getDecorateData{
-    if (!UTOKEN) {
-        return;
-    }
+    
     NSString *path = [NSString stringWithFormat:@"%@/Decorate/getRandModel",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *header = nil;
+    NSDictionary *dic = nil;
+    if (UTOKEN) {
+       header  = @{@"token":UTOKEN};
+    }else{
+        dic = @{@"equipment_number":deviceUUID};
+    }
     
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         

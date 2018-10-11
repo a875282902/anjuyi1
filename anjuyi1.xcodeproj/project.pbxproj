@@ -306,6 +306,7 @@
 		189AB91F211D2E46003E04C9 /* TopicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 189AB91E211D2E46003E04C9 /* TopicModel.m */; };
 		189AB923211D2FA3003E04C9 /* TopicListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189AB921211D2FA3003E04C9 /* TopicListTableViewCell.m */; };
 		189AB924211D2FA3003E04C9 /* TopicListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189AB922211D2FA3003E04C9 /* TopicListTableViewCell.xib */; };
+		189D1AF9216F1EDC00FB0B93 /* AnswerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 189D1AF8216F1EDC00FB0B93 /* AnswerModel.m */; };
 		18D3480820DB74B9008FD35E /* SelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480720DB74B9008FD35E /* SelectView.m */; };
 		18D3480C20DB8CFF008FD35E /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480B20DB8CFF008FD35E /* AddressModel.m */; };
 		18D8544C213CCD3500C6C358 /* PushTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D8544B213CCD3500C6C358 /* PushTaskViewController.m */; };
@@ -898,6 +899,8 @@
 		189AB920211D2FA3003E04C9 /* TopicListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicListTableViewCell.h; sourceTree = "<group>"; };
 		189AB921211D2FA3003E04C9 /* TopicListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicListTableViewCell.m; sourceTree = "<group>"; };
 		189AB922211D2FA3003E04C9 /* TopicListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopicListTableViewCell.xib; sourceTree = "<group>"; };
+		189D1AF7216F1EDC00FB0B93 /* AnswerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnswerModel.h; sourceTree = "<group>"; };
+		189D1AF8216F1EDC00FB0B93 /* AnswerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnswerModel.m; sourceTree = "<group>"; };
 		18D3480620DB74B9008FD35E /* SelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectView.h; sourceTree = "<group>"; };
 		18D3480720DB74B9008FD35E /* SelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectView.m; sourceTree = "<group>"; };
 		18D3480A20DB8CFF008FD35E /* AddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
@@ -1452,6 +1455,8 @@
 				0A38FF0020C6D70D00B45CCD /* Views */,
 				0A7D504F20C432A6001BFDBF /* MyAnswerViewController.h */,
 				0A7D505020C432A6001BFDBF /* MyAnswerViewController.m */,
+				189D1AF7216F1EDC00FB0B93 /* AnswerModel.h */,
+				189D1AF8216F1EDC00FB0B93 /* AnswerModel.m */,
 			);
 			path = MyAnswer;
 			sourceTree = "<group>";
@@ -2763,6 +2768,7 @@
 				18F5B7CA20E9D90F00B76A73 /* MaskView.m in Sources */,
 				182CDA5521083EAF00F28F4C /* HouseCommentView.m in Sources */,
 				0AD2DEB220CA443B00E53B43 /* ChangepasswordVC.m in Sources */,
+				189D1AF9216F1EDC00FB0B93 /* AnswerModel.m in Sources */,
 				0AD0C62120BEE4D6001A20C4 /* DesignerTableViewCell.m in Sources */,
 				18ED87E121008D7100B38548 /* ChargingAgreementViewController.m in Sources */,
 				0A38FEF520C6D3D600B45CCD /* ShopCartViewController.m in Sources */,

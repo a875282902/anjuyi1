@@ -71,15 +71,14 @@
 - (void)getnodeInfo{
     
     NSString *path = [NSString stringWithFormat:@"%@/project_info/get_article_detail",KURL];
-    
-    NSDictionary *header = @{@"token":UTOKEN};
+
     NSDictionary *parameter = @{@"article_id":self.nodeID};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:parameter success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:parameter success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         
@@ -147,7 +146,13 @@
     
     if (!_commentV) {
         _commentV = [[NodeCommentView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
-        
+        WKSELF;
+        [_commentV setShowCommentDetali:^(NSString *eva_id) {
+            CommentDetalisViewController *vc = [[CommentDetalisViewController alloc] init];
+            vc.eva_id = eva_id;
+            vc.type = 3;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
         [_commentV setNodeid:self.nodeID];
     }
     return _commentV;
@@ -346,7 +351,7 @@
 
 // 关注
 - (void)attentionToAuthor:(UIButton *)sender{
-    
+    LOGIN
     if (!sender.selected) {
         [self attention:[NSString stringWithFormat:@"%@/follow/insert_follow",KURL] btn:sender];
     }
@@ -393,7 +398,7 @@
 }
 
 - (void)collectThisHouse:(UIButton *)sender{
-    
+    LOGIN
     NSString *path = [NSString stringWithFormat:@"%@/Project/member_collect",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
@@ -430,7 +435,7 @@
     
 }
 - (void)likeThisHouse:(UIButton *)sender{
-    
+    LOGIN
     NSString *path = [NSString stringWithFormat:@"%@/Project/member_zan",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};

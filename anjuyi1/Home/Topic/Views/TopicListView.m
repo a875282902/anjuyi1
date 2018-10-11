@@ -65,15 +65,13 @@
 }
 //下拉刷新
 - (void)pullDownRefresh{
-    
-    
+
     NSString *path = [NSString stringWithFormat:@"%@/topic_info/topic_list",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *dci = @{@"cate_id":self.cate_id,@"page":[NSString stringWithFormat:@"%ld",self.page]};
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:dci success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:dci success:^(id  _Nullable responseObject) {
         weakSelf.lastRefreshTime = CFAbsoluteTimeGetCurrent();
         if ([responseObject[@"code"] integerValue] == 200) {
             
@@ -84,7 +82,6 @@
                     [weakSelf.dataArr addObject:model];
                 }
             }
-            
         }
         else{
             
@@ -108,11 +105,10 @@
 - (void)pullUpLoadMore{
     NSString *path = [NSString stringWithFormat:@"%@/topic_info/topic_list",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *dci = @{@"cate_id":self.cate_id,@"page":[NSString stringWithFormat:@"%ld",self.page]};
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:dci success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:dci success:^(id  _Nullable responseObject) {
         weakSelf.lastRefreshTime = CFAbsoluteTimeGetCurrent();
         if ([responseObject[@"code"] integerValue] == 200) {
             

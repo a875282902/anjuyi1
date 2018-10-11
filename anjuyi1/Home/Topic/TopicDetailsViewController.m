@@ -56,15 +56,14 @@
 - (void)requsetData{
     
     NSString *path = [NSString stringWithFormat:@"%@/topic_info/topic_detail_info",KURL];
-    
-    NSDictionary *header = @{@"token":UTOKEN};
+
     NSDictionary *dic = @{@"topic_id":self.topic_id};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         
@@ -111,14 +110,13 @@
 - (void)pullDownRefresh{
     NSString *path = [NSString stringWithFormat:@"%@/topic_info/topic_detail_evaluate",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *dic = @{@"topic_id":self.topic_id,@"page":[NSString stringWithFormat:@"%ld",self.page]};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         
@@ -334,7 +332,7 @@
 #pragma mark -- TopicCommentTableViewCellDelegate
 
 - (void)likeWithCell:(TopicCommentTableViewCell *)cell{
-    
+    LOGIN
     NSIndexPath *indexPath = [self.tmpTableView indexPathForCell:cell];
     TopicCommentModel *model = self.dataArr[indexPath.row];
     
@@ -385,6 +383,8 @@
 
 - (void)collectWithCell:(TopicCommentTableViewCell *)cell{
     
+    LOGIN
+    
     NSIndexPath *indexPath = [self.tmpTableView indexPathForCell:cell];
     TopicCommentModel *model = self.dataArr[indexPath.row];
     
@@ -434,6 +434,7 @@
 }
 
 - (void)adoptWithCell:(TopicCommentTableViewCell *)cell{
+    LOGIN
     NSIndexPath *indexPath = [self.tmpTableView indexPathForCell:cell];
     TopicCommentModel *model = self.dataArr[indexPath.row];
     
@@ -511,15 +512,8 @@
     
 }
 
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//
-//    if (scrollView.contentOffset.y<0) {
-//        [scrollView setContentOffset:CGPointZero];
-//    }
-//}
-
 - (void)participaTopic{
-    
+    LOGIN
     AddTopicCommentViewController *vc = [[AddTopicCommentViewController alloc] init];
     vc.topic_id = self.topic_id;
     [self.navigationController pushViewController:vc animated:YES];
@@ -527,7 +521,8 @@
 
 - (void)follwTopic:(UIButton *)sender{
     
-        
+    LOGIN
+
     NSString *path = [NSString stringWithFormat:@"%@/topic/follow_topic",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};

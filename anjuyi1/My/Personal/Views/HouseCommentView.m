@@ -94,19 +94,17 @@
 
 - (void)getHouseCommentListData{
     
-    
     self.dataArr = [NSMutableArray array];
     
     NSString *path = [NSString stringWithFormat:@"%@/WholeHouseInfo/get_all_comment_list",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *parameter = @{@"house_id":self.house_id};
     
     [MBProgressHUD showHUDAddedTo:self animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:parameter success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:parameter success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:weakSelf animated:YES];
         
@@ -221,7 +219,7 @@
 }
 
 - (void)sendComment:(NSString *)text{
-
+    LOGIN
     NSString *path = [NSString stringWithFormat:@"%@/WholeHouse/add_evaluate",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};

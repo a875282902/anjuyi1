@@ -74,15 +74,12 @@
 - (void)getCategoryChannel{
     
     NSString *path = [NSString stringWithFormat:@"%@/topic_info/topic_cate_list",KURL];
-    
-    NSDictionary *header = @{@"token":UTOKEN};
-    
-    
+
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:nil success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         
@@ -167,6 +164,9 @@
 }
 
 - (void)addTopic{
+    
+    LOGIN
+    
     AddTopicViewController *VC = [[AddTopicViewController alloc] init];
     VC.cateArr = self.cateArr;
     [self.navigationController pushViewController:VC animated:YES];

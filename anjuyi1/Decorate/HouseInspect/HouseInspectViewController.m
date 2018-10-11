@@ -58,7 +58,6 @@
 
     [self setUpUI];
     
-    
     [self.locationSevice beginUpdatingLocation];
     
     [self.view addSubview:self.selectCityView];
@@ -202,7 +201,7 @@
 // 提交
 - (void)submit{
     
-    
+    LOGIN
     NSString *path = [NSString stringWithFormat:@"%@/free/free_house",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};

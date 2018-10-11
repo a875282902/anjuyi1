@@ -56,6 +56,10 @@
 
 #define WKSELF __weak typeof(self) weakSelf = self;(void)weakSelf;
 
+#define LOGIN if (!UTOKEN) { LoginViewController *vc = [[LoginViewController alloc] init]; BaseNaviViewController *navvc = [[BaseNaviViewController alloc] initWithRootViewController:vc]; [[Tools getCurrentVC] presentViewController:navvc animated:YES completion:nil]; return;}
+
+#define deviceUUID [[[UIDevice currentDevice] identifierForVendor] UUIDString]
+
 //button 背景颜色
 #define BTNCOLOR [UIColor colorWithHexString:@"#ffb638"]
 #define TCOLOR [UIColor colorWithHexString:@"#3b3b3b"]
@@ -83,7 +87,8 @@
 #import "UIColor+Category.h"
 #import "Tools.h"
 #import "NavTwoTitle.h"
-
+#import "LoginViewController.h"
+#import "BaseNaviViewController.h"
 
 #endif
 

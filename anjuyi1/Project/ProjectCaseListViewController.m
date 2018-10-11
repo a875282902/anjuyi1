@@ -67,14 +67,13 @@
 - (void)pullDownRefresh{
     NSString *path = [NSString stringWithFormat:@"%@/project_info/get_all_project_list",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -113,14 +112,13 @@
 - (void)pullUpLoadMore{
     NSString *path = [NSString stringWithFormat:@"%@/project_info/get_all_project_list",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         

@@ -30,7 +30,6 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/%@",KURL,cate == 1?@"project/get_project_article":@"ProjectInfo/article_list"];
     
-    NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *paramet = @{@"id":projectID,
                               @"type":type};
     
@@ -38,7 +37,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:paramet success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:paramet success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self animated:YES];
         

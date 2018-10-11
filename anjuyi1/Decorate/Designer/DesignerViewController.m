@@ -87,15 +87,12 @@
 - (void)pullDownRefresh{
     
     NSString *path = [NSString stringWithFormat:@"%@/designer/get_designer_list",KURL];
-    
-    NSDictionary *header = @{@"token":UTOKEN};
+
     NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",self.page]};
-    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -137,14 +134,13 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/designer/get_designer_list",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",self.page]};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         
@@ -181,7 +177,6 @@
 
 //获取banner
 - (void)getBannerData{
-    
     
     NSString *path = [NSString stringWithFormat:@"%@/designer/index",KURL];
     

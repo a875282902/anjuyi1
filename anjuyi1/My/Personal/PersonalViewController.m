@@ -13,6 +13,7 @@
 #import "MyPushPhotoDetailsViewController.h"//图片详情
 #import "MyPushHouseDetailsViewController.h"
 #import "MyPhotoViewController.h"
+#import "MyAnswerViewController.h"
 
 #import "MyCommentViewController.h"
 
@@ -387,6 +388,12 @@
         case 2:
         {
             MyCommentViewController *VC = [[MyCommentViewController alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
+        }
+            break;
+        case 3:
+        {
+            MyAnswerViewController *VC = [[MyAnswerViewController alloc] init];
             [self.navigationController pushViewController:VC animated:YES];
         }
             break;

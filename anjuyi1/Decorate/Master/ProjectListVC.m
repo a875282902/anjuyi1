@@ -48,14 +48,11 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/project_info/project_list",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
-    
-    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:@{@"user_id":self.user_id} success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:@{@"user_id":self.user_id} success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -138,7 +135,7 @@
 }
 
 - (void)subscribeVisitWithCell:(UITableViewCell *)cell{
-    
+    LOGIN
     SubscribeVisitVC *controll = [[SubscribeVisitVC alloc] init];
     [self.navigationController pushViewController:controll animated:YES];
 }

@@ -42,13 +42,11 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/%@",KURL,uArr[self.type]];
     
-    NSDictionary *header = @{@"token":UTOKEN};
-    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:@{@"eva_id":self.eva_id} success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:@{@"eva_id":self.eva_id} success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         

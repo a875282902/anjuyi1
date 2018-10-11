@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface NodeCommentView : UIView
+
+@property (nonatomic,copy) void (^showCommentDetali)(NSString *eva_id);
+
 @property (nonatomic,strong)NSString *nodeid;
 
 - (void)openDisplay;

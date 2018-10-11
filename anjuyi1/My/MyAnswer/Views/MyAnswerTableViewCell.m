@@ -17,7 +17,14 @@
     }
     return self;
 }
-
+- (void)bandDataWithModel:(AnswerModel *)model{
+    
+    [self.titleLabel setText:model.topic_title];
+    [self.answerLabel setText:model.content];
+    [self.timeLabel setText:model.add_time];
+    [self.likeView setText:[NSString stringWithFormat:@"赞 %@ 收藏 %@",model.zan_num,model.collect_num]];
+    
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

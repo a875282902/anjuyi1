@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface RootViewController : UITabBarController
-
+@property (nonatomic,assign) NSInteger upSelectIndex;
 @end

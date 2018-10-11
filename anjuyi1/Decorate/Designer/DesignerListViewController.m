@@ -96,7 +96,6 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/designer/search_list",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *dic = @{@"service_type":_service_type,
                           @"level":_level,
                           @"min":_min,
@@ -108,7 +107,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         

@@ -266,6 +266,7 @@
     switch (sender.view.tag) {
         case 0:
         {
+            LOGIN
             QuickOrderViewController *vc = [[QuickOrderViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }

@@ -275,7 +275,7 @@
 
 //参与征集
 - (void)addActivityToList{
-    
+    LOGIN
     AddActivityPhotoViewController *VC = [[AddActivityPhotoViewController alloc] init];
     VC.activity_id = self.activity_id;
     [self.navigationController pushViewController:VC animated:YES];

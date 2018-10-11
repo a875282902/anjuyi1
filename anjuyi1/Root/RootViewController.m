@@ -26,7 +26,6 @@
 
 @implementation RootViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -89,9 +88,7 @@
 //    PushViewController *controller = [[PushViewController alloc] init];
 //    BaseNaviViewController *navCon = [[BaseNaviViewController alloc] initWithRootViewController:controller];
 //    [self presentViewController:navCon animated:YES completion:nil];
-    
-    
-    
+    LOGIN
     [self.pushView setHidden:NO];
     [[UIApplication sharedApplication].keyWindow addSubview:self.pushView];
 
@@ -131,5 +128,9 @@
     [self addChildViewController:nav];
 }
 
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
+    
+    self.upSelectIndex = self.selectedIndex;
+}
 
 @end

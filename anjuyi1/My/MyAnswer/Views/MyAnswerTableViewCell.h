@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AnswerModel.h"
 
 @interface MyAnswerTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *backView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *answerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *likeView;
-
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
+- (void)bandDataWithModel:(AnswerModel *)model;
 
 @end

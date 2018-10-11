@@ -25,7 +25,7 @@
 
 #import "ChargingHomeViewController.h"//充电桩
 
-
+#import "PhotoDetailsViewController.h"
 
 #import "SearchViewController.h"
 
@@ -53,6 +53,7 @@
     [self.view setBackgroundColor:[UIColor colorWithHexString:@"#f6f6f6"]];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     NSLog(@"%@",UTOKEN);
+    NSLog(@"%@",deviceUUID);
     
     self.bannerArr = [NSMutableArray array];
     self.dataArr = [NSMutableArray array];
@@ -61,8 +62,6 @@
     SearchView *search = [[SearchView alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(320), 30) Title:@"整屋搜索"];
     [search addTarget:self action:@selector(jumpSearch)];
     [self.navigationItem setTitleView:search];
-    
-//    [self setNavigationRightBarButtonWithImageNamed:@"inform"];
     
     [self.view addSubview:self.tmpTableView];
     
@@ -95,10 +94,13 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/index/getRandModel",KURL];
     
-    NSDictionary *header;
-    
+    NSDictionary *header = nil;
+
+    NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithDictionary:@{@"is_rand":@"1"}];
     if (UTOKEN) {
         header = @{@"token":UTOKEN};
+    }else{
+        [dic setValue:deviceUUID forKey:@"equipment_number"];
     }
     
     
@@ -106,7 +108,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:@{@"is_rand":@"1"} success:^(id  _Nullable responseObject) {
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [weakSelf.dataArr removeAllObjects];
@@ -117,8 +119,7 @@
                     [weakSelf.dataArr addObject:dic];
                 }
             }
-            
-            
+ 
         }
         else{
             
@@ -140,18 +141,19 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/index/getRandModel",KURL];
     
-    NSDictionary *header;
-    
+    NSDictionary *header = nil;
+    NSMutableDictionary *dic =[NSMutableDictionary dictionaryWithDictionary:@{@"is_rand":@"2"}];
     if (UTOKEN) {
         header = @{@"token":UTOKEN};
+    }else{
+        [dic setValue:deviceUUID forKey:@"equipment_number"];
     }
-    
-    
+
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:@{@"is_rand":@"2"} success:^(id  _Nullable responseObject) {
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -369,7 +371,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -397,8 +399,8 @@
             cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"HomeViewControllerTableViewCell1"];
         }
         
-//        [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
-        
+        [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
+
         [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
         [cell.contentView addSubview:[self creatLikeView:indexPath.row]];
@@ -411,8 +413,7 @@
 - (UIView *)creatLikeView:(NSInteger)index{
     
     NSDictionary *dic = self.dataArr[index];
-    
-    UIView *likeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, MDXFrom6(440))];
+    UIView *likeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, ([dic[@"tag_list"] count] == 0)?MDXFrom6(355):MDXFrom6(440))];
     [likeView setBackgroundColor:[UIColor whiteColor]];
     
     UIImageView *hederImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(40), MDXFrom6(40))];
@@ -433,7 +434,7 @@
     [attention.layer setCornerRadius:MDXFrom6(12.5f)];
     [attention.layer setBorderWidth:MDXFrom6(1)];
     [attention setClipsToBounds:YES];
-    [attention setTitle:@"+关注" forState:(UIControlStateNormal)];
+    [attention setTitle:@"+ 关注" forState:(UIControlStateNormal)];
     [attention setTitle:@"已关注" forState:(UIControlStateSelected)];
     [attention setSelected:([dic[@"is_collect"] integerValue])==0?NO:YES];
     [attention.titleLabel setFont:[UIFont systemFontOfSize:12]];
@@ -477,10 +478,15 @@
     [zanBtn addTarget:self action:@selector(like) forControlEvents:(UIControlEventTouchUpInside)];
     [likeView addSubview:zanBtn];
     
+    [attention setUserInteractionEnabled:NO];
+    [shareBtn setUserInteractionEnabled:NO];
+    [commentBtn setUserInteractionEnabled:NO];
+    [likeBtn setUserInteractionEnabled:NO];
+    [zanBtn setUserInteractionEnabled:NO];
+    
     [likeView addSubview:[Tools setLineView:CGRectMake(0, MDXFrom6(345), KScreenWidth, 1)]];
     
     NSArray *dArr = dic[@"tag_list"];
-    
     
     UIScrollView * activityScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, MDXFrom6(355), KScreenWidth, MDXFrom6(65))];
     [activityScroll setShowsVerticalScrollIndicator:NO];
@@ -488,7 +494,7 @@
     [activityScroll setContentSize:CGSizeMake(MDXFrom6(500), activityScroll.frame.size.height)];
     
     if (dArr.count>0) {
-     [likeView addSubview:activityScroll];
+        [likeView addSubview:activityScroll];
     }
 
     //storage Charging  shop
@@ -574,7 +580,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        NSDictionary *dic = self.dataArr[indexPath.row];
+        PhotoDetailsViewController *vc = [[PhotoDetailsViewController alloc] init];
+        vc.photo_id = dic[@"image_id"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     
 }
 
@@ -667,30 +678,29 @@
 
 //关注
 - (void)attentionType:(UIButton *)sender{
-    
+    LOGIN
     
     
 }
 //分享
 - (void)shareToFriend{
-    
+
     
 }
 
 //评论
 - (void)comment{
-    
+    LOGIN
     
 }
 //收藏
 - (void)collect{
-    
+    LOGIN
 }
 
 //点赞
 - (void)like{
-    
-    
+    LOGIN
 }
 
 #pragma mark -- delegate
@@ -707,7 +717,12 @@
 
 #pragma mark -- 获取消息数
 - (void)getMessageNum{
-    
+    if (!UTOKEN) {
+        UIButton *btn = [Tools creatButton:CGRectMake(0,0, 25,44) font:[UIFont systemFontOfSize:16] color:[UIColor whiteColor] title:@"" image:@"inform"];
+        [btn addTarget:self action:@selector(rightButtonTouchUpInside:) forControlEvents:(UIControlEventTouchUpInside)];
+        [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:btn]];
+        return;
+    }
     NSString *path = [NSString stringWithFormat:@"%@/message/get_noread_message_number",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};

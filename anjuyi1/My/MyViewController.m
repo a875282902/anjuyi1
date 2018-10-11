@@ -45,6 +45,7 @@
 #import "UIButton+Caregory.h"
 #import "MessageViewController.h"
 
+#import "RootViewController.h"
 @interface MyViewController ()<UIScrollViewDelegate,PhotoSelectControllerDelegate>
 {
     NSString *_image_url;
@@ -62,11 +63,25 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    
+    if (UTOKEN) {
+        [self getPersonInfo];
+    }
+
     UIImage *tmpImage = [UIImage imageWithColor:[UIColor colorWithHexString:@"#7dd3d3"]];
     
     [self.navigationController.navigationBar setBackgroundImage:tmpImage forBarMetrics:UIBarMetricsDefault];
+}
+- (void)viewDidAppear:(BOOL)animated{
     
-    [self getPersonInfo];
+    [super viewDidAppear:animated];
+    
+    if (!UTOKEN) {
+        [self.tabBarController setSelectedIndex:((RootViewController *)self.tabBarController).upSelectIndex];
+        
+        LOGIN
+    }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -562,8 +577,13 @@
 #pragma mark -- 获取消息数
 - (void)getMessageNum{
     
-    NSString *path = [NSString stringWithFormat:@"%@/message/get_noread_message_number",KURL];
+    if (!UTOKEN) {
+        [self creatButton:@"0"];
+        return;
+    }
     
+    NSString *path = [NSString stringWithFormat:@"%@/message/get_noread_message_number",KURL];
+
     NSDictionary *header = @{@"token":UTOKEN};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -575,18 +595,8 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
 
         if ([responseObject[@"code"] integerValue] == 200) {
-            UIButton *btn = [Tools creatButton:CGRectMake(0,0, 25,44) font:[UIFont systemFontOfSize:16] color:[UIColor whiteColor] title:@"" image:@"my_notice"];
-            [btn setTag:1];
-            [btn addTarget:self action:@selector(doubleRightButtonTouchUpInside:) forControlEvents:(UIControlEventTouchUpInside)];
-            
-            UIButton *btn1 = [Tools creatButton:CGRectMake(0,0, 25,44) font:[UIFont systemFontOfSize:16] color:[UIColor whiteColor] title:@"" image:@"my_set"];
-            [btn1 setTag:0];
-            [btn1 addTarget:self action:@selector(doubleRightButtonTouchUpInside:) forControlEvents:(UIControlEventTouchUpInside)];
-            [weakSelf.navigationItem setRightBarButtonItems:@[[[UIBarButtonItem alloc] initWithCustomView:btn1],[[UIBarButtonItem alloc] initWithCustomView:btn]]];
-            
-            if ([responseObject[@"datas"][@"number"] integerValue] > 0) {
-                [btn setNumb:responseObject[@"datas"][@"number"]];
-            }
+  
+            [weakSelf creatButton:responseObject[@"datas"][@"number"]];
             
         }
         else{
@@ -601,6 +611,23 @@
         [RequestSever showMsgWithError:error];
     }];
 }
+
+- (void)creatButton:(NSString *)num{
+    
+    UIButton *btn = [Tools creatButton:CGRectMake(0,0, 25,44) font:[UIFont systemFontOfSize:16] color:[UIColor whiteColor] title:@"" image:@"my_notice"];
+    [btn setTag:1];
+    [btn addTarget:self action:@selector(doubleRightButtonTouchUpInside:) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    UIButton *btn1 = [Tools creatButton:CGRectMake(0,0, 25,44) font:[UIFont systemFontOfSize:16] color:[UIColor whiteColor] title:@"" image:@"my_set"];
+    [btn1 setTag:0];
+    [btn1 addTarget:self action:@selector(doubleRightButtonTouchUpInside:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.navigationItem setRightBarButtonItems:@[[[UIBarButtonItem alloc] initWithCustomView:btn1],[[UIBarButtonItem alloc] initWithCustomView:btn]]];
+    
+    if ([num integerValue] > 0) {
+        [btn setNumb:num];
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

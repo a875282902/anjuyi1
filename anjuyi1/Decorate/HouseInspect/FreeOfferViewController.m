@@ -365,7 +365,7 @@
 // 提交
 - (void)submit{
     
-    
+    LOGIN
     
     NSString *path = [NSString stringWithFormat:@"%@/free/free_offer",KURL];
     

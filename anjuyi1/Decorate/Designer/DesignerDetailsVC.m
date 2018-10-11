@@ -65,14 +65,11 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/designer/designer_detail",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
-    
-    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:@{@"user_id":self.designerID} success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:@{@"user_id":self.designerID} success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -363,7 +360,7 @@
 
 //关注
 - (void)like:(UIButton *)sender{
-    
+    LOGIN
     if (!sender.selected) {
         [self attention:[NSString stringWithFormat:@"%@/follow/insert_follow",KURL] btn:sender];
     }

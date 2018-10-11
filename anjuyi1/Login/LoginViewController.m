@@ -40,7 +40,6 @@
     [registerb.titleLabel setTextAlignment:(NSTextAlignmentLeft)];
     [registerb addTarget:self action:@selector(jumpRegister) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:registerb];
-    
     CGFloat height = KStatusBarHeight + MDXFrom6(90);
     
     
@@ -100,6 +99,7 @@
 //    dl_wx dl_qq
     
     UIButton *wxLogin = [Tools creatButton:CGRectMake(MDXFrom6(240), KScreenHeight - 80 - MDXFrom6(10), MDXFrom6(53), MDXFrom6(53)) font:[UIFont systemFontOfSize:1] color:[UIColor blackColor] title:@"" image:@"dl_wx"];
+    [wxLogin addTarget:self action:@selector(wxLogin:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:wxLogin];
     
     UIButton *qqLogin = [Tools creatButton:CGRectMake(MDXFrom6(300), KScreenHeight - 80 - MDXFrom6(10), MDXFrom6(53), MDXFrom6(53)) font:[UIFont systemFontOfSize:1] color:[UIColor blackColor] title:@"" image:@"dl_qq"];
@@ -163,8 +163,7 @@
         if ([responseObject[@"code"] integerValue] == 200) {
             [[NSUserDefaults standardUserDefaults] setValue:responseObject[@"datas"][@"token"] forKey:@"UTOKEN"];
             
-            RootViewController *vc = [[RootViewController alloc] init];
-            [self presentViewController:vc animated:YES completion:nil];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
         else{
             
@@ -175,6 +174,11 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [RequestSever showMsgWithError:error];
     }];
+}
+
+- (void)wxLogin:(UIButton *)sender{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -75,17 +75,15 @@
 
 - (void)getHouseInfo{
     
-    
     NSString *path = [NSString stringWithFormat:@"%@/WholeHouseInfo/detail",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *parameter = @{@"house_id":self.house_id};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:parameter success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:parameter success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         
@@ -472,7 +470,7 @@
 
 // 关注
 - (void)attentionToAuthor:(UIButton *)sender{
-    
+    LOGIN
     
     if (!sender.selected) {
         [self attention:[NSString stringWithFormat:@"%@/follow/insert_follow",KURL] btn:sender];
@@ -519,7 +517,7 @@
 }
 
 - (void)collectThisHouse:(UIButton *)sender{
-    
+    LOGIN
     NSString *path = [NSString stringWithFormat:@"%@/WholeHouse/member_collect",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
@@ -556,7 +554,7 @@
     
 }
 - (void)likeThisHouse:(UIButton *)sender{
-    
+    LOGIN
     NSString *path = [NSString stringWithFormat:@"%@/WholeHouse/member_zan",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};

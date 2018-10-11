@@ -88,6 +88,10 @@
     
     AFHTTPSessionManager *mana = [self manager];
     
+    if (UTOKEN) {
+        [mana.requestSerializer setValue:UTOKEN forHTTPHeaderField:@"token"];
+    }
+    
     [mana POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

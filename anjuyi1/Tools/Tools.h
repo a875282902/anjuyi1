@@ -27,4 +27,6 @@
 +(NSString*)getCurrentTimes;
 
 
++ (UIViewController *)getCurrentVC;
+
 @end

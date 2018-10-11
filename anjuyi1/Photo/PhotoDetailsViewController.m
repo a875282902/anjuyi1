@@ -71,14 +71,13 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/Index/image_detail",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *parameter = @{@"id":self.photo_id};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:parameter success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:parameter success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [weakSelf.commentArr removeAllObjects];
@@ -408,7 +407,7 @@
 }
 
 - (void)attention:(NSString *)path btn:(UIButton *)sender{
-    
+    LOGIN
     NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *dic = @{@"user_id":self.photoInfo[@"member_info"][@"user_id"]};
     
@@ -444,7 +443,7 @@
 }
 
 - (void)collectThisHouse:(UIButton *)sender{
-    
+    LOGIN
     NSString *path = [NSString stringWithFormat:@"%@/MemberImage/member_collect",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
@@ -481,7 +480,7 @@
     
 }
 - (void)likeThisHouse:(UIButton *)sender{
-    
+    LOGIN
     NSString *path = [NSString stringWithFormat:@"%@/MemberImage/member_zan",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};

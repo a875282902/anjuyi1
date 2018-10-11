@@ -8,10 +8,13 @@
 //  我的回答
 #import "MyAnswerViewController.h"
 #import "MyAnswerTableViewCell.h"
+#import "AnswerModel.h"
 
 @interface MyAnswerViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic,strong)UITableView *tmpTableView;
+@property (nonatomic,strong)UITableView     * tmpTableView;
+@property (nonatomic,strong)NSMutableArray  * dataArr;
+@property (nonatomic,assign)NSInteger         page;
 
 @end
 
@@ -24,11 +27,120 @@
     [self setTitle:@"我的回答"];
     
     [self baseForDefaultLeftNavButton];
+    self.page = 1;
+    self.dataArr = [NSMutableArray array];
     
     [self.view addSubview:self.tmpTableView];
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1.5)]];
+    
+    [self load];
+    [self.tmpTableView.mj_header beginRefreshing];
 }
+#pragma mark -- refresh
+- (void)load{
+    __weak typeof(self) weakSelf = self;
+    
+    self.tmpTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.page = 1;
+        [weakSelf.dataArr removeAllObjects];
+        [weakSelf.tmpTableView.mj_footer resetNoMoreData];
+        [weakSelf pullDownRefresh];
+    }];
+    
+    self.tmpTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        weakSelf.page ++;
+        [weakSelf pullUpLoadMore];
+    }];
+    
+}
+//下拉刷新
+- (void)pullDownRefresh{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/member/my_answer",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:@{@"page":[NSString stringWithFormat:@"%ld",self.page]} success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in responseObject[@"datas"]) {
+                    AnswerModel *model = [[AnswerModel alloc] initWithDictionary:dic];
+                    [weakSelf.dataArr addObject:model];
+                }
+            }
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        if (weakSelf.dataArr.count < weakSelf.page *10) {
+            [weakSelf.tmpTableView.mj_footer endRefreshingWithNoMoreData];
+        }
+        
+        [weakSelf.tmpTableView.mj_header endRefreshing];
+        [weakSelf.tmpTableView reloadData];
+        
+    } failure:^(NSError * _Nullable error) {
+        [weakSelf.tmpTableView.mj_header endRefreshing];
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+
+}
+//上拉加载
+- (void)pullUpLoadMore{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/member/my_answer",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:@{@"page":[NSString stringWithFormat:@"%ld",self.page]} success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in responseObject[@"datas"]) {
+                    AnswerModel *model = [[AnswerModel alloc] initWithDictionary:dic];
+                    [weakSelf.dataArr addObject:model];
+                }
+            }
+        }
+        else{
+            weakSelf.page -- ;
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        if (weakSelf.dataArr.count < weakSelf.page *10) {
+            [weakSelf.tmpTableView.mj_footer endRefreshingWithNoMoreData];
+        }
+        else{
+            [weakSelf.tmpTableView.mj_footer endRefreshing];
+        }
+        [weakSelf.tmpTableView reloadData];
+        
+    } failure:^(NSError * _Nullable error) {
+        weakSelf.page -- ;
+        [weakSelf.tmpTableView.mj_footer endRefreshing];
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+    
+}
+
 #pragma mark -- tableView
 - (UITableView *)tmpTableView{
     
@@ -47,7 +159,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -59,6 +171,10 @@
     
     [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
 
+    if (indexPath.row < self.dataArr.count) {
+        [cell bandDataWithModel:self.dataArr[indexPath.row]];
+    }
+    
     return cell;
 }
 

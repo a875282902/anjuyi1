@@ -102,14 +102,13 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/project_info/get_all_comment_list",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *parameter = @{@"article_id":self.nodeid};
     
     [MBProgressHUD showHUDAddedTo:self animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:parameter success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:parameter success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:weakSelf animated:YES];
         
@@ -174,6 +173,11 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    CommentModel *model =self.dataArr[indexPath.row];
+    self.showCommentDetali(model.commit_id);
+}
+
 #pragma mark -- 事件
 
 - (void)closeDisplay{
@@ -224,7 +228,7 @@
 }
 
 - (void)sendComment:(NSString *)text{
-    
+    LOGIN
     NSString *path = [NSString stringWithFormat:@"%@/Project/add_evaluate",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
