@@ -289,6 +289,11 @@
 		1862840D20F7314B0038A7AC /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862840C20F7314A0038A7AC /* BannerModel.m */; };
 		187C11ED20D0A8E400E8DDC7 /* UIColor+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C11EC20D0A8E400E8DDC7 /* UIColor+Category.m */; };
 		187C11F420D0E42600E8DDC7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C11F320D0E42600E8DDC7 /* LoginViewController.m */; };
+		188950CC217430F3001AA8BD /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188950CB217430F3001AA8BD /* CoreMotion.framework */; };
+		188950CE217430F8001AA8BD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188950CD217430F8001AA8BD /* AudioToolbox.framework */; };
+		188950D0217430FD001AA8BD /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188950CF217430FC001AA8BD /* ImageIO.framework */; };
+		188950D22174311C001AA8BD /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 188950D12174311C001AA8BD /* libicucore.tbd */; };
+		188950D421743150001AA8BD /* libicucore.A.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 188950D321743150001AA8BD /* libicucore.A.tbd */; };
 		188ABC0E214A394400F4C910 /* ProjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 188ABC0D214A394400F4C910 /* ProjectView.m */; };
 		188ABC13214A44DC00F4C910 /* AuxiliaryOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188ABC11214A44DC00F4C910 /* AuxiliaryOrderViewController.m */; };
 		188ABC14214A44DC00F4C910 /* AuxiliaryOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188ABC12214A44DC00F4C910 /* AuxiliaryOrderViewController.xib */; };
@@ -872,6 +877,11 @@
 		187C11EC20D0A8E400E8DDC7 /* UIColor+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Category.m"; sourceTree = "<group>"; };
 		187C11F220D0E42600E8DDC7 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		187C11F320D0E42600E8DDC7 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		188950CB217430F3001AA8BD /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		188950CD217430F8001AA8BD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		188950CF217430FC001AA8BD /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		188950D12174311C001AA8BD /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		188950D321743150001AA8BD /* libicucore.A.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.A.tbd; path = usr/lib/libicucore.A.tbd; sourceTree = SDKROOT; };
 		188ABC0C214A394400F4C910 /* ProjectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectView.h; sourceTree = "<group>"; };
 		188ABC0D214A394400F4C910 /* ProjectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectView.m; sourceTree = "<group>"; };
 		188ABC10214A44DC00F4C910 /* AuxiliaryOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuxiliaryOrderViewController.h; sourceTree = "<group>"; };
@@ -996,15 +1006,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				188950D421743150001AA8BD /* libicucore.A.tbd in Frameworks */,
+				18399C5421215B5D007CAD58 /* libz.tbd in Frameworks */,
+				188950D22174311C001AA8BD /* libicucore.tbd in Frameworks */,
+				182CDAA821098D1E00F28F4C /* libsqlite3.tbd in Frameworks */,
+				18ED885E2100D58C00B38548 /* CoreTelephony.framework in Frameworks */,
+				18ED88562100D56C00B38548 /* SystemConfiguration.framework in Frameworks */,
+				188950D0217430FD001AA8BD /* ImageIO.framework in Frameworks */,
+				188950CE217430F8001AA8BD /* AudioToolbox.framework in Frameworks */,
+				188950CC217430F3001AA8BD /* CoreMotion.framework in Frameworks */,
+				18ED885A2100D57900B38548 /* Security.framework in Frameworks */,
 				189D1B00216F330900FB0B93 /* StoreKit.framework in Frameworks */,
 				184238AA216C6FDE000A7D18 /* libc++.tbd in Frameworks */,
-				18ED88562100D56C00B38548 /* SystemConfiguration.framework in Frameworks */,
-				182CDAA821098D1E00F28F4C /* libsqlite3.tbd in Frameworks */,
-				18399C5421215B5D007CAD58 /* libz.tbd in Frameworks */,
-				18ED885E2100D58C00B38548 /* CoreTelephony.framework in Frameworks */,
 				18399C5821215B6C007CAD58 /* libresolv.tbd in Frameworks */,
 				18399C5621215B65007CAD58 /* UserNotifications.framework in Frameworks */,
-				18ED885A2100D57900B38548 /* Security.framework in Frameworks */,
 				18399C5221215B51007CAD58 /* UIKit.framework in Frameworks */,
 				18399C5021215B4C007CAD58 /* Foundation.framework in Frameworks */,
 				18ED88582100D57300B38548 /* CoreGraphics.framework in Frameworks */,
@@ -2555,6 +2570,11 @@
 		E57638EA566F5CBF54092AE1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				188950D321743150001AA8BD /* libicucore.A.tbd */,
+				188950D12174311C001AA8BD /* libicucore.tbd */,
+				188950CF217430FC001AA8BD /* ImageIO.framework */,
+				188950CD217430F8001AA8BD /* AudioToolbox.framework */,
+				188950CB217430F3001AA8BD /* CoreMotion.framework */,
 				189D1AFF216F330900FB0B93 /* StoreKit.framework */,
 				184238A9216C6FDE000A7D18 /* libc++.tbd */,
 				18399C5721215B6C007CAD58 /* libresolv.tbd */,
@@ -2619,6 +2639,9 @@
 						CreatedOnToolsVersion = 9.3.1;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
 								enabled = 1;
 							};
 							com.apple.Push = {
@@ -3173,6 +3196,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/anjuyi1/BaiduMapAPI",
 					"$(PROJECT_DIR)/anjuyi1/U-App",
+					"$(PROJECT_DIR)/anjuyi1/TestinDataAnalysis",
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/anjuyi1/PrefixHeader.pch";
@@ -3245,6 +3269,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/anjuyi1/BaiduMapAPI",
 					"$(PROJECT_DIR)/anjuyi1/U-App",
+					"$(PROJECT_DIR)/anjuyi1/TestinDataAnalysis",
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/anjuyi1/PrefixHeader.pch";

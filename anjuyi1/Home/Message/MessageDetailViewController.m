@@ -27,6 +27,9 @@
     [self.view addSubview:self.tmpScrollView];
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1)]];
     [self getMessageInfo];
+    
+    self.data = self.messageInfo;
+    [self setUpScrollViewContent];
 }
 
 - (void)getMessageInfo{
@@ -35,20 +38,14 @@
     NSString *path = [NSString stringWithFormat:@"%@/message/set_read",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
-    
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    __weak typeof(self) weakSelf = self;
-    
-    [HttpRequest POSTWithHeader:header url:path parameters:@{@"id":self.message_id} success:^(id  _Nullable responseObject) {
+
+    [HttpRequest POSTWithHeader:header url:path parameters:@{@"id":self.messageInfo[@"id"]} success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
         if ([responseObject[@"code"] integerValue] == 200) {
             
-            weakSelf.data = responseObject[@"datas"];
-            [weakSelf setUpScrollViewContent];
+            
         }
         else{
             

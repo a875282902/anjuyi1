@@ -318,6 +318,7 @@
             break;
         case 4:
         {
+            LOGIN
             FreeOfferViewController *controller = [[FreeOfferViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             

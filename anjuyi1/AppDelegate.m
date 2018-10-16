@@ -23,6 +23,8 @@
 
 #import <UMCommon/UMConfigure.h>
 
+#import <TestinDataAnalysis/TestinDataAnalysis.h>
+
 @interface AppDelegate ()<JPUSHRegisterDelegate>
 
 @end
@@ -45,6 +47,7 @@
     
     [self umCommnont];
     
+    [self testinDataConfig:launchOptions];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -132,6 +135,16 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [UMConfigure initWithAppkey:@"570f1af067e58eab75002315" channel:@"App Store"];
 }
 
+#pragma mark -- bug
+- (void)testinDataConfig:(NSDictionary *)launchOptions{
+    
+    TestinDataConfig  *config = [TestinDataConfig shareConfig];
+    config.enabledShakeFeedback = YES;
+    config.enabledMonitorException = YES;
+    
+    [TestinDataAnalysis initWithProjectId:BUGKEY WithConfig:config launchOptions:launchOptions];
+
+}
 
 #pragma mark --- ***********
 - (void)applicationWillResignActive:(UIApplication *)application {

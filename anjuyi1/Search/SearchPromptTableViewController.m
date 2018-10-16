@@ -100,7 +100,7 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *str;
-    NSInteger type;
+    NSInteger type = 0;
     if (indexPath.row<3) {
         str = self.keyWord;
         type = indexPath.row;

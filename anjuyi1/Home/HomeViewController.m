@@ -49,6 +49,15 @@
 
 @implementation HomeViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    if (UTOKEN) {
+        [self getMessageNum];//获取消息个数
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -175,10 +184,9 @@
 
         }
         else{
-            
+            [weakSelf.tmpTableView.mj_footer endRefreshingWithNoMoreData];
             [ViewHelps showHUDWithText:responseObject[@"message"]];
         }
-        
         [weakSelf.tmpTableView.mj_footer endRefreshing];
         [weakSelf.tmpTableView reloadData];
     } failure:^(NSError * _Nullable error) {
@@ -444,9 +452,10 @@
     [attention setClipsToBounds:YES];
     [attention setTitle:@"+ 关注" forState:(UIControlStateNormal)];
     [attention setTitle:@"已关注" forState:(UIControlStateSelected)];
-    [attention setSelected:([dic[@"is_collect"] integerValue])==0?NO:YES];
+    [attention setSelected:([dic[@"is_follow"] integerValue])==0?NO:YES];
     [attention.titleLabel setFont:[UIFont systemFontOfSize:12]];
     [attention setTitleColor:[UIColor colorWithHexString:@"#E77C03"] forState:(UIControlStateNormal)];
+    [attention setTag:index];
     [attention addTarget:self action:@selector(attentionType:) forControlEvents:(UIControlEventTouchUpInside)];
     [likeView addSubview:attention];
     
@@ -472,25 +481,31 @@
     [likeView addSubview:shareBtn];
     
     // 评论
-    UIButton *commentBtn = [Tools creatButton:CGRectMake(MDXFrom6(145), MDXFrom6(310), MDXFrom6(70), MDXFrom6(23)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#000000"] title:[NSString stringWithFormat:@"%@",dic[@"evaluate_num"]] image:@"com"];
+    UIButton *commentBtn = [Tools creatButton:CGRectMake(MDXFrom6(145), MDXFrom6(310), MDXFrom6(70), MDXFrom6(23)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#000000"] title:[NSString stringWithFormat:@" %@",dic[@"evaluate_num"]] image:@"com"];
     [commentBtn addTarget:self action:@selector(comment) forControlEvents:(UIControlEventTouchUpInside)];
     [likeView addSubview:commentBtn];
     
     //  收藏
-    UIButton *likeBtn = [Tools creatButton:CGRectMake(MDXFrom6(225), MDXFrom6(310), MDXFrom6(70), MDXFrom6(23)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#000000"] title:[NSString stringWithFormat:@"%@",dic[@"collect_num"]] image:@"colle"];
-    [likeBtn addTarget:self action:@selector(collect) forControlEvents:(UIControlEventTouchUpInside)];
+    UIButton *likeBtn = [Tools creatButton:CGRectMake(MDXFrom6(225), MDXFrom6(310), MDXFrom6(70), MDXFrom6(23)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#000000"] title:[NSString stringWithFormat:@" %@",dic[@"collect_num"]] image:@"colle"];
+    [likeBtn setImage:[UIImage imageNamed:@"colle_xz"] forState:(UIControlStateSelected)];
+    [likeBtn addTarget:self action:@selector(collect:) forControlEvents:(UIControlEventTouchUpInside)];
+    [likeBtn setTag:index];
+    [likeBtn setSelected:[dic[@"is_collect"] integerValue]==1?YES:NO];
     [likeView addSubview:likeBtn];
     
     // 点赞
-    UIButton *zanBtn = [Tools creatButton:CGRectMake(MDXFrom6(305), MDXFrom6(310), MDXFrom6(70), MDXFrom6(23)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#000000"] title:[NSString stringWithFormat:@"%@",dic[@"zan_num"]] image:@"like"];
-    [zanBtn addTarget:self action:@selector(like) forControlEvents:(UIControlEventTouchUpInside)];
+    UIButton *zanBtn = [Tools creatButton:CGRectMake(MDXFrom6(305), MDXFrom6(310), MDXFrom6(70), MDXFrom6(23)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#000000"] title:[NSString stringWithFormat:@" %@",dic[@"zan_num"]] image:@"like"];
+    [zanBtn setImage:[UIImage imageNamed:@"xq_zan_on"] forState:(UIControlStateSelected)];
+    [zanBtn setSelected:[dic[@"is_zan"] integerValue]==1?YES:NO];
+    [zanBtn addTarget:self action:@selector(like:) forControlEvents:(UIControlEventTouchUpInside)];
+    [zanBtn setTag:index];
     [likeView addSubview:zanBtn];
     
-    [attention setUserInteractionEnabled:NO];
-    [shareBtn setUserInteractionEnabled:NO];
-    [commentBtn setUserInteractionEnabled:NO];
-    [likeBtn setUserInteractionEnabled:NO];
-    [zanBtn setUserInteractionEnabled:NO];
+//    [attention setUserInteractionEnabled:NO];
+//    [shareBtn setUserInteractionEnabled:NO];
+//    [commentBtn setUserInteractionEnabled:NO];
+//    [likeBtn setUserInteractionEnabled:NO];
+//    [zanBtn setUserInteractionEnabled:NO];
     
     [likeView addSubview:[Tools setLineView:CGRectMake(0, MDXFrom6(345), KScreenWidth, 1)]];
     
@@ -606,7 +621,7 @@
 }
 
 - (void)rightButtonTouchUpInside:(id)sender{
-    
+    LOGIN
     MessageViewController *vc = [[MessageViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -688,6 +703,39 @@
 //关注
 - (void)attentionType:(UIButton *)sender{
     LOGIN
+   
+    if (!sender.selected) {
+        [self attention:[NSString stringWithFormat:@"%@/follow/insert_follow",KURL] btn:sender];
+    }
+    else{
+        [self attention:[NSString stringWithFormat:@"%@/Follow/cancel_follow",KURL] btn:sender];
+    }
+}
+
+- (void)attention:(NSString *)path btn:(UIButton *)sender{
+    
+    NSString *user_id = self.dataArr[sender.tag][@"member_info"][@"user_id"];
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *dic = @{@"user_id":user_id};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        
+        [ViewHelps showHUDWithText:responseObject[@"message"]];
+        if ([responseObject[@"code"] integerValue]==200) {
+            sender.selected = !sender.selected;
+        }
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
     
     
 }
@@ -703,13 +751,80 @@
     
 }
 //收藏
-- (void)collect{
+- (void)collect:(UIButton *)sender{
     LOGIN
+    NSString *photo_id = self.dataArr[sender.tag][@"image_id"];
+    NSString *path = [NSString stringWithFormat:@"%@/MemberImage/member_collect",KURL];
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *dic = @{@"id":photo_id};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            [ViewHelps showHUDWithText:@"收藏成功"];
+            [sender setTitle:[NSString stringWithFormat:@" %ld",[sender.titleLabel.text integerValue] + 1] forState:(UIControlStateNormal)];
+            [sender setSelected:YES];
+        }
+        else if ([responseObject[@"code"] integerValue] == 201){
+            [sender setTitle:[NSString stringWithFormat:@" %ld",[sender.titleLabel.text integerValue] - 1] forState:(UIControlStateNormal)];
+            [sender setSelected:NO];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
 }
 
 //点赞
-- (void)like{
+- (void)like:(UIButton *)sender{
     LOGIN
+    NSString *photo_id = self.dataArr[sender.tag][@"image_id"];
+    NSString *path = [NSString stringWithFormat:@"%@/MemberImage/member_zan",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *dic = @{@"id":photo_id};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            [ViewHelps showHUDWithText:@"点赞成功"];
+            [sender setTitle:[NSString stringWithFormat:@" %ld",[sender.titleLabel.text integerValue] + 1] forState:(UIControlStateNormal)];
+            [sender setSelected:YES];
+        }
+        else if ([responseObject[@"code"] integerValue] == 201){
+            [sender setTitle:[NSString stringWithFormat:@" %ld",[sender.titleLabel.text integerValue] - 1] forState:(UIControlStateNormal)];
+            [sender setSelected:NO];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
 }
 
 #pragma mark -- delegate

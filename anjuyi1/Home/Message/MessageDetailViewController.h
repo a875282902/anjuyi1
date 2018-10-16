@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MessageDetailViewController : BaseViewController
 
-@property (nonatomic,strong) NSString * message_id;
+@property (nonatomic,strong) NSDictionary * messageInfo;
 
 @end
 

@@ -212,7 +212,7 @@
     
     NSDictionary *dic = self.dataArr[indexPath.row];
     
-    [self.delegate pushShowDetail:dic[@"id"]];
+    [self.delegate pushShowDetail:dic];
 }
 
 

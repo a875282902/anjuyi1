@@ -68,9 +68,10 @@
         [weakSelf.dataArr removeAllObjects];
         
         if ([responseObject[@"code"] integerValue] == 200) {
-            
-            for (NSDictionary *dic in responseObject[@"datas"]) {
-                [weakSelf.dataArr addObject:dic];
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in responseObject[@"datas"]) {
+                    [weakSelf.dataArr addObject:dic];
+                }
             }
             
             [self setUpUI];

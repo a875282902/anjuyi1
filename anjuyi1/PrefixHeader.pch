@@ -77,6 +77,9 @@
 //百度地图key
 #define MAPKEY @"HvhydCHlfApZjcberj33DoMIDNdCF3Vc"
 
+//TestinDataAnalysiskey
+#define BUGKEY @"2e068f6983b534f520e0e6d6eb49aa1d"
+
 #define UTOKEN [[NSUserDefaults standardUserDefaults] valueForKey:@"UTOKEN"]
 
 #ifdef __OBJC__

@@ -11,6 +11,7 @@ pod 'IQKeyboardManager', '~> 6.0.3'
 
 pod 'FMDB', '~> 2.7.2'
 
+pod 'TestinDataAnalysis', '~>5.0.0'
 
 end
 

@@ -66,6 +66,7 @@
     
     if (UTOKEN) {
         [self getPersonInfo];
+        [self getMessageNum];
     }
 
     UIImage *tmpImage = [UIImage imageWithColor:[UIColor colorWithHexString:@"#7dd3d3"]];

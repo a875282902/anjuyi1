@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol MessageListVIewDelegate <NSObject>
 
-- (void)pushShowDetail:(NSString *)message_id;
+- (void)pushShowDetail:(NSDictionary *)messageInfo;
 
 @end
 

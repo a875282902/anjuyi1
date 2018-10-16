@@ -124,10 +124,10 @@
     }
 }
 
-- (void)pushShowDetail:(NSString *)message_id{
+- (void)pushShowDetail:(NSDictionary *)messageInfo{
     
     MessageDetailViewController *vc = [[MessageDetailViewController alloc] init];
-    vc.message_id = message_id;
+    vc.messageInfo= messageInfo;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
