@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger , mimeFileType) {
     MCJSONFileType,
     MCTXTFileType,
 };
-
+NS_ASSUME_NONNULL_BEGIN
 @interface HttpRequest : NSObject
 
 /**
@@ -118,3 +118,5 @@ typedef NS_ENUM(NSInteger , mimeFileType) {
 
 
 @end
+
+NS_ASSUME_NONNULL_END

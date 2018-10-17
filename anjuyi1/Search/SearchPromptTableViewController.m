@@ -26,8 +26,12 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;\
     
+    [self setAutomaticallyAdjustsScrollViewInsets:YES];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"reuseIdentifier"];
-    
+    if (@available(iOS 11.0, *)) {
+        [self.tableView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
+    }
+    [self.tableView setTableHeaderView:[UIView new]];
     [self.tableView setTableFooterView:[UIView new]];
 }
 

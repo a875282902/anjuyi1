@@ -25,8 +25,8 @@
 @implementation StrategyCommentView
 
 - (instancetype)initWithFrame:(CGRect)frame{
-    
-    if (self == [super initWithFrame:frame]) {
+    self = [super initWithFrame:frame];
+    if (self) {
         [self setBackgroundColor:MDRGBA(0, 0, 0, 0.5)];
         [self setHidden:YES];
         self.backView = [[UIView alloc] initWithFrame:CGRectMake(0, KScreenHeight, KScreenWidth, self.frame.size.height- 140)];

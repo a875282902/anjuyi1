@@ -149,7 +149,7 @@
         SDImageCache *tmpCache = [SDImageCache sharedImageCache];
         
         // 拿到文件的数量
-        NSUInteger numberOfImages = [tmpCache getDiskCount];
+//        NSUInteger numberOfImages = [tmpCache getDiskCount];
         
         // 拿到文件的总大小
         NSUInteger imageSize = [tmpCache getSize];

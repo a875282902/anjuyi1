@@ -102,7 +102,7 @@
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    
+    [self.promptController.view setFrame:CGRectMake(0, 0, KScreenWidth, KViewHeight)];
     [self.view addSubview:self.promptController.view];
     [self.promptController.view setHidden:YES];
     return YES;

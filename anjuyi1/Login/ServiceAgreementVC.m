@@ -173,15 +173,13 @@
 
 #pragma mark-NURLConnectiondelegate
 
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
-{
+- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
     
     NSLog(@"WebController Got auth challange via NSURLConnection");
     
     if([challenge previousFailureCount]==0)
         
     {
-        
         _authenticated=YES;
         
         NSURLCredential*credential=[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
@@ -195,9 +193,6 @@
     }
     
 }
-
-
-
 
 -(void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response
 

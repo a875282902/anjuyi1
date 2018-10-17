@@ -313,6 +313,8 @@
     height += MDXFrom6(127.5)+MDXFrom6(10);
     
     [self.headerView setFrame:CGRectMake(0, 0, KScreenWidth, height)];
+    
+    [_tmpTableView setTableHeaderView:self.headerView];
 }
 
 - (UIImageView *)setImageViewWithFrame:(CGRect)rect andImageName:(NSString *)imageName andTag:(NSInteger)tag image:(NSString *)url{
@@ -377,7 +379,7 @@
         }
         [_tmpTableView setShowsVerticalScrollIndicator:NO];
         [_tmpTableView setShowsHorizontalScrollIndicator:NO];
-        [_tmpTableView setTableHeaderView:self.headerView];
+        
 //        [_tmpTableView setTableFooterView:self.footView];
         [_tmpTableView setDataSource:self];
         [_tmpTableView setDelegate:self];

@@ -18,6 +18,7 @@
 #import "HouseDetailsViewController.h"//整屋详情详情
 
 #import "StrategyListViewController.h"
+#import "AnswerListViewController.h"
 
 @interface MasterDetailsVC ()<UIScrollViewDelegate>
 {
@@ -497,7 +498,13 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-       
+        case 3:
+        {
+            AnswerListViewController *vc = [[AnswerListViewController alloc] init];
+            vc.user_id =self.data[@"member_info"][@"id"];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
             
         default:
             break;

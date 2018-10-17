@@ -16,6 +16,7 @@
 #import "PhotoListViewController.h"//图片列表
 
 #import "StrategyListViewController.h"//攻略列表
+#import "AnswerListViewController.h"//回答列表
 
 
 @interface DesignerDetailsVC ()<UIScrollViewDelegate>
@@ -417,6 +418,13 @@
         case 2:
         {
             StrategyListViewController *vc = [[StrategyListViewController alloc] init];
+            vc.user_id =self.data[@"member_info"][@"id"];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 3:
+        {
+            AnswerListViewController *vc = [[AnswerListViewController alloc] init];
             vc.user_id =self.data[@"member_info"][@"id"];
             [self.navigationController pushViewController:vc animated:YES];
         }

@@ -67,13 +67,6 @@
 				<true/>
 			</dict>
 		</dict>
-		<key>api.ajyvip.com</key>
-		<dict>
-			<key>NSExceptionAllowsInsecureHTTPLoads</key>
-			<true/>
-			<key>NSIncludesSubdomains</key>
-			<true/>
-		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>App需要您的同意,才能访问相机</string>

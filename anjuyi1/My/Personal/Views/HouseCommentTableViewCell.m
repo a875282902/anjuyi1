@@ -12,8 +12,8 @@
 @implementation HouseCommentTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-
-    if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
         
         self = [[NSBundle mainBundle] loadNibNamed:@"HouseCommentTableViewCell" owner:self options:nil].lastObject;
     }

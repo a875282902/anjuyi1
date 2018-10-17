@@ -180,7 +180,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
 @synthesize persistentContainer = _persistentContainer;
 
-- (NSPersistentContainer *)persistentContainer  API_AVAILABLE(ios(10.0)){
+- (NSPersistentContainer *)persistentContainer  {
     // The persistent container for the application. This implementation creates and returns a container, having loaded the store for the application to it.
     @synchronized (self) {
         if (_persistentContainer == nil) {

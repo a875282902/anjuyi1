@@ -109,7 +109,7 @@
 
 #pragma mark-NURLConnectiondelegate
 
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+-(void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
     
     NSLog(@"WebController Got auth challange via NSURLConnection");
