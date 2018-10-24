@@ -332,6 +332,9 @@
 
 // 提交
 - (void)submit{
+    
+    LOGIN
+    
     NSArray *tArr = @[@"需求明细",@"联系手机号码",@"联系人姓名",@"验证码",@"详细地址",@"预约时间"];
     for (NSInteger i = 0; i <tArr.count ; i++) {
         if ([self.textArr[i] length]==0) {

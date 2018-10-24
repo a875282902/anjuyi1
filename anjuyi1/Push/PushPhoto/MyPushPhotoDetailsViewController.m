@@ -13,7 +13,7 @@
 #import "HouseCommentTableViewCell.h"
 #import "CommentModel.h"
 #import "EditPushPhotoViewController.h"
-
+#import "FunctionBarView.h"
 @interface MyPushPhotoDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UIButton *backBtn;
@@ -25,7 +25,7 @@
 @property (nonatomic,strong)PhotoCommentView     *  commentV;
 @property (nonatomic,strong)UIView               *  infoView;
 @property (nonatomic,strong)UIView               *  footView;
-@property (nonatomic,strong)UIView               *  functionBar;
+@property (nonatomic,strong)FunctionBarView      *  functionBar;
 
 @property (nonatomic,strong)NSMutableDictionary  *  photoInfo;
 @property (nonatomic,strong)UITableView          *  tmpTableView;
@@ -171,7 +171,7 @@
 - (UIView *)functionBar{
     
     if (!_functionBar) {
-        _functionBar = [[UIView alloc] initWithFrame:CGRectMake(0, KScreenHeight - 50, KScreenWidth, 50)];
+        _functionBar = [[FunctionBarView alloc] initWithFrame:CGRectMake(0, KScreenHeight - 50, KScreenWidth, 50)];
         [_functionBar addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 2)]];
     }
     return _functionBar;
@@ -305,27 +305,18 @@
 
 - (void)createFunctionBar{
     
-    UIButton *zanbutton = [Tools creatButton:CGRectMake(KScreenWidth - 70, 10, 70, 30) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#666666"] title:[NSString stringWithFormat:@" %@",self.photoInfo[@"zan_num"]] image:@"like"];
-    [zanbutton setImage:[UIImage imageNamed:@"like_xz"] forState:(UIControlStateSelected)];
-    [zanbutton setSelected:[self.photoInfo[@"is_zan"] integerValue]==0?NO:YES];
-    [zanbutton addTarget:self action:@selector(likeThisHouse:) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.functionBar addSubview:zanbutton];
+    [self.functionBar.likeButton setSelected:[self.photoInfo[@"is_zan"] integerValue]==0?NO:YES];
+    [self.functionBar.likeButton setTitle:[NSString stringWithFormat: @"  %@",self.photoInfo[@"zan_num"]] forState:(UIControlStateNormal)];
+    [self.functionBar.likeButton addTarget:self action:@selector(likeThisHouse:) forControlEvents:(UIControlEventTouchUpInside)];
     
-    UIButton *collectbutton = [Tools creatButton:CGRectMake(KScreenWidth - 140, 10, 70, 30) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#666666"] title:[NSString stringWithFormat:@" %@",self.photoInfo[@"collect_num"]] image:@"colle"];
-    [collectbutton setImage:[UIImage imageNamed:@"colle_xz"] forState:(UIControlStateSelected)];
-    [collectbutton setSelected:[self.photoInfo[@"is_collect"] integerValue]==0?NO:YES];
-    [collectbutton addTarget:self action:@selector(collectThisHouse:) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.functionBar addSubview:collectbutton];
+    [self.functionBar.collectButton setTitle:[NSString stringWithFormat:  @" %@",self.photoInfo[@"collect_num"]] forState:(UIControlStateNormal)];
+    [self.functionBar.collectButton setSelected:[self.photoInfo[@"is_collect"] integerValue]==0?NO:YES];
+    [self.functionBar.collectButton addTarget:self action:@selector(collectThisHouse:) forControlEvents:(UIControlEventTouchUpInside)];
     
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(15, 10, KScreenWidth - 160, 30)];
-    [backView setBackgroundColor:MDRGBA(242, 242, 242, 1)];
-    [backView.layer setCornerRadius:5];
-    [backView setClipsToBounds:YES];
-    [self.functionBar addSubview:backView];
+    [self.functionBar.backView.layer setCornerRadius:5];
+    [self.functionBar.backView setClipsToBounds:YES];
     
-    [backView addSubview:[Tools creatLabel:CGRectMake(10, 0, KScreenWidth - 150, 30) font:[UIFont systemFontOfSize:14] color:MDRGBA(185, 185, 185, 1) alignment:(NSTextAlignmentLeft) title:@"留下你的意见，让房子更加美丽。"]];
-    
-    [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(commentThisHouse)]];
+    [self.functionBar.backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(commentThisHouse)]];
 }
 
 #pragma mark -- tableView

@@ -11,7 +11,7 @@
 @interface HouseCommentView : UIView
 
 @property (nonatomic,strong)NSString *house_id;
-
+@property (nonatomic,copy) void(^selectCommentToshow)(UIViewController *vc);
 - (void)openDisplay;
 
 - (void)addComment;

@@ -22,6 +22,7 @@
 @property (nonatomic,copy)NSString *head;
 @property (nonatomic,copy)NSString *nick_name;
 @property (nonatomic,copy)NSString *collect_num;
+@property (nonatomic,copy)NSString *is_collect;
 @property (nonatomic,copy)NSString *userId;
 @property (nonatomic,copy)NSDictionary *member_info;
 

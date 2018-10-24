@@ -14,6 +14,7 @@
 #import "PowerStatonModel.h"
 #import "CustomAnnotationView.h"
 #import "ProwerStationDetails.h"
+#import <MapKit/MapKit.h>
 
 @interface PowerStationDetailsViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate>
 {
@@ -29,6 +30,7 @@
 @property (nonatomic,strong)NSMutableDictionary     * data;
 @property (nonatomic,strong)ProwerStationDetails    * stationDetails;
 @property (nonatomic,strong)UIView                  * GPSView;
+@property (nonatomic,strong)NSMutableArray          * mapArr;
 
 @end
 
@@ -99,10 +101,12 @@
         [_GPSView addSubview:[Tools creatImage:CGRectMake(17.4, 10, 25, 25) image:@"direction-w"]];
         [_GPSView addSubview:[Tools creatLabel:CGRectMake(0, 38, 60, 12) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] alignment:(NSTextAlignmentCenter) title:@"到这去"]];
         
+        [_GPSView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dohang)]];
+        
     }
     return _GPSView;
 }
-
+#pragma mark -- 获取电站信息
 - (void)getPowerStationData:(CLLocationCoordinate2D)coordinate2D{
     
     if (self.pointArr.count >0) {
@@ -153,6 +157,116 @@
         _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth,MDXFrom6(200))];
     }
     return _mapView;
+}
+
+#pragma mark - 导航方法
+- (void)dohang{
+    
+    
+    self.mapArr = [NSMutableArray arrayWithArray:[self getInstalledMapAppWithEndLocation:CLLocationCoordinate2DMake([self.data[@"lat"] floatValue], [self.data[@"lng"] floatValue])]];
+
+
+    [self creatAlertViewControllerWithMessage:@"地图选择"];
+
+}
+
+- (void)creatAlertViewControllerWithMessage:(NSString *)message{
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:(UIAlertControllerStyleActionSheet)];
+    
+    
+    for (NSDictionary *dic in self.mapArr) {
+        UIAlertAction *trueA = [UIAlertAction actionWithTitle:dic[@"title"] style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            
+            if ([dic[@"title"] isEqualToString:@"苹果地图"]) {
+                [self selfMap];
+            }
+            else{
+                NSString *urlString = dic[@"url"];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+            }
+            
+        }];
+        
+        [alert addAction:trueA];
+    }
+    
+    UIAlertAction *trueA = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
+        
+        
+        
+    }];
+    
+    [alert addAction:trueA];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
+- (NSArray *)getInstalledMapAppWithEndLocation:(CLLocationCoordinate2D)endLocation
+{
+    NSMutableArray *maps = [NSMutableArray array];
+    
+    //苹果地图
+    NSMutableDictionary *iosMapDic = [NSMutableDictionary dictionary];
+    iosMapDic[@"title"] = @"苹果地图";
+    [maps addObject:iosMapDic];
+    
+    //百度地图
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]]) {
+        NSMutableDictionary *baiduMapDic = [NSMutableDictionary dictionary];
+        baiduMapDic[@"title"] = @"百度地图";
+        NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=%@&mode=driving&coord_type=gcj02",endLocation.latitude,endLocation.longitude,@"222"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        baiduMapDic[@"url"] = urlString;
+        [maps addObject:baiduMapDic];
+    }
+    
+    //高德地图
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"iosamap://"]]) {
+        NSMutableDictionary *gaodeMapDic = [NSMutableDictionary dictionary];
+        gaodeMapDic[@"title"] = @"高德地图";
+        NSString *urlString = [[NSString stringWithFormat:@"iosamap://navi?sourceApplication=%@&backScheme=%@&lat=%f&lon=%f&dev=0&style=2",@"2222",@"anjuyi",endLocation.latitude,endLocation.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        gaodeMapDic[@"url"] = urlString;
+        [maps addObject:gaodeMapDic];
+    }
+//        //谷歌地图
+//        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"comgooglemaps://"]]) {
+//            NSMutableDictionary *googleMapDic = [NSMutableDictionary dictionary];
+//            googleMapDic[@"title"] = @"谷歌地图";
+//            NSString *urlString = [[NSString stringWithFormat:@"comgooglemaps://?x-source=%@&x-success=%@&saddr=&daddr=%f,%f&directionsmode=driving",@"导航测试",@"nav123456",endLocation.latitude, endLocation.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//            googleMapDic[@"url"] = urlString;
+//            [maps addObject:googleMapDic];
+//        }
+    
+        //腾讯地图
+        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"qqmap://"]]) {
+            NSMutableDictionary *qqMapDic = [NSMutableDictionary dictionary];
+            qqMapDic[@"title"] = @"腾讯地图";
+            NSString *urlString = [[NSString stringWithFormat:@"qqmap://map/routeplan?from=我的位置&type=drive&tocoord=%f,%f&to=终点&coord_type=1&policy=0",endLocation.latitude, endLocation.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            qqMapDic[@"url"] = urlString;
+            [maps addObject:qqMapDic];
+        }
+    
+    return maps;
+}
+
+- (void)selfMap{
+    
+    float myX = _myLocation.latitude;
+    float myY = _myLocation.longitude;
+    float latitude = [self.data[@"lat"] floatValue];
+    float longitude = [self.data[@"lng"] floatValue];
+    
+    NSLog(@"%f --- %f --- %f --- %f",myX ,myY ,latitude ,longitude);
+    CLLocationCoordinate2D coords1 = CLLocationCoordinate2DMake(myX, myY);
+    CLLocationCoordinate2D coords2 = CLLocationCoordinate2DMake(latitude, longitude);
+    //当前的位置 //
+    //MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
+    MKMapItem *currentLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coords1 addressDictionary:nil]]; //起点
+    MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coords2 addressDictionary:nil]]; //终点
+    currentLocation.name = @"当前位置";
+    toLocation.name = self.data[@"name"];
+    NSArray *items = [NSArray arrayWithObjects:currentLocation, toLocation, nil]; NSDictionary *options = @{ MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving, MKLaunchOptionsMapTypeKey: [NSNumber numberWithInteger:MKMapTypeStandard], MKLaunchOptionsShowsTrafficKey:@YES}; //打开苹果自身地图应用，并呈现特定的item
+    [MKMapItem openMapsWithItems:items launchOptions:options];
 }
 
 #pragma mark -- BMKLocationServiceDelegate

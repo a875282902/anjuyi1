@@ -51,7 +51,7 @@
   manager.requestSerializer = [AFHTTPRequestSerializer serializer]; // 上传普通格式
 
     
- [manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"text/html", @"application/json",@"application/json", @"text/json", @"text/javascript",@"text/html",nil]];
+ [manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"text/html", @"application/json",@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/plain",nil]];
     
 
     return manager;

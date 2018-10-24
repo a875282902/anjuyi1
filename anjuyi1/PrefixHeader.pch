@@ -66,7 +66,8 @@
 #define GCOLOR [UIColor colorWithHexString:@"#5cc6c6"]
 #define GRAYCOLOR [UIColor colorWithHexString:@"#999999"]
 
-#define KURL @"https://api.ajyvip.com"
+//#define KURL @"https://api.ajyvip.com"
+#define KURL @"http://api.sundavip.com"
 
 //参数
 #define JGAppKey @"24366ef1db5d7e438a2a522c"
@@ -80,7 +81,17 @@
 //TestinDataAnalysiskey
 #define BUGKEY @"2e068f6983b534f520e0e6d6eb49aa1d"
 
+//#define QQID @"101513876"
+#define QQID @"1104651968"
+//#define QQKEY @"698f259cef6211e4009414f649782f58"
+#define QQKEY @"pUfexagLYbfemZxp"
+
+#define WXID @"wxecdea0abc012d83a"
+#define WXSECRET @"d3958a80cd8ef7439172ad5083827eaf"
+
 #define UTOKEN [[NSUserDefaults standardUserDefaults] valueForKey:@"UTOKEN"]
+
+#define SearchCate @[@{@"id":@"1",@"name":@"图片"},@{@"id":@"2",@"name":@"整屋"},@{@"id":@"3",@"name":@"攻略"},@{@"id":@"4",@"name":@"话题"},@{@"id":@"5",@"name":@"用户"},@{@"id":@"6",@"name":@"工长"},@{@"id":@"7",@"name":@"设计师"},@{@"id":@"8",@"name":@"监理"}]
 
 #ifdef __OBJC__
 

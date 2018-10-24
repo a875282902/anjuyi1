@@ -13,5 +13,7 @@ pod 'FMDB', '~> 2.7.2'
 
 pod 'TestinDataAnalysis', '~>5.0.0'
 
+pod 'WechatOpenSDK'
+
 end
 

@@ -9,6 +9,11 @@
 #import "SearchListView.h"
 #import "HouseTableViewCell.h"
 #import "UserTableViewCell.h"
+#import "HouseDetailsViewController.h"
+#import "DesignerDetailsVC.h"//设计师详情
+#import "MasterDetailsVC.h"//工长详情
+#import "StrategyDetailsViewController.h"//攻略详情
+#import "TopicDetailsViewController.h"//话题详情
 
 @interface SearchListView ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -122,6 +127,41 @@
         return 100;
     }
     return 65;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (_index == 2) {//整屋
+        HouseDetailsViewController *vc = [[HouseDetailsViewController alloc] init];
+        vc.house_id = self.dataArr[indexPath.row][@"house_id"];
+        self.selectHouseToShowDetalis(vc);
+    }
+    if (_index == 3) {//攻略详情
+        StrategyDetailsViewController *vc = [[StrategyDetailsViewController alloc] init];
+        vc.strategy_id = self.dataArr[indexPath.row][@"strategy_id"];
+        self.selectHouseToShowDetalis(vc);
+    }
+    if (_index == 4) {//话题详情
+        TopicDetailsViewController *vc = [[TopicDetailsViewController alloc] init];
+        vc.topic_id = self.dataArr[indexPath.row][@"topic_id"];
+        NSArray *arr = @[[UIColor colorWithHexString:@"#62afd3"],
+                         [UIColor colorWithHexString:@"#8f8e94"],
+                         [UIColor colorWithHexString:@"#d3a25d"],
+                         [UIColor colorWithHexString:@"#ad544b"],
+                         [UIColor colorWithHexString:@"#57aa63"]];
+        
+        vc.backColor = arr[arc4random()%5];
+        self.selectHouseToShowDetalis(vc);
+    }
+    if (_index == 6) {//工长
+        MasterDetailsVC *vc = [[MasterDetailsVC alloc] init];
+        vc.masterID = self.dataArr[indexPath.row][@"user_id"];
+        self.selectHouseToShowDetalis(vc);
+    }
+    if (_index == 7) {//设计师
+        DesignerDetailsVC *vc = [[DesignerDetailsVC alloc] init];
+        vc.designerID = self.dataArr[indexPath.row][@"user_id"];
+        self.selectHouseToShowDetalis(vc);
+    }
 }
 
 

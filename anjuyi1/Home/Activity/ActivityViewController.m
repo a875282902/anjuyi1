@@ -28,7 +28,6 @@
     
     [super viewWillAppear:animated];
     
-
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
@@ -166,6 +165,7 @@
             [_tmpTableView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
         }
         [_tmpTableView setRowHeight:UITableViewAutomaticDimension];
+        [_tmpTableView setEstimatedRowHeight:100.0f];
         [_tmpTableView setShowsVerticalScrollIndicator:NO];
         [_tmpTableView setShowsHorizontalScrollIndicator:NO];
         [_tmpTableView setDataSource:self];

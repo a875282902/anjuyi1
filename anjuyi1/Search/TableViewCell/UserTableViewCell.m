@@ -22,8 +22,27 @@
 - (void)bandDataWithDictionary:(NSDictionary *)dic{
     
     [self.headImage sd_setImageWithURL:[NSURL URLWithString:dic[@"userhead"]]];
-    [self.nameLabel setText:dic[@"username"]];
-    [self.numLabel setText:dic[@"address"]];
+    [self.nameLabel setAttributedText:[self stringToAttribute:dic[@"username"]]];
+    [self.numLabel setText:[NSString stringWithFormat:@"被关注数%@",dic[@"fan_num"]]];
+}
+
+- (NSMutableAttributedString *)stringToAttribute:(NSString *)str{
+    
+    if (str == nil) {
+        str = @"";
+    }
+    NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:str];
+    
+    if ([str length] > 9 && [str rangeOfString:@"<em>"].location != NSNotFound) {
+        
+        NSArray * startArr = [str componentsSeparatedByString:@"<em>"];
+        NSArray * endArr = [startArr[1] componentsSeparatedByString:@"</em>"];
+        
+        attri = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@%@",startArr[0],endArr[0],endArr[1]]];
+        [attri addAttribute:NSForegroundColorAttributeName value:GCOLOR range:NSMakeRange([startArr[0] length], [endArr[0] length])];
+        
+    }
+    return attri;
 }
 
 - (void)awakeFromNib {

@@ -17,7 +17,7 @@
 
 #import "ShowDetailsViewController.h"
 
-
+#import "ShowWebViewController.h"
 
 @interface ChargingHomeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -27,7 +27,7 @@
 
 @property (nonatomic,strong)IanScrollView   *  bannerScroll;
 @property (nonatomic,strong)NSMutableArray  *  bannerArr;
-
+@property (nonatomic,assign)NSInteger          page;
 @end
 
 @implementation ChargingHomeViewController
@@ -45,10 +45,110 @@
     [self.view addSubview:self.tmpTableView];
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1)]];
-    
+    self.page = 1;
     [self getBannerData];
     
-    [self getNewsData];
+    [self load];
+    [self pullDownRefresh];
+}
+
+#pragma mark -- refresh
+- (void)load{
+    __weak typeof(self) weakSelf = self;
+    
+    self.tmpTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.page = 1;
+        [weakSelf.dataArr removeAllObjects];
+        [weakSelf.tmpTableView.mj_footer resetNoMoreData];
+        [weakSelf pullDownRefresh];
+    }];
+    
+    self.tmpTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        weakSelf.page ++;
+        [weakSelf pullUpLoadMore];
+    }];
+    
+}
+//下拉刷新
+- (void)pullDownRefresh{
+    NSString *path = [NSString stringWithFormat:@"%@/charging/article_list",KURL];
+    
+    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]] ) {
+                for (NSDictionary *dict in responseObject[@"datas"]) {
+                    [weakSelf.dataArr addObject:dict];
+                }
+            }
+            [weakSelf.tmpTableView.mj_header endRefreshing];
+            [weakSelf.tmpTableView reloadData];
+        }
+        else{
+            [weakSelf.tmpTableView.mj_header endRefreshing];
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        if (weakSelf.dataArr.count < weakSelf.page *10) {
+            [weakSelf.tmpTableView.mj_footer endRefreshingWithNoMoreData];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        [weakSelf.tmpTableView.mj_header endRefreshing];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+}
+//上拉加载
+- (void)pullUpLoadMore{
+    NSString *path = [NSString stringWithFormat:@"%@/charging/article_list",KURL];
+    
+    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]] ) {
+                for (NSDictionary *dict in responseObject[@"datas"]) {
+                    [weakSelf.dataArr addObject:dict];
+                }
+            }
+           
+        }
+        else{
+            [weakSelf.tmpTableView.mj_footer endRefreshing];
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        if (weakSelf.dataArr.count < weakSelf.page *10) {
+            [weakSelf.tmpTableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [weakSelf.tmpTableView.mj_footer endRefreshing];
+        }
+        [weakSelf.tmpTableView reloadData];
+        
+    } failure:^(NSError * _Nullable error) {
+        [weakSelf.tmpTableView.mj_footer endRefreshing];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
 }
 
 - (void)getBannerData{
@@ -91,45 +191,6 @@
     }];
 }
 
-- (void)getNewsData{
-    
-    NSString *path = [NSString stringWithFormat:@"%@/charging/article_list",KURL];
-    
-    NSDictionary *dic = @{@"page":@"1"};
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    __weak typeof(self) weakSelf = self;
-    
-    [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
-        
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
-        if ([responseObject[@"code"] integerValue] == 200) {
-            
-            [weakSelf.bannerArr removeAllObjects];
-            
-            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]] ) {
-                for (NSDictionary *dict in responseObject[@"datas"]) {
-                    [weakSelf.dataArr addObject:dict];
-                }
-            }
-        
-            [weakSelf.tmpTableView reloadData];
-        }
-        else{
-            
-            [ViewHelps showHUDWithText:responseObject[@"message"]];
-        }
-        
-        
-    } failure:^(NSError * _Nullable error) {
-        
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [RequestSever showMsgWithError:error];
-    }];
-    
-}
 
 #pragma mark -- headerView
 - (UIView *)headerView{
@@ -154,7 +215,14 @@
     }
     if (barr.count != 0) {
         [self.bannerScroll setSlideImagesArray:barr];
-        [_headerView addSubview:self.bannerScroll];
+        WKSELF;
+        [self.bannerScroll setIanEcrollViewSelectAction:^(NSInteger index) {
+            BannerModel *model = weakSelf.bannerArr[index];
+            ShowWebViewController *vc = [[ShowWebViewController alloc] init];
+            vc.url = model.url;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
+        [self.headerView addSubview:self.bannerScroll];
         [self.bannerScroll startLoading];
     }
     
@@ -166,7 +234,7 @@
         UIView *back = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth*i/4, height, KScreenWidth/4, 85)];
         [back addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectService:)]];
         [back setTag:i];
-        [_headerView addSubview:back];
+        [self.headerView addSubview:back];
         
         [back addSubview:[Tools creatImage:CGRectMake((KScreenWidth/4 - 25)/2, 23, 25, 25) image:[NSString stringWithFormat:@"cdz_ico%ld",i+1]]];
         
@@ -185,6 +253,8 @@
     height += 25;
     
     [self.headerView setFrame:CGRectMake(0, 0, KScreenWidth, height)];
+    
+    [self.tmpTableView setTableHeaderView:self.headerView];
 }
 
 - (IanScrollView *)bannerScroll{
@@ -208,7 +278,6 @@
         }
         [_tmpTableView setShowsVerticalScrollIndicator:NO];
         [_tmpTableView setShowsHorizontalScrollIndicator:NO];
-        [_tmpTableView setTableHeaderView:self.headerView];
         [_tmpTableView setTableFooterView:[UIView new]];
         [_tmpTableView setDataSource:self];
         [_tmpTableView setDelegate:self];
@@ -255,7 +324,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     ShowDetailsViewController *vc = [[ShowDetailsViewController alloc] init];
-    vc.url = [NSString stringWithFormat:@"https://api.ajyvip.com/charging/article_detail/id/%@",self.dataArr[indexPath.row][@"id"]];
+    vc.url = [NSString stringWithFormat:@"%@/charging/article_detail/id/%@",KURL,self.dataArr[indexPath.row][@"id"]];
     [vc.navigationItem setTitle:@"新闻详情"];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -266,13 +335,13 @@
     switch (sender.view.tag) {
         case 0:
         {
-            LOGIN
             QuickOrderViewController *vc = [[QuickOrderViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 1:
         {
+            
             ChargingAgreementViewController *vc = [[ChargingAgreementViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }

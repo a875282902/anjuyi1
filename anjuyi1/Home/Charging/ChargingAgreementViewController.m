@@ -8,6 +8,7 @@
 //
 
 #import "ChargingAgreementViewController.h"
+#import "QuickOrderViewController.h"
 
 @interface ChargingAgreementViewController ()<UIWebViewDelegate,NSURLConnectionDelegate>
 {
@@ -27,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.baseStr = @"https://api.ajyvip.com/charging/install_instructions";
+    self.baseStr =[NSString stringWithFormat: @"%@/charging/install_instructions",KURL];
     
     [self baseForDefaultLeftNavButton];
     [self setTitle:@"安装须知"];
@@ -57,8 +58,8 @@
 }
 
 - (void)backLogin{
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    QuickOrderViewController *vc = [[QuickOrderViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UIWebViewDelegate

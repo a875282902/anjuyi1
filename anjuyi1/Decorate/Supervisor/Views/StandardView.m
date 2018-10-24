@@ -46,17 +46,17 @@
 }
 - (void)setUpView{
     
-    self.backView = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth, KStatusBarHeight, KScreenWidth - MDXFrom6(50) , KScreenHeight - KStatusBarHeight)];
+    self.backView = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth, 0, KScreenWidth - MDXFrom6(50) , KScreenHeight)];
     [self.backView setBackgroundColor:[UIColor whiteColor]];
     [self addSubview:self.backView];
     
-    [self.backView addSubview:[Tools creatLabel:CGRectMake(20, 20,self.backView.frame.size.width - 40 , 20) font:[UIFont systemFontOfSize:15] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:@"全程监理服务"]];
+    [self.backView addSubview:[Tools creatLabel:CGRectMake(20, 20+KStatusBarHeight,self.backView.frame.size.width - 40 , 20) font:[UIFont systemFontOfSize:15] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:@"全程监理服务"]];
     
-    [self.backView addSubview:[Tools creatLabel:CGRectMake(20, 55,self.backView.frame.size.width - 40 , 20) font:[UIFont systemFontOfSize:15] color:[UIColor redColor] alignment:(NSTextAlignmentLeft) title:@"￥20元/平米"]];
+    [self.backView addSubview:[Tools creatLabel:CGRectMake(20, 55+KStatusBarHeight,self.backView.frame.size.width - 40 , 20) font:[UIFont systemFontOfSize:15] color:[UIColor redColor] alignment:(NSTextAlignmentLeft) title:@"￥20元/平米"]];
     
-    [self.backView addSubview:[Tools setLineView:CGRectMake(0, 79, self.backView.frame.size.width, 1)]];
+    [self.backView addSubview:[Tools setLineView:CGRectMake(0, 79+KStatusBarHeight, self.backView.frame.size.width, 1)]];
     
-    self.tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 80, self.backView.frame.size.width, self.backView.frame.size.height - 130 )];
+    self.tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 80+KStatusBarHeight, self.backView.frame.size.width, self.backView.frame.size.height - 130-KStatusBarHeight )];
     [self.tmpScrollView setShowsVerticalScrollIndicator:NO];
     [self.tmpScrollView setShowsHorizontalScrollIndicator:NO];
     [self.backView addSubview:self.tmpScrollView];
@@ -166,7 +166,7 @@
     [self setHidden:NO];
     
     [UIView animateWithDuration:.3 animations:^{
-        [self.backView setFrame:CGRectMake(MDXFrom6(50), KStatusBarHeight, KScreenWidth - MDXFrom6(50) , KScreenHeight - KStatusBarHeight)];
+        [self.backView setFrame:CGRectMake(MDXFrom6(50),0, KScreenWidth - MDXFrom6(50) , KScreenHeight)];
         
     }];
 }
@@ -175,7 +175,7 @@
     
     [UIView animateWithDuration:.3 animations:^{
         
-        [self.backView setFrame:CGRectMake(KScreenWidth, KStatusBarHeight, KScreenWidth - MDXFrom6(50) , KScreenHeight - KStatusBarHeight)];
+        [self.backView setFrame:CGRectMake(KScreenWidth, 0, KScreenWidth - MDXFrom6(50) , KScreenHeight)];
     } completion:^(BOOL finished) {
         [self setHidden:YES];
         

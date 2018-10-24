@@ -47,7 +47,11 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
-
+- (void)leftButtonTouchUpInside:(id)sender{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 //#pragma mark - UIWebViewDelegate
 //

@@ -10,6 +10,8 @@
 
 @interface SearchListView : UIView
 
+@property (nonatomic , copy) void (^selectHouseToShowDetalis)(UIViewController *vc);
+
 - (void)setUpKeyWord:(NSString *)keyword type:(NSString *)type;
 
 @end

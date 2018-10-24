@@ -30,7 +30,7 @@
     [self baseForDefaultLeftNavButton];
     [self setTitle:@"关于我们"];
     
-    self.baseStr = @"https://api.ajyvip.com/login/about";
+    self.baseStr = [NSString stringWithFormat:@"%@/login/about",KURL];
     
     self.tmpWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth , KViewHeight)];
     [self.tmpWebView setBackgroundColor:[UIColor whiteColor]];

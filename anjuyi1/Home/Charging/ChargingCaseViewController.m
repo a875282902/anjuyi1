@@ -193,7 +193,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     ShowDetailsViewController *vc = [[ShowDetailsViewController alloc] init];
-    vc.url = [NSString stringWithFormat:@"https://api.ajyvip.com/charging/case_detail/id/%@",self.dataArr[indexPath.row][@"id"]];
+    vc.url = [NSString stringWithFormat:@"%@/charging/case_detail/id/%@",KURL,self.dataArr[indexPath.row][@"id"]];
     [vc.navigationItem setTitle:@"案例详情"];
     [self.navigationController pushViewController:vc animated:YES];
     

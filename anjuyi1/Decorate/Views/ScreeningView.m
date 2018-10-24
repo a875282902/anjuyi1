@@ -55,7 +55,7 @@
 }
 - (void)setUpView{
     
-    self.backView = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth, KStatusBarHeight, KScreenWidth - MDXFrom6(50) , KScreenHeight - KStatusBarHeight)];
+    self.backView = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth, 0, KScreenWidth - MDXFrom6(50) , KScreenHeight)];
     [self.backView setBackgroundColor:[UIColor whiteColor]];
     [self addSubview:self.backView];
     
@@ -79,7 +79,7 @@
 
 - (void)setUpContentView{
     
-    CGFloat height = MDXFrom6(30);
+    CGFloat height = MDXFrom6(30)+KStatusBarHeight;
     
     [self.sureArr removeAllObjects];
     
@@ -247,7 +247,7 @@
     [self setHidden:NO];
     
     [UIView animateWithDuration:.3 animations:^{
-        [self.backView setFrame:CGRectMake(MDXFrom6(50), KStatusBarHeight, KScreenWidth - MDXFrom6(50) , KScreenHeight - KStatusBarHeight)];
+        [self.backView setFrame:CGRectMake(MDXFrom6(50), 0, KScreenWidth - MDXFrom6(50) , KScreenHeight )];
         
     }];
 }
@@ -256,7 +256,7 @@
     
     [UIView animateWithDuration:.3 animations:^{
         
-        [self.backView setFrame:CGRectMake(KScreenWidth, KStatusBarHeight, KScreenWidth - MDXFrom6(50) , KScreenHeight - KStatusBarHeight)];
+        [self.backView setFrame:CGRectMake(KScreenWidth, 0, KScreenWidth - MDXFrom6(50) , KScreenHeight )];
     } completion:^(BOOL finished) {
         [self setHidden:YES];
       

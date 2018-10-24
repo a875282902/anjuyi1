@@ -27,11 +27,14 @@
 #import "StoresViewController.h"//附近社区门店
 
 #import "PhotoDetailsViewController.h"
+#import "PhotoCommentView.h"
+#import "CommentDetalisViewController.h"
 
 #import "SearchViewController.h"
+#import "SearchResultsViewController.h"
 
 #import <StoreKit/StoreKit.h>
-
+#import "AuxiliaryOrderViewController.h"
 #define hederHeight MDXFrom6(55)
 
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource,SKStoreProductViewControllerDelegate>
@@ -44,6 +47,8 @@
 
 @property (nonatomic,strong)IanScrollView   *    bannerScroll;
 @property (nonatomic,strong)NSMutableArray  *    bannerArr;
+
+@property (nonatomic,strong)PhotoCommentView * commentView;
 
 @end
 
@@ -86,6 +91,25 @@
     [self.tmpTableView.mj_header beginRefreshing];
     
     [self promptUpdate];
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:self.commentView];
+}
+
+- (PhotoCommentView *)commentView{
+    
+    if (!_commentView) {
+        _commentView = [[PhotoCommentView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+        WKSELF;
+        [_commentView setSelectCommentDetails:^(NSString *eva_id) {
+            
+            CommentDetalisViewController *vc = [[CommentDetalisViewController alloc] init];
+            vc.eva_id = eva_id;
+            vc.type = 1;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+            
+        }];
+    }
+    return _commentView;
 }
 
 #pragma mark -- refresh
@@ -274,7 +298,7 @@
     
     //storage Charging  shop
     NSArray *arr = @[@"storage",@"Charging",@"shop"];
-    NSArray *tarr = @[@"仓库租赁",@"充电桩安装",@"自营社区门店"];
+    NSArray *tarr = @[@"辅助下单",@"充电桩安装",@"自营社区门店"];
     NSArray *uArr = @[self.headerModel.warehouse_img,self.headerModel.charging_pile,self.headerModel.owned_store];
     for (NSInteger i = 0 ; i < 3; i++) {
         
@@ -484,7 +508,8 @@
     
     // 评论
     UIButton *commentBtn = [Tools creatButton:CGRectMake(MDXFrom6(145), MDXFrom6(310), MDXFrom6(70), MDXFrom6(23)) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#000000"] title:[NSString stringWithFormat:@" %@",dic[@"evaluate_num"]] image:@"com"];
-    [commentBtn addTarget:self action:@selector(comment) forControlEvents:(UIControlEventTouchUpInside)];
+    [commentBtn setTag:index];
+    [commentBtn addTarget:self action:@selector(comment:) forControlEvents:(UIControlEventTouchUpInside)];
     [likeView addSubview:commentBtn];
     
     //  收藏
@@ -504,7 +529,7 @@
     [likeView addSubview:zanBtn];
     
 //    [attention setUserInteractionEnabled:NO];
-//    [shareBtn setUserInteractionEnabled:NO];
+    [shareBtn setUserInteractionEnabled:NO];
 //    [commentBtn setUserInteractionEnabled:NO];
 //    [likeBtn setUserInteractionEnabled:NO];
 //    [zanBtn setUserInteractionEnabled:NO];
@@ -527,10 +552,12 @@
     
     for (NSInteger i = 0 ; i < dArr.count; i++) {
         
-        UIImageView *image =[self setImageViewWithFrame:CGRectMake(MDXFrom6(10)+MDXFrom6(130*i), 0,MDXFrom6(120), MDXFrom6(65)) andImageName:arr[arc4random()%3] andTag:(i+100) image:@""];
-        [activityScroll addSubview:image];
+        UIButton *btn = [Tools creatButton:CGRectMake(MDXFrom6(10)+MDXFrom6(130*i), 0,MDXFrom6(120), MDXFrom6(65)) font:[UIFont systemFontOfSize:12] color:[UIColor blackColor] title:dArr[i][@"name"] image:@""];
+        [btn setBackgroundImage:[UIImage imageNamed:arr[arc4random()%3]]  forState:(UIControlStateNormal)];
+        [btn setTag:index *1000+i];
+        [btn addTarget:self action:@selector(showLabelContent:) forControlEvents:(UIControlEventTouchUpInside)];
+        [activityScroll addSubview:btn];
         
-        [image addSubview:[Tools creatLabel:CGRectMake(0, 0, MDXFrom6(120), MDXFrom6(65)) font:[UIFont systemFontOfSize:12] color:[UIColor blackColor] alignment:(NSTextAlignmentCenter) title:dArr[i][@"name"]]];
     }
     
     [activityScroll setContentSize:CGSizeMake(MDXFrom6(130*dArr.count), MDXFrom6(120))];
@@ -661,9 +688,11 @@
 - (void)selectStorageOrChargingOrShop:(UITapGestureRecognizer *)sender{
     
     switch (sender.view.tag) {
-        case 0://仓库租赁
+        case 0://辅助下单
         {
-            
+            LOGIN
+            AuxiliaryOrderViewController *vc = [[AuxiliaryOrderViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
             
@@ -748,9 +777,11 @@
 }
 
 //评论
-- (void)comment{
+- (void)comment:(UIButton *)sender{
     LOGIN
-    
+    NSString *photo_id = self.dataArr[sender.tag][@"image_id"];
+    [self.commentView setPhoto_id:photo_id];
+    [self.commentView openDisplay];
 }
 //收藏
 - (void)collect:(UIButton *)sender{
@@ -827,6 +858,19 @@
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [RequestSever showMsgWithError:error];
     }];
+}
+
+- (void)showLabelContent:(UIButton *)sender{
+    NSInteger index = sender.tag/1000;
+    NSInteger n = sender.tag%1000;
+    NSArray *arr = self.dataArr[index][@"tag_list"];
+    
+    if (n < arr.count) {
+        
+        SearchResultsViewController *vc = [[SearchResultsViewController alloc] init];
+        vc.keyword = arr[n][@"name"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma mark -- delegate

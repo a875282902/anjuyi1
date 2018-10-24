@@ -39,7 +39,7 @@
     [self.view addSubview:self.channelView];
     
     //搜索框
-    SearchView *search = [[SearchView alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(320), 30) Title:@"搜索"];
+    SearchView *search = [[SearchView alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(320), 30) Title:self.keyword];
     [search addTarget:self action:@selector(jumpSearch)];
     [self.navigationItem setTitleView:search];
     
@@ -53,31 +53,34 @@
 - (void)getType{
     
     
-    NSString *path = [NSString stringWithFormat:@"%@/search/get_search_type",KURL];
+    self.cateArr = [NSMutableArray arrayWithArray:SearchCate];
+    [self setUpContentView];
     
-    __weak typeof(self) weakSelf = self;
-    
-    [HttpRequest POST:path parameters:nil success:^(id  _Nullable responseObject) {
-        
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
-        if ([responseObject[@"code"] integerValue] == 200) {
-            
-            weakSelf.cateArr = [NSMutableArray arrayWithArray:responseObject[@"datas"]];
-            
-            [weakSelf setUpContentView];
-        }
-        else{
-            
-            [ViewHelps showHUDWithText:responseObject[@"message"]];
-        }
-        
-        
-    } failure:^(NSError * _Nullable error) {
-        
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [RequestSever showMsgWithError:error];
-    }];
+//    NSString *path = [NSString stringWithFormat:@"%@/search/get_search_type",KURL];
+//
+//    __weak typeof(self) weakSelf = self;
+//
+//    [HttpRequest POST:path parameters:nil success:^(id  _Nullable responseObject) {
+//
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+//
+//        if ([responseObject[@"code"] integerValue] == 200) {
+//
+//            weakSelf.cateArr = [NSMutableArray arrayWithArray:responseObject[@"datas"]];
+//
+//            [weakSelf setUpContentView];
+//        }
+//        else{
+//
+//            [ViewHelps showHUDWithText:responseObject[@"message"]];
+//        }
+//
+//
+//    } failure:^(NSError * _Nullable error) {
+//
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+//        [RequestSever showMsgWithError:error];
+//    }];
 
 }
 
@@ -162,13 +165,21 @@
     
     [self.listScrollView setContentSize:CGSizeMake(KScreenWidth * self.cateArr.count, self.listScrollView.frame.size.height)];
     
+    WKSELF;
+    
     SearchPhotoView * searchPhotoV = [[SearchPhotoView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, self.listScrollView.frame.size.height)];
     searchPhotoV.keyword = self.keyword;
+    [searchPhotoV setSelectPhotoToShowDetalis:^(UIViewController *vc) {
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    }];
     [self.listScrollView addSubview:searchPhotoV];
     
     for (NSInteger i = 1 ; i < self.cateArr.count; i ++) {
         SearchListView * v = [[SearchListView alloc] initWithFrame:CGRectMake(KScreenWidth*i, 0, KScreenWidth, self.listScrollView.frame.size.height)];
         [v setUpKeyWord:self.keyword type:self.cateArr[i][@"id"]];
+        [v setSelectHouseToShowDetalis:^(UIViewController *vc) {
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
         [self.listScrollView addSubview:v];
     }
     
@@ -188,6 +199,9 @@
     
     if (sender.frame.origin.x+sender.frame.size.width > KScreenWidth) {
         [self.channelView setContentOffset:CGPointMake(sender.frame.origin.x+sender.frame.size.width - KScreenWidth, 0) animated:YES];
+    }else{
+        
+        [self.channelView setContentOffset:CGPointMake(0, 0) animated:YES];
     }
     
     [self.listScrollView setContentOffset:CGPointMake(KScreenWidth *sender.tag, 0) animated:YES];

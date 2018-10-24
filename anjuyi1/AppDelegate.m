@@ -25,12 +25,20 @@
 
 #import <TestinDataAnalysis/TestinDataAnalysis.h>
 
-@interface AppDelegate ()<JPUSHRegisterDelegate>
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <WXApi.h>
+
+#import "LaunchADView.h"
+
+#import "ShowWebViewController.h"
+
+#define QQscheme @"tencent1104651968"
+
+@interface AppDelegate ()<JPUSHRegisterDelegate,WXApiDelegate>
 
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -49,21 +57,45 @@
     
     [self testinDataConfig:launchOptions];
 
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [WXApi registerApp:WXID];
     
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
     [self.window setBackgroundColor:[UIColor whiteColor]];
     
     [self.window setRootViewController:[[RootViewController alloc] init]];
 
     [self.window makeKeyAndVisible];
-    
+    [self loadLaunchADView];
     [HttpRequest checkReachabilityStatus:^(NSString *status) {
        
         NSLog(@"%@",status);
     }];
     
-    
     return YES;
+}
+
+// 广告页
+- (void) loadLaunchADView{
+    LaunchADView *adView = [LaunchADView createADViewWithADImageName:@""];
+    NSString *path = [NSString stringWithFormat:@"%@/currency/get_app_adv",KURL];
+    
+    [HttpRequest POST:path parameters:nil success:^(id  _Nullable responseObject) {
+        
+        [adView.adImageView sd_setImageWithURL:[NSURL URLWithString:responseObject[@"datas"][@"picture"]] placeholderImage:[UIImage imageNamed:@""]];
+
+        [adView setTapAdViewBlock:^{
+            ShowWebViewController * c = [[ShowWebViewController alloc] init];
+            c.url = responseObject[@"datas"][@"url"];
+            BaseNaviViewController *vc = [[BaseNaviViewController alloc] initWithRootViewController:c];
+            [self.window.rootViewController presentViewController:vc animated:YES completion:nil];
+        }];
+        
+    } failure:^(NSError * _Nullable error) {\
+        [RequestSever showMsgWithError:error];
+    }];
+
 }
 
 //注册JGPush
@@ -97,7 +129,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 #pragma mark- JPUSHRegisterDelegate
 
 // iOS 10 Support
-- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler  API_AVAILABLE(ios(10.0)){
     // Required
     NSDictionary * userInfo = notification.request.content.userInfo;
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
@@ -107,7 +139,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 }
 
 // iOS 10 Support
-- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler  API_AVAILABLE(ios(10.0)){
     // Required
     NSDictionary * userInfo = response.notification.request.content.userInfo;
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
@@ -128,6 +160,113 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Required,For systems with less than or equal to iOS6
     [JPUSHService handleRemoteNotification:userInfo];
 }
+
+#pragma mark -- QQ
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    
+    if ([url.scheme isEqualToString:QQscheme])
+        return [TencentOAuth HandleOpenURL:url];
+    if ([url.scheme isEqualToString:WXID])
+        return [WXApi handleOpenURL:url delegate:self];
+    
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
+    if ([url.scheme isEqualToString:QQscheme])
+        return [TencentOAuth HandleOpenURL:url];
+    if ([url.scheme isEqualToString:WXID])
+        return [WXApi handleOpenURL:url delegate:self];
+    
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    if ([url.scheme isEqualToString:QQscheme])
+        return [TencentOAuth HandleOpenURL:url];
+    if ([url.scheme isEqualToString:WXID])
+        return [WXApi handleOpenURL:url delegate:self];
+    
+    return YES;
+}
+
+#pragma mark --  wxapi
+-(void)onResp:(BaseResp*)resp{
+    
+    if ([resp isKindOfClass:[PayResp class]]) {
+        PayResp*response=(PayResp*)resp;  // 微信终端返回给第三方的关于支付结果的结构体
+        switch (response.errCode) {
+            case WXSuccess:
+            {// 支付成功，向后台发送消息
+                NSLog(@"支付成功");
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"WX_PaySuccess" object:nil];
+                [ViewHelps showHUDWithText:@"支付成功"];
+            }
+                break;
+            case WXErrCodeCommon:
+            { //签名错误、未注册APPID、项目设置APPID不正确、注册的APPID与设置的不匹配、其他异常等
+                //                [MBProgressHUD showError:@"支付失败"];
+                //                LXLog(@"支付失败");
+                [ViewHelps showHUDWithText:@"支付失败"];
+            }
+                break;
+            case WXErrCodeUserCancel:
+            { //用户点击取消并返回
+                
+                [ViewHelps showHUDWithText:@"取消支付"];
+            }
+                break;
+            case WXErrCodeSentFail:
+            { //发送失败
+                
+                [ViewHelps showHUDWithText:@"发送失败"];
+            }
+                break;
+            case WXErrCodeUnsupport:
+            { //微信不支持
+                
+                [ViewHelps showHUDWithText:@"微信不支持"];
+            }
+                break;
+            case WXErrCodeAuthDeny:
+            { //授权失败
+                
+                [ViewHelps showHUDWithText:@"授权失败"];
+            }
+                break;
+            default:
+                break;
+        }
+    }
+    //判断是否是微信认证的处理结果
+    if ([resp isKindOfClass:[SendAuthResp class]]) {
+        SendAuthResp *temp = (SendAuthResp *)resp;
+        //如果你点击了取消，这里的temp.code 就是空值
+        if (temp.code != NULL) {
+            //此处判断下返回来的code值是否为错误码
+            /*此处接口地址为微信官方提供，我们只需要将返回来的code值传入再配合appId和appSecret即可获取到accessToken，openId和refreshToken */
+            //https://api.weixin.qq.com/sns  /oauth2/access_token
+            NSString *accessUrlStr = [NSString stringWithFormat:@"%@/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code", @"https://api.weixin.qq.com/sns", WXID, WXSECRET, temp.code];
+        
+            [HttpRequest GET:accessUrlStr parameters:nil success:^(id responseObject) {
+                
+                [self p_successedWeiChatLogin:responseObject];
+            } failure:^(NSError *error) {
+                
+            }];
+        }
+    }
+    
+    
+    
+}
+- (void)p_successedWeiChatLogin:(NSDictionary *)dic{
+    NSDictionary *returnObject = [NSDictionary dictionary];
+    returnObject = dic;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"pushLogoin" object:self userInfo:dic];
+}
+
 
 #pragma mark -- 友盟统计
 - (void)umCommnont{

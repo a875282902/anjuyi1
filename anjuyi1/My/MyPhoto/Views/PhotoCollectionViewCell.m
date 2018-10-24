@@ -14,8 +14,6 @@
 @property (nonatomic,strong)UILabel      *   titleLabel;
 @property (nonatomic,strong)UIImageView  *   headerImage;
 @property (nonatomic,strong)UILabel      *   nameLabel;
-@property (nonatomic,strong)UIImageView  *   likeImage;
-@property (nonatomic,strong)UILabel      *   likeLabel;
 
 @end
 
@@ -58,26 +56,51 @@
     self.nameLabel = [Tools creatLabel:CGRectMake(35,height ,frame.size.width - 40 , 20) font:[UIFont systemFontOfSize:12] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:@"九溪设计"];
     [backView addSubview:self.nameLabel];
     
-    self.likeImage = [Tools creatImage:CGRectMake(frame.size.width - 50, height+2, 15, 15) image:@"detail_star"];
-    [backView addSubview:self.likeImage];
+    self.collectButton = [Tools creatButton:CGRectMake(frame.size.width - 50, height, 50, 20) font:[UIFont systemFontOfSize:12] color:[UIColor blackColor] title:@"" image:@"colle"];
+    [self.collectButton setImage:[UIImage imageNamed:@"colle_xz"] forState:(UIControlStateSelected)];
+    [self.collectButton setSelected:NO];
+    [self.collectButton addTarget:self action:@selector(collect:) forControlEvents:(UIControlEventTouchUpInside)];
+    [backView addSubview:self.collectButton];
     
-    self.likeLabel = [Tools creatLabel:CGRectMake(frame.size.width - 35,height ,35 , 20) font:[UIFont systemFontOfSize:12] color:[UIColor blackColor] alignment:(NSTextAlignmentCenter) title:@"555"];
-    [backView addSubview:self.likeLabel];
+
     
 }
 
 - (void)bandDataWithModel:(MyPhotoModel *)model{
     
     [self.coverImage sd_setImageWithURL:[NSURL URLWithString:model.cover]];
-    [self.titleLabel setText:model.text];
+    [self.titleLabel setAttributedText:[self stringToAttribute:model.text]];
     [self.headerImage sd_setImageWithURL:[NSURL URLWithString:model.head]];
-    [self.nameLabel setText:model.nick_name];
-    [self.likeLabel setText:model.collect_num];
-    
+    [self.nameLabel setAttributedText:[self stringToAttribute:model.nick_name]];
+    [self.collectButton setTitle:[NSString stringWithFormat:@" %@",model.collect_num] forState:(UIControlStateNormal)];
+    [self.collectButton setSelected:[model.is_collect integerValue]==1?YES:NO];
     if (model.member_info) {
         [self.headerImage sd_setImageWithURL:[NSURL URLWithString:model.member_info[@"head"]]];
-        [self.nameLabel setText:model.member_info[@"nickname"]];
+        [self.nameLabel setAttributedText:[self stringToAttribute:model.member_info[@"nickname"]]];
     }
 }
 
+- (void)collect:(UIButton *)sender{
+    
+    self.selectPhotoToCollect(sender);
+}
+
+- (NSMutableAttributedString *)stringToAttribute:(NSString *)str{
+    
+    if (str == nil) {
+        str = @"";
+    }
+    NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:str];
+    
+    if ([str length] > 9 && [str rangeOfString:@"<em>"].location != NSNotFound) {
+        
+        NSArray * startArr = [str componentsSeparatedByString:@"<em>"];
+        NSArray * endArr = [startArr[1] componentsSeparatedByString:@"</em>"];
+        
+        attri = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@%@",startArr[0],endArr[0],endArr[1]]];
+        [attri addAttribute:NSForegroundColorAttributeName value:GCOLOR range:NSMakeRange([startArr[0] length], [endArr[0] length])];
+        
+    }
+    return attri;
+}
 @end

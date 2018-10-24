@@ -10,4 +10,5 @@
 
 @interface SearchHouseView : UIView
 @property (nonatomic , strong) NSString *keyword;
+@property (nonatomic , copy) void (^selectHouseToShowDetalis)(UIViewController *vc);
 @end

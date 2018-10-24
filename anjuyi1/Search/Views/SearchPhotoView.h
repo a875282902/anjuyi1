@@ -10,4 +10,6 @@
 
 @interface SearchPhotoView : UIView
 @property (nonatomic , strong) NSString *keyword;
+
+@property (nonatomic , copy) void (^selectPhotoToShowDetalis)(UIViewController *vc);
 @end

@@ -18,6 +18,15 @@
 
 @implementation BaseViewController
 
+- (void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+    if(self.navigationController.childViewControllers.count == 1)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"noHiddenPushButton" object:nil];
+    }
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -94,10 +103,7 @@
 {
     
     if (sender && [sender isKindOfClass:[UIButton class]]) {
-        if (self.navigationController.childViewControllers.count <= 2) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"noHiddenPushButton" object:nil];
-        }
-        
+
         [self.navigationController popViewControllerAnimated:YES];
     
     }

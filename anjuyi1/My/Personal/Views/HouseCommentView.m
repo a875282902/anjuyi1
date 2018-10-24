@@ -9,6 +9,7 @@
 #import "HouseCommentView.h"
 #import "CommentModel.h"
 #import "HouseCommentTableViewCell.h"
+#import "CommentDetalisViewController.h"
 
 @interface HouseCommentView () <UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
@@ -168,6 +169,18 @@
     
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row < self.dataArr.count) {
+        CommentModel *model = self.dataArr[indexPath.row];
+        CommentDetalisViewController *vc = [[CommentDetalisViewController alloc] init];
+        vc.type = 2;
+        vc.eva_id = model.commit_id ;
+        self.selectCommentToshow(vc);
+    }
+}
+
 
 #pragma mark -- 事件
 

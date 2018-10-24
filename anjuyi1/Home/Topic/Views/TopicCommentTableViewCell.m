@@ -40,10 +40,10 @@
     
     [self.descLabel setText:model.content];
     
-    [self.likeButton setTitle:[NSString stringWithFormat:@"%@",model.zan_num] forState:(UIControlStateNormal)];
+    [self.likeButton setTitle:[NSString stringWithFormat:@"  %@",model.zan_num] forState:(UIControlStateNormal)];
     [self.likeButton setSelected:[model.is_zan integerValue]==1?YES:NO];
     
-    [self.collectButton setTitle:[NSString stringWithFormat:@"%@",model.collect_num] forState:(UIControlStateNormal)];
+    [self.collectButton setTitle:[NSString stringWithFormat:@"  %@",model.collect_num] forState:(UIControlStateNormal)];
     [self.collectButton setSelected:[model.is_collect integerValue]==1?YES:NO];
     
 //    [self.descLabel setNumberOfLines:model.isShow?0:3];

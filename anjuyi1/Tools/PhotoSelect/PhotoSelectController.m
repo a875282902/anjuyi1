@@ -94,6 +94,8 @@
         [self.dataArr insertObject:@"" atIndex:0];
         
         [self.tmpCollectionView reloadData];
+        
+        [self collectionView:self.tmpCollectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:1]];
     
     }
   
@@ -291,6 +293,10 @@
     }
     
     [self.dataArr insertObject:@"" atIndex:0];
+    
+    if (self.dataArr.count >2) {
+        [self collectionView:self.tmpCollectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:1]];
+    }
 }
 
 

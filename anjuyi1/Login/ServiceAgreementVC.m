@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.baseStr = @"https://api.ajyvip.com/login/register_agreement";
+    self.baseStr = [NSString stringWithFormat:@"%@/login/register_agreement",KURL];
     
     self.tmpWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, KStatusBarHeight, KScreenWidth , KScreenHeight - KStatusBarHeight - 60)];
     [self.tmpWebView setBackgroundColor:[UIColor whiteColor]];

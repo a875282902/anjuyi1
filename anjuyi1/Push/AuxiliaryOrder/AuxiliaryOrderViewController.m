@@ -31,6 +31,7 @@
 
 #pragma mark -- 点击事件
 - (void)leftButtonTouchUpInside:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

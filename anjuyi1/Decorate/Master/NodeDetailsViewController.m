@@ -13,7 +13,7 @@
 #import "HouseCommentTableViewCell.h"
 #import "CommentModel.h"
 #import "EditPushPhotoViewController.h"
-
+#import "FunctionBarView.h"
 #import "CommentDetalisViewController.h"
 
 @interface NodeDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -27,7 +27,7 @@
 @property (nonatomic,strong)NodeCommentView      *  commentV;
 @property (nonatomic,strong)UIView               *  infoView;
 @property (nonatomic,strong)UIView               *  footView;
-@property (nonatomic,strong)UIView               *  functionBar;
+@property (nonatomic,strong)FunctionBarView      *  functionBar;
 
 @property (nonatomic,strong)NSMutableDictionary  *  nodeInfo;
 @property (nonatomic,strong)UITableView          *  tmpTableView;
@@ -178,7 +178,7 @@
 - (UIView *)functionBar{
     
     if (!_functionBar) {
-        _functionBar = [[UIView alloc] initWithFrame:CGRectMake(0, KScreenHeight - 50, KScreenWidth, 50)];
+        _functionBar = [[FunctionBarView alloc] initWithFrame:CGRectMake(0, KScreenHeight - 50, KScreenWidth, 50)];
         [_functionBar addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 2)]];
     }
     return _functionBar;
@@ -243,12 +243,12 @@
 - (void)createFootView{
     
     [self.footView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    if (self.commentArr.count == 0) {
-        [self.footView setFrame:CGRectMake(0, 0, KScreenWidth, 0.001)];
-        
-    }
-    else{
-        
+//    if (self.commentArr.count == 0) {
+//        [self.footView setFrame:CGRectMake(0, 0, KScreenWidth, 0.001)];
+//
+//    }
+//    else{
+    
         [self.footView setFrame:CGRectMake(0, 0, KScreenWidth, 80)];
         
         UIButton *btn = [Tools creatButton:CGRectMake(30, 20, KScreenWidth-60, 40) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#666666"] title:[NSString stringWithFormat:@"查看全部%@条评论",self.nodeInfo[@"evaluate_num"]] image:@""];
@@ -256,32 +256,25 @@
         [self.footView addSubview:btn];
         
         [self.footView addSubview:[Tools setLineView:CGRectMake(0, 79, KScreenWidth, 1)]];
-    }
+//    }
+    
+    [self.tmpTableView setTableFooterView:self.footView];
 }
 
 - (void)createFunctionBar{
     
-    UIButton *zanbutton = [Tools creatButton:CGRectMake(KScreenWidth - 70, 10, 70, 30) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#666666"] title:[NSString stringWithFormat:@" %@",self.nodeInfo[@"zan_num"]] image:@"like"];
-    [zanbutton setImage:[UIImage imageNamed:@"like_xz"] forState:(UIControlStateSelected)];
-    [zanbutton setSelected:[self.nodeInfo[@"is_zan"] integerValue]==0?NO:YES];
-    [zanbutton addTarget:self action:@selector(likeThisHouse:) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.functionBar addSubview:zanbutton];
+    [self.functionBar.likeButton setSelected:[self.nodeInfo[@"is_zan"] integerValue]==0?NO:YES];
+    [self.functionBar.likeButton setTitle:[NSString stringWithFormat: @"  %@",self.nodeInfo[@"zan_num"]] forState:(UIControlStateNormal)];
+    [self.functionBar.likeButton addTarget:self action:@selector(likeThisHouse:) forControlEvents:(UIControlEventTouchUpInside)];
     
-    UIButton *collectbutton = [Tools creatButton:CGRectMake(KScreenWidth - 140, 10, 70, 30) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#666666"] title:[NSString stringWithFormat:@" %@",self.nodeInfo[@"collect_num"]] image:@"colle"];
-    [collectbutton setImage:[UIImage imageNamed:@"colle_xz"] forState:(UIControlStateSelected)];
-    [collectbutton setSelected:[self.nodeInfo[@"is_collect"] integerValue]==0?NO:YES];
-    [collectbutton addTarget:self action:@selector(collectThisHouse:) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.functionBar addSubview:collectbutton];
+    [self.functionBar.collectButton setTitle:[NSString stringWithFormat:  @" %@",self.nodeInfo[@"collect_num"]] forState:(UIControlStateNormal)];
+    [self.functionBar.collectButton setSelected:[self.nodeInfo[@"is_collect"] integerValue]==0?NO:YES];
+    [self.functionBar.collectButton addTarget:self action:@selector(collectThisHouse:) forControlEvents:(UIControlEventTouchUpInside)];
     
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(15, 10, KScreenWidth - 160, 30)];
-    [backView setBackgroundColor:MDRGBA(242, 242, 242, 1)];
-    [backView.layer setCornerRadius:5];
-    [backView setClipsToBounds:YES];
-    [self.functionBar addSubview:backView];
+    [self.functionBar.backView.layer setCornerRadius:5];
+    [self.functionBar.backView setClipsToBounds:YES];
     
-    [backView addSubview:[Tools creatLabel:CGRectMake(10, 0, KScreenWidth - 150, 30) font:[UIFont systemFontOfSize:14] color:MDRGBA(185, 185, 185, 1) alignment:(NSTextAlignmentLeft) title:@"留下你的意见，让房子更加美丽。"]];
-    
-    [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(commentThisHouse)]];
+    [self.functionBar.backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(commentThisHouse)]];
 }
 
 #pragma mark -- tableView
@@ -295,10 +288,10 @@
         }
         [_tmpTableView setBackgroundColor:[UIColor whiteColor]];
         [_tmpTableView setRowHeight:UITableViewAutomaticDimension];
+        [_tmpTableView setEstimatedRowHeight:100.0f];
         [_tmpTableView setShowsVerticalScrollIndicator:NO];
         [_tmpTableView setShowsHorizontalScrollIndicator:NO];
         [_tmpTableView setTableHeaderView:self.infoView];
-        [_tmpTableView setTableFooterView:self.footView];
         [_tmpTableView setDataSource:self];
         [_tmpTableView setDelegate:self];
     }

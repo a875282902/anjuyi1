@@ -20,12 +20,29 @@
 
 - (void)bandDataWithModel:(NSDictionary *)dic{
     
-    [self.nameLabel setText:dic[@"username"]];
-    [self.titleLabel setText:dic[@"title"]];
+    [self.nameLabel setAttributedText:[self stringToAttribute:dic[@"username"]]];
+    [self.titleLabel setAttributedText:[self stringToAttribute:dic[@"title"]]];
     [self.areaLabel setText:[NSString stringWithFormat:@"%@m²",dic[@"proportion"]]];
     [self.coverImage sd_setImageWithURL:[NSURL URLWithString:dic[@"img"]]];
 }
-
+- (NSMutableAttributedString *)stringToAttribute:(NSString *)str{
+    
+    if (str == nil) {
+        str = @"";
+    }
+    NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:str];
+    
+    if ([str length] > 9 && [str rangeOfString:@"<em>"].location != NSNotFound) {
+        
+        NSArray * startArr = [str componentsSeparatedByString:@"<em>"];
+        NSArray * endArr = [startArr[1] componentsSeparatedByString:@"</em>"];
+        
+        attri = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@%@",startArr[0],endArr[0],endArr[1]]];
+        [attri addAttribute:NSForegroundColorAttributeName value:GCOLOR range:NSMakeRange([startArr[0] length], [endArr[0] length])];
+        
+    }
+    return attri;
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

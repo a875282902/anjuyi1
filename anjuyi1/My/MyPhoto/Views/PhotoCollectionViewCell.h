@@ -10,7 +10,8 @@
 #import "MyPhotoModel.h"
 
 @interface PhotoCollectionViewCell : UICollectionViewCell
-
+@property (nonatomic,strong)UIButton       *   collectButton;
+@property (nonatomic,copy)void(^selectPhotoToCollect)(UIButton *collectButotn);
 - (void)bandDataWithModel:(MyPhotoModel *)model;
 
 @end

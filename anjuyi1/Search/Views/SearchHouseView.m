@@ -8,6 +8,7 @@
 
 #import "SearchHouseView.h"
 #import "HouseTableViewCell.h"
+#import "HouseDetailsViewController.h"
 
 @interface SearchHouseView ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -102,6 +103,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return 100;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    HouseDetailsViewController *vc = [[HouseDetailsViewController alloc] init];
+    vc.house_id = self.dataArr[indexPath.row][@"id"];
+    self.selectHouseToShowDetalis(vc);
 }
 
 /*
