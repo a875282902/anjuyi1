@@ -192,7 +192,7 @@
 - (UIView *)functionBar{
     
     if (!_functionBar) {
-        _functionBar = [[FunctionBarView alloc] initWithFrame:CGRectMake(0, KScreenHeight - 50, KScreenWidth, 50)];
+        _functionBar = [[FunctionBarView alloc] initWithFrame:CGRectMake(0, KScreenHeight - 50-KPlaceHeight, KScreenWidth, 50)];
         [_functionBar addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 2)]];
     }
     return _functionBar;
@@ -210,9 +210,9 @@
     
     height += 572*KScreenWidth/750.0 + 20;
     
-    [self.infoView addSubview:[Tools creatLabel:CGRectMake(15, height, KScreenWidth - 30, 50) font:[UIFont systemFontOfSize:19] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:self.houseInfo[@"house_info"][@"title"]]];
+//    [self.infoView addSubview:[Tools creatLabel:CGRectMake(15, height, KScreenWidth - 30, 50) font:[UIFont systemFontOfSize:19] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:self.houseInfo[@"house_info"][@"title"]]];
     
-    height += 50 + 10;
+    height = [self creatHeaderViewTitle:height];
     
     UIButton *time = [Tools creatButton:CGRectMake(15, height, KScreenWidth - 30, 12) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#666666"] title:[NSString stringWithFormat:@"   发布于 %@",self.houseInfo[@"house_info"][@"create_time"]] image:@"xq_time"];
     [time setContentHorizontalAlignment:(UIControlContentHorizontalAlignmentRight)];
@@ -290,6 +290,44 @@
     [self.infoView setFrame:CGRectMake(0, 0, KScreenWidth, height)];
 }
 
+- (CGFloat)creatHeaderViewTitle:(CGFloat)heigt{
+    
+    UILabel * typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
+    [typeLabel setText:@"家装"];
+    [typeLabel setTextColor:GCOLOR];
+    [typeLabel setTextAlignment:(NSTextAlignmentCenter)];
+    [typeLabel setFont:[UIFont systemFontOfSize:10.0f]];
+    [typeLabel.layer setCornerRadius:5];
+    [typeLabel.layer setBorderWidth:1];
+    [typeLabel.layer setBorderColor:GCOLOR.CGColor];
+    
+    UILabel * label1 = [[UILabel alloc] initWithFrame:CGRectMake(15, heigt, KScreenWidth - 30, 10)];
+    [label1 setNumberOfLines:0];
+    [self.infoView addSubview:label1];
+    
+    NSString *title = [NSString stringWithFormat:@"%@  ",self.houseInfo[@"house_info"][@"title"]];
+    
+    NSMutableAttributedString *ste = [[NSMutableAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:19.0f]}];
+    NSTextAttachment *ach = [[NSTextAttachment alloc] initWithData:nil ofType:nil];
+    ach.image = [self imageWithUIView:typeLabel];
+    ach.bounds = CGRectMake(0, -3, 50, 20);
+    NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:ach];
+    [ste insertAttributedString:string atIndex:[title length]];
+    
+    [label1 setAttributedText:ste];
+    [label1 sizeToFit];
+    
+    return heigt + label1.frame.size.height + 10;
+}
+- (UIImage*) imageWithUIView:(UIView*) view
+{
+    UIGraphicsBeginImageContext(view.bounds.size);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    [view.layer renderInContext:ctx];
+    UIImage* tImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return tImage;
+}
 - (void)createFootView{
     
     [self.footView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -329,7 +367,7 @@
 - (UITableView *)tmpTableView{
     
     if (!_tmpTableView) {
-        _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 50) style:(UITableViewStyleGrouped)];
+        _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 50 - KPlaceHeight) style:(UITableViewStyleGrouped)];
         [_tmpTableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
         if (@available(iOS 11.0, *)) {
             [_tmpTableView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
@@ -405,10 +443,26 @@
     
     if (indexPath.section > self.dataArr.count) {
         CommentModel *model = self.commentArr[indexPath.row];
-        CommentDetalisViewController *vc = [[CommentDetalisViewController alloc] init];
-        vc.type = 2;
-        vc.eva_id = model.commit_id ;
-        [self.navigationController pushViewController:vc animated:YES];
+    
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"评论操作" preferredStyle:(UIAlertControllerStyleActionSheet)];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:@"回复" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            
+            self.commentV.commit_id = model.commit_id;
+            [self.commentV addComment];
+        }]];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:@"详情" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            
+            CommentDetalisViewController *vc = [[CommentDetalisViewController alloc] init];
+            vc.type = 2;
+            vc.eva_id = model.commit_id ;
+            [self.navigationController pushViewController:vc animated:YES];
+        }]];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil]];
+        
+        [[Tools getCurrentVC] presentViewController:alert animated:YES completion:nil];
     }
     
     
@@ -504,6 +558,7 @@
 }
 
 - (void)commentThisHouse{
+    self.commentV.commit_id = @"0";
     [self.commentV addComment];
 }
 

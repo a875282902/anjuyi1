@@ -10,6 +10,8 @@
 
 @interface LabelViewController : BaseViewController
 
-@property (nonatomic,copy)void(^selectLabel)(NSDictionary *dic);
+@property (nonatomic,copy)void(^sureSelectLabel)(NSArray * labelArr);
+
+@property (nonatomic,strong) NSArray *sureBtnLabel;
 
 @end

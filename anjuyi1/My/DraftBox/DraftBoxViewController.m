@@ -8,12 +8,14 @@
 //  草稿箱
 #import "DraftBoxViewController.h"
 #import "DraftBoxTableViewCell.h"
+#import "HouseModel.h"
+#import "MyPushHouseDetailsViewController.h"
 
 @interface DraftBoxViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic,strong)UITableView *tmpTableView;
-
-
+@property (nonatomic, strong) UITableView    * tmpTableView;
+@property (nonatomic, strong) NSMutableArray * dataArr;
+@property (nonatomic, strong) NavTwoTitle    * navView;
 
 @end
 
@@ -21,20 +23,79 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    // Do any additional setup after loading the view, typically from a nib.
+    self.view.backgroundColor = [UIColor brownColor];
+    
+    self.navView = [[NavTwoTitle alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(200), 44) WithTitle1:@"草稿箱" WithTitle2:@"0篇"];
+    
+    [self.navigationItem setTitleView:self.navView];
+    
+    
+    self.dataArr = [NSMutableArray array];
+    
     [self baseForDefaultLeftNavButton];
-    [self.navigationItem setTitleView:[[NavTwoTitle alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(200), 44) WithTitle1:@"草稿箱" WithTitle2:@"3篇"]];
     
     [self.view addSubview:self.tmpTableView];
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1.5)]];
+    
+    [self getHouseList];
+}
+
+-(void)leftButtonTouchUpInside:(id)sender{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)getHouseList{
+    
+    NSString *path = [NSString stringWithFormat:@"%@/member/my_drafts",KURL];
+    
+    NSDictionary *header = @{@"token":UTOKEN};
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [weakSelf.dataArr removeAllObjects];
+        if ([responseObject[@"code"] integerValue] == 200) {
+            
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
+                
+                for (NSDictionary *dic in responseObject[@"datas"]) {
+                    HouseModel *model = [[HouseModel alloc] initWithDictionary:dic];
+                    model.member_info =dic;
+                    [weakSelf.dataArr addObject:model];
+                }
+                
+                [weakSelf.navView refreNum:[NSString stringWithFormat:@"%ld篇",weakSelf.dataArr.count]];
+            }
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        [weakSelf.tmpTableView reloadData];
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
+    
 }
 
 #pragma mark -- tableView
 - (UITableView *)tmpTableView{
     
     if (!_tmpTableView) {
-        _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-KTopHeight) style:(UITableViewStylePlain)];
+        _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth,KViewHeight) style:(UITableViewStylePlain)];
         [_tmpTableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
         if (@available(iOS 11.0, *)) {
             [_tmpTableView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
@@ -48,18 +109,23 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    DraftBoxTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DraftBoxTableViewCell"];
+    DraftBoxTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyPushHouseViewControllerCell"];
     if (!cell) {
-        cell = [[DraftBoxTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"DraftBoxTableViewCell"];
+        cell = [[DraftBoxTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"MyPushHouseViewControllerCell"];
     }
     
     [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
-   
+    
+    if (indexPath.row < self.dataArr.count) {
+        
+        [cell bandDataWithModel:self.dataArr[indexPath.row]];
+    }
+    
     return cell;
 }
 
@@ -69,6 +135,14 @@
 }
 
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    HouseModel *model  = self.dataArr[indexPath.row];
+    MyPushHouseDetailsViewController *vc = [[MyPushHouseDetailsViewController alloc] init];
+    [vc setHouse_id:model.ID];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -76,13 +150,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

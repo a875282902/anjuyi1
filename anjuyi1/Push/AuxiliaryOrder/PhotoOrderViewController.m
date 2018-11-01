@@ -119,6 +119,7 @@
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(KScreenWidth*(i%3)/3.0 +10, (KScreenWidth/3.0 * (i/3))+10, (KScreenWidth/3 - 20), (KScreenWidth/3 - 20))];
         [imageView sd_setImageWithURL:[NSURL URLWithString:self.imageArr[i]]];
         [imageView setTag:i];
+        [imageView setContentMode:(UIViewContentModeScaleToFill)];
         [imageView setUserInteractionEnabled:YES];
         [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showBigPhoto:)]];
         [self.detalisView addSubview:imageView];
@@ -230,6 +231,11 @@
 
 - (void)camera:(UITapGestureRecognizer *)sender{
     
+    if (self.imageArr.count >=4) {
+        [ViewHelps showHUDWithText:@"最多上传4张图片"];
+        return;
+    }
+    
     if ([UIImagePickerController isSourceTypeAvailable:(UIImagePickerControllerSourceTypeCamera)]) {
         
         self.imagePickerController = [[UIImagePickerController alloc] init];
@@ -253,23 +259,36 @@
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     
     // 图片类型是修改后的图片
-    UIImage *selectedImage = [info objectForKey:UIImagePickerControllerEditedImage];
-    
-    // 设置图片
-    [self upLoadImage:selectedImage];
+    UIImage *selectedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     
     // 返回（结束模态对话窗体）
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        // 设置图片
+        [self upLoadImage:selectedImage];
+    }];
 }
 
 - (void)addPhoto{
-    PhotoSelectController *vc = [[PhotoSelectController alloc] init];
-    [vc setDelegate:self];
-    [vc setIsClip:NO];
-    [vc setClipSize:CGSizeMake(KScreenWidth, KScreenWidth)];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:nav animated:YES completion:nil];
+//    PhotoSelectController *vc = [[PhotoSelectController alloc] init];
+//    [vc setDelegate:self];
+//    [vc setIsClip:NO];
+//    [vc setClipSize:CGSizeMake(KScreenWidth, KScreenWidth)];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+//    [self presentViewController:nav animated:YES completion:nil];
+    if (self.imageArr.count >=4) {
+        [ViewHelps showHUDWithText:@"最多上传4张图片"];
+        return;
+    }
+    self.imagePickerController = [[UIImagePickerController alloc] init];
     
+    [self.imagePickerController setDelegate:self];
+    // 设置来自相机
+    [self.imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    
+    // 设置允许编辑
+    [self.imagePickerController setAllowsEditing:YES];
+    
+    [self presentViewController:self.imagePickerController animated:YES completion:nil];
 }
 
 - (void)selectImage:(UIImage *)image{

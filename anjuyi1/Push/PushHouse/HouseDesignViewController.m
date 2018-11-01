@@ -97,7 +97,7 @@
 - (void)pushHouseInfo{
     
     
-    NSString *path = [NSString stringWithFormat:@"%@/WholeHouse/add_house_info",KURL];
+    NSString *path = [NSString stringWithFormat:@"%@/whole_house/add_house_info",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
     

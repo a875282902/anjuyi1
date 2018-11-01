@@ -42,7 +42,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.view setBackgroundColor:[UIColor colorWithHexString:@"#f6f6f6"]];
+
     
     [self baseForDefaultLeftNavButton];
     [self setTitle:@"工长"];

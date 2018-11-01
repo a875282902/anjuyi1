@@ -115,7 +115,9 @@
     if ([dic[@"status"] integerValue] == 1) {
         [self.redView setHidden:NO];
     }
-
+    else {
+        [self.redView setHidden:YES];
+    }
 }
 
 - (void)awakeFromNib {

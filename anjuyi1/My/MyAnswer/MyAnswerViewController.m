@@ -66,7 +66,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:@{@"page":[NSString stringWithFormat:@"%ld",self.page]} success:^(id  _Nullable responseObject) {
+    [HttpRequest POSTWithHeader:header url:path parameters:@{@"page":[NSString stringWithFormat:@"%ld",(long)self.page]} success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -108,7 +108,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:@{@"page":[NSString stringWithFormat:@"%ld",self.page]} success:^(id  _Nullable responseObject) {
+    [HttpRequest POSTWithHeader:header url:path parameters:@{@"page":[NSString stringWithFormat:@"%ld",(long)self.page]} success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -146,7 +146,7 @@
 - (UITableView *)tmpTableView{
     
     if (!_tmpTableView) {
-        _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-KTopHeight) style:(UITableViewStylePlain)];
+        _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KViewHeight) style:(UITableViewStylePlain)];
         [_tmpTableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
         if (@available(iOS 11.0, *)) {
             [_tmpTableView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];

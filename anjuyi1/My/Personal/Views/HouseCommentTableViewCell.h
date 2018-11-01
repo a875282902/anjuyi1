@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 
+@property (nonatomic, copy) void (^showPresonDetail)();
+
 - (void)bandDataWith:(CommentModel *)model;
 
 @end

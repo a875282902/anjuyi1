@@ -8,7 +8,7 @@
 
 #import "DateView.h"
 
-static CGFloat vHeight = 250;
+static CGFloat vHeight = 250 + KPlaceHeight;
 
 static CGFloat sHeight = 50;
 
@@ -67,7 +67,7 @@ static CGFloat sHeight = 50;
 - (UIDatePicker *)tmpDataPicker{
     
     if (!_tmpDataPicker) {
-        _tmpDataPicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, sHeight, KScreenWidth, vHeight-sHeight)];
+        _tmpDataPicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, sHeight, KScreenWidth, vHeight-sHeight-KPlaceHeight)];
         [_tmpDataPicker setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
         // 设置时区
         [_tmpDataPicker setTimeZone:[NSTimeZone localTimeZone]];

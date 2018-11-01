@@ -16,6 +16,7 @@
 #import "FunctionBarView.h"
 #import "HouseInfoViewController.h"
 #import "BaseNaviViewController.h"
+#import "CommentDetalisViewController.h"
 
 @interface MyPushHouseDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -76,7 +77,6 @@
 
 - (void)getHouseInfo{
     
-    
     NSString *path = [NSString stringWithFormat:@"%@/WholeHouseInfo/detail",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
@@ -93,9 +93,6 @@
         if ([responseObject[@"code"] integerValue] == 200) {
             
             weakSelf.houseInfo = [NSMutableDictionary dictionaryWithDictionary:responseObject[@"datas"]];
-            
-            [weakSelf createHouseInfo];
-            
             
             for (NSDictionary *dic in weakSelf.houseInfo[@"space_image"]) {
                 NSMutableArray *arr = [NSMutableArray array];
@@ -121,17 +118,21 @@
             }
             [weakSelf.titleArr addObject:@"评论"];
             
-        
+            [weakSelf.tmpTableView reloadData];
+            [weakSelf createHouseInfo];
             [weakSelf createFootView];
             
             [weakSelf createFunctionBar];
+            
+            [weakSelf.tmpTableView setTableHeaderView:weakSelf.infoView];
+            [weakSelf.tmpTableView setTableFooterView:weakSelf.footView];
         }
         else{
             
             [ViewHelps showHUDWithText:responseObject[@"message"]];
         }
         
-        [weakSelf.tmpTableView reloadData];
+        
     } failure:^(NSError * _Nullable error) {
         
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
@@ -170,6 +171,15 @@
     if (!_commentV) {
         _commentV = [[HouseCommentView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
         [_commentV setHouse_id:self.house_id];
+        WKSELF;
+        [_commentV setSelectCommentToshow:^(UIViewController *vc) {
+
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
+        //展示用户详情
+        [_commentV setShowReviewerDetail:^(BaseViewController *vc) {
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
     }
     return _commentV;
 }
@@ -194,7 +204,7 @@
 - (UIView *)functionBar{
     
     if (!_functionBar) {
-        _functionBar = [[FunctionBarView alloc] initWithFrame:CGRectMake(0, KScreenHeight - 50, KScreenWidth, 50)];
+        _functionBar = [[FunctionBarView alloc] initWithFrame:CGRectMake(0, KScreenHeight - 50-KPlaceHeight, KScreenWidth, 50)];
         [_functionBar addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 2)]];
     }
     return _functionBar;
@@ -212,9 +222,9 @@
     
     height += 572*KScreenWidth/750.0 + 20;
     
-    [self.infoView addSubview:[Tools creatLabel:CGRectMake(15, height, KScreenWidth - 30, 50) font:[UIFont systemFontOfSize:19] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:self.houseInfo[@"house_info"][@"title"]]];
+    //    [self.infoView addSubview:[Tools creatLabel:CGRectMake(15, height, KScreenWidth - 30, 50) font:[UIFont systemFontOfSize:19] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:self.houseInfo[@"house_info"][@"title"]]];
     
-    height += 50 + 10;
+    height = [self creatHeaderViewTitle:height];
     
     UIButton *time = [Tools creatButton:CGRectMake(15, height, KScreenWidth - 30, 12) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#666666"] title:[NSString stringWithFormat:@"   发布于 %@",self.houseInfo[@"house_info"][@"create_time"]] image:@"xq_time"];
     [time setContentHorizontalAlignment:(UIControlContentHorizontalAlignmentRight)];
@@ -291,23 +301,61 @@
     [self.infoView setFrame:CGRectMake(0, 0, KScreenWidth, height)];
 }
 
+- (CGFloat)creatHeaderViewTitle:(CGFloat)heigt{
+    
+    UILabel * typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
+    [typeLabel setText:@"家装"];
+    [typeLabel setTextColor:GCOLOR];
+    [typeLabel setTextAlignment:(NSTextAlignmentCenter)];
+    [typeLabel setFont:[UIFont systemFontOfSize:10.0f]];
+    [typeLabel.layer setCornerRadius:5];
+    [typeLabel.layer setBorderWidth:1];
+    [typeLabel.layer setBorderColor:GCOLOR.CGColor];
+    
+    UILabel * label1 = [[UILabel alloc] initWithFrame:CGRectMake(15, heigt, KScreenWidth - 30, 10)];
+    [label1 setNumberOfLines:0];
+    [self.infoView addSubview:label1];
+    
+    NSString *title = [NSString stringWithFormat:@"%@  ",self.houseInfo[@"house_info"][@"title"]];
+    
+    NSMutableAttributedString *ste = [[NSMutableAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:19.0f]}];
+    NSTextAttachment *ach = [[NSTextAttachment alloc] initWithData:nil ofType:nil];
+    ach.image = [self imageWithUIView:typeLabel];
+    ach.bounds = CGRectMake(0, -3, 50, 20);
+    NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:ach];
+    [ste insertAttributedString:string atIndex:[title length]];
+    
+    [label1 setAttributedText:ste];
+    [label1 sizeToFit];
+    
+    return heigt + label1.frame.size.height + 10;
+}
+- (UIImage*) imageWithUIView:(UIView*) view
+{
+    UIGraphicsBeginImageContext(view.bounds.size);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    [view.layer renderInContext:ctx];
+    UIImage* tImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return tImage;
+}
 - (void)createFootView{
     
     [self.footView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    if (self.commentArr.count == 0) {
-        [self.footView setFrame:CGRectMake(0, 0, KScreenWidth, 0.001)];
-        
-    }
-    else{
-        
-        [self.footView setFrame:CGRectMake(0, 0, KScreenWidth, 80)];
-        
-        UIButton *btn = [Tools creatButton:CGRectMake(30, 20, KScreenWidth-60, 40) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#666666"] title:[NSString stringWithFormat:@"查看全部%@条评论",self.houseInfo[@"evaluate_num"]] image:@""];
-        [btn addTarget:self action:@selector(checkMoreComment) forControlEvents:(UIControlEventTouchUpInside)];
-        [self.footView addSubview:btn];
-        
-        [self.footView addSubview:[Tools setLineView:CGRectMake(0, 79, KScreenWidth, 1)]];
-    }
+    //    if (self.commentArr.count == 0) {
+    //        [self.footView setFrame:CGRectMake(0, 0, KScreenWidth, 0.001)];
+    //
+    //    }
+    //    else{
+    
+    [self.footView setFrame:CGRectMake(0, 0, KScreenWidth, 80)];
+    
+    UIButton *btn = [Tools creatButton:CGRectMake(30, 20, KScreenWidth-60, 40) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#666666"] title:[NSString stringWithFormat:@"查看全部%@条评论",self.houseInfo[@"evaluate_num"]] image:@""];
+    [btn addTarget:self action:@selector(checkMoreComment) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.footView addSubview:btn];
+    
+    [self.footView addSubview:[Tools setLineView:CGRectMake(0, 79, KScreenWidth, 1)]];
+    //    }
 }
 
 - (void)createFunctionBar{
@@ -330,24 +378,23 @@
 - (UITableView *)tmpTableView{
     
     if (!_tmpTableView) {
-        _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 50) style:(UITableViewStyleGrouped)];
+        _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 50 - KPlaceHeight) style:(UITableViewStyleGrouped)];
         [_tmpTableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
         if (@available(iOS 11.0, *)) {
             [_tmpTableView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
         }
         [_tmpTableView setBackgroundColor:[UIColor whiteColor]];
         [_tmpTableView setRowHeight:UITableViewAutomaticDimension];
+        [_tmpTableView setEstimatedRowHeight:500.0f];
         [_tmpTableView setShowsVerticalScrollIndicator:NO];
         [_tmpTableView setShowsHorizontalScrollIndicator:NO];
-        [_tmpTableView setTableHeaderView:self.infoView];
-        [_tmpTableView setTableFooterView:self.footView];
         [_tmpTableView setDataSource:self];
         [_tmpTableView setDelegate:self];
     }
     return _tmpTableView;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-  
+    
     return self.titleArr.count;
 }
 
@@ -370,7 +417,7 @@
         if (!cell) {
             cell = [[SpaceImageTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"SpaceImageTableViewCell"];
         }
-
+        
         if (indexPath.row < self.dataArr.count) {
             
             [cell bandDataWithDic:self.dataArr[indexPath.section][indexPath.row]];
@@ -378,7 +425,7 @@
         return cell;
     }
     else  if (indexPath.section == self.dataArr.count) {
-     
+        
         QuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuestionTableViewCell1"];
         if (!cell) {
             cell = [[QuestionTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"QuestionTableViewCell1"];
@@ -411,9 +458,9 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == self.titleArr.count-1 && self.commentArr.count == 0) {
-        return 0.00f;
-    }
+    //    if (section == self.titleArr.count-1 && self.commentArr.count == 0) {
+    //        return 0.00f;
+    //    }
     if (section == self.titleArr.count-2 && self.questionArr.count == 0) {
         return 0.00f;
     }
@@ -428,13 +475,41 @@
     if (section < self.titleArr.count) {
         [view addSubview:[Tools creatLabel:CGRectMake(20, 0, KScreenWidth  -40, 20) font:[UIFont boldSystemFontOfSize:18] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:self.titleArr[section]]];
     }
-    if (section == self.titleArr.count-1 && self.commentArr.count == 0) {
-        return [UIView new];
-    }
+    //    if (section == self.titleArr.count-1 && self.commentArr.count == 0) {
+    //        return [UIView new];
+    //    }
     if (section == self.titleArr.count-2 && self.questionArr.count == 0) {
         return [UIView new];
     }
     return view;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section > self.dataArr.count) {
+        CommentModel *model = self.commentArr[indexPath.row];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"评论操作" preferredStyle:(UIAlertControllerStyleActionSheet)];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:@"回复" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            
+            self.commentV.commit_id = model.commit_id;
+            [self.commentV addComment];
+        }]];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:@"详情" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            
+            CommentDetalisViewController *vc = [[CommentDetalisViewController alloc] init];
+            vc.type = 2;
+            vc.eva_id = model.commit_id ;
+            [self.navigationController pushViewController:vc animated:YES];
+        }]];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil]];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+  
 }
 
 #pragma mark -- 点击事件
@@ -463,6 +538,7 @@
 }
 
 - (void)commentThisHouse{
+    self.commentV.commit_id = @"0";
     [self.commentV addComment];
 }
 
@@ -504,7 +580,7 @@
     
 }
 - (void)likeThisHouse:(UIButton *)sender{
-    
+    LOGIN
     NSString *path = [NSString stringWithFormat:@"%@/WholeHouse/member_zan",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
@@ -538,7 +614,7 @@
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [RequestSever showMsgWithError:error];
     }];
-
+    
 }
 
 #pragma mark -- delegate
@@ -578,13 +654,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

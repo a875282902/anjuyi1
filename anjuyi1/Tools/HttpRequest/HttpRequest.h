@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger , mimeFileType) {
     MCPNGImageFileType,
     MCJSONFileType,
     MCTXTFileType,
+    MCMP4FileType,
 };
 NS_ASSUME_NONNULL_BEGIN
 @interface HttpRequest : NSObject

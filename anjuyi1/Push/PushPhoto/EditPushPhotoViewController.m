@@ -326,9 +326,9 @@
 - (void)deletePhoto{
 
     LabelViewController *vc = [[LabelViewController alloc] init];
-    [vc setSelectLabel:^(NSDictionary *dic) {
-        
-        [self.labelArr addObject:dic];
+    vc.sureBtnLabel = self.labelArr;
+    [vc setSureSelectLabel:^(NSArray *labelArr1) {
+        self.labelArr = [NSMutableArray arrayWithArray:labelArr1];
         [self addLabelToTextView];
     }];
     [self.navigationController pushViewController:vc animated:YES];

@@ -199,21 +199,21 @@
     return _SelectView;
 }
 
-- (void)SelectViewWithInfo:(NSDictionary *)info view:(SelectView *)SelectView{
+- (void)selectViewWithInfo:(NSDictionary *)info view:(SelectView *)selectView{
     
     [selectLabel setTextColor:[UIColor blackColor]];
     [selectLabel setText:[info valueForKey:@"value"]];
     
-    if (SelectView.tag == 0) {
+    if (selectView.tag == 0) {
         provincesDic = info;
         cityDic = nil;
         countyDic = nil;
     }
-    if (SelectView.tag == 1) {
+    if (selectView.tag == 1) {
         cityDic = info;
         countyDic = nil;
     }
-    if (SelectView.tag == 2) {
+    if (selectView.tag == 2) {
         countyDic = info;
     }
 }

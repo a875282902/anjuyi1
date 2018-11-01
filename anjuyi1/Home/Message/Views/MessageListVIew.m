@@ -210,9 +210,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSDictionary *dic = self.dataArr[indexPath.row];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:self.dataArr[indexPath.row]];
+    [dic setValue:@"2" forKey:@"status"];
+    [self.dataArr replaceObjectAtIndex:indexPath.row withObject:dic];
+    [self.tmpTableView reloadData];
+    [self.delegate pushShowDetail:dic listView:self];
     
-    [self.delegate pushShowDetail:dic];
 }
 
 

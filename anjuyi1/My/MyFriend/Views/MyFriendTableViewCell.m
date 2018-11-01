@@ -22,7 +22,10 @@
     
     [self.nameLabel setText:dic[@"nick_name"]];
     [self.headerImage sd_setImageWithURL:[NSURL URLWithString:dic[@"head"]]];
-    [self.typeLabel setText:dic[@"level"]];
+    if (!KStringIsEmpty(dic[@"level"])) {
+         [self.typeLabel setText:dic[@"level"]];
+    }
+   
 }
 
 
@@ -33,7 +36,7 @@
     [self.headerImage.layer setCornerRadius:21.5];
     
     [self.typeLabel.layer setCornerRadius:3];
-    
+    [self.typeLabel setHidden:YES];
     [self.likeButton.layer setBorderWidth:1];
     [self.likeButton.layer setBorderColor:[UIColor colorWithHexString:@"#ffb638"].CGColor];
     [self.likeButton.layer setCornerRadius:2.5];

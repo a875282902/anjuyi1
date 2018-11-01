@@ -171,6 +171,7 @@
 		180F1A08211C41260018F1CD /* AddActivityPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F1A07211C41260018F1CD /* AddActivityPhotoViewController.m */; };
 		180F1A0C211D23160018F1CD /* TopicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F1A0B211D23160018F1CD /* TopicListViewController.m */; };
 		180F1A11211D23FF0018F1CD /* ChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F1A10211D23FF0018F1CD /* ChannelView.m */; };
+		180F7BD8218AAD88009D9B88 /* ReplyCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F7BD7218AAD88009D9B88 /* ReplyCommentsViewController.m */; };
 		18275116210171F3002A61F8 /* PowerStatonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18275115210171F3002A61F8 /* PowerStatonModel.m */; };
 		1827511A210177DF002A61F8 /* CustomPaopaotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18275119210177DF002A61F8 /* CustomPaopaotView.m */; };
 		1827511D210179EF002A61F8 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1827511C210179EF002A61F8 /* CustomAnnotationView.m */; };
@@ -319,6 +320,8 @@
 		189D1B00216F330900FB0B93 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 189D1AFF216F330900FB0B93 /* StoreKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		18A8F126217EBBE600E642B2 /* FunctionBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A8F125217EBBE600E642B2 /* FunctionBarView.m */; };
 		18A8F128217EBBF200E642B2 /* FunctionBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A8F127217EBBF200E642B2 /* FunctionBarView.xib */; };
+		18A8F1372183036400E642B2 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A8F1362183036300E642B2 /* AVKit.framework */; };
+		18A8F1392183036C00E642B2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A8F1382183036C00E642B2 /* AVFoundation.framework */; };
 		18D3480820DB74B9008FD35E /* SelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480720DB74B9008FD35E /* SelectView.m */; };
 		18D3480C20DB8CFF008FD35E /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D3480B20DB8CFF008FD35E /* AddressModel.m */; };
 		18D8544C213CCD3500C6C358 /* PushTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D8544B213CCD3500C6C358 /* PushTaskViewController.m */; };
@@ -676,6 +679,8 @@
 		180F1A0B211D23160018F1CD /* TopicListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicListViewController.m; sourceTree = "<group>"; };
 		180F1A0F211D23FF0018F1CD /* ChannelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelView.h; sourceTree = "<group>"; };
 		180F1A10211D23FF0018F1CD /* ChannelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelView.m; sourceTree = "<group>"; };
+		180F7BD6218AAD88009D9B88 /* ReplyCommentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReplyCommentsViewController.h; sourceTree = "<group>"; };
+		180F7BD7218AAD88009D9B88 /* ReplyCommentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReplyCommentsViewController.m; sourceTree = "<group>"; };
 		18275114210171F3002A61F8 /* PowerStatonModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PowerStatonModel.h; sourceTree = "<group>"; };
 		18275115210171F3002A61F8 /* PowerStatonModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PowerStatonModel.m; sourceTree = "<group>"; };
 		18275118210177DF002A61F8 /* CustomPaopaotView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPaopaotView.h; sourceTree = "<group>"; };
@@ -934,6 +939,8 @@
 		18A8F124217EBBE600E642B2 /* FunctionBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FunctionBarView.h; sourceTree = "<group>"; };
 		18A8F125217EBBE600E642B2 /* FunctionBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FunctionBarView.m; sourceTree = "<group>"; };
 		18A8F127217EBBF200E642B2 /* FunctionBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FunctionBarView.xib; sourceTree = "<group>"; };
+		18A8F1362183036300E642B2 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		18A8F1382183036C00E642B2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		18D3480620DB74B9008FD35E /* SelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectView.h; sourceTree = "<group>"; };
 		18D3480720DB74B9008FD35E /* SelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectView.m; sourceTree = "<group>"; };
 		18D3480A20DB8CFF008FD35E /* AddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
@@ -1026,6 +1033,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A8F1392183036C00E642B2 /* AVFoundation.framework in Frameworks */,
+				18A8F1372183036400E642B2 /* AVKit.framework in Frameworks */,
 				182CDAA821098D1E00F28F4C /* libsqlite3.tbd in Frameworks */,
 				18ED88582100D57300B38548 /* CoreGraphics.framework in Frameworks */,
 				18ED88562100D56C00B38548 /* SystemConfiguration.framework in Frameworks */,
@@ -1307,6 +1316,8 @@
 				1838260C2151FED9004C40CA /* CommentDetalisViewController.h */,
 				1838260D2151FED9004C40CA /* CommentDetalisViewController.m */,
 				1838260E2151FED9004C40CA /* CommentDetalisViewController.xib */,
+				180F7BD6218AAD88009D9B88 /* ReplyCommentsViewController.h */,
+				180F7BD7218AAD88009D9B88 /* ReplyCommentsViewController.m */,
 			);
 			path = Master;
 			sourceTree = "<group>";
@@ -2618,6 +2629,8 @@
 		E57638EA566F5CBF54092AE1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18A8F1382183036C00E642B2 /* AVFoundation.framework */,
+				18A8F1362183036300E642B2 /* AVKit.framework */,
 				18ED095C217784B800FF5FAD /* libiconv.tbd */,
 				18ED09312177771D00FF5FAD /* TestinDataAnalysis.framework */,
 				18ED092C2177665300FF5FAD /* UserNotificationsUI.framework */,
@@ -2946,6 +2959,7 @@
 				1846D00820FE2AAA00EA1417 /* SpaceImageListViewController.m in Sources */,
 				182751382101C1D5002A61F8 /* ProwerStationDetails.m in Sources */,
 				188DB34F21606A54007E53AE /* StrategyDetailsViewController.m in Sources */,
+				180F7BD8218AAD88009D9B88 /* ReplyCommentsViewController.m in Sources */,
 				18E17EB6216DA3CE00677BA0 /* MessageListVIew.m in Sources */,
 				0AD0C62520BF7E1E001A20C4 /* ScreeningBar.m in Sources */,
 				0A7D503720C41B31001BFDBF /* PhotoCollectionViewCell.m in Sources */,

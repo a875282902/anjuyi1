@@ -10,9 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class MessageListVIew;
+
 @protocol MessageListVIewDelegate <NSObject>
 
-- (void)pushShowDetail:(NSDictionary *)messageInfo;
+- (void)pushShowDetail:(NSDictionary *)messageInfo listView:(MessageListVIew *)view;
 
 @end
 

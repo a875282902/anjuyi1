@@ -34,10 +34,11 @@
     
     [super viewWillAppear:animated];
     
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     UIImage *tmpImage = [UIImage imageWithColor:[UIColor colorWithHexString:@"#ffffff"]];
     [self.navigationController.navigationBar setBackgroundImage:tmpImage forBarMetrics:UIBarMetricsDefault];;
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -258,16 +259,16 @@
 }
 
 - (void)tap:(UITapGestureRecognizer *)sender{
-    LabelViewController *vc = [[LabelViewController alloc] init];
-    [vc setSelectLabel:^(NSDictionary *dic) {
-        
-        UILabel *label = (UILabel *)sender.view;
-        [label setText:[NSString stringWithFormat:@"#%@",dic[@"name"]]];
-        
-        self->_labelDic = dic;
-        
-    }];
-    [self.navigationController pushViewController:vc animated:YES];
+//    LabelViewController *vc = [[LabelViewController alloc] init];
+//    [vc setSureSelectLabel:^(NSDictionary *dic) {
+//        
+//        UILabel *label = (UILabel *)sender.view;
+//        [label setText:[NSString stringWithFormat:@"#%@",dic[@"name"]]];
+//        
+//        self->_labelDic = dic;
+//        
+//    }];
+//    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
@@ -347,6 +348,7 @@
 
 
 - (void)leftButtonTouchUpInside:(id)sender{
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

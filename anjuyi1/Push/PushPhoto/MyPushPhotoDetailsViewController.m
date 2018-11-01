@@ -14,6 +14,10 @@
 #import "CommentModel.h"
 #import "EditPushPhotoViewController.h"
 #import "FunctionBarView.h"
+#import "SearchResultsViewController.h"
+#import "CommentDetalisViewController.h"
+#import "PersonalViewController.h"
+
 @interface MyPushPhotoDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UIButton *backBtn;
@@ -70,22 +74,19 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/Index/image_detail",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *parameter = @{@"id":self.photo_id};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:parameter success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:parameter success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        
+        [weakSelf.commentArr removeAllObjects];
         if ([responseObject[@"code"] integerValue] == 200) {
             
             weakSelf.photoInfo = [NSMutableDictionary dictionaryWithDictionary:responseObject[@"datas"]];
-            
-            [weakSelf createphotoInfo];
             
             for (NSDictionary *dic in weakSelf.photoInfo[@"evaluate_list"]) {
                 CommentModel *model = [[CommentModel alloc] init];
@@ -95,19 +96,18 @@
                 model.create_time = dic[@"create_time"];
                 [weakSelf.commentArr addObject:model];
             }
-
             
-            
-            [weakSelf createFootView];
-            
-            [weakSelf createFunctionBar];
         }
         else{
             
             [ViewHelps showHUDWithText:responseObject[@"message"]];
         }
         
+        [weakSelf createphotoInfo];
+        [weakSelf createFootView];
+        [weakSelf createFunctionBar];
         [weakSelf.tmpTableView reloadData];
+        
     } failure:^(NSError * _Nullable error) {
         
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
@@ -146,6 +146,21 @@
     if (!_commentV) {
         _commentV = [[PhotoCommentView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
         
+        WKSELF;
+        
+        [_commentV setSelectCommentDetails:^(NSString *eva_id) {
+            
+            CommentDetalisViewController *vc = [[CommentDetalisViewController alloc] init];
+            vc.eva_id = eva_id;
+            vc.type = 1;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+            
+        }];
+        
+        [_commentV setShowReviewerDetail:^(BaseViewController *vc) {
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
+        
         [_commentV setPhoto_id:self.photo_id];
     }
     return _commentV;
@@ -171,7 +186,7 @@
 - (UIView *)functionBar{
     
     if (!_functionBar) {
-        _functionBar = [[FunctionBarView alloc] initWithFrame:CGRectMake(0, KScreenHeight - 50, KScreenWidth, 50)];
+        _functionBar = [[FunctionBarView alloc] initWithFrame:CGRectMake(0, KScreenHeight - 50 - KPlaceHeight, KScreenWidth, 50)];
         [_functionBar addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 2)]];
     }
     return _functionBar;
@@ -196,31 +211,32 @@
     NSString *name = self.photoInfo[@"member_info"][@"nickname"];
     CGFloat nameW = KHeight(name, 10000, 20, 18).size.width + 20;
     
-    [self.infoView addSubview:[Tools creatLabel:CGRectMake(65,  height+20 ,nameW , 25) font:[UIFont systemFontOfSize:18] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:name]];
+    UILabel *nameLabel = [Tools creatLabel:CGRectMake(65,  height+20 ,nameW , 25) font:[UIFont systemFontOfSize:18] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:name];
+    [self.infoView addSubview:nameLabel];
     
     UILabel *typeLabel = [Tools creatLabel:CGRectMake(65+ nameW, height+22.5 , 50, 20) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#fffefe"] alignment:(NSTextAlignmentCenter) title:self.photoInfo[@"member_info"][@"level"]];
     [typeLabel.layer setCornerRadius:5];
     [typeLabel setBackgroundColor:[UIColor colorWithHexString:@"#5cc6c6"]];
     [self.infoView addSubview:typeLabel];
     
-    [self.infoView addSubview:[Tools creatLabel:CGRectMake(65,height+ 45 ,KScreenWidth - 75 , 20) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:self.photoInfo[@"member_info"][@"position"]]];
+    if (KScreenWidth < 65+nameW + 50 + 110+20) {
+        [typeLabel setFrame:CGRectMake(KScreenWidth - 190, height+22.5, 50, 20)];
+        [nameLabel setFrame:CGRectMake(65,  height+20 ,KScreenWidth - 245 , 25)];
+    }
     
-//    UIButton *attentionbtn = [Tools creatButton:CGRectMake(KScreenWidth - 110, height+25, 90, 33) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#5cc6c6"] title:@"关注" image:@""];
-//    [attentionbtn setBackgroundColor:MDRGBA(219, 245, 245, 1)];
-//    [attentionbtn.layer setCornerRadius:16.5];
-//    [attentionbtn setTitle:@"已关注" forState:(UIControlStateSelected)];
-//    [attentionbtn setSelected:[self.photoInfo[@"is_follow"] integerValue]==0?NO:YES];
-//    [attentionbtn addTarget:self action:@selector(attentionToAuthor:) forControlEvents:(UIControlEventTouchUpInside)];
-//    [self.infoView addSubview:attentionbtn];
-
-    UIButton *editbtn = [Tools creatButton:CGRectMake(KScreenWidth - 110, height+25, 90, 33) font:[UIFont systemFontOfSize:16] color:BTNCOLOR title:@"编辑" image:@""];
-    [editbtn.layer setCornerRadius:5];
-    [editbtn.layer setBorderColor:BTNCOLOR.CGColor];
-    [editbtn.layer setBorderWidth:1];
-    [editbtn setClipsToBounds:YES];
-    [editbtn addTarget:self action:@selector(editPhoto) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.infoView addSubview:editbtn];
+    [self.infoView addSubview:[Tools creatLabel:CGRectMake(65,height+ 45 ,KScreenWidth - 185 , 20) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:self.photoInfo[@"member_info"][@"position"]]];
     
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, height, KScreenWidth - 110, 83)];
+    [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPersonDetails)]];
+    [self.infoView addSubview:backView];
+    
+    UIButton *attentionbtn = [Tools creatButton:CGRectMake(KScreenWidth - 110, height+25, 90, 33) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#5cc6c6"] title:@"关注" image:@""];
+    [attentionbtn setBackgroundColor:MDRGBA(219, 245, 245, 1)];
+    [attentionbtn.layer setCornerRadius:16.5];
+    [attentionbtn setTitle:@"已关注" forState:(UIControlStateSelected)];
+    [attentionbtn setSelected:[self.photoInfo[@"is_follow"] integerValue]==0?NO:YES];
+    [attentionbtn addTarget:self action:@selector(attentionToAuthor:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.infoView addSubview:attentionbtn];
     
     
     height += 83+15;
@@ -238,7 +254,7 @@
     height = [self setUpLabelView:height];
     
     [self.infoView addSubview:[Tools setLineView:CGRectMake(15, height, KScreenWidth - 30, 1)]];
-
+    
     [self.infoView setFrame:CGRectMake(0, 0, KScreenWidth, height)];
 }
 
@@ -272,6 +288,7 @@
         [btn.layer setBorderColor:[UIColor colorWithHexString:@"#34bab8"].CGColor];
         [btn.layer setCornerRadius:5];
         [btn setClipsToBounds:YES];
+        [btn addTarget:self action:@selector(showLabelContent:) forControlEvents:(UIControlEventTouchUpInside)];
         [btn setTag:i];
         [self.infoView addSubview:btn];
         
@@ -287,20 +304,22 @@
 - (void)createFootView{
     
     [self.footView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    if (self.commentArr.count == 0) {
-        [self.footView setFrame:CGRectMake(0, 0, KScreenWidth, 0.001)];
-        
-    }
-    else{
-        
-        [self.footView setFrame:CGRectMake(0, 0, KScreenWidth, 80)];
-        
-        UIButton *btn = [Tools creatButton:CGRectMake(30, 20, KScreenWidth-60, 40) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#666666"] title:[NSString stringWithFormat:@"查看全部%@条评论",self.photoInfo[@"evaluate_num"]] image:@""];
-        [btn addTarget:self action:@selector(checkMoreComment) forControlEvents:(UIControlEventTouchUpInside)];
-        [self.footView addSubview:btn];
-        
-        [self.footView addSubview:[Tools setLineView:CGRectMake(0, 79, KScreenWidth, 1)]];
-    }
+    //    if (self.commentArr.count == 0) {
+    //        [self.footView setFrame:CGRectMake(0, 0, KScreenWidth, 0.001)];
+    //
+    //    }
+    //    else{
+    
+    [self.footView setFrame:CGRectMake(0, 0, KScreenWidth, 80)];
+    
+    UIButton *btn = [Tools creatButton:CGRectMake(30, 20, KScreenWidth-60, 40) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#666666"] title:[NSString stringWithFormat:@"查看全部%@条评论",self.photoInfo[@"evaluate_num"]] image:@""];
+    [btn addTarget:self action:@selector(checkMoreComment) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.footView addSubview:btn];
+    
+    [self.footView addSubview:[Tools setLineView:CGRectMake(0, 79, KScreenWidth, 1)]];
+    //    }
+    
+    [self.tmpTableView setTableFooterView:self.footView];
 }
 
 - (void)createFunctionBar{
@@ -323,17 +342,17 @@
 - (UITableView *)tmpTableView{
     
     if (!_tmpTableView) {
-        _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 50) style:(UITableViewStyleGrouped)];
+        _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 50 - KPlaceHeight) style:(UITableViewStyleGrouped)];
         [_tmpTableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
         if (@available(iOS 11.0, *)) {
             [_tmpTableView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
         }
         [_tmpTableView setBackgroundColor:[UIColor whiteColor]];
         [_tmpTableView setRowHeight:UITableViewAutomaticDimension];
+        [_tmpTableView setEstimatedRowHeight:100.0f];
         [_tmpTableView setShowsVerticalScrollIndicator:NO];
         [_tmpTableView setShowsHorizontalScrollIndicator:NO];
         [_tmpTableView setTableHeaderView:self.infoView];
-        [_tmpTableView setTableFooterView:self.footView];
         [_tmpTableView setDataSource:self];
         [_tmpTableView setDelegate:self];
     }
@@ -342,7 +361,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-
+    
     
     return self.commentArr.count;
 }
@@ -354,10 +373,47 @@
         cell = [[HouseCommentTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"HouseCommentTableViewCell1"];
     }
     if (indexPath.row < self.commentArr.count) {
+         CommentModel *model = self.commentArr[indexPath.row];
+        [cell bandDataWith:model];
         
-        [cell bandDataWith:self.commentArr[indexPath.row]];
+        [cell setShowPresonDetail:^{
+            
+            if (model.member_info[@"user_id"]) {
+                PersonalViewController *vc = [[PersonalViewController alloc] init];
+                vc.user_id = model.member_info[@"user_id"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            else{
+                [ViewHelps showHUDWithText:@"user_id 不存在"];
+            }
+        }];
     }
     return cell;
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CommentModel *model = self.commentArr[indexPath.row];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"评论操作" preferredStyle:(UIAlertControllerStyleActionSheet)];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"回复" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        self.commentV.commit_id = model.commit_id;
+        [self.commentV addComment];
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"详情" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        
+        CommentDetalisViewController *vc = [[CommentDetalisViewController alloc] init];
+        vc.eva_id = model.commit_id;
+        vc.type = 1;
+        [self.navigationController pushViewController:vc animated:YES];
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
     
 }
 
@@ -369,13 +425,13 @@
 }
 
 - (void)share{
-    [self checkMoreComment];
-}
-
-- (void)editPhoto{
     
-    EditPushPhotoViewController *vc = [[EditPushPhotoViewController alloc] init];
-    vc.photo_id = self.photo_id;
+}
+- (void)showPersonDetails{
+    
+    PersonalViewController *vc = [[PersonalViewController alloc] init];
+    vc.user_id = self.photoInfo[@"member_info"][@"user_id"];
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -392,7 +448,7 @@
 }
 
 - (void)attention:(NSString *)path btn:(UIButton *)sender{
-    
+    LOGIN
     NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *dic = @{@"user_id":self.photoInfo[@"member_info"][@"user_id"]};
     
@@ -414,8 +470,15 @@
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [RequestSever showMsgWithError:error];
     }];
-
     
+}
+
+#pragma mark --  展示标签相关内容 && 更多评论  && 收藏 && 点赞
+- (void)showLabelContent:(UIButton *)sender{
+    NSArray *arr = self.photoInfo[@"tag_list"];
+    SearchResultsViewController *vc = [[SearchResultsViewController alloc] init];
+    vc.keyword = arr[sender.tag];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)checkMoreComment{
@@ -424,11 +487,12 @@
 }
 
 - (void)commentThisHouse{
+    self.commentV.commit_id = @"0";
     [self.commentV addComment];
 }
 
 - (void)collectThisHouse:(UIButton *)sender{
-    
+    LOGIN
     NSString *path = [NSString stringWithFormat:@"%@/MemberImage/member_collect",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
@@ -465,7 +529,7 @@
     
 }
 - (void)likeThisHouse:(UIButton *)sender{
-    
+    LOGIN
     NSString *path = [NSString stringWithFormat:@"%@/MemberImage/member_zan",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};

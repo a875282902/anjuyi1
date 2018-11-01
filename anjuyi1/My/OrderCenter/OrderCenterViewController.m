@@ -98,7 +98,7 @@
     NSDictionary *header = @{@"token":UTOKEN};
     NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
     
-    [parameter setValue:[NSString stringWithFormat:@"%ld",self.page] forKey:@"page"];
+    [parameter setValue:[NSString stringWithFormat:@"%ld",(long)self.page] forKey:@"page"];
     if (_typeDic) {
         [parameter setValue:_typeDic[@"value"] forKey:@"type"];
     }

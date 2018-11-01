@@ -10,6 +10,10 @@
 
 @interface PersonalViewController : BaseViewController
 
+/**
+ * type 为1 从个人中心进来
+ */
+@property (nonatomic,strong) NSString *type;
 @property (nonatomic,strong) NSString *user_id;
 
 @end

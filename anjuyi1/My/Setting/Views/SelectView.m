@@ -8,7 +8,7 @@
 
 #import "SelectView.h"
 
-static CGFloat vHeight = 250;
+static CGFloat vHeight = 250 + KPlaceHeight;
 
 static CGFloat sHeight = 50;
 
@@ -78,7 +78,7 @@ static CGFloat sHeight = 50;
 - (UIPickerView *)tmpPickerView{
     
     if (!_tmpPickerView) {
-        _tmpPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, sHeight, KScreenWidth, vHeight-sHeight)];
+        _tmpPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, sHeight, KScreenWidth, vHeight-sHeight-KPlaceHeight)];
         [_tmpPickerView setDelegate:self];
         [_tmpPickerView setDataSource:self];
     }
@@ -94,7 +94,18 @@ static CGFloat sHeight = 50;
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     
-    return [self.dataArr[row] valueForKey:@"value"]?[self.dataArr[row] valueForKey:@"value"]:[self.dataArr[row] valueForKey:@"name"];
+    id obj = self.dataArr[row];
+    NSString *str = @"";
+    
+    if ([obj isKindOfClass:[NSString class]]) {
+        str = obj;
+    }
+    else if ([obj isKindOfClass:[NSDictionary class]]){
+        
+        str =[self.dataArr[row] valueForKey:@"value"]?[self.dataArr[row] valueForKey:@"value"]:[self.dataArr[row] valueForKey:@"name"];
+    }
+    
+    return str;
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
@@ -118,7 +129,7 @@ static CGFloat sHeight = 50;
         currentDic = self.dataArr[0];
     }
     
-    [self.delegate selectCityWithInfo:currentDic view:self];
+    [self.delegate selectViewWithInfo:currentDic view:self];
     [self hidden];
 }
 

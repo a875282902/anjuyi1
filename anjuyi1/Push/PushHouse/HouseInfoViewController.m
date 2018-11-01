@@ -21,7 +21,7 @@
 
 #import "TextViewController.h"
 
-#import "MyPushHouseViewController.h"
+#import "MyPushHouseDetailsViewController.h"
 
 
 @interface HouseInfoViewController ()<PhotoSelectControllerDelegate,HouseCoverViewDlegate,UIScrollViewDelegate>
@@ -243,10 +243,16 @@
 - (void)titleChangeValue:(NSString *)text type:(NSInteger)type{
     if (type == 0) {
         _title = text;
+        
+        [self editHouseInfo:@{@"id":self.house_id,
+                              @"title":_title}];
     }
     
     if (type == 1) {
         _said = text;
+        
+        [self editHouseInfo:@{@"id":self.house_id,
+                              @"said":_said}];
     }
 }
 
@@ -270,7 +276,18 @@
 
 #pragma mark -- 事件
 - (void)leftButtonTouchUpInside:(id)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"已将您编辑的内容存入草稿箱中，您确认离开整屋编辑页面吗？" preferredStyle:(UIAlertControllerStyleAlert)];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)selectHouseStatus:(UIButton *)sender{
@@ -349,8 +366,11 @@
                 if ([responseObject[@"datas"][@"route"] integerValue]==200) {
                     
                     self->_cover = responseObject[@"datas"][@"fullPath"];
+                    NSDictionary *parame = @{@"id":weakSelf.house_id,
+                                             @"cover":responseObject[@"datas"][@"fullPath"]};
                     [weakSelf.houseCoverView.headerView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
                     [weakSelf.houseCoverView.headerView setImage:image];
+                    [weakSelf editHouseInfo:parame];
                 }
                 else{
                     [ViewHelps showHUDWithText:@"加载失败，请重新选择图片"];
@@ -371,101 +391,41 @@
     
 }
 
-#pragma mark -- 预览 保存 删除
-- (void)insertHouseInfo:(NSInteger)tag{
+/**
+ 修改房屋信息
+ *
+ *  @param parame  修改参数
+ */
+- (void)editHouseInfo:(NSDictionary *)parame{
     
-    if (_cover.length == 0) {
-        [ViewHelps showHUDWithText:@"请选择封面"];
-        return;
-    }
-    
-    if (_title.length == 0) {
-        [ViewHelps showHUDWithText:@"请输入标题"];
-        return;
-    }
-    
-    if (_said.length == 0) {
-        [ViewHelps showHUDWithText:@"请输入“说在前面”"];
-        return;
-    }
-    
-    
-    NSString *path = [NSString stringWithFormat:@"%@/WholeHouse/insert_whole_house_info",KURL];
+    NSString *path = [NSString stringWithFormat:@"%@/whole_house/update_house_info",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
     
-    NSDictionary *paramet = @{@"house_id":self.house_id,
-                              @"cover":_cover,
-                              @"title":_title,
-                              @"said":_said};
-    
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    __weak typeof(self) weakSelf = self;
-    
-    [HttpRequest POSTWithHeader:header url:path parameters:paramet success:^(id  _Nullable responseObject) {
-        
-        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        
-        if ([responseObject[@"code"] integerValue] == 200) {
-
-           
-            if (tag == 1) {
-                [weakSelf saveHouse];
-            }
-            else{
-                
-                [weakSelf showHouse];
-            }
-        }
-        else{
-            
-            [ViewHelps showHUDWithText:responseObject[@"message"]];
-        }
-        
+    [HttpRequest POSTWithHeader:header url:path parameters:parame success:^(id  _Nullable responseObject) {
         
     } failure:^(NSError * _Nullable error) {
         
-        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [RequestSever showMsgWithError:error];
     }];
+}
 
+#pragma mark -- 预览 保存 删除
+- (void)insertHouseInfo:(NSInteger)tag{
+    
+    if (tag == 1) {
+        [self saveHouse];//保存
+    }
+    else{
+        [self showHouse];//展示
+    }
 }
 
 - (void)showHouse{
     
-    
-    NSString *path = [NSString stringWithFormat:@"%@/WholeHouse/preview_house_status",KURL];
-    
-    NSDictionary *header = @{@"token":UTOKEN};
-    NSDictionary *paramet = @{@"house_id":self.house_id};
-    
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    __weak typeof(self) weakSelf = self;
-    
-    [HttpRequest POSTWithHeader:header url:path parameters:paramet success:^(id  _Nullable responseObject) {
-        
-        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        
-        if ([responseObject[@"code"] integerValue] == 200) {
-            
-            [ViewHelps showHUDWithText:@"预览成功"];
-        }
-        else{
-            
-            [ViewHelps showHUDWithText:responseObject[@"message"]];
-        }
-        
-        
-    } failure:^(NSError * _Nullable error) {
-        
-        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        [RequestSever showMsgWithError:error];
-    }];
-
+    MyPushHouseDetailsViewController *vc = [[MyPushHouseDetailsViewController alloc] init];
+    vc.house_id = self.house_id;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)saveHouse{
@@ -487,13 +447,7 @@
         if ([responseObject[@"code"] integerValue] == 200) {
             
             [ViewHelps showHUDWithText:@"发布成功"];
-            if (weakSelf.type == 2) {
-                [weakSelf dismissViewControllerAnimated:YES completion:nil];
-            }else{
-                MyPushHouseViewController * vc = [[MyPushHouseViewController alloc] init];
-                vc.isPresent = YES;
-                [weakSelf.navigationController pushViewController:vc animated:YES];
-            }
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
         }
         else{
             

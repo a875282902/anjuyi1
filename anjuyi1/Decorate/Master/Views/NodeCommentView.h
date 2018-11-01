@@ -11,7 +11,8 @@
 @interface NodeCommentView : UIView
 
 @property (nonatomic,copy) void (^showCommentDetali)(NSString *eva_id);
-
+@property (nonatomic,copy) void (^showReviewerDetail)(BaseViewController *vc);
+@property (nonatomic,strong)NSString *commit_id;
 @property (nonatomic,strong)NSString *nodeid;
 
 - (void)openDisplay;

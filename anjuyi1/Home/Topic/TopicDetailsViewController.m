@@ -247,7 +247,7 @@
     
     if ([self.topicInfo[@"status"] integerValue]==0) {
         
-        UIButton *btn = [Tools creatButton:CGRectMake(MDXFrom6(20),KScreenHeight -  17.5 - 45, MDXFrom6(160), 45) font:[UIFont systemFontOfSize:18] color:[UIColor whiteColor] title:@"参与话题" image:@""];
+        UIButton *btn = [Tools creatButton:CGRectMake(MDXFrom6(20),KScreenHeight -  17.5 - 45  -KPlaceHeight, MDXFrom6(160), 45) font:[UIFont systemFontOfSize:18] color:[UIColor whiteColor] title:@"参与话题" image:@""];
         [btn setBackgroundColor:GCOLOR];
         [btn.layer setCornerRadius:22.5];
         [btn setClipsToBounds:YES];
@@ -256,7 +256,7 @@
         
         if ([self.topicInfo[@"is_author"] integerValue]==0) {
  
-            UIButton *btn1 = [Tools creatButton:CGRectMake(MDXFrom6(195),KScreenHeight -  17.5 - 45, MDXFrom6(160), 45) font:[UIFont systemFontOfSize:18] color:[UIColor whiteColor] title:@"关注" image:@""];
+            UIButton *btn1 = [Tools creatButton:CGRectMake(MDXFrom6(195),KScreenHeight -  17.5 - 45 - KPlaceHeight, MDXFrom6(160), 45) font:[UIFont systemFontOfSize:18] color:[UIColor whiteColor] title:@"关注" image:@""];
             [btn1 setBackgroundColor:GCOLOR];
             [btn1 setTitle:@"已关注" forState:(UIControlStateSelected)];
             [btn1.layer setCornerRadius:22.5];
@@ -269,7 +269,7 @@
             }
         }
         else{
-            [btn setFrame:CGRectMake((KScreenWidth - 200)/2.0, KScreenHeight -  17.5 - 45, 200, 45)];
+            [btn setFrame:CGRectMake((KScreenWidth - 200)/2.0, KScreenHeight -  17.5 - 45- KPlaceHeight, 200, 45)];
         }
         
     }

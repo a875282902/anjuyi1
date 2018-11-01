@@ -108,6 +108,14 @@
             [weakSelf.navigationController pushViewController:vc animated:YES];
             
         }];
+        
+        //展示用户详情
+        __block typeof(_commentView) weakC = _commentView;(void)weakC;
+        [_commentView setShowReviewerDetail:^(BaseViewController *vc) {
+            
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
+
     }
     return _commentView;
 }
@@ -560,7 +568,7 @@
         
     }
     
-    [activityScroll setContentSize:CGSizeMake(MDXFrom6(130*dArr.count), MDXFrom6(120))];
+    [activityScroll setContentSize:CGSizeMake(MDXFrom6(130*dArr.count), MDXFrom6(65))];
     
     return likeView;
 }
@@ -915,8 +923,13 @@
 
         }
         else{
-            
-            [ViewHelps showHUDWithText:responseObject[@"message"]];
+            if ([responseObject[@"message"] isEqualToString:@"token过期，请重新登录"]) {
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UTOKEN"];
+                [ViewHelps showHUDWithText:@"登录过期，请重新登录"];
+                LOGIN
+            }{
+                [ViewHelps showHUDWithText:responseObject[@"message"]];
+            }
         }
         
         

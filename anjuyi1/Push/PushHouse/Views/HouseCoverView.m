@@ -51,7 +51,7 @@
 
 - (void)getHouseInfo{
 
-    NSString *path = [NSString stringWithFormat:@"%@/WholeHouse/get_house_info",KURL];
+    NSString *path = [NSString stringWithFormat:@"%@/whole_house/get_house_info",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
     
@@ -66,6 +66,10 @@
         if ([responseObject[@"code"] integerValue] == 200) {
             
             weakSelf.houseData = [NSMutableDictionary dictionaryWithDictionary:responseObject[@"datas"]];
+            if (!KStringIsEmpty(responseObject[@"datas"][@"cover"])) {
+                [weakSelf.headerView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+                [weakSelf.headerView sd_setImageWithURL:[NSURL URLWithString:responseObject[@"datas"][@"cover"]]];
+            }
             
             [weakSelf.tmpTableView reloadData];
         }
@@ -140,6 +144,9 @@
     [cell setAccessoryType:(UITableViewCellAccessoryDisclosureIndicator)];
     
     if (self.houseData) {
+
+        _title = self.houseData[@"title"];
+        _desc = self.houseData[@"said"];
         NSArray *dArr = @[_title,_desc,self.houseData[@"door"],[NSString stringWithFormat:@"%@平米",self.houseData[@"proportion"]],[NSString stringWithFormat:@"%@ %@ %@",self.houseData[@"province_name"],self.houseData[@"city_name"],self.houseData[@"area_name"]],[NSString stringWithFormat:@"%@万元",self.houseData[@"cost"]]];
         [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@",dArr[indexPath.row]]];
     }

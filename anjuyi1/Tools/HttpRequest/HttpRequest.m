@@ -156,6 +156,10 @@
                 [formatter setDateFormat:@"yyyyMMddHHmmss"];
                 NSString *dateString = [formatter stringFromDate:[NSDate date]];
                 NSString *fileName = [NSString  stringWithFormat:@"%@.jpg", dateString];
+        
+        if (mimeType == MCMP4FileType) {
+            fileName  = [NSString  stringWithFormat:@"%@.mp4", dateString];
+        }
         /*
          *该方法的参数
          1. appendPartWithFileData：要上传的照片[二进制流]
@@ -241,6 +245,9 @@
             break;
         case MCTXTFileType:
             typeString = @"text/plain";
+            break;
+        case MCMP4FileType:
+            typeString = @"video/mp4";
             break;
             
         default:

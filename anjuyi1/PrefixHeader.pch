@@ -27,7 +27,9 @@
 
 #define KTabBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49) //底部tabbar高度
 
-#define KViewHeight (KScreenHeight - KTopHeight)//视图的高
+#define KPlaceHeight ([[UIApplication sharedApplication] statusBarFrame].size.height>20?34:0)
+
+#define KViewHeight (KScreenHeight - KTopHeight-KPlaceHeight)//视图的高
 
 //字符串是否为空
 #define KStringIsEmpty(str) ([str isKindOfClass:[NSNull class]] || str == nil || [str length] < 1 ? YES : NO )
@@ -106,6 +108,7 @@
 #import "Tools.h"
 #import "NavTwoTitle.h"
 #import "LoginViewController.h"
+#import "BaseNaviViewController.h"
 #import "BaseNaviViewController.h"
 
 #endif

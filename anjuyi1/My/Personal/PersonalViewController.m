@@ -14,8 +14,10 @@
 #import "MyPushHouseDetailsViewController.h"
 #import "MyPhotoViewController.h"
 #import "MyAnswerViewController.h"
-
+#import "AnswerListViewController.h"
 #import "MyCommentViewController.h"
+
+#import <AVKit/AVKit.h>
 
 @interface PersonalViewController ()<UIScrollViewDelegate>
 {
@@ -24,11 +26,12 @@
     UIImageView *headerBackImage;
 }
 
-@property (nonatomic,strong)UIScrollView   *  tmpScrollView;
-@property (nonatomic,strong)UIView         *  navView;
-@property (nonatomic,strong)NSDictionary   *  personalInfo;
-@property (nonatomic,strong)NSArray        *  houseArr;
-@property (nonatomic,strong)NSArray        *  imageArr;
+@property (nonatomic,strong)UIScrollView            *  tmpScrollView;
+@property (nonatomic,strong)UIView                  *  navView;
+@property (nonatomic,strong)NSDictionary            *  personalInfo;
+@property (nonatomic,strong)NSArray                 *  houseArr;
+@property (nonatomic,strong)NSArray                 *  imageArr;
+@property (nonatomic,strong)AVPlayerViewController  *  avPlayer;
 @end
 
 @implementation PersonalViewController
@@ -60,17 +63,15 @@
 #pragma mark -- 数据
 - (void)requsetData{
     
-    
     NSString *path = [NSString stringWithFormat:@"%@/person/index",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *dic = @{@"user_id":self.user_id};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -218,19 +219,63 @@
     
     [self.tmpScrollView addSubview:[Tools setLineView:CGRectMake(0, height, KScreenWidth, 1.5)]];
     
+    
+    if (!KStringIsEmpty(self.personalInfo[@"member_info"][@"video"])) {
+        height = [self setUpPersonalVideo:height];
+    }
+    
     //整屋
     height = [self setUpAllHouse:height];
     
     //图片
     height = [self setUpPhoto:height];
     
-    [self.tmpScrollView setContentSize:CGSizeMake(KScreenWidth, height)];
+    [self.tmpScrollView setContentSize:CGSizeMake(KScreenWidth, height + KPlaceHeight)];
 }
 
-#pragma mark -- 整屋 图片
+#pragma mark -- 个人介绍 整屋 图片
+
+- (CGFloat)setUpPersonalVideo:(CGFloat)height{
+    
+     [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(15), height, KScreenWidth - MDXFrom6(30), MDXFrom6(55)) font:[UIFont boldSystemFontOfSize:18] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:@"个人介绍"]];
+    
+    
+    UIView *videoView = [[UIView alloc] initWithFrame:CGRectMake(MDXFrom6(15), MDXFrom6(55)+height, KScreenWidth - MDXFrom6(30), KScreenWidth - MDXFrom6(30))];
+    [self.tmpScrollView addSubview:videoView];
+    
+    NSString *filePath = self.personalInfo[@"member_info"][@"video"];
+    
+    NSURL *sourceMovieURL = [NSURL URLWithString:filePath];
+    
+    AVAsset *movieAsset = [AVURLAsset URLAssetWithURL:sourceMovieURL options:nil];
+    
+    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:movieAsset];
+    
+    AVPlayer *player = [AVPlayer playerWithPlayerItem:playerItem];
+    
+    self.avPlayer = [[AVPlayerViewController alloc] init];
+    self.avPlayer.player = player;
+    [self.avPlayer setVideoGravity:AVLayerVideoGravityResizeAspect];
+    self.avPlayer.view.frame = videoView.bounds;
+    [self.avPlayer setShowsPlaybackControls:YES];
+    [videoView addSubview:self.avPlayer.view];
+    
+    return height + MDXFrom6(55) + videoView.frame.size.height+15;
+}
+
 //整屋
 - (CGFloat)setUpAllHouse:(CGFloat)height{
     
+    NSArray *houseArr = [NSArray array];
+    
+    if ([self.personalInfo[@"house_list"] isKindOfClass:[NSArray class]]) {
+        houseArr = self.personalInfo[@"house_list"];
+    }
+    
+    if (houseArr.count == 0) {
+    
+        return height;
+    }
     
     UIView *allHouse = [[UIView alloc] initWithFrame:CGRectMake(0, height, KScreenWidth, MDXFrom6(55))];
     [allHouse addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAllHouse)]];
@@ -247,13 +292,6 @@
     [allHouseScroll setShowsHorizontalScrollIndicator:NO];
     [self.tmpScrollView addSubview:allHouseScroll];
     
-    
-    
-    NSArray *houseArr = [NSArray array];
-    
-    if ([self.personalInfo[@"house_list"] isKindOfClass:[NSArray class]]) {
-        houseArr = self.personalInfo[@"house_list"];
-    }
     
     [allHouseScroll setContentSize:CGSizeMake(MDXFrom6(15+225*houseArr.count), MDXFrom6(205))];
     
@@ -286,6 +324,16 @@
 //图片
 - (CGFloat)setUpPhoto:(CGFloat)height{
     
+    self.imageArr = [NSArray array];
+    
+    if ([self.personalInfo[@"img_list"] isKindOfClass:[NSArray class]]) {
+        self.imageArr = self.personalInfo[@"img_list"];
+    }
+    
+    if (self.imageArr.count == 0) {
+        return height;
+    }
+    
     //图片
     UIView *photo = [[UIView alloc] initWithFrame:CGRectMake(0, height, KScreenWidth, MDXFrom6(55))];
     [photo addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPhoto)]];
@@ -296,12 +344,6 @@
     [photo addSubview:[Tools creatImage:CGRectMake(MDXFrom6(350), MDXFrom6(18.5), MDXFrom6(10.8), MDXFrom6(18)) image:@"jilu_rili_arrow"]];
     
     height += MDXFrom6(55);
-    
-    self.imageArr = [NSArray array];
-    
-    if ([self.personalInfo[@"img_list"] isKindOfClass:[NSArray class]]) {
-        self.imageArr = self.personalInfo[@"img_list"];
-    }
     
     
     for (NSInteger i = 0; i < self.imageArr.count; i++) {
@@ -324,7 +366,13 @@
 #pragma mark -- 点击事件
 - (void)back{
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if ([self.type isEqualToString:@"1"]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else{
+    
+        [self.navigationController popViewControllerAnimated:YES];
+    }
     
 }
 
@@ -393,8 +441,16 @@
             break;
         case 3:
         {
-            MyAnswerViewController *VC = [[MyAnswerViewController alloc] init];
-            [self.navigationController pushViewController:VC animated:YES];
+            if ([self.type isEqualToString:@"1"]) {
+                MyAnswerViewController *VC = [[MyAnswerViewController alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
+            }
+            else{
+                
+                AnswerListViewController *VC = [[AnswerListViewController alloc] init];
+                VC.user_id = self.user_id;
+                [self.navigationController pushViewController:VC animated:YES];
+            }
         }
             break;
             
@@ -439,16 +495,18 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     if (scrollView == self.tmpScrollView) {
-        [self.navView setBackgroundColor:MDRGBA(255, 255, 255, scrollView.contentOffset.y/286.5)];
+        
         
         if (scrollView.contentOffset.y > 265) {
             [shareBtn setImage:[UIImage imageNamed:@"share"] forState:(UIControlStateNormal)];
             [backBtn setImage:[UIImage imageNamed:@"ss_back"] forState:(UIControlStateNormal)];
+            [self.navView setBackgroundColor:MDRGBA(255, 255, 255, scrollView.contentOffset.y/286.5)];
         }
         else{
             
             [shareBtn setImage:[UIImage imageNamed:@"designer_xq_zf"] forState:(UIControlStateNormal)];
             [backBtn setImage:[UIImage imageNamed:@"my_back"] forState:(UIControlStateNormal)];
+            [self.navView setBackgroundColor:MDRGBA(255, 255, 255, scrollView.contentOffset.y/286.5)];
         }
         
         CGPoint point = scrollView.contentOffset;

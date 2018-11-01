@@ -24,8 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view, typically from a nib.
-    self.view.backgroundColor = [UIColor brownColor];
+    // Do any additional setup after loading the view, typically from a nib
     
     self.navView = [[NavTwoTitle alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(200), 44) WithTitle1:@"我的整屋" WithTitle2:@"0篇"];
     
@@ -73,6 +72,7 @@
                 
                 for (NSDictionary *dic in responseObject[@"datas"]) {
                     HouseModel *model = [[HouseModel alloc] initWithDictionary:dic];
+                    model.member_info = dic;
                     [weakSelf.dataArr addObject:model];
                 }
                 

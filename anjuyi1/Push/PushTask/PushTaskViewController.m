@@ -257,7 +257,7 @@
 // ---------- 选择户型 -------
 - (CGFloat)selectRoomModelView:(CGFloat)height{
     
-    [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(35), height, MDXFrom6(50), 30) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:@"户型："]];
+    [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(35), height, MDXFrom6(50), 30) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:@"户型:"]];
 
     for (NSInteger i = 0 ; i < 2 ; i++) {
         

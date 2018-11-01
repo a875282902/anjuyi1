@@ -275,9 +275,9 @@
 
 - (void)tap:(UITapGestureRecognizer *)sender{
     LabelViewController *vc = [[LabelViewController alloc] init];
-    [vc setSelectLabel:^(NSDictionary *dic) {
-        
-        [self.labelArr addObject:dic];
+    vc.sureBtnLabel = self.labelArr;
+    [vc setSureSelectLabel:^(NSArray *labelArr) {
+        self.labelArr = [NSMutableArray arrayWithArray:labelArr];
         [self addLabelToTextView];
     }];
     [self.navigationController pushViewController:vc animated:YES];

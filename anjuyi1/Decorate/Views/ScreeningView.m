@@ -64,17 +64,17 @@
     [self.tmpScrollView setShowsHorizontalScrollIndicator:NO];
     [self.backView addSubview:self.tmpScrollView];
     
-    UIButton *resetBtn = [Tools creatButton:CGRectMake(0, self.backView.frame.size.height - 50 , self.backView.frame.size.width/2, 50) font:[UIFont systemFontOfSize:14] color:[UIColor blackColor] title:@"重置" image:@""];
+    UIButton *resetBtn = [Tools creatButton:CGRectMake(0, self.backView.frame.size.height - 50 - KPlaceHeight , self.backView.frame.size.width/2, 50) font:[UIFont systemFontOfSize:14] color:[UIColor blackColor] title:@"重置" image:@""];
     [resetBtn addTarget:self action:@selector(reset) forControlEvents:(UIControlEventTouchUpInside)];
     [self.backView addSubview:resetBtn];
     
     
-    UIButton *sureBtn = [Tools creatButton:CGRectMake(self.backView.frame.size.width/2, self.backView.frame.size.height - 50 , self.backView.frame.size.width/2, 50) font:[UIFont systemFontOfSize:14] color:[UIColor whiteColor] title:@"确定" image:@""];
+    UIButton *sureBtn = [Tools creatButton:CGRectMake(self.backView.frame.size.width/2, self.backView.frame.size.height - 50 - KPlaceHeight, self.backView.frame.size.width/2, 50) font:[UIFont systemFontOfSize:14] color:[UIColor whiteColor] title:@"确定" image:@""];
     [sureBtn addTarget:self action:@selector(sure) forControlEvents:(UIControlEventTouchUpInside)];
     [sureBtn setBackgroundColor:[UIColor colorWithHexString:@"#ffb538"]];
     [self.backView addSubview:sureBtn];
     
-    [self.backView addSubview:[Tools setLineView:CGRectMake(0, self.backView.frame.size.height - 50 ,self.backView.frame.size.width , 1)]];
+    [self.backView addSubview:[Tools setLineView:CGRectMake(0, self.backView.frame.size.height - 50 -KPlaceHeight ,self.backView.frame.size.width , 1)]];
 }
 
 - (void)setUpContentView{

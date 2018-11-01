@@ -59,6 +59,7 @@
 
     [WXApi registerApp:WXID];
     
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 

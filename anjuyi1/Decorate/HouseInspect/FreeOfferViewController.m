@@ -9,14 +9,12 @@
 
 #import "FreeOfferViewController.h"
 #import "SelectCityView.h"//选择地址
-
-#import "PullDownView.h"
+#import "SelectView.h"
 #import "YZMenuButton.h"
-#import "DefaultPullDown.h"
 
 #import "LSYLocation.h"
 
-@interface FreeOfferViewController ()<SelectCityViewDelegate,DefaultPullDownDelegate,LSYLocationDelegta>
+@interface FreeOfferViewController ()<SelectCityViewDelegate,LSYLocationDelegta,SelectViewDelegate>
 {
     NSInteger time;
     UIButton *codeBtn;
@@ -24,7 +22,7 @@
     NSDictionary *_city ;
     NSDictionary *_area ;
     UIButton * _selectLocationBtn;
-    NSInteger       _currentSelect;//当前下拉的view 0为房间 1为室
+    YZMenuButton *selectButton;
 }
 
 @property (nonatomic,strong)NSMutableArray * textArr;
@@ -32,7 +30,6 @@
 @property (nonatomic,strong)UILabel        * location;
 @property (nonatomic,strong)LSYLocation    * locationSevice;
 
-@property (nonatomic,strong)PullDownView     * pullDownView;//下拉选择框
 @property (nonatomic,strong)NSMutableArray   * roomArr;
 @property (nonatomic,strong)NSMutableArray   * hallArr;
 @property (nonatomic,strong)NSMutableArray   * buttonArr;
@@ -40,6 +37,7 @@
 
 @property (nonatomic,strong)SelectCityView * selectCityView;
 
+@property (nonatomic,strong)SelectView     * selectView;
 
 @end
 
@@ -81,6 +79,8 @@
     
     [self.view addSubview:self.selectCityView];
     
+    [self.view addSubview:self.selectView];
+    
 }
 - (void)getRoom{
     
@@ -107,16 +107,6 @@
                 [weakSelf.hallArr addObject:dic];
             }
             
-            DefaultPullDown *sort1 = [[DefaultPullDown alloc] init];
-            sort1.titleArray = weakSelf.roomArr;
-            [sort1 setDelegate:weakSelf];
-            [weakSelf addChildViewController:sort1];
-            
-            DefaultPullDown *sort2 = [[DefaultPullDown alloc] init];
-            sort2.titleArray = weakSelf.hallArr;
-            [sort2 setDelegate:weakSelf];
-            [weakSelf addChildViewController:sort2];
-            
             if (weakSelf.buttonArr.count > 0 && weakSelf.hallArr.count > 0 && weakSelf.roomArr.count > 0) {
                 UIButton *btn1 = weakSelf.buttonArr[0];
                 [btn1 setTitle:weakSelf.roomArr[0] forState:(UIControlStateNormal)];
@@ -140,16 +130,6 @@
         [RequestSever showMsgWithError:error];
     }];
     
-}
-// 选择的房间 数量
-- (void)dafalutPullDownSelect:(NSInteger)index{
-    
-    if (_currentSelect == 0) {
-        [self.selectRoomArr replaceObjectAtIndex:0 withObject:self.roomArr[index]];
-    }
-    else{
-        [self.selectRoomArr replaceObjectAtIndex:0 withObject:self.hallArr[index]];
-    }
 }
 
 #pragma mark --  UI
@@ -227,7 +207,7 @@
 // ---------- 选择户型 -------
 - (CGFloat)selectRoomModelView:(CGFloat)height{
     
-    [self.view addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(35), height, MDXFrom6(50), 30) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:@"户型："]];
+    [self.view addSubview:[Tools creatLabel:CGRectMake(MDXFrom6(35), height, MDXFrom6(50), 30) font:[UIFont systemFontOfSize:15] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:@"户型:"]];
     
     
     for (NSInteger i = 0 ; i < 2 ; i++) {
@@ -248,10 +228,16 @@
         
         [self.buttonArr addObject:button];
     }
-    
-    
-    
     return height + 40;
+}
+
+- (SelectView *)selectView{
+    
+    if (!_selectView) {
+        _selectView = [[SelectView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+        [_selectView setDelegate:self];
+    }
+    return _selectView;
 }
 
 
@@ -335,32 +321,23 @@
     
     [self.textArr replaceObjectAtIndex:sender.tag withObject:sender.text];
 }
-- (PullDownView *)pullDownView{
-    
-    if (!_pullDownView) {
-        _pullDownView  = [[PullDownView alloc] init];
-        [self.view addSubview:_pullDownView];
-    }
-    return _pullDownView;
-}
 
-- (void)selectRoomNum:(UIButton *)sender{
+
+- (void)selectRoomNum:(YZMenuButton *)sender{
     
     sender.selected = !sender.selected;
+    selectButton = sender;
+    [self.selectView show];
+    [self.selectView setTag:sender.tag];
+    [self.selectView setDataArr:sender.tag == 0?self.roomArr:self.hallArr];
     
-    _currentSelect = sender.tag;
-    
-    CGRect rext = [sender convertRect:sender.bounds toView:self.view];
-    
-    CGRect frame;
-    frame.origin.x = rext.origin.x;
-    frame.origin.y = rext.origin.y + rext.size.height;
-    frame.size.width = rext.size.width;
-    frame.size.height = 150;
-    
-    [self.pullDownView showOrHidden:NO withFrame:frame button:sender view:((DefaultPullDown *)self.childViewControllers[sender.tag]).view];
 }
 
+- (void)selectViewWithInfo:(NSDictionary *)info view:(SelectView *)selectView{
+    selectButton.selected = !selectButton.selected;
+    [selectButton setTitle:(NSString *)info forState:(UIControlStateNormal)];
+    [self.selectRoomArr replaceObjectAtIndex:selectView.tag withObject:info];
+}
 
 // 提交
 - (void)submit{

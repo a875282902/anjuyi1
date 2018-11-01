@@ -14,6 +14,7 @@
 #import "CommentModel.h"
 #import "FunctionBarView.h"
 #import "CommentDetalisViewController.h"
+#import "PersonalViewController.h"
 
 @interface StrategyDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -71,14 +72,13 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/strategy_info/strategy_detail",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *parameter = @{@"id":self.strategy_id};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:parameter success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:parameter success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [weakSelf.commentArr removeAllObjects];
@@ -155,6 +155,10 @@
             vc.eva_id = eva_id;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
+        //展示用户详情
+        [_commentV setShowReviewerDetail:^(BaseViewController *vc) {
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
         [_commentV setStrategy_id:self.strategy_id];
     }
     return _commentV;
@@ -180,7 +184,7 @@
 - (UIView *)functionBar{
     
     if (!_functionBar) {
-        _functionBar = [[FunctionBarView alloc] initWithFrame:CGRectMake(0, KScreenHeight - 50, KScreenWidth, 50)];
+        _functionBar = [[FunctionBarView alloc] initWithFrame:CGRectMake(0, KScreenHeight - 50 - KPlaceHeight, KScreenWidth, 50)];
         [_functionBar addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 2)]];
     }
     return _functionBar;
@@ -206,14 +210,24 @@
     NSString *name = self.photoInfo[@"member_info"][@"nickname"];
     CGFloat nameW = KHeight(name, 10000, 20, 18).size.width + 20;
     
-    [self.infoView addSubview:[Tools creatLabel:CGRectMake(65,  height+20 ,nameW , 25) font:[UIFont systemFontOfSize:18] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:name]];
+    UILabel *nameLabel = [Tools creatLabel:CGRectMake(65,  height+20 ,nameW , 25) font:[UIFont systemFontOfSize:18] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:name];
+    [self.infoView addSubview:nameLabel];
     
     UILabel *typeLabel = [Tools creatLabel:CGRectMake(65+ nameW, height+22.5 , 50, 20) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#fffefe"] alignment:(NSTextAlignmentCenter) title:self.photoInfo[@"member_info"][@"level"]];
     [typeLabel.layer setCornerRadius:5];
     [typeLabel setBackgroundColor:[UIColor colorWithHexString:@"#5cc6c6"]];
     [self.infoView addSubview:typeLabel];
     
-    [self.infoView addSubview:[Tools creatLabel:CGRectMake(65,height+ 45 ,KScreenWidth - 75 , 20) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:self.photoInfo[@"member_info"][@"position"]]];
+    if (KScreenWidth < 65+nameW + 50 + 110+20) {
+        [typeLabel setFrame:CGRectMake(KScreenWidth - 190, height+22.5, 50, 20)];
+        [nameLabel setFrame:CGRectMake(65,  height+20 ,KScreenWidth - 245 , 25)];
+    }
+    
+    [self.infoView addSubview:[Tools creatLabel:CGRectMake(65,height+ 45 ,KScreenWidth - 185 , 20) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:self.photoInfo[@"member_info"][@"position"]]];
+    
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, height, KScreenWidth - 110, 83)];
+    [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPersonDetails)]];
+    [self.infoView addSubview:backView];
     
     UIButton *attentionbtn = [Tools creatButton:CGRectMake(KScreenWidth - 110, height+25, 90, 33) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#5cc6c6"] title:@"关注" image:@""];
     [attentionbtn setBackgroundColor:MDRGBA(219, 245, 245, 1)];
@@ -328,7 +342,7 @@
 - (UITableView *)tmpTableView{
     
     if (!_tmpTableView) {
-        _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 50) style:(UITableViewStyleGrouped)];
+        _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 50 - KPlaceHeight) style:(UITableViewStyleGrouped)];
         [_tmpTableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
         if (@available(iOS 11.0, *)) {
             [_tmpTableView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
@@ -359,7 +373,21 @@
     }
     if (indexPath.row < self.commentArr.count) {
         
-        [cell bandDataWith:self.commentArr[indexPath.row]];
+        CommentModel *model = self.commentArr[indexPath.row];
+        [cell bandDataWith:model];
+        
+        [cell setShowPresonDetail:^{
+            
+            if (model.member_info[@"user_id"]) {
+                PersonalViewController *vc = [[PersonalViewController alloc] init];
+                vc.user_id = model.member_info[@"user_id"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            else{
+                [ViewHelps showHUDWithText:@"user_id 不存在"];
+            }
+            
+        }];
     }
     return cell;
     
@@ -371,10 +399,26 @@
     if (indexPath.row < self.commentArr.count) {
         CommentModel *model = self.commentArr[indexPath.row];
         
-        CommentDetalisViewController *vc = [[CommentDetalisViewController alloc] init];
-        vc.type = 4;
-        vc.eva_id = model.commit_id;
-        [self.navigationController pushViewController:vc animated:YES];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"评论操作" preferredStyle:(UIAlertControllerStyleActionSheet)];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:@"回复" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            
+            self.commentV.commit_id = model.commit_id;
+            [self.commentV addComment];
+        }]];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:@"详情" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            
+            CommentDetalisViewController *vc = [[CommentDetalisViewController alloc] init];
+            vc.type = 4;
+            vc.eva_id = model.commit_id;
+            [self.navigationController pushViewController:vc animated:YES];
+        }]];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil]];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+
     }
 }
 
@@ -389,6 +433,12 @@
     [self checkMoreComment];
 }
 
+- (void)showPersonDetails{
+    
+    PersonalViewController *vc = [[PersonalViewController alloc] init];
+    vc.user_id = self.photoInfo[@"member_info"][@"user_id"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 // 关注
 - (void)attentionToAuthor:(UIButton *)sender{
@@ -435,6 +485,7 @@
 }
 
 - (void)commentThisHouse{
+    self.commentV.commit_id = @"0";
     [self.commentV addComment];
 }
 
@@ -517,16 +568,18 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     if (scrollView == self.tmpTableView) {
-        [self.navView setBackgroundColor:MDRGBA(255, 255, 255, scrollView.contentOffset.y/KScreenWidth)];
+        
         
         if (scrollView.contentOffset.y > 265) {
             [shareBtn setImage:[UIImage imageNamed:@"share"] forState:(UIControlStateNormal)];
             [backBtn setImage:[UIImage imageNamed:@"ss_back"] forState:(UIControlStateNormal)];
+            [self.navView setBackgroundColor:MDRGBA(255, 255, 255, 1)];
         }
         else{
             
             [shareBtn setImage:[UIImage imageNamed:@"designer_xq_zf"] forState:(UIControlStateNormal)];
             [backBtn setImage:[UIImage imageNamed:@"my_back"] forState:(UIControlStateNormal)];
+            [self.navView setBackgroundColor:MDRGBA(255, 255, 255, 0)];
         }
         
         CGPoint point = scrollView.contentOffset;

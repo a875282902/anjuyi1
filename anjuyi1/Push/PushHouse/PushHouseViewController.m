@@ -169,7 +169,7 @@
 - (void)editHouseInfo:(NSString *)door{
     
     
-    NSString *path = [NSString stringWithFormat:@"%@/WholeHouse/update_house_info",KURL];
+    NSString *path = [NSString stringWithFormat:@"%@/whole_house/update_house_info",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
     

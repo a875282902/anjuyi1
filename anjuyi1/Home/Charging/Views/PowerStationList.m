@@ -47,6 +47,8 @@
         if (@available(iOS 11.0, *)) {
             [_tmpTableView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
         }
+        [_tmpTableView setRowHeight:UITableViewAutomaticDimension];
+        [_tmpTableView setEstimatedRowHeight:105.0f];
         [_tmpTableView setShowsVerticalScrollIndicator:NO];
         [_tmpTableView setShowsHorizontalScrollIndicator:NO];
         [_tmpTableView setDataSource:self];
@@ -71,11 +73,6 @@
     }
     
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return 105;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

@@ -10,6 +10,7 @@
 #import "CommentModel.h"
 #import "HouseCommentTableViewCell.h"
 #import "CommentDetalisViewController.h"
+#import "PersonalViewController.h"
 
 @interface StrategyCommentView () <UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
@@ -72,7 +73,7 @@
 
 - (void)setUpInputView{
     
-    self.inputView = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 140 - 65, KScreenWidth, 65)];
+    self.inputView = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 140 - 65 - KPlaceHeight, KScreenWidth, 65)];
     [self.inputView setBackgroundColor:[UIColor whiteColor]];
     [self.backView addSubview:self.inputView];
     
@@ -98,19 +99,17 @@
 
 - (void)getHouseCommentListData{
     
-    
     self.dataArr = [NSMutableArray array];
     
     NSString *path = [NSString stringWithFormat:@"%@/strategy_info/get_all_comment_list",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
     NSDictionary *parameter = @{@"id":self.strategy_id};
     
     [MBProgressHUD showHUDAddedTo:self animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:parameter success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:parameter success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:weakSelf animated:YES];
         
@@ -121,7 +120,7 @@
                     [weakSelf.dataArr addObject:model];
                 }
             }
-            [weakSelf.numLabel setText:[NSString stringWithFormat:@"%ld条评论",weakSelf.dataArr.count]];
+            [weakSelf.numLabel setText:[NSString stringWithFormat:@"%lu条评论",(unsigned long)weakSelf.dataArr.count]];
         }
         else{
             
@@ -169,7 +168,14 @@
     }
     
     if (indexPath.row < self.dataArr.count) {
+        CommentModel *model = self.dataArr[indexPath.row];
         [cell bandDataWith:self.dataArr[indexPath.row]];
+        
+        [cell setShowPresonDetail:^{
+            PersonalViewController *vc = [[PersonalViewController alloc] init];
+            vc.user_id = model.member_info[@"user_id"];
+            self.showReviewerDetail(vc);
+        }];
     }
     
     return cell;
@@ -178,7 +184,23 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     CommentModel *model = self.dataArr[indexPath.row];
-    self.selectShowDetails(model.commit_id);
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"评论操作" preferredStyle:(UIAlertControllerStyleActionSheet)];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"回复" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        
+        self.commit_id = model.commit_id;
+        [self addComment];
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"详情" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        
+        self.selectShowDetails(model.commit_id);
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil]];
+    
+    [[Tools getCurrentVC] presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark -- 事件
@@ -235,7 +257,7 @@
     NSString *path = [NSString stringWithFormat:@"%@/strategy/add_evaluate",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
-    NSDictionary *parameter = @{@"strategy_id":self.strategy_id,@"content":text,@"commit_id":@"0"};
+    NSDictionary *parameter = @{@"strategy_id":self.strategy_id,@"content":text,@"commit_id":self.commit_id};
     
     [MBProgressHUD showHUDAddedTo:self animated:YES];
     
@@ -277,7 +299,7 @@
 -(void)keyboardWillBeHidden:(NSNotification*)aNotification{
     
     [UIView animateWithDuration:.2 animations:^{
-        [self.inputView setFrame:CGRectMake(0,self.backView.frame.size.height - 65 , KScreenWidth, 65)];
+        [self.inputView setFrame:CGRectMake(0,self.backView.frame.size.height - 65  - KPlaceHeight, KScreenWidth, 65)];
     }];
     
 }

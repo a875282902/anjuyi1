@@ -9,7 +9,7 @@
 #import "SelectCityView.h"
 #import "DBManager.h"
 
-static CGFloat const vHeight = 250;
+static CGFloat const vHeight = 250+KPlaceHeight;
 
 static CGFloat const sHeight = 50;
 
@@ -138,7 +138,7 @@ static CGFloat const sHeight = 50;
 
 - (void)setUpCityView{
     
-    self.cityPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, sHeight, KScreenWidth, vHeight-sHeight)];
+    self.cityPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, sHeight, KScreenWidth, vHeight-sHeight-KPlaceHeight)];
     [self.cityPickerView setDelegate:self];
     [self.cityPickerView setDataSource:self];
     [self.backView addSubview:self.cityPickerView];
@@ -195,10 +195,7 @@ static CGFloat const sHeight = 50;
     }
     if (component == 2) {
         areaDic = self.areaArr[row];
-        
     }
-
-    
 }
 
 #pragma mark -- 事件

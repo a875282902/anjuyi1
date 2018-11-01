@@ -43,8 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    [self.view setBackgroundColor:[UIColor colorWithHexString:@"#f6f6f6"]];
+
     
     [self baseForDefaultLeftNavButton];
     [self setTitle:@"设计师列表"];
@@ -316,7 +315,7 @@
 - (UITableView *)tmpTableView{
     
     if (!_tmpTableView) {
-        _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, MDXFrom6(45), KScreenWidth, KScreenHeight-KTopHeight -MDXFrom6(45)) style:(UITableViewStylePlain)];
+        _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, MDXFrom6(45), KScreenWidth, KViewHeight -MDXFrom6(45)) style:(UITableViewStylePlain)];
         [_tmpTableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
         if (@available(iOS 11.0, *)) {
             [_tmpTableView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];

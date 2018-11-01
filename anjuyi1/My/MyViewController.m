@@ -130,8 +130,14 @@
             
         }
         else{
-            
-            [ViewHelps showHUDWithText:responseObject[@"message"]];
+            if ([responseObject[@"message"] isEqualToString:@"token过期，请重新登录"]) {
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UTOKEN"];
+                [self.tabBarController setSelectedIndex:((RootViewController *)self.tabBarController).upSelectIndex];
+                
+                LOGIN
+            }{
+                [ViewHelps showHUDWithText:responseObject[@"message"]];
+            }
         }
         
         
@@ -277,6 +283,7 @@
 - (void)showPerson{
     [self setNavWrite];
     PersonalViewController *controller = [[PersonalViewController alloc] init];
+    controller.type = @"1";
     controller.user_id = self.data[@"id"];
     BaseNaviViewController *nav = [[BaseNaviViewController alloc] initWithRootViewController:controller];
     [self presentViewController:nav animated:YES completion:nil];

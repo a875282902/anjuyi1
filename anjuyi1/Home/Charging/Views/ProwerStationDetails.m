@@ -8,7 +8,8 @@
 
 #import "ProwerStationDetails.h"
 #import "SDPhotoBrowserd.h"
-
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
+#import <CoreTelephony/CTCarrier.h>
 #define padding 15
 
 @interface ProwerStationDetails ()<UIScrollViewDelegate,SDPhotoBrowserDelegate>
@@ -58,17 +59,19 @@
     
     [self.tmpScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
-    CGFloat height = 0;
+    CGFloat height = 10;
+    UILabel * nameLabel = [Tools creatLabel:CGRectMake(padding, height, KScreenWidth - padding - 85, 70) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#212121"] alignment:(NSTextAlignmentLeft) title:self.stationData[@"name"]];
+    [nameLabel sizeToFit];
+    [self.tmpScrollView addSubview:nameLabel];
     
-    [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(padding, height, KScreenWidth - padding - 85, 70) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#212121"] alignment:(NSTextAlignmentLeft) title:self.stationData[@"name"]]];
+    height += nameLabel.frame.size.height + 10;
     
-    height += 70;
+    [self.tmpScrollView addSubview:[Tools creatImage:CGRectMake(padding, height + 4, 14, 14) image:@"add_add"]];
+    UILabel *addressLabel = [Tools creatLabel:CGRectMake(padding + 20, height, KScreenWidth - padding - 85, 14) font:[UIFont systemFontOfSize:14] color:[UIColor colorWithHexString:@"#000000"] alignment:(NSTextAlignmentLeft) title:self.stationData[@"address"]];
+    [addressLabel sizeToFit];
+    [self.tmpScrollView addSubview:addressLabel];
     
-    [self.tmpScrollView addSubview:[Tools creatImage:CGRectMake(padding, height, 14, 14) image:@"add_add"]];
-    
-    [self.tmpScrollView addSubview:[Tools creatLabel:CGRectMake(padding + 20, height, KScreenWidth - padding - 85, 14) font:[UIFont systemFontOfSize:14] color:[UIColor colorWithHexString:@"#000000"] alignment:(NSTextAlignmentLeft) title:self.stationData[@"address"]]];
-    
-    height += 24;
+    height += addressLabel.frame.size.height + 10;
     
     UILabel *details = [Tools creatLabel:CGRectMake(padding, height, KScreenWidth - padding - 85, 15) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:@""];
     [self.tmpScrollView addSubview:details];
@@ -137,7 +140,10 @@
 //}
 
 - (void)callPhone{
-    
+    if (![self isSIMInstalled]) {
+        [ViewHelps showHUDWithText:@"该设备不能打电话"];
+        return;
+    }
     NSString *cleanedString =[[self.stationData[@"phone"] componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789-+()"] invertedSet]] componentsJoinedByString:@""];
     NSString *escapedPhoneNumber = [cleanedString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *str_url = [[NSString alloc]initWithFormat:@"tel://%@", escapedPhoneNumber];
@@ -145,6 +151,16 @@
     UIWebView *mCallWebview = [[UIWebView alloc] init] ;
     [self addSubview:mCallWebview];
     [mCallWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
+}
+- (BOOL)isSIMInstalled
+{
+    CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
+    CTCarrier *carrier = [networkInfo subscriberCellularProvider];
+    if (!carrier.isoCountryCode) {
+        NSLog(@"No sim present Or No cellular coverage or phone is on airplane mode.");
+        return NO;
+    }
+    return YES;
 }
 
 -(void)showImage:(UITapGestureRecognizer *)sender{

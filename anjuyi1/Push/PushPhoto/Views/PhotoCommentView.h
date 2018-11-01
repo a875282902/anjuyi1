@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface PhotoCommentView : UIView
+
 @property (nonatomic,strong)NSString *photo_id;
+@property (nonatomic,strong)NSString *commit_id;
 
 @property (nonatomic,copy)void(^selectCommentDetails)(NSString *eva_id);
+
+@property (nonatomic,copy)void(^showReviewerDetail)(BaseViewController *vc);
 
 - (void)openDisplay;
 

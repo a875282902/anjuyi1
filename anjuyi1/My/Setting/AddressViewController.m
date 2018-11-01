@@ -59,7 +59,7 @@ static AddressTableViewCell * defaultCell;
         
         [self.dataArr removeAllObjects];
         if ([responseObject[@"code"] integerValue] == 200) {
-            if ([responseObject[@"datas"] isKindOfClass:[NSDictionary class]]) {
+            if ([responseObject[@"datas"] isKindOfClass:[NSArray class]]) {
                 for (NSDictionary *dic in responseObject[@"datas"]) {
                     AddressModel *model = [[AddressModel alloc] initWithDictionary:dic];
                     [self.dataArr addObject:model];

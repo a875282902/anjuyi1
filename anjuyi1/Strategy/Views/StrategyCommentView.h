@@ -12,8 +12,9 @@
 @interface StrategyCommentView : UIView
 
 @property (nonatomic,strong)NSString *strategy_id;
-
+@property (nonatomic,strong)NSString *commit_id;
 @property (nonatomic,copy) void (^selectShowDetails)(NSString *eva_id);
+@property (nonatomic,copy) void (^showReviewerDetail)(BaseViewController *vc);
 
 - (void)openDisplay;
 

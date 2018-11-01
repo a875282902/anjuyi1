@@ -49,7 +49,7 @@
     
     [super viewWillDisappear:animated];
     
-     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -98,7 +98,7 @@
 - (UIScrollView *)tmpScrollView{
     //designer_xq_banner
     if (!_tmpScrollView) {
-        _tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+        _tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-KPlaceHeight)];
         if (@available(iOS 11.0, *)) {
             [_tmpScrollView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
         }

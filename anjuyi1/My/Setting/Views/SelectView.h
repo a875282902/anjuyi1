@@ -12,7 +12,7 @@
 
 @protocol SelectViewDelegate <NSObject>
 
-- (void)selectCityWithInfo:(NSDictionary *)info view:(SelectView *)selectCity;
+- (void)selectViewWithInfo:(NSDictionary *)info view:(SelectView *)selectView;
 
 @end
 

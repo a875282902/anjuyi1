@@ -59,8 +59,6 @@
     
     [self.view addSubview:self.tmpScrollView];
     
-    
-    
     [self.view addSubview:self.navView];
     
     [self getData];
@@ -102,7 +100,7 @@
 - (UIScrollView *)tmpScrollView{
     //designer_xq_banner
     if (!_tmpScrollView) {
-        _tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+        _tmpScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-KPlaceHeight)];
         if (@available(iOS 11.0, *)) {
             [_tmpScrollView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
         }

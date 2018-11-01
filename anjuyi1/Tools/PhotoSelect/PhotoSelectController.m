@@ -17,7 +17,6 @@
 #define KStatusBarHeight [[UIApplication sharedApplication]statusBarFrame].size.height //状态栏高度
 #define KNavBarHeight 44.0
 #define KTopHeight (KStatusBarHeight + KNavBarHeight)
-#define KViewHeight (KScreenHeight - KTopHeight)//视图的高
 
 @interface PhotoSelectController ()<UICollectionViewDelegate,UICollectionViewDataSource,AlbumSelectControllerDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -94,8 +93,10 @@
         [self.dataArr insertObject:@"" atIndex:0];
         
         [self.tmpCollectionView reloadData];
+        if (self.dataArr.count >=2) {
+           [self collectionView:self.tmpCollectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:1]];
+        }
         
-        [self collectionView:self.tmpCollectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:1]];
     
     }
   
@@ -294,7 +295,7 @@
     
     [self.dataArr insertObject:@"" atIndex:0];
     
-    if (self.dataArr.count >2) {
+    if (self.dataArr.count >=2) {
         [self collectionView:self.tmpCollectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:1]];
     }
 }

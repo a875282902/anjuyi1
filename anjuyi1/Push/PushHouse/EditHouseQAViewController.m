@@ -102,7 +102,7 @@
         }
         else{
             
-            if (![_content isEqualToString:self.data[@"text"]]) {
+            if (![_content isEqual:self.data[@"text"]]) {
                 [self editQA];
             }
             else{

@@ -178,10 +178,53 @@
     PhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MyCollectPhotoView" forIndexPath:indexPath];
     
     if (indexPath.item < self.dataArr.count) {
-        [cell bandDataWithModel:self.dataArr[indexPath.item]];
+        MyPhotoModel *model  = self.dataArr[indexPath.item];
+        [cell bandDataWithModel:model];
+        [cell setSelectPhotoToCollect:^(UIButton *collectButotn) {
+            
+            [self collectPhoto:collectButotn photo_id:model.ID];
+            
+        }];
     }
     
     return cell;
+}
+
+//收藏
+- (void)collectPhoto:(UIButton *)sender photo_id:(NSString *)photo_id {
+    LOGIN
+    NSString *path = [NSString stringWithFormat:@"%@/MemberImage/member_collect",KURL];
+    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *dic = @{@"id":photo_id};
+    
+    [MBProgressHUD showHUDAddedTo:self animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf animated:YES];
+        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            [ViewHelps showHUDWithText:@"收藏成功"];
+            [sender setTitle:[NSString stringWithFormat:@" %ld",[sender.titleLabel.text integerValue] + 1] forState:(UIControlStateNormal)];
+            [sender setSelected:YES];
+        }
+        else if ([responseObject[@"code"] integerValue] == 201){
+            [sender setTitle:[NSString stringWithFormat:@" %ld",[sender.titleLabel.text integerValue] - 1] forState:(UIControlStateNormal)];
+            [sender setSelected:NO];
+        }
+        else{
+            
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
+        
+        
+    } failure:^(NSError * _Nullable error) {
+        
+        [MBProgressHUD hideHUDForView:weakSelf animated:YES];
+        [RequestSever showMsgWithError:error];
+    }];
 }
 
 - (CGFloat)waterflowLayout:(LSYCollerctionViewLayout *)waterflowLayout heightForItemAtIndexPath:(NSInteger)index itemWidth:(CGFloat)itemWidth{

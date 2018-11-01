@@ -11,7 +11,7 @@
 @interface LabelViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic,strong)NSMutableArray *dataArr;
-
+@property (nonatomic,strong)NSMutableArray *sureArr;
 @property (nonatomic,strong)UIScrollView *tmpScrollView;
 
 @end
@@ -32,6 +32,7 @@
     [self setNavSearch];
  
     self.dataArr = [NSMutableArray array];
+    self.sureArr = [NSMutableArray arrayWithArray:self.sureBtnLabel];
     
     [self.view addSubview:[Tools setLineView:CGRectMake(0, 0, KScreenWidth, 1)]];
     
@@ -130,13 +131,21 @@
         
         UIButton *btn = [Tools creatButton:CGRectMake(x, y, w, h) font:[UIFont systemFontOfSize:14] color:[UIColor colorWithHexString:@"#2cb7b5"] title:str image:@""];
         [btn setBackgroundColor:[UIColor colorWithHexString:@"#eaf8f8"]];
+        [btn setTitleColor:[UIColor blackColor] forState:(UIControlStateSelected)];
         [btn.layer setBorderWidth:1];
         [btn.layer setBorderColor:[UIColor colorWithHexString:@"#34bab8"].CGColor];
         [btn.layer setCornerRadius:5];
         [btn setClipsToBounds:YES];
         [btn setTag:i];
-        [btn addTarget:self action:@selector(backLogin:) forControlEvents:(UIControlEventTouchUpInside)];
+        [btn addTarget:self action:@selector(selectLabel:) forControlEvents:(UIControlEventTouchUpInside)];
         [self.tmpScrollView addSubview:btn];
+        
+        for (NSDictionary *dic in self.sureArr) {
+            if ([[NSString stringWithFormat:@"#%@",dic[@"name"]] isEqualToString:str]) {
+                [btn setSelected:YES];
+                [btn setBackgroundColor:[UIColor colorWithHexString:@"#efefef"]];
+            }
+        }
         
         x += w+ 10.0f;
         
@@ -144,9 +153,24 @@
 
 }
 
-- (void)backLogin:(UIButton *)sender{
+- (void)selectLabel:(UIButton *)sender{
     
-    self.selectLabel(self.dataArr[sender.tag]);
+    if (sender.selected) {
+        [sender setSelected:NO];
+        [sender setBackgroundColor:[UIColor colorWithHexString:@"#eaf8f8"]];
+        [self.sureArr removeObject:self.dataArr[sender.tag]];
+    }
+    else{
+        [sender setSelected:YES];
+        [sender setBackgroundColor:[UIColor colorWithHexString:@"#efefef"]];
+        [self.sureArr addObject:self.dataArr[sender.tag]];
+    }
+    self.sureSelectLabel(self.sureArr);
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)leftButtonTouchUpInside:(id)sender{
     
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -185,7 +185,6 @@
                           @"area_id":[countyDic valueForKey:@"key"],
                           @"address":self.textArr[5]};
     
-    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
@@ -266,18 +265,18 @@
     return _SelectView;
 }
 
-- (void)SelectViewWithInfo:(NSDictionary *)info view:(SelectView *)SelectView{
+- (void)selectViewWithInfo:(NSDictionary *)info view:(SelectView *)selectView{
     
     [selectLabel setTextColor:[UIColor blackColor]];
     [selectLabel setText:[info valueForKey:@"value"]];
     
-    if (SelectView.tag == 2) {
+    if (selectView.tag == 2) {
         provincesDic = info;
     }
-    if (SelectView.tag == 3) {
+    if (selectView.tag == 3) {
         cityDic = info;
     }
-    if (SelectView.tag == 4) {
+    if (selectView.tag == 4) {
         countyDic = info;
     }
 }

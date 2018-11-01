@@ -124,7 +124,7 @@
     }
 }
 
-- (void)pushShowDetail:(NSDictionary *)messageInfo{
+- (void)pushShowDetail:(NSDictionary *)messageInfo listView:(nonnull MessageListVIew *)view{
     
     MessageDetailViewController *vc = [[MessageDetailViewController alloc] init];
     vc.messageInfo= messageInfo;

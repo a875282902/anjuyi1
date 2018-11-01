@@ -26,7 +26,14 @@
     // Initialization code
     
     [self.headerImage.layer setCornerRadius:15.5];
+    [self.headerImage addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)]];
+}
 
+- (void)tap{
+    if (self && self.showPresonDetail) {
+    
+        self.showPresonDetail();
+    }
 }
 
 - (void)bandDataWith:(CommentModel *)model{
