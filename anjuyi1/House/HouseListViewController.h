@@ -10,5 +10,8 @@
 
 @interface HouseListViewController : BaseViewController
 @property (nonatomic,strong)NSString *user_id;
+/**
+ 怎么进来的 YES是 模态窗口  NO push
+ */
 @property (nonatomic,assign)BOOL isPresent;
 @end

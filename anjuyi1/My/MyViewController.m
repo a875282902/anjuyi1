@@ -285,8 +285,7 @@
     PersonalViewController *controller = [[PersonalViewController alloc] init];
     controller.type = @"1";
     controller.user_id = self.data[@"id"];
-    BaseNaviViewController *nav = [[BaseNaviViewController alloc] initWithRootViewController:controller];
-    [self presentViewController:nav animated:YES completion:nil];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 //选择项目

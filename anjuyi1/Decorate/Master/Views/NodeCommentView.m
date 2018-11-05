@@ -194,7 +194,7 @@
     }]];
     
     [alert addAction:[UIAlertAction actionWithTitle:@"详情" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-        
+        [self closeDisplay];
         self.showCommentDetali(model.commit_id);
     }]];
     

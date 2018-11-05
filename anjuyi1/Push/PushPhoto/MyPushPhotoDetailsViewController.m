@@ -236,7 +236,7 @@
     [attentionbtn setTitle:@"已关注" forState:(UIControlStateSelected)];
     [attentionbtn setSelected:[self.photoInfo[@"is_follow"] integerValue]==0?NO:YES];
     [attentionbtn addTarget:self action:@selector(attentionToAuthor:) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.infoView addSubview:attentionbtn];
+//    [self.infoView addSubview:attentionbtn];
     
     
     height += 83+15;
@@ -304,11 +304,11 @@
 - (void)createFootView{
     
     [self.footView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    //    if (self.commentArr.count == 0) {
-    //        [self.footView setFrame:CGRectMake(0, 0, KScreenWidth, 0.001)];
-    //
-    //    }
-    //    else{
+        if (self.commentArr.count == 0) {
+            [self.footView setFrame:CGRectMake(0, 0, KScreenWidth, 0.001)];
+    
+        }
+        else{
     
     [self.footView setFrame:CGRectMake(0, 0, KScreenWidth, 80)];
     
@@ -317,7 +317,7 @@
     [self.footView addSubview:btn];
     
     [self.footView addSubview:[Tools setLineView:CGRectMake(0, 79, KScreenWidth, 1)]];
-    //    }
+        }
     
     [self.tmpTableView setTableFooterView:self.footView];
 }

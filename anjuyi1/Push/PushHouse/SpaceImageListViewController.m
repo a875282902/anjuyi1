@@ -51,7 +51,7 @@
 #pragma mark -- nav
 - (void)setUpBackButton{
     
-    UIButton *btn = [Tools creatButton:CGRectMake(0, 0 , 70, 44) font:[UIFont systemFontOfSize:15] color:[UIColor whiteColor] title:[NSString stringWithFormat:@"    %@",self.spaceDic[@"name"]] image:@"my_back"];
+    UIButton *btn = [Tools creatButton:CGRectMake(0, 0 , 40+([self.spaceDic[@"name"] length] *15), 44) font:[UIFont systemFontOfSize:15] color:[UIColor whiteColor] title:[NSString stringWithFormat:@"    %@",self.spaceDic[@"name"]] image:@"my_back"];
     [btn addTarget:self action:@selector(back) forControlEvents:(UIControlEventTouchUpInside)];
     
     UIBarButtonItem *bt = [[UIBarButtonItem alloc] initWithCustomView:btn];

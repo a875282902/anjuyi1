@@ -49,6 +49,9 @@
     [self baseForDefaultLeftNavButton];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 
+    if (self.dataArr) {
+        [self getHouseInfo];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -71,7 +74,7 @@
     [self getHouseInfo];
     
     [self.view addSubview:self.navView];
-    [self.view addSubview:self.functionBar];
+//    [self.view addSubview:self.functionBar];
     [self.view addSubview:self.commentV];
 }
 
@@ -93,6 +96,11 @@
         if ([responseObject[@"code"] integerValue] == 200) {
             
             weakSelf.houseInfo = [NSMutableDictionary dictionaryWithDictionary:responseObject[@"datas"]];
+            
+            [self.titleArr removeAllObjects];
+            [self.dataArr removeAllObjects];
+            [self.questionArr removeAllObjects];
+            [self.commentArr removeAllObjects];
             
             for (NSDictionary *dic in weakSelf.houseInfo[@"space_image"]) {
                 NSMutableArray *arr = [NSMutableArray array];
@@ -122,10 +130,8 @@
             [weakSelf createHouseInfo];
             [weakSelf createFootView];
             
-            [weakSelf createFunctionBar];
-            
-            [weakSelf.tmpTableView setTableHeaderView:weakSelf.infoView];
-            [weakSelf.tmpTableView setTableFooterView:weakSelf.footView];
+//            [weakSelf createFunctionBar];
+        
         }
         else{
             
@@ -255,6 +261,7 @@
     [attentionbtn setBackgroundColor:MDRGBA(219, 245, 245, 1)];
     [attentionbtn.layer setCornerRadius:16.5];
     [attentionbtn setSelected:[self.houseInfo[@"is_follow"] integerValue]==0?NO:YES];
+    [attentionbtn setHidden:!self.isEdit];
     [attentionbtn addTarget:self action:@selector(editHouse:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.infoView addSubview:attentionbtn];
 
@@ -299,6 +306,7 @@
     }
     
     [self.infoView setFrame:CGRectMake(0, 0, KScreenWidth, height)];
+    [self.tmpTableView setTableHeaderView:self.infoView];
 }
 
 - (CGFloat)creatHeaderViewTitle:(CGFloat)heigt{
@@ -342,11 +350,10 @@
 - (void)createFootView{
     
     [self.footView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    //    if (self.commentArr.count == 0) {
-    //        [self.footView setFrame:CGRectMake(0, 0, KScreenWidth, 0.001)];
-    //
-    //    }
-    //    else{
+    if (self.commentArr.count == 0) {
+        [self.footView setFrame:CGRectMake(0, 0, KScreenWidth, 0.001)];
+    }
+    else{
     
     [self.footView setFrame:CGRectMake(0, 0, KScreenWidth, 80)];
     
@@ -355,7 +362,9 @@
     [self.footView addSubview:btn];
     
     [self.footView addSubview:[Tools setLineView:CGRectMake(0, 79, KScreenWidth, 1)]];
-    //    }
+    }
+    
+    [self.tmpTableView setTableFooterView:self.footView];
 }
 
 - (void)createFunctionBar{
@@ -378,7 +387,7 @@
 - (UITableView *)tmpTableView{
     
     if (!_tmpTableView) {
-        _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 50 - KPlaceHeight) style:(UITableViewStyleGrouped)];
+        _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - KPlaceHeight) style:(UITableViewStyleGrouped)];
         [_tmpTableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
         if (@available(iOS 11.0, *)) {
             [_tmpTableView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
@@ -458,9 +467,9 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    //    if (section == self.titleArr.count-1 && self.commentArr.count == 0) {
-    //        return 0.00f;
-    //    }
+    if (section == self.titleArr.count-1 && self.commentArr.count == 0) {
+        return 0.00f;
+    }
     if (section == self.titleArr.count-2 && self.questionArr.count == 0) {
         return 0.00f;
     }
@@ -475,9 +484,9 @@
     if (section < self.titleArr.count) {
         [view addSubview:[Tools creatLabel:CGRectMake(20, 0, KScreenWidth  -40, 20) font:[UIFont boldSystemFontOfSize:18] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:self.titleArr[section]]];
     }
-    //    if (section == self.titleArr.count-1 && self.commentArr.count == 0) {
-    //        return [UIView new];
-    //    }
+    if (section == self.titleArr.count-1 && self.commentArr.count == 0) {
+        return [UIView new];
+    }
     if (section == self.titleArr.count-2 && self.questionArr.count == 0) {
         return [UIView new];
     }
@@ -523,13 +532,13 @@
     [self checkMoreComment];
 }
 
-// 关注
+// 编辑
 - (void)editHouse:(UIButton *)sender{
     
     HouseInfoViewController *vc = [[HouseInfoViewController alloc] init];
     vc.house_id = self.house_id;
-    BaseNaviViewController *nav = [[BaseNaviViewController alloc] initWithRootViewController:vc];
-    [self presentViewController:nav animated:YES completion:nil];
+    vc.type = 2;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)checkMoreComment{

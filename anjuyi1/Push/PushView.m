@@ -14,8 +14,6 @@
 #import "PushHouseViewController.h"//发布整屋
 #import "PushTaskViewController.h"//发布任务
 
-#import "HouseInfoViewController.h"
-
 @implementation PushView
 
 - (instancetype)initWithFrame:(CGRect)frame{
@@ -143,8 +141,7 @@
             break;
         case 5:
         {
-            HouseInfoViewController *controller = [[HouseInfoViewController alloc] init];
-            controller.house_id = @"116";
+            PushHouseViewController *controller = [[PushHouseViewController alloc] init];
             BaseNaviViewController *nav = [[BaseNaviViewController alloc] initWithRootViewController:controller];
             [self.delegate jumpToViewControllerForPush:nav];
         }

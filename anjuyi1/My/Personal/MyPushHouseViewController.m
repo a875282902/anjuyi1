@@ -21,6 +21,15 @@
 
 @implementation MyPushHouseViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    if (self.dataArr) {
+        [self getHouseList];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -143,6 +152,7 @@
     HouseModel *model  = self.dataArr[indexPath.row];
     MyPushHouseDetailsViewController *vc = [[MyPushHouseDetailsViewController alloc] init];
     [vc setHouse_id:model.ID];
+    [vc setIsEdit:YES];
     [self.navigationController pushViewController:vc animated:YES];
     
 }

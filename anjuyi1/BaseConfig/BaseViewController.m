@@ -8,7 +8,10 @@
 
 #import "BaseViewController.h"
 #import <IQKeyboardManager.h>
-
+#import "HomeViewController.h"
+#import "DecorateViewController.h"
+#import "MallViewController.h"
+#import "MyViewController.h"
 @interface BaseViewController ()<UIGestureRecognizerDelegate>
 {
 //    MBProgressHUD *progressHUD;
@@ -21,7 +24,10 @@
 - (void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
-    if(self.navigationController.childViewControllers.count == 1)
+    if( [self isKindOfClass:[HomeViewController class]] ||
+       [self isKindOfClass:[DecorateViewController class]] ||
+       [self isKindOfClass:[MallViewController class]] ||
+       [self isKindOfClass:[MyViewController class]])
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"noHiddenPushButton" object:nil];
     }

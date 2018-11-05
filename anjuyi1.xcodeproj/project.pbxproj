@@ -172,6 +172,7 @@
 		180F1A0C211D23160018F1CD /* TopicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F1A0B211D23160018F1CD /* TopicListViewController.m */; };
 		180F1A11211D23FF0018F1CD /* ChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F1A10211D23FF0018F1CD /* ChannelView.m */; };
 		180F7BD8218AAD88009D9B88 /* ReplyCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F7BD7218AAD88009D9B88 /* ReplyCommentsViewController.m */; };
+		180F7BD9218AECDD009D9B88 /* TestinDataAnalysis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED09312177771D00FF5FAD /* TestinDataAnalysis.framework */; };
 		18275116210171F3002A61F8 /* PowerStatonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18275115210171F3002A61F8 /* PowerStatonModel.m */; };
 		1827511A210177DF002A61F8 /* CustomPaopaotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18275119210177DF002A61F8 /* CustomPaopaotView.m */; };
 		1827511D210179EF002A61F8 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1827511C210179EF002A61F8 /* CustomAnnotationView.m */; };
@@ -1033,6 +1034,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				180F7BD9218AECDD009D9B88 /* TestinDataAnalysis.framework in Frameworks */,
 				18A8F1392183036C00E642B2 /* AVFoundation.framework in Frameworks */,
 				18A8F1372183036400E642B2 /* AVKit.framework in Frameworks */,
 				182CDAA821098D1E00F28F4C /* libsqlite3.tbd in Frameworks */,
@@ -3198,6 +3200,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -3250,6 +3253,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -3267,7 +3271,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/anjuyi1/BaiduMapAPI",
 					"$(PROJECT_DIR)/anjuyi1/U-App",
-					"$(PROJECT_DIR)/anjuyi1/TestinDataAnalysis",
 					"$(PROJECT_DIR)/Pods/TestinDataAnalysis/TestinDataAnalysis",
 					"$(PROJECT_DIR)/anjuyi1/QQ",
 				);
@@ -3343,7 +3346,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/anjuyi1/BaiduMapAPI",
 					"$(PROJECT_DIR)/anjuyi1/U-App",
-					"$(PROJECT_DIR)/anjuyi1/TestinDataAnalysis",
 					"$(PROJECT_DIR)/Pods/TestinDataAnalysis/TestinDataAnalysis",
 					"$(PROJECT_DIR)/anjuyi1/QQ",
 				);

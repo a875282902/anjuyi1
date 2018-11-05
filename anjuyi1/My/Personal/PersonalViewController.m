@@ -11,11 +11,18 @@
 
 #import "MyPushHouseViewController.h"//整屋
 #import "MyPushPhotoDetailsViewController.h"//图片详情
-#import "MyPushHouseDetailsViewController.h"
-#import "MyPhotoViewController.h"
-#import "MyAnswerViewController.h"
-#import "AnswerListViewController.h"
-#import "MyCommentViewController.h"
+#import "MyPushHouseDetailsViewController.h"//整屋详情
+#import "MyPhotoViewController.h"//图片列表
+#import "MyAnswerViewController.h"//我的回答
+#import "MyCommentViewController.h"//我的评论
+
+#import "HouseListViewController.h"//整屋
+#import "PhotoDetailsViewController.h"//图片详情
+#import "HouseDetailsViewController.h"//整屋详情
+#import "PhotoListViewController.h"//图片列表
+#import "AnswerListViewController.h"//回答列表
+
+
 
 #import <AVKit/AVKit.h>
 
@@ -365,15 +372,7 @@
 
 #pragma mark -- 点击事件
 - (void)back{
-    
-    if ([self.type isEqualToString:@"1"]) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
-    else{
-    
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    
+  [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)share{
@@ -423,14 +422,28 @@
     switch (sender.view.tag) {
         case 0:
         {
-            MyPhotoViewController *VC = [[MyPhotoViewController alloc] init];
-            [self.navigationController pushViewController:VC animated:YES];
+             if ([self.type isEqualToString:@"1"]) {
+                MyPhotoViewController *VC = [[MyPhotoViewController alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
+             }else{
+                 PhotoListViewController *vc = [[PhotoListViewController alloc] init];
+                 vc.user_id = self.user_id;
+                 [self.navigationController pushViewController:vc animated:YES];
+             }
         }
             break;
         case 1:
         {
-            MyPushHouseViewController *VC = [[MyPushHouseViewController alloc] init];
-            [self.navigationController pushViewController:VC animated:YES];
+            
+            if ([self.type isEqualToString:@"1"]) {
+                MyPushHouseViewController *VC = [[MyPushHouseViewController alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
+            }
+            else{
+                HouseListViewController *VC = [[HouseListViewController alloc] init];
+                VC.user_id = self.user_id;
+                [self.navigationController pushViewController:VC animated:YES];
+            }
         }
             break;
         case 2:
@@ -462,8 +475,17 @@
 
 //展示整屋的
 - (void)showAllHouse{
-    MyPushHouseViewController *VC = [[MyPushHouseViewController alloc] init];
-    [self.navigationController pushViewController:VC animated:YES];
+    
+    if ([self.type isEqualToString:@"1"]) {
+        MyPushHouseViewController *VC = [[MyPushHouseViewController alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+    else{
+        
+        HouseListViewController *VC = [[HouseListViewController alloc] init];
+        VC.user_id = self.user_id;
+        [self.navigationController pushViewController:VC animated:YES];
+    }
 }
 
 //整屋案例
@@ -471,24 +493,45 @@
     
     NSArray *arr = self.personalInfo[@"house_list"];
     NSDictionary *dic = arr[sender.view.tag];
-    
-    MyPushHouseDetailsViewController *vc = [[MyPushHouseDetailsViewController alloc] init];
-    vc.house_id = dic[@"id"];
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([self.type isEqualToString:@"1"]) {
+        MyPushHouseDetailsViewController *vc = [[MyPushHouseDetailsViewController alloc] init];
+        vc.house_id = dic[@"id"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else{
+        HouseDetailsViewController *vc = [[HouseDetailsViewController alloc] init];
+        vc.house_id = dic[@"id"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     
 }
 
 - (void)showPhoto{
-   
-    MyPhotoViewController *vc = [[MyPhotoViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+   if ([self.type isEqualToString:@"1"]) {
+        MyPhotoViewController *vc = [[MyPhotoViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+   }else{
+       PhotoListViewController *vc = [[PhotoListViewController alloc] init];
+       vc.user_id = self.user_id;
+       [self.navigationController pushViewController:vc animated:YES];
+   }
 }
 
 - (void)showSingeImage:(UITapGestureRecognizer *)sender{
     
-    MyPushPhotoDetailsViewController *VC = [[MyPushPhotoDetailsViewController alloc] init];
-    VC.photo_id =self.imageArr[sender.view.tag][@"id"];
-    [self.navigationController pushViewController:VC animated:YES];
+    if ([self.type isEqualToString:@"1"]) {
+        MyPushPhotoDetailsViewController *VC = [[MyPushPhotoDetailsViewController alloc] init];
+        
+        VC.photo_id =self.imageArr[sender.view.tag][@"id"];
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+    else{
+        
+        PhotoDetailsViewController *VC = [[PhotoDetailsViewController alloc] init];
+        VC.photo_id =self.imageArr[sender.view.tag][@"id"];
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+   
 }
 
 #pragma mark -- delegate

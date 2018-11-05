@@ -788,6 +788,7 @@
 - (void)comment:(UIButton *)sender{
     LOGIN
     NSString *photo_id = self.dataArr[sender.tag][@"image_id"];
+    [self.commentView setCommit_id:@"0"];
     [self.commentView setPhoto_id:photo_id];
     [self.commentView openDisplay];
 }

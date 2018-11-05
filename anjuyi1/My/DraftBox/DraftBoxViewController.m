@@ -139,6 +139,7 @@
     HouseModel *model  = self.dataArr[indexPath.row];
     MyPushHouseDetailsViewController *vc = [[MyPushHouseDetailsViewController alloc] init];
     [vc setHouse_id:model.ID];
+    [vc setIsEdit:YES];
     [self.navigationController pushViewController:vc animated:YES];
     
 }

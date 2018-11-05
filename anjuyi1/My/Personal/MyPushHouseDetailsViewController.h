@@ -9,7 +9,10 @@
 #import "BaseViewController.h"
 
 @interface MyPushHouseDetailsViewController : BaseViewController
-
+/**
+ *  该页面是否存在编辑
+ **/
+@property (nonatomic,assign)BOOL isEdit;
 @property (nonatomic,strong)NSString *house_id;
 
 @end

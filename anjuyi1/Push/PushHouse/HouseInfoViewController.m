@@ -277,6 +277,10 @@
 #pragma mark -- 事件
 - (void)leftButtonTouchUpInside:(id)sender{
     
+    if (self.type == 2) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"已将您编辑的内容存入草稿箱中，您确认离开整屋编辑页面吗？" preferredStyle:(UIAlertControllerStyleAlert)];
     
     [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
@@ -288,6 +292,7 @@
     }]];
     
     [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 - (void)selectHouseStatus:(UIButton *)sender{
@@ -401,9 +406,14 @@
     NSString *path = [NSString stringWithFormat:@"%@/whole_house/update_house_info",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
-    
+    WKSELF;
     [HttpRequest POSTWithHeader:header url:path parameters:parame success:^(id  _Nullable responseObject) {
-        
+        if ([responseObject[@"code"] integerValue] == 200) {
+            [weakSelf.houseCoverView refreData];
+        }
+        else{
+            [ViewHelps showHUDWithText:responseObject[@"message"]];
+        }
     } failure:^(NSError * _Nullable error) {
         
         [RequestSever showMsgWithError:error];
@@ -424,6 +434,7 @@
 - (void)showHouse{
     
     MyPushHouseDetailsViewController *vc = [[MyPushHouseDetailsViewController alloc] init];
+    vc.isEdit = NO;
     vc.house_id = self.house_id;
     [self.navigationController pushViewController:vc animated:YES];
 }

@@ -228,9 +228,6 @@
     
     [self.delegate titleChangeValue:text type:type];
     
-    
-    [self.tmpTableView reloadData];
-    
 }
 
 - (void)selectCover{

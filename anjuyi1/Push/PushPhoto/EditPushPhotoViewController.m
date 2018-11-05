@@ -372,7 +372,7 @@
     [HttpRequest uploadFileWithInferface:path parameters:nil fileData:UIImageJPEGRepresentation(image, 0.7) serverName:@"file" saveName:nil mimeType:(MCJPEGImageFileType) progress:^(float progress) {
         NSLog(@"%.2f",progress);
     } success:^(id  _Nullable responseObject) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         
         if ([responseObject[@"code"] integerValue] == 200) {
             
@@ -396,7 +396,7 @@
         }
     } failure:^(NSError * _Nullable error) {
         
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [RequestSever showMsgWithError:error];
     }];
     

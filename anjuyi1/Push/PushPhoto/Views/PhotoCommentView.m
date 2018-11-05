@@ -141,7 +141,8 @@
     
     if (!_tmpTableView) {
         _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 55, KScreenWidth, self.frame.size.height - 195 - 65) style:(UITableViewStylePlain)];
-        [_tmpTableView setEstimatedRowHeight:UITableViewAutomaticDimension];
+        [_tmpTableView setRowHeight:UITableViewAutomaticDimension];
+        [_tmpTableView setEstimatedRowHeight:100.0f];
         [_tmpTableView setBackgroundColor:[UIColor whiteColor]];
         [_tmpTableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
         if (@available(iOS 11.0, *)) {
@@ -187,7 +188,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     CommentModel *model = self.dataArr[indexPath.row];
-    
+    [self closeDisplay];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"评论操作" preferredStyle:(UIAlertControllerStyleActionSheet)];
     
     [alert addAction:[UIAlertAction actionWithTitle:@"回复" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
@@ -197,11 +198,13 @@
     
     [alert addAction:[UIAlertAction actionWithTitle:@"详情" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         
-        
+       
         self.selectCommentDetails(model.commit_id);
     }]];
     
-    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
+        [self openDisplay];
+    }]];
     
     [[Tools getCurrentVC] presentViewController:alert animated:YES completion:nil];
  

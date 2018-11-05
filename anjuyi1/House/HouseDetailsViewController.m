@@ -1,5 +1,5 @@
 //
-//  MyPushHouseDetailsViewController.m
+//  HouseDetailsViewController.m
 //  anjuyi1
 //
 //  Created by apple on 2018/7/25.
@@ -564,6 +564,7 @@
 
 - (void)collectThisHouse:(UIButton *)sender{
     LOGIN
+    
     NSString *path = [NSString stringWithFormat:@"%@/WholeHouse/member_collect",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};

@@ -121,10 +121,9 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     /// Required - 注册 DeviceToken
     [JPUSHService registerDeviceToken:deviceToken];
-
-    [JPUSHService setAlias:@"13213692344" completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+    [JPUSHService setTags:[NSSet setWithObject:JPUSHService.registrationID] completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
         
-    } seq:1];
+    } seq:100034];
 }
 
 #pragma mark- JPUSHRegisterDelegate

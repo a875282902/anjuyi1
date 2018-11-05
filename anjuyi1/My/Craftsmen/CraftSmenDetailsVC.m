@@ -114,7 +114,7 @@
     
     height += 40;
     
-    NSArray *tArr = @[@"服务类型",@"从业时间",@"接单数量",@"等级"];
+    NSArray *tArr = @[@"服务类型",@"从业时间",@"接单数量",@"认证等级"];
     
     for (NSInteger i = 0 ; i < 4 ; i ++) {
         UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, height, KScreenWidth, 50)];
@@ -316,7 +316,7 @@
 
 - (void)upDataToService{
     
-    NSArray *arr = @[@"请选择服务类型",@"请选择从业时间",@"请选择接单数"];
+    NSArray *arr = @[@"请选择服务类型",@"请选择从业时间",@"请选择接单数",@"请选择接认证等级"];
     
     for (NSInteger i = 0 ; i < self.serviceArr.count; i++) {
         id obj = self.serviceArr[i];
@@ -355,6 +355,7 @@
                           @"service_craftsman_type":self.serviceArr[0][@"key"],
                           @"working_craftsman_type":self.serviceArr[1][@"key"],
                           @"order_craftsman_type":self.serviceArr[2][@"key"],
+                          @"level":self.serviceArr[3][@"key"],
                           @"guestLow":minPrice,
                           @"guestHigh":maxPrice,
                           @"personal":personDetails,
