@@ -91,6 +91,8 @@
 #define WXID @"wxecdea0abc012d83a"
 #define WXSECRET @"d3958a80cd8ef7439172ad5083827eaf"
 
+#define ZFBKEY @"2018101161678029"
+
 #define UTOKEN [[NSUserDefaults standardUserDefaults] valueForKey:@"UTOKEN"]
 
 #define SearchCate @[@{@"id":@"1",@"name":@"图片"},@{@"id":@"2",@"name":@"整屋"},@{@"id":@"3",@"name":@"攻略"},@{@"id":@"4",@"name":@"话题"},@{@"id":@"5",@"name":@"用户"},@{@"id":@"6",@"name":@"工长"},@{@"id":@"7",@"name":@"设计师"},@{@"id":@"8",@"name":@"监理"}]
@@ -110,6 +112,9 @@
 #import "LoginViewController.h"
 #import "BaseNaviViewController.h"
 #import "BaseNaviViewController.h"
+
+#import <UMShare/UMShare.h>
+#import <UShareUI/UShareUI.h>
 
 #endif
 

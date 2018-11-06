@@ -142,4 +142,58 @@
     return result;
 }
 
++ (void)showShareError:(NSError *)error{
+    
+    NSString *result = @"";
+    switch (error.code) {
+        case UMSocialPlatformErrorType_Unknow:
+            result = @"未知错误";
+            break;
+        case UMSocialPlatformErrorType_NotSupport:
+            result = @"不支持（url scheme 没配置，或者没有配置-ObjC， 或则SDK版本不支持或则客户端版本不支持";
+            break;
+        case UMSocialPlatformErrorType_AuthorizeFailed:
+            result = @"授权失败";
+            break;
+        case UMSocialPlatformErrorType_ShareFailed:
+            result = @"分享失败";
+            break;
+        case UMSocialPlatformErrorType_RequestForUserProfileFailed:
+            result = @"请求用户信息失败";
+            break;
+        case UMSocialPlatformErrorType_ShareDataNil:
+            result = @"分享内容为空";
+            break;
+        case UMSocialPlatformErrorType_ShareDataTypeIllegal:
+            result = @"分享内容不支持";
+            break;
+        case UMSocialPlatformErrorType_CheckUrlSchemaFail:
+            result = @"schemaurl fail";
+            break;
+        case UMSocialPlatformErrorType_NotInstall:
+            result = @"应用未安装";
+            break;
+        case UMSocialPlatformErrorType_Cancel:
+            result = @"您已取消分享";
+            break;
+        case UMSocialPlatformErrorType_NotNetWork:
+            result = @"网络异常";
+            break;
+        case UMSocialPlatformErrorType_SourceError:
+            result = @"第三方错误";
+            break;
+        case UMSocialPlatformErrorType_ProtocolNotOverride:
+            result = @"对应的    UMSocialPlatformProvider的方法没有实现";
+            break;
+        default:
+            break;
+            
+    }
+    if (!KStringIsEmpty(result)) {
+        [ViewHelps showHUDWithText:result];
+    }
+    
+}
+    
+
 @end

@@ -255,8 +255,6 @@
 		18399C5421215B5D007CAD58 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5321215B5D007CAD58 /* libz.tbd */; settings = {ATTRIBUTES = (Required, ); }; };
 		18399C5621215B65007CAD58 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5521215B65007CAD58 /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		18399C5821215B6C007CAD58 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5721215B6C007CAD58 /* libresolv.tbd */; settings = {ATTRIBUTES = (Required, ); }; };
-		18399C5B212167CD007CAD58 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5A212167CD007CAD58 /* UMCommon.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		18399C5D212167D7007CAD58 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C5C212167D7007CAD58 /* UMAnalytics.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		184238AA216C6FDE000A7D18 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 184238A9216C6FDE000A7D18 /* libc++.tbd */; settings = {ATTRIBUTES = (Required, ); }; };
 		1845C5AD213F722C00EC84F3 /* OrderCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845C5AC213F722C00EC84F3 /* OrderCenterModel.m */; };
 		1845C61A214668B800EC84F3 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845C619214668B800EC84F3 /* SearchViewController.m */; };
@@ -339,7 +337,6 @@
 		18EA1BDF20E1CD9A000738CC /* SortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA1BDD20E1CD9A000738CC /* SortCell.m */; };
 		18EA1BE020E1CD9A000738CC /* SortCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EA1BDE20E1CD9A000738CC /* SortCell.xib */; };
 		18ED090321758E9E00FF5FAD /* AnswerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED090221758E9E00FF5FAD /* AnswerListViewController.m */; };
-		18ED095B2177846200FF5FAD /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED095A2177846200FF5FAD /* TencentOpenAPI.framework */; };
 		18ED095D217784B800FF5FAD /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED095C217784B800FF5FAD /* libiconv.tbd */; };
 		18ED87DF21008D7100B38548 /* ChargingHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED87D121008D7100B38548 /* ChargingHomeViewController.m */; };
 		18ED87E021008D7100B38548 /* QuickOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED87D221008D7100B38548 /* QuickOrderViewController.m */; };
@@ -823,8 +820,6 @@
 		18399C5321215B5D007CAD58 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		18399C5521215B65007CAD58 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		18399C5721215B6C007CAD58 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
-		18399C5A212167CD007CAD58 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
-		18399C5C212167D7007CAD58 /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMAnalytics.framework; sourceTree = "<group>"; };
 		184238A9216C6FDE000A7D18 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		1845C5AB213F722C00EC84F3 /* OrderCenterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderCenterModel.h; sourceTree = "<group>"; };
 		1845C5AC213F722C00EC84F3 /* OrderCenterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderCenterModel.m; sourceTree = "<group>"; };
@@ -974,7 +969,6 @@
 		18ED090221758E9E00FF5FAD /* AnswerListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnswerListViewController.m; sourceTree = "<group>"; };
 		18ED092C2177665300FF5FAD /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		18ED09312177771D00FF5FAD /* TestinDataAnalysis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TestinDataAnalysis.framework; path = Pods/TestinDataAnalysis/TestinDataAnalysis/TestinDataAnalysis.framework; sourceTree = "<group>"; };
-		18ED095A2177846200FF5FAD /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		18ED095C217784B800FF5FAD /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		18ED87D121008D7100B38548 /* ChargingHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargingHomeViewController.m; sourceTree = "<group>"; };
 		18ED87D221008D7100B38548 /* QuickOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickOrderViewController.m; sourceTree = "<group>"; };
@@ -1034,15 +1028,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18ED88582100D57300B38548 /* CoreGraphics.framework in Frameworks */,
 				180F7BD9218AECDD009D9B88 /* TestinDataAnalysis.framework in Frameworks */,
 				18A8F1392183036C00E642B2 /* AVFoundation.framework in Frameworks */,
 				18A8F1372183036400E642B2 /* AVKit.framework in Frameworks */,
 				182CDAA821098D1E00F28F4C /* libsqlite3.tbd in Frameworks */,
-				18ED88582100D57300B38548 /* CoreGraphics.framework in Frameworks */,
 				18ED88562100D56C00B38548 /* SystemConfiguration.framework in Frameworks */,
 				18ED095D217784B800FF5FAD /* libiconv.tbd in Frameworks */,
 				18ED885A2100D57900B38548 /* Security.framework in Frameworks */,
-				18ED095B2177846200FF5FAD /* TencentOpenAPI.framework in Frameworks */,
 				18399C5621215B65007CAD58 /* UserNotifications.framework in Frameworks */,
 				188950D421743150001AA8BD /* libicucore.A.tbd in Frameworks */,
 				18399C5421215B5D007CAD58 /* libz.tbd in Frameworks */,
@@ -1056,7 +1049,6 @@
 				18399C5821215B6C007CAD58 /* libresolv.tbd in Frameworks */,
 				18399C5221215B51007CAD58 /* UIKit.framework in Frameworks */,
 				18399C5021215B4C007CAD58 /* Foundation.framework in Frameworks */,
-				18399C5B212167CD007CAD58 /* UMCommon.framework in Frameworks */,
 				18399C4E21215B35007CAD58 /* CoreFoundation.framework in Frameworks */,
 				18399C4C21215B1E007CAD58 /* CFNetwork.framework in Frameworks */,
 				18ED885C2100D58000B38548 /* libsqlite3.0.tbd in Frameworks */,
@@ -1080,7 +1072,6 @@
 				18ED884B2100D4DE00B38548 /* BaiduMapAPI_Radar.framework in Frameworks */,
 				18ED88452100D4DE00B38548 /* BaiduMapAPI_Map.framework in Frameworks */,
 				18399C4821215ADC007CAD58 /* jpush-ios-3.1.0.a in Frameworks */,
-				18399C5D212167D7007CAD58 /* UMAnalytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1751,8 +1742,6 @@
 		0AFEE71120BD2F23004FA8FC /* anjuyi1 */ = {
 			isa = PBXGroup;
 			children = (
-				18ED09592177844F00FF5FAD /* QQ */,
-				18399C59212166EC007CAD58 /* U-App */,
 				18399C4221215A3F007CAD58 /* JGPush */,
 				18399C4121215A0D007CAD58 /* anjuyi1.entitlements */,
 				182CDA9E21097D4800F28F4C /* resource */,
@@ -2291,15 +2280,6 @@
 			path = JGPush;
 			sourceTree = "<group>";
 		};
-		18399C59212166EC007CAD58 /* U-App */ = {
-			isa = PBXGroup;
-			children = (
-				18399C5C212167D7007CAD58 /* UMAnalytics.framework */,
-				18399C5A212167CD007CAD58 /* UMCommon.framework */,
-			);
-			path = "U-App";
-			sourceTree = "<group>";
-		};
 		1845C5AA213F721200EC84F3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -2495,14 +2475,6 @@
 				18E17EB9216DA3E700677BA0 /* MessageTableViewCell.xib */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		18ED09592177844F00FF5FAD /* QQ */ = {
-			isa = PBXGroup;
-			children = (
-				18ED095A2177846200FF5FAD /* TencentOpenAPI.framework */,
-			);
-			path = QQ;
 			sourceTree = "<group>";
 		};
 		18ED87D021008D7100B38548 /* Charging */ = {
@@ -2822,11 +2794,15 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-anjuyi1/Pods-anjuyi1-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/UMCShare/UMShare/SocialLibraries/Sina/SinaSDK/WeiboSDK.bundle",
+				"${PODS_ROOT}/UMCShare/UMShare/UMSocialUI/UMSocialSDKResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

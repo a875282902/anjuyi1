@@ -128,7 +128,7 @@
         
         UIButton *share = [Tools creatButton:CGRectMake(KScreenWidth - 50, KStatusBarHeight + 2, 40, 40) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] title:@"" image:@"designer_xq_zf"];
         [share addTarget:self action:@selector(share) forControlEvents:(UIControlEventTouchUpInside)];
-        [_navView addSubview:share];
+//        [_navView addSubview:share];
         
         shareBtn = share;
         

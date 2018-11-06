@@ -77,4 +77,8 @@
  */
 + (UIViewController *)getCurrentVC;
 
+/**
+ 分享 error
+ */
++ (void)showShareError:(NSError *)error;
 @end
