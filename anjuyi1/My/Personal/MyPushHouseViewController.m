@@ -9,7 +9,7 @@
 #import "MyPushHouseViewController.h"
 #import "DraftBoxTableViewCell.h"
 #import "HouseModel.h"
-#import "MyPushHouseDetailsViewController.h"
+#import "HouseDetailsViewController.h"
 
 @interface MyPushHouseViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -150,9 +150,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     HouseModel *model  = self.dataArr[indexPath.row];
-    MyPushHouseDetailsViewController *vc = [[MyPushHouseDetailsViewController alloc] init];
+    HouseDetailsViewController *vc = [[HouseDetailsViewController alloc] init];
     [vc setHouse_id:model.ID];
-    [vc setIsEdit:YES];
     [self.navigationController pushViewController:vc animated:YES];
     
 }

@@ -81,4 +81,10 @@
  分享 error
  */
 + (void)showShareError:(NSError *)error;
+
+/**
+ 是否有sim 卡
+
+ */
++ (BOOL)isSIMInstalled;
 @end

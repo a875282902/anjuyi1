@@ -17,6 +17,7 @@
 #import "HouseInfoViewController.h"
 #import "BaseNaviViewController.h"
 #import "CommentDetalisViewController.h"
+#import "PersonalViewController.h"
 
 @interface MyPushHouseDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -49,7 +50,7 @@
     [self baseForDefaultLeftNavButton];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 
-    if (self.dataArr) {
+    if (self.dataArr.count != 0) {
         [self getHouseInfo];
     }
 }
@@ -97,10 +98,10 @@
             
             weakSelf.houseInfo = [NSMutableDictionary dictionaryWithDictionary:responseObject[@"datas"]];
             
-            [self.titleArr removeAllObjects];
-            [self.dataArr removeAllObjects];
-            [self.questionArr removeAllObjects];
-            [self.commentArr removeAllObjects];
+            [weakSelf.titleArr removeAllObjects];
+            [weakSelf.dataArr removeAllObjects];
+            [weakSelf.questionArr removeAllObjects];
+            [weakSelf.commentArr removeAllObjects];
             
             for (NSDictionary *dic in weakSelf.houseInfo[@"space_image"]) {
                 NSMutableArray *arr = [NSMutableArray array];
@@ -452,8 +453,15 @@
             cell = [[HouseCommentTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"HouseCommentTableViewCell1"];
         }
         if (indexPath.row < self.commentArr.count) {
+            CommentModel *model = self.commentArr[indexPath.row];
+            [cell bandDataWith:model];
             
-            [cell bandDataWith:self.commentArr[indexPath.row]];
+            [cell setShowPresonDetail:^{
+                PersonalViewController *vc = [[PersonalViewController alloc] init];
+                vc.user_id = model.member_info[@"user_id"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }];
+            
         }
         return cell;
     }
@@ -538,9 +546,9 @@
         UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
         
         //创建网页内容对象
-        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:self.houseInfo[@"house_info"][@"title"] descr:self.houseInfo[@"house_info"][@"title"] thumImage:self.houseInfo[@"member_info"][@"cover"] ];
+        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:self.houseInfo[@"share_title"] descr:self.houseInfo[@"share_desc"] thumImage:self.houseInfo[@"share_img"]];
         //设置网页地址
-        shareObject.webpageUrl =[NSString stringWithFormat:@"%@/%@",KURL,self.houseInfo[@"share_url"]];
+        shareObject.webpageUrl =[NSString stringWithFormat:@"%@",self.houseInfo[@"share_url"]];
         //分享消息对象设置分享内容对象
         messageObject.shareObject = shareObject;
         
@@ -589,7 +597,8 @@
     HouseInfoViewController *vc = [[HouseInfoViewController alloc] init];
     vc.house_id = self.house_id;
     vc.type = 2;
-    [self.navigationController pushViewController:vc animated:YES];
+    BaseNaviViewController *nav = [[BaseNaviViewController alloc] initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)checkMoreComment{

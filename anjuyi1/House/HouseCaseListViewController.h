@@ -10,4 +10,8 @@
 
 @interface HouseCaseListViewController : BaseViewController
 
+@property (nonatomic,strong) NSString * type;
+
+@property (nonatomic, strong) NSMutableArray * titles;
+
 @end

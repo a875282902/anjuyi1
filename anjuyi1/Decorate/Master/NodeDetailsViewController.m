@@ -391,9 +391,9 @@
         UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
         
         //创建网页内容对象
-        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:self.nodeInfo[@"article_info"][@"text"] descr:self.nodeInfo[@"article_info"][@"text"] thumImage:self.nodeInfo[@"article_info"][@"image_url"]];
+        UMShareWebpageObject *shareObject =[UMShareWebpageObject shareObjectWithTitle:self.nodeInfo[@"share_title"] descr:self.nodeInfo[@"share_desc"] thumImage:self.nodeInfo[@"share_img"]];
         //设置网页地址
-        shareObject.webpageUrl =[NSString stringWithFormat:@"%@/%@",KURL,self.nodeInfo[@"share_url"]];
+        shareObject.webpageUrl =[NSString stringWithFormat:@"%@",self.nodeInfo[@"share_url"]];
         //分享消息对象设置分享内容对象
         messageObject.shareObject = shareObject;
         

@@ -64,7 +64,10 @@
 
 //打电话
 -(void)callPhone:(NSString *)phoneNumber{
-    
+    if (![Tools isSIMInstalled]) {
+        [ViewHelps showHUDWithText:@"该设备不能打电话"];
+        return;
+    }
     NSString *cleanedString =[[phoneNumber componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789-+()"] invertedSet]] componentsJoinedByString:@""];
     NSString *escapedPhoneNumber = [cleanedString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *str_url = [[NSString alloc]initWithFormat:@"tel://%@", escapedPhoneNumber];

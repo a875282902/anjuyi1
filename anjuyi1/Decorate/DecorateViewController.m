@@ -155,8 +155,7 @@
             
             if ([responseObject[@"message"] isEqualToString:@"token过期，请重新登录"]) {
                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UTOKEN"];
-                [ViewHelps showHUDWithText:@"登录过期，请重新登录"];
-                LOGIN
+                
             }{
                 [ViewHelps showHUDWithText:responseObject[@"message"]];
             }

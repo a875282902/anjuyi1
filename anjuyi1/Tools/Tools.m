@@ -7,6 +7,8 @@
 //
 
 #import "Tools.h"
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
+#import <CoreTelephony/CTCarrier.h>
 
 @implementation Tools
 
@@ -140,6 +142,17 @@
         result = window.rootViewController;
     
     return result;
+}
+
++ (BOOL)isSIMInstalled
+{
+    CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
+    CTCarrier *carrier = [networkInfo subscriberCellularProvider];
+    if (!carrier.isoCountryCode) {
+        NSLog(@"No sim present Or No cellular coverage or phone is on airplane mode.");
+        return NO;
+    }
+    return YES;
 }
 
 + (void)showShareError:(NSError *)error{

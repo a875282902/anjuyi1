@@ -226,6 +226,9 @@
         
         if (finished) {
             [self setHidden:YES];
+            if (self.updateCommentData) {
+                self.updateCommentData(self.dataArr.count);
+            }
         }
         
     }];

@@ -133,8 +133,6 @@
             if ([responseObject[@"message"] isEqualToString:@"token过期，请重新登录"]) {
                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UTOKEN"];
                 [self.tabBarController setSelectedIndex:((RootViewController *)self.tabBarController).upSelectIndex];
-                
-                LOGIN
             }{
                 [ViewHelps showHUDWithText:responseObject[@"message"]];
             }

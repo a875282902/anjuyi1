@@ -11,7 +11,6 @@
 
 #import "MyPushHouseViewController.h"//整屋
 #import "MyPushPhotoDetailsViewController.h"//图片详情
-#import "MyPushHouseDetailsViewController.h"//整屋详情
 #import "MyPhotoViewController.h"//图片列表
 #import "MyAnswerViewController.h"//我的回答
 #import "MyCommentViewController.h"//我的评论
@@ -385,9 +384,9 @@
         UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
         
         //创建网页内容对象
-        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:self.personalInfo[@"member_info"][@"nickname"] descr:@"个人主页" thumImage:self.personalInfo[@"member_info"][@"head"] ];
+        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:self.personalInfo[@"share_title"] descr:self.personalInfo[@"share_desc"] thumImage:self.personalInfo[@"share_img"]];
         //设置网页地址
-        shareObject.webpageUrl =[NSString stringWithFormat:@"%@/%@",KURL,self.personalInfo[@"share_url"]];
+        shareObject.webpageUrl =[NSString stringWithFormat:@"%@",self.personalInfo[@"share_url"]];
         //分享消息对象设置分享内容对象
         messageObject.shareObject = shareObject;
         
@@ -544,16 +543,11 @@
     
     NSArray *arr = self.personalInfo[@"house_list"];
     NSDictionary *dic = arr[sender.view.tag];
-    if ([self.type isEqualToString:@"1"]) {
-        MyPushHouseDetailsViewController *vc = [[MyPushHouseDetailsViewController alloc] init];
-        vc.house_id = dic[@"id"];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else{
-        HouseDetailsViewController *vc = [[HouseDetailsViewController alloc] init];
-        vc.house_id = dic[@"id"];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+ 
+    HouseDetailsViewController *vc = [[HouseDetailsViewController alloc] init];
+    vc.house_id = dic[@"id"];
+    [self.navigationController pushViewController:vc animated:YES];
+    
     
 }
 

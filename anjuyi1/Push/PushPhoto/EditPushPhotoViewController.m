@@ -307,7 +307,7 @@
         
         if ([responseObject[@"code"] integerValue] == 200) {
             
-            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
         }
         else{
             

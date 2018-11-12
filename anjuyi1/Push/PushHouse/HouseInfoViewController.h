@@ -10,7 +10,7 @@
 
 @interface HouseInfoViewController : BaseViewController
 
-//type == 2 为从个人中心过来的
+//type == 2 则不需要提示返回
 @property (nonatomic,assign)NSInteger type;
 
 @property (nonatomic,strong)NSString *house_id;

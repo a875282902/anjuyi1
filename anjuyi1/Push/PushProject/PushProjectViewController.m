@@ -23,6 +23,7 @@
     NSDictionary * _currentProjectInfo;//项目信息
     NSString     * _projiectNode;//节点信息
     BOOL _isRefre; //判断项目需要刷新不
+    BOOL _isFirst; //判断第一次进入该页面
 }
 
 
@@ -41,7 +42,6 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    
     
     
     if (_isRefre) {
@@ -69,6 +69,8 @@
     self.projectArr = [NSMutableArray array];
     self.stautsArr = [NSMutableArray array];
     self.projectViewArr = [NSMutableArray array];
+    
+    _isFirst = YES;
     
     [self setUpProjectView];
     [self setUpProgressView];
@@ -299,6 +301,11 @@
                 for (NSDictionary *dic in responseObject[@"datas"]) {
                     [weakSelf.projectArr addObject:dic];
                 }
+            }
+            
+            if (self->_isFirst && self.projectArr.count == 0) {
+                self->_isFirst = NO;
+                [self rightButtonTouchUpInside:nil];
             }
             
             DefaultPullDown *sort1 = [[DefaultPullDown alloc] init];

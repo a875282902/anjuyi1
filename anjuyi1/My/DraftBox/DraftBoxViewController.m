@@ -21,11 +21,18 @@
 
 @implementation DraftBoxViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    if (self.dataArr) {
+        [self getHouseList];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     // Do any additional setup after loading the view, typically from a nib.
-    self.view.backgroundColor = [UIColor brownColor];
     
     self.navView = [[NavTwoTitle alloc] initWithFrame:CGRectMake(0, 0, MDXFrom6(200), 44) WithTitle1:@"草稿箱" WithTitle2:@"0篇"];
     

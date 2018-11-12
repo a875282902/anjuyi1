@@ -298,10 +298,9 @@
         {
             annotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
         }
-        
-        
-        
-        annotationView.image = [UIImage imageNamed:@"direction-icon"];
+        if (![annotation isEqual:_myPoint]) {
+            annotationView.image = [UIImage imageNamed:@"fj_sq"];
+        }
         annotationView.canShowCallout = YES;
         return annotationView;
     }

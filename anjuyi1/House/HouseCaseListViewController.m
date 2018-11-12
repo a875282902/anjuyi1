@@ -20,7 +20,6 @@
 {
     YZPullDownMenu *_downMenu;
     NSInteger _page;
-    NSString * _type;
     NSString * _room;
     NSString * _source;
 }
@@ -28,7 +27,6 @@
 @property (nonatomic, strong) UITableView    * tmpTableView;
 @property (nonatomic, strong) NSMutableArray * dataArr;
 @property (nonatomic, strong) NavTwoTitle    * navView;
-@property (nonatomic, strong) NSMutableArray * titles;
 
 //筛选
 @property (nonatomic, strong) NSMutableArray * typeArr;
@@ -48,11 +46,12 @@
     [self setTitle:@"整屋列表"];
     
     _page = 1;
-    _type = @"0";
+    if (KStringIsEmpty(self.type)) {
+        self.type = @"0";
+    }
     _room = @"0";
     _source = @"0";
     
-    self.titles = [NSMutableArray array];
     self.dataArr = [NSMutableArray array];
     self.typeArr = [NSMutableArray array];
     self.roomArr = [NSMutableArray array];
@@ -74,8 +73,6 @@
 }
 
 - (void)getHousetCate{
-    
-    
     NSString *path = [NSString stringWithFormat:@"%@/whole_house_info/get_list_info",KURL];
 
     
@@ -303,7 +300,10 @@
     menu.dataSource = self;
     
     // 初始化标题
-    _titles = [NSMutableArray arrayWithArray:@[@"类型",@"房型",@"来源"]];
+    if (KArrayIsEmpty(self.titles)) {
+        self.titles = [NSMutableArray arrayWithArray:@[@"类型",@"房型",@"来源"]];
+    }
+    
     
     SortPullDown *sort = [[SortPullDown alloc] init];
     sort.titleArray = self.typeArr;

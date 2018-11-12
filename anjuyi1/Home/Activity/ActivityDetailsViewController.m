@@ -95,7 +95,7 @@
         
         UIButton *share = [Tools creatButton:CGRectMake(KScreenWidth - 50, KStatusBarHeight + 2, 40, 40) font:[UIFont systemFontOfSize:12] color:[UIColor whiteColor] title:@"" image:@"share"];
         [share addTarget:self action:@selector(share) forControlEvents:(UIControlEventTouchUpInside)];
-        [_navView addSubview:share];
+//        [_navView addSubview:share];
         
         shareBtn = share;
     }
@@ -223,7 +223,7 @@
         UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
         
         //创建网页内容对象
-        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:self.activityInfo[@"title"] descr:self.activityInfo[@"text"] thumImage:self.activityInfo[@"img"]];
+        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:self.activityInfo[@"share_title"] descr:self.activityInfo[@"share_desc"] thumImage:self.activityInfo[@"share_img"]];
         //设置网页地址
         shareObject.webpageUrl =[NSString stringWithFormat:@"%@/%@",KURL,self.activityInfo[@"share_url"]];
         //分享消息对象设置分享内容对象
@@ -286,23 +286,23 @@
 
 - (void)backViewScroll:(CGFloat)y{
   
-//    if (y>0) {
-//
-//        [UIView animateWithDuration:.5 animations:^{
-//            
-//            [self.channelView setCenter:CGPointMake(KScreenWidth/2, self.navView.frame.size.height+(35/2.0))];
-//            [self.tmpScrollView setFrame:CGRectMake(0, self.navView.frame.size.height+35, KScreenWidth , KScreenHeight -self.navView.frame.size.height - 80 -35 )];
-//        }];
-//    }
-//    else{
-//        
-//        [UIView animateWithDuration:.2 animations:^{
-//            [self.channelView setCenter:CGPointMake(KScreenWidth/2, MDXFrom6(210)+65+(35/2.0))];
-//            [self.tmpScrollView setFrame:CGRectMake(0, MDXFrom6(210)+65+45, KScreenWidth , KScreenHeight -(MDXFrom6(210)+65+45) - 80 )];
-//        }];
-//    }
-//    
-//    [self refreScrollViewFrame];
+    if (y>0) {
+
+        [UIView animateWithDuration:.5 animations:^{
+
+            [self.channelView setCenter:CGPointMake(KScreenWidth/2, self.navView.frame.size.height+(35/2.0))];
+            [self.tmpScrollView setFrame:CGRectMake(0, self.navView.frame.size.height+35, KScreenWidth , KScreenHeight -self.navView.frame.size.height - 80 -35 )];
+        }];
+    }
+    else{
+        
+        [UIView animateWithDuration:.2 animations:^{
+            [self.channelView setCenter:CGPointMake(KScreenWidth/2, MDXFrom6(210)+65+(35/2.0))];
+            [self.tmpScrollView setFrame:CGRectMake(0, MDXFrom6(210)+65+45, KScreenWidth , KScreenHeight -(MDXFrom6(210)+65+45) - 80 )];
+        }];
+    }
+    
+    [self refreScrollViewFrame];
 }
 
 - (void)refreScrollViewFrame{

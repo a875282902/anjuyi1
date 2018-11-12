@@ -172,7 +172,9 @@
         [cell setShowPresonDetail:^{
             PersonalViewController *vc = [[PersonalViewController alloc] init];
             vc.user_id = model.member_info[@"user_id"];
-            self.showReviewerDetail(vc);
+            if (self.showReviewerDetail) {
+                self.showReviewerDetail(vc);
+            }
         }];
     }
     

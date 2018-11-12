@@ -47,6 +47,10 @@
     [self baseForDefaultLeftNavButton];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
+    if (self.photoInfo.allKeys.count != 0) {
+        [self getphotoInfo];
+    }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -230,13 +234,13 @@
     [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPersonDetails)]];
     [self.infoView addSubview:backView];
     
-    UIButton *attentionbtn = [Tools creatButton:CGRectMake(KScreenWidth - 110, height+25, 90, 33) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#5cc6c6"] title:@"关注" image:@""];
+    UIButton *attentionbtn = [Tools creatButton:CGRectMake(KScreenWidth - 110, height+25, 90, 33) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#5cc6c6"] title:@"编辑" image:@""];
     [attentionbtn setBackgroundColor:MDRGBA(219, 245, 245, 1)];
     [attentionbtn.layer setCornerRadius:16.5];
     [attentionbtn setTitle:@"已关注" forState:(UIControlStateSelected)];
     [attentionbtn setSelected:[self.photoInfo[@"is_follow"] integerValue]==0?NO:YES];
     [attentionbtn addTarget:self action:@selector(attentionToAuthor:) forControlEvents:(UIControlEventTouchUpInside)];
-//    [self.infoView addSubview:attentionbtn];
+    [self.infoView addSubview:attentionbtn];
     
     
     height += 83+15;
@@ -282,10 +286,12 @@
             x = 15.0f;
         }
         
-        UIButton *btn = [Tools creatButton:CGRectMake(x, y, w, h) font:[UIFont systemFontOfSize:14] color:[UIColor colorWithHexString:@"#2cb7b5"] title:str image:@""];
-        [btn setBackgroundColor:[UIColor colorWithHexString:@"#eaf8f8"]];
-        [btn.layer setBorderWidth:1];
-        [btn.layer setBorderColor:[UIColor colorWithHexString:@"#34bab8"].CGColor];
+        UIButton *btn = [Tools creatButton:CGRectMake(x, y, w, h) font:[UIFont systemFontOfSize:14] color:i==0?[UIColor colorWithHexString:@"#2cb7b5"]:[UIColor colorWithHexString:@"#333333"] title:str image:@""];
+        [btn setBackgroundColor:i==0?[UIColor colorWithHexString:@"#eaf8f8"]:[UIColor colorWithHexString:@"#efefef"]];
+        if (i==0) {
+            [btn.layer setBorderWidth:1];
+            [btn.layer setBorderColor:[UIColor colorWithHexString:@"#34bab8"].CGColor];
+        }
         [btn.layer setCornerRadius:5];
         [btn setClipsToBounds:YES];
         [btn addTarget:self action:@selector(showLabelContent:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -434,9 +440,9 @@
         UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
         
         //创建网页内容对象
-        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:self.photoInfo[@"content"] descr:self.photoInfo[@"content"] thumImage:self.photoInfo[@"cover"] ];
+        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:self.photoInfo[@"share_title"] descr:self.photoInfo[@"share_desc"] thumImage:self.photoInfo[@"share_img"]];
         //设置网页地址
-        shareObject.webpageUrl =[NSString stringWithFormat:@"%@/%@",KURL,self.photoInfo[@"share_url"]];
+        shareObject.webpageUrl =[NSString stringWithFormat:@"%@",self.photoInfo[@"share_url"]];
         //分享消息对象设置分享内容对象
         messageObject.shareObject = shareObject;
         
@@ -490,13 +496,17 @@
 // 关注
 - (void)attentionToAuthor:(UIButton *)sender{
     
-    if (!sender.selected) {
-        [self attention:[NSString stringWithFormat:@"%@/follow/insert_follow",KURL] btn:sender];
-    }
-    else{
-        [self attention:[NSString stringWithFormat:@"%@/Follow/cancel_follow",KURL] btn:sender];
-    }
+    EditPushPhotoViewController *vc = [[EditPushPhotoViewController alloc] init];
+    vc.photo_id = self.photo_id;
+    [self.navigationController pushViewController:vc animated:YES];
     
+//    if (!sender.selected) {
+//        [self attention:[NSString stringWithFormat:@"%@/follow/insert_follow",KURL] btn:sender];
+//    }
+//    else{
+//        [self attention:[NSString stringWithFormat:@"%@/Follow/cancel_follow",KURL] btn:sender];
+//    }
+//
 }
 
 - (void)attention:(NSString *)path btn:(UIButton *)sender{

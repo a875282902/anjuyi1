@@ -8,8 +8,6 @@
 
 #import "ProwerStationDetails.h"
 #import "SDPhotoBrowserd.h"
-#import <CoreTelephony/CTTelephonyNetworkInfo.h>
-#import <CoreTelephony/CTCarrier.h>
 #define padding 15
 
 @interface ProwerStationDetails ()<UIScrollViewDelegate,SDPhotoBrowserDelegate>
@@ -140,7 +138,7 @@
 //}
 
 - (void)callPhone{
-    if (![self isSIMInstalled]) {
+    if (![Tools isSIMInstalled]) {
         [ViewHelps showHUDWithText:@"该设备不能打电话"];
         return;
     }
@@ -152,16 +150,7 @@
     [self addSubview:mCallWebview];
     [mCallWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
 }
-- (BOOL)isSIMInstalled
-{
-    CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
-    CTCarrier *carrier = [networkInfo subscriberCellularProvider];
-    if (!carrier.isoCountryCode) {
-        NSLog(@"No sim present Or No cellular coverage or phone is on airplane mode.");
-        return NO;
-    }
-    return YES;
-}
+
 
 -(void)showImage:(UITapGestureRecognizer *)sender{
     

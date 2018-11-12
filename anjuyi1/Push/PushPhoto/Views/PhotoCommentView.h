@@ -17,6 +17,8 @@
 
 @property (nonatomic,copy)void(^showReviewerDetail)(BaseViewController *vc);
 
+@property (nonatomic,copy)void(^updateCommentData)(NSInteger num);
+
 - (void)openDisplay;
 
 - (void)addComment;

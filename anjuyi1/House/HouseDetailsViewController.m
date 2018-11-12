@@ -15,6 +15,8 @@
 #import "QuestionTableViewCell.h"
 #import "FunctionBarView.h"
 #import "CommentDetalisViewController.h"
+#import "HouseInfoViewController.h"//编辑整屋页面
+#import "PersonalViewController.h"
 
 @interface HouseDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -46,6 +48,10 @@
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     [self baseForDefaultLeftNavButton];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    if (self.dataArr.count != 0) {
+        [self getHouseInfo];
+    }
     
 }
 
@@ -88,6 +94,11 @@
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         
         if ([responseObject[@"code"] integerValue] == 200) {
+            
+            [weakSelf.titleArr removeAllObjects];
+            [weakSelf.dataArr removeAllObjects];
+            [weakSelf.questionArr removeAllObjects];
+            [weakSelf.commentArr removeAllObjects];
             
             weakSelf.houseInfo = [NSMutableDictionary dictionaryWithDictionary:responseObject[@"datas"]];
             
@@ -168,6 +179,17 @@
     if (!_commentV) {
         _commentV = [[HouseCommentView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
         [_commentV setHouse_id:self.house_id];
+        
+        WKSELF;
+        [_commentV setSelectCommentToshow:^(UIViewController *vc) {
+            
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
+        //展示用户详情
+        [_commentV setShowReviewerDetail:^(BaseViewController *vc) {
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
+        
     }
     return _commentV;
 }
@@ -230,16 +252,26 @@
     NSString *name = self.houseInfo[@"house_own_info"][@"nickname"];
     CGFloat nameW = KHeight(name, 10000, 20, 18).size.width + 20;
     
-    [self.infoView addSubview:[Tools creatLabel:CGRectMake(65,  height+20 ,nameW , 25) font:[UIFont systemFontOfSize:18] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:name]];
+    UILabel *nameLabel = [Tools creatLabel:CGRectMake(65,  height+20 ,nameW , 25) font:[UIFont systemFontOfSize:18] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:name];
+    [self.infoView addSubview:nameLabel];
     
     UILabel *typeLabel = [Tools creatLabel:CGRectMake(65+ nameW, height+22.5 , 50, 20) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#fffefe"] alignment:(NSTextAlignmentCenter) title:self.houseInfo[@"house_own_info"][@"level"]];
     [typeLabel.layer setCornerRadius:5];
     [typeLabel setBackgroundColor:[UIColor colorWithHexString:@"#5cc6c6"]];
     [self.infoView addSubview:typeLabel];
     
-    [self.infoView addSubview:[Tools creatLabel:CGRectMake(65,height+ 45 ,KScreenWidth - 75 , 20) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:self.houseInfo[@"house_own_info"][@"position"]]];
+    if (KScreenWidth < 65+nameW + 50 + 110+20) {
+        [typeLabel setFrame:CGRectMake(KScreenWidth - 190, height+22.5, 50, 20)];
+        [nameLabel setFrame:CGRectMake(65,  height+20 ,KScreenWidth - 245 , 25)];
+    }
     
-    UIButton *attentionbtn = [Tools creatButton:CGRectMake(KScreenWidth - 110, height+25, 90, 33) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#5cc6c6"] title:@"关注" image:@""];
+    [self.infoView addSubview:[Tools creatLabel:CGRectMake(65,height+ 45 ,KScreenWidth - 75 , 20) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#999999"] alignment:(NSTextAlignmentLeft) title:self.houseInfo[@"house_own_info"][@"position"]]];
+
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, height, KScreenWidth - 110, 83)];
+    [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPersonDetails)]];
+    [self.infoView addSubview:backView];
+    
+    UIButton *attentionbtn = [Tools creatButton:CGRectMake(KScreenWidth - 110, height+25, 90, 33) font:[UIFont systemFontOfSize:16] color:[UIColor colorWithHexString:@"#5cc6c6"] title:[self.houseInfo[@"is_author"] integerValue]==0?@"关注":@"编辑" image:@""];
     [attentionbtn setBackgroundColor:MDRGBA(219, 245, 245, 1)];
     [attentionbtn.layer setCornerRadius:16.5];
     [attentionbtn setTitle:@"已关注" forState:(UIControlStateSelected)];
@@ -395,8 +427,11 @@
     if (section == self.dataArr.count+1) {
         return self.commentArr.count;
     }
+    if (section < self.dataArr.count) {
     
-    return [self.dataArr[section] count];
+        return [self.dataArr[section] count];
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -407,7 +442,7 @@
             cell = [[SpaceImageTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"SpaceImageTableViewCell"];
         }
         
-        if (indexPath.row < self.dataArr.count) {
+        if (indexPath.section < self.dataArr.count) {
             
             [cell bandDataWithDic:self.dataArr[indexPath.section][indexPath.row]];
         }
@@ -433,7 +468,14 @@
         }
         if (indexPath.row < self.commentArr.count) {
             
-            [cell bandDataWith:self.commentArr[indexPath.row]];
+            CommentModel *model = self.commentArr[indexPath.row];
+            [cell bandDataWith:model];
+            
+            [cell setShowPresonDetail:^{
+                PersonalViewController *vc = [[PersonalViewController alloc] init];
+                vc.user_id = model.member_info[@"user_id"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }];
         }
         return cell;
     }
@@ -476,9 +518,9 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    if (section == self.titleArr.count-1 && self.commentArr.count == 0) {
-//        return 0.00f;
-//    }
+    if (section == self.titleArr.count-1 && self.commentArr.count == 0) {
+        return 0.00f;
+    }
     if (section == self.titleArr.count-2 && self.questionArr.count == 0) {
         return 0.00f;
     }
@@ -493,9 +535,9 @@
     if (section < self.titleArr.count) {
         [view addSubview:[Tools creatLabel:CGRectMake(20, 0, KScreenWidth  -40, 20) font:[UIFont boldSystemFontOfSize:18] color:[UIColor blackColor] alignment:(NSTextAlignmentLeft) title:self.titleArr[section]]];
     }
-//    if (section == self.titleArr.count-1 && self.commentArr.count == 0) {
-//        return [UIView new];
-//    }
+    if (section == self.titleArr.count-1 && self.commentArr.count == 0) {
+        return [UIView new];
+    }
     if (section == self.titleArr.count-2 && self.questionArr.count == 0) {
         return [UIView new];
     }
@@ -519,9 +561,9 @@
         UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
 
         //创建网页内容对象
-        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:self.houseInfo[@"house_info"][@"title"] descr:self.houseInfo[@"said"] thumImage:self.houseInfo[@"house_info"][@"cover"]];
+        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:self.houseInfo[@"share_title"] descr:self.houseInfo[@"share_desc"] thumImage:self.houseInfo[@"share_img"]];
         //设置网页地址
-        shareObject.webpageUrl =[NSString stringWithFormat:@"%@/%@",KURL,self.houseInfo[@"share_url"]];
+        shareObject.webpageUrl =[NSString stringWithFormat:@"%@",self.houseInfo[@"share_url"]];
         //分享消息对象设置分享内容对象
         messageObject.shareObject = shareObject;
 
@@ -567,15 +609,33 @@
 
 }
 
+- (void)showPersonDetails{
+    
+    PersonalViewController *vc = [[PersonalViewController alloc] init];
+    vc.user_id = self.houseInfo[@"house_own_info"][@"id"];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 // 关注
 - (void)attentionToAuthor:(UIButton *)sender{
     LOGIN
     
-    if (!sender.selected) {
-        [self attention:[NSString stringWithFormat:@"%@/follow/insert_follow",KURL] btn:sender];
+    if ([self.houseInfo[@"is_author"] integerValue]==0) {//不是作者
+        if (!sender.selected) {
+            [self attention:[NSString stringWithFormat:@"%@/follow/insert_follow",KURL] btn:sender];
+        }
+        else{
+            [self attention:[NSString stringWithFormat:@"%@/Follow/cancel_follow",KURL] btn:sender];
+        }
     }
     else{
-        [self attention:[NSString stringWithFormat:@"%@/Follow/cancel_follow",KURL] btn:sender];
+     
+        HouseInfoViewController *vc = [[HouseInfoViewController alloc] init];
+        vc.type = 2;
+        vc.house_id = self.houseInfo[@"house_info"][@"id"];
+        BaseNaviViewController *nav = [[BaseNaviViewController alloc] initWithRootViewController:vc];
+        [self presentViewController:nav animated:YES completion:nil];
     }
     
 }

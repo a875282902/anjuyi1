@@ -142,7 +142,7 @@
         [btn setTitleColor:[UIColor colorWithHexString:@"#ffffff"] forState:(UIControlStateSelected)];
         [btn addTarget:self action:@selector(selectView:) forControlEvents:(UIControlEventTouchUpInside)];
         [statusView addSubview:btn];
-        if (i==0 ) {
+        if (i== 1 ) {
             [btn setSelected:YES];
             _selectBtn =btn ;
         }
@@ -150,7 +150,7 @@
         [self.channelArr addObject:btn];
     }
     
-    _lineView = [Tools setLineView:CGRectMake(0, 48, KScreenWidth/3, 2)];
+    _lineView = [Tools setLineView:CGRectMake( KScreenWidth/3, 48, KScreenWidth/3, 2)];
     [statusView addSubview:_lineView];
 }
 
@@ -166,6 +166,7 @@
             [_tmpScrollView setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentNever)];
         }
         [_tmpScrollView setContentSize:CGSizeMake(KScreenWidth*3, _tmpScrollView.frame.size.height)];
+        [_tmpScrollView setContentOffset:CGPointMake(KScreenWidth, 0)];
         [_tmpScrollView setDelegate:self];
         [_tmpScrollView setBounces:NO];
         [_tmpScrollView setScrollEnabled:NO];
@@ -278,7 +279,7 @@
 - (void)leftButtonTouchUpInside:(id)sender{
     
     if (self.type == 2) {
-        [self.navigationController popViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
     else{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"已将您编辑的内容存入草稿箱中，您确认离开整屋编辑页面吗？" preferredStyle:(UIAlertControllerStyleAlert)];

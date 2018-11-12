@@ -16,7 +16,7 @@
 #import "MasterModel.h"
 #import "ShowWebViewController.h"
 
-#import "StrategyCaseListViewController.h"
+#import "StrategyViewController.h"
 #import "HouseCaseListViewController.h"//整屋列表
 #import "DesignerListViewController.h"
 
@@ -337,19 +337,23 @@
     switch (sender.view.tag) {
         case 0:
         {
-            StrategyCaseListViewController *vc = [[StrategyCaseListViewController alloc] init];
+            StrategyViewController *vc = [[StrategyViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 1:
         {
             HouseCaseListViewController *vc = [[HouseCaseListViewController alloc] init];
+            vc.titles = [NSMutableArray arrayWithArray:@[@"现代",@"房型",@"来源"]];
+            vc.type = @"4";
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 2:
         {
             HouseCaseListViewController *vc = [[HouseCaseListViewController alloc] init];
+            vc.titles = [NSMutableArray arrayWithArray:@[@"工业风",@"房型",@"来源"]];
+            vc.type = @"7";
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

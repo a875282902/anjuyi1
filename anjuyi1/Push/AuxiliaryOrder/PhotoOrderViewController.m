@@ -119,7 +119,7 @@
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(KScreenWidth*(i%3)/3.0 +10, (KScreenWidth/3.0 * (i/3))+10, (KScreenWidth/3 - 20), (KScreenWidth/3 - 20))];
         [imageView sd_setImageWithURL:[NSURL URLWithString:self.imageArr[i]]];
         [imageView setTag:i];
-        [imageView setContentMode:(UIViewContentModeScaleToFill)];
+        [imageView setContentMode:(UIViewContentModeScaleAspectFit)];
         [imageView setUserInteractionEnabled:YES];
         [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showBigPhoto:)]];
         [self.detalisView addSubview:imageView];
@@ -245,7 +245,7 @@
         [self.imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
         
         // 设置允许编辑
-        [self.imagePickerController setAllowsEditing:YES];
+        [self.imagePickerController setAllowsEditing:NO];
         
         [self presentViewController:self.imagePickerController animated:YES completion:nil];
     }
@@ -269,12 +269,7 @@
 }
 
 - (void)addPhoto{
-//    PhotoSelectController *vc = [[PhotoSelectController alloc] init];
-//    [vc setDelegate:self];
-//    [vc setIsClip:NO];
-//    [vc setClipSize:CGSizeMake(KScreenWidth, KScreenWidth)];
-//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-//    [self presentViewController:nav animated:YES completion:nil];
+
     if (self.imageArr.count >=4) {
         [ViewHelps showHUDWithText:@"最多上传4张图片"];
         return;
@@ -286,7 +281,7 @@
     [self.imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     
     // 设置允许编辑
-    [self.imagePickerController setAllowsEditing:YES];
+    [self.imagePickerController setAllowsEditing:NO];
     
     [self presentViewController:self.imagePickerController animated:YES completion:nil];
 }
@@ -305,7 +300,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest uploadFileWithInferface:path parameters:nil fileData:UIImageJPEGRepresentation(image, 0.7) serverName:@"file" saveName:nil mimeType:(MCJPEGImageFileType) progress:^(float progress) {
+    [HttpRequest uploadFileWithInferface:path parameters:nil fileData:UIImageJPEGRepresentation(image, 0.5) serverName:@"file" saveName:nil mimeType:(MCJPEGImageFileType) progress:^(float progress) {
         NSLog(@"%.2f",progress);
     } success:^(id  _Nullable responseObject) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];

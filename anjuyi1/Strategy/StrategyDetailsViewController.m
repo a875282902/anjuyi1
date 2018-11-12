@@ -283,10 +283,12 @@
             x = 15.0f;
         }
         
-        UIButton *btn = [Tools creatButton:CGRectMake(x, y, w, h) font:[UIFont systemFontOfSize:14] color:[UIColor colorWithHexString:@"#2cb7b5"] title:str image:@""];
-        [btn setBackgroundColor:[UIColor colorWithHexString:@"#eaf8f8"]];
-        [btn.layer setBorderWidth:1];
-        [btn.layer setBorderColor:[UIColor colorWithHexString:@"#34bab8"].CGColor];
+        UIButton *btn = [Tools creatButton:CGRectMake(x, y, w, h) font:[UIFont systemFontOfSize:14] color:i==0?[UIColor colorWithHexString:@"#2cb7b5"]:[UIColor colorWithHexString:@"#333333"] title:str image:@""];
+        [btn setBackgroundColor:i==0?[UIColor colorWithHexString:@"#eaf8f8"]:[UIColor colorWithHexString:@"#efefef"]];
+        if (i==0) {
+            [btn.layer setBorderWidth:1];
+            [btn.layer setBorderColor:[UIColor colorWithHexString:@"#34bab8"].CGColor];
+        }
         [btn.layer setCornerRadius:5];
         [btn setClipsToBounds:YES];
         [btn setTag:i];
@@ -439,9 +441,9 @@
         UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
         
         //创建网页内容对象
-        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:self.photoInfo[@"title"] descr:self.photoInfo[@"title"] thumImage:self.photoInfo[@"img"]];
+        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:self.photoInfo[@"share_title"] descr:self.photoInfo[@"share_desc"] thumImage:self.photoInfo[@"share_img"]];
         //设置网页地址
-        shareObject.webpageUrl =[NSString stringWithFormat:@"%@/%@",KURL,self.photoInfo[@"share_url"]];
+        shareObject.webpageUrl =[NSString stringWithFormat:@"%@",self.photoInfo[@"share_url"]];
         //分享消息对象设置分享内容对象
         messageObject.shareObject = shareObject;
         
