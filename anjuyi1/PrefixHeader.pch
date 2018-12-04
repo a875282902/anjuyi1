@@ -69,7 +69,8 @@
 #define GRAYCOLOR [UIColor colorWithHexString:@"#999999"]
 
 //#define KURL @"https://api.ajyvip.com"
-#define KURL @"http://api.sundavip.com"
+//#define KURL @"http://api.sundavip.com"
+#define KURL @"http://api2.anjuyi.com.cn"
 
 //参数
 #define JGAppKey @"24366ef1db5d7e438a2a522c"
@@ -79,6 +80,9 @@
 #define APPID @"1068413188"
 //百度地图key
 #define MAPKEY @"HvhydCHlfApZjcberj33DoMIDNdCF3Vc"
+//美恰聊天key
+#define MQKEY @"21811ce9dc1675d44ba7d2a0e07552bf"
+#define MQSecret @"$2a$12$5VTfBPHccQWUauBP1vMB7u61DJMGxVU.twHjOCkWcN7OsrnxaHFou"
 
 //TestinDataAnalysiskey
 #define BUGKEY @"2e068f6983b534f520e0e6d6eb49aa1d"
@@ -90,7 +94,7 @@
 
 #define WXID @"wxecdea0abc012d83a"
 #define WXSECRET @"d3958a80cd8ef7439172ad5083827eaf"
-
+//支付宝
 #define ZFBKEY @"2018101161678029"
 
 #define UTOKEN [[NSUserDefaults standardUserDefaults] valueForKey:@"UTOKEN"]

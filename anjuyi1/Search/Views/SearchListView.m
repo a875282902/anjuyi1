@@ -12,6 +12,7 @@
 #import "HouseDetailsViewController.h"
 #import "DesignerDetailsVC.h"//设计师详情
 #import "MasterDetailsVC.h"//工长详情
+#import "PersonalViewController.h"
 #import "StrategyDetailsViewController.h"//攻略详情
 #import "TopicDetailsViewController.h"//话题详情
 
@@ -40,6 +41,11 @@
 - (void)setUpKeyWord:(NSString *)keyword type:(NSString *)type{
     
     _index = [type integerValue];
+    
+    if (_index == 4) {
+        [self.tmpTableView setSeparatorStyle:(UITableViewCellSeparatorStyleSingleLine)];
+        [self.tmpTableView setTableFooterView:[UIView new]];
+    }
     
     NSString *path = [NSString stringWithFormat:@"%@/search/search",KURL];
     
@@ -99,7 +105,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (_index == 2) {
+    if (_index == 2 || _index == 3) {
         HouseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HouseTableViewCell"];
         if (!cell) {
             cell = [[HouseTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"HouseTableViewCell"];
@@ -107,6 +113,20 @@
         if (indexPath.row < self.dataArr.count) {
             
             [cell bandDataWithModel:self.dataArr[indexPath.row]];
+        }
+        return cell;
+    }
+    if (_index == 4) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TopicTableViewCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"TopicTableViewCell"];
+        }
+        if (indexPath.row < self.dataArr.count) {
+            
+            NSDictionary *dic = self.dataArr[indexPath.row];
+            [cell.textLabel setText:dic[@"title"]];
+            [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@回答",dic[@"answer"]]];
+            [cell.detailTextLabel setTextColor:GRAYCOLOR];
         }
         return cell;
     }
@@ -123,7 +143,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (_index == 2) {
+    if (_index == 2 || _index == 3) {
         return 100;
     }
     return 65;
@@ -152,16 +172,21 @@
         vc.backColor = arr[arc4random()%5];
         self.selectHouseToShowDetalis(vc);
     }
-    if (_index == 6) {//工长
-        MasterDetailsVC *vc = [[MasterDetailsVC alloc] init];
-        vc.masterID = self.dataArr[indexPath.row][@"user_id"];
+    if (_index == 5 || _index == 6 || _index == 7) {//工长
+        PersonalViewController *vc = [[PersonalViewController alloc] init];
+        vc.user_id = self.dataArr[indexPath.row][@"user_id"];
         self.selectHouseToShowDetalis(vc);
     }
-    if (_index == 7) {//设计师
-        DesignerDetailsVC *vc = [[DesignerDetailsVC alloc] init];
-        vc.designerID = self.dataArr[indexPath.row][@"user_id"];
-        self.selectHouseToShowDetalis(vc);
-    }
+//    if (_index == 6) {//工长
+//        MasterDetailsVC *vc = [[MasterDetailsVC alloc] init];
+//        vc.masterID = self.dataArr[indexPath.row][@"user_id"];
+//        self.selectHouseToShowDetalis(vc);
+//    }
+//    if (_index == 7) {//设计师
+//        DesignerDetailsVC *vc = [[DesignerDetailsVC alloc] init];
+//        vc.designerID = self.dataArr[indexPath.row][@"user_id"];
+//        self.selectHouseToShowDetalis(vc);
+//    }
 }
 
 

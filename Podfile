@@ -32,6 +32,7 @@ pod 'UMCShare/Social/Sina'
 # 集成支付宝
 pod 'UMCShare/Social/AlipayShare'
 
+pod 'Meiqia'
 
 end
 

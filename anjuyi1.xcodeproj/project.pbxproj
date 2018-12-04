@@ -239,6 +239,7 @@
 		18382643215C8645004C40CA /* HouseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18382642215C8645004C40CA /* HouseListViewController.m */; };
 		18382646215C86EC004C40CA /* HouseDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18382645215C86EC004C40CA /* HouseDetailsViewController.m */; };
 		1838264A215CAA16004C40CA /* PushStrategyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18382649215CAA16004C40CA /* PushStrategyViewController.m */; };
+		18386BDC219BF5C3003FD73D /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18386BDB219BF5C3003FD73D /* CommentViewController.m */; };
 		18399C2F211D4580007CAD58 /* TopicDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C2E211D4580007CAD58 /* TopicDetailsViewController.m */; };
 		18399C32211D6C08007CAD58 /* TopicCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C31211D6C08007CAD58 /* TopicCommentModel.m */; };
 		18399C36211D76FA007CAD58 /* TopicCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C34211D76FA007CAD58 /* TopicCommentTableViewCell.m */; };
@@ -796,6 +797,8 @@
 		18382645215C86EC004C40CA /* HouseDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseDetailsViewController.m; sourceTree = "<group>"; };
 		18382648215CAA16004C40CA /* PushStrategyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushStrategyViewController.h; sourceTree = "<group>"; };
 		18382649215CAA16004C40CA /* PushStrategyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushStrategyViewController.m; sourceTree = "<group>"; };
+		18386BDA219BF5C3003FD73D /* CommentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
+		18386BDB219BF5C3003FD73D /* CommentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
 		18399C2D211D4580007CAD58 /* TopicDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicDetailsViewController.h; sourceTree = "<group>"; };
 		18399C2E211D4580007CAD58 /* TopicDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicDetailsViewController.m; sourceTree = "<group>"; };
 		18399C30211D6C08007CAD58 /* TopicCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicCommentModel.h; sourceTree = "<group>"; };
@@ -1420,6 +1423,8 @@
 				0A38FEFA20C6D67B00B45CCD /* Views */,
 				0A7D500620C2DC08001BFDBF /* MyCommentViewController.h */,
 				0A7D500720C2DC08001BFDBF /* MyCommentViewController.m */,
+				18386BDA219BF5C3003FD73D /* CommentViewController.h */,
+				18386BDB219BF5C3003FD73D /* CommentViewController.m */,
 				0A7D500C20C2E894001BFDBF /* MyCommentDetailsVC.h */,
 				0A7D500D20C2E894001BFDBF /* MyCommentDetailsVC.m */,
 				189D1AFA216F271A00FB0B93 /* MyCommentDetailsVC.xib */,
@@ -2794,6 +2799,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-anjuyi1/Pods-anjuyi1-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/Meiqia/Meiqia-SDK-files/MQChatViewController/Assets/MQChatViewAsset.bundle",
 				"${PODS_ROOT}/UMCShare/UMShare/SocialLibraries/Sina/SinaSDK/WeiboSDK.bundle",
 				"${PODS_ROOT}/UMCShare/UMShare/UMSocialUI/UMSocialSDKResources.bundle",
 			);
@@ -2801,6 +2807,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MQChatViewAsset.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKResources.bundle",
 			);
@@ -2846,6 +2853,7 @@
 				0A7D4FF720C2B723001BFDBF /* DistributionViewController.m in Sources */,
 				18275116210171F3002A61F8 /* PowerStatonModel.m in Sources */,
 				1801CE12215F29B60060DB0E /* StrategyModel.m in Sources */,
+				18386BDC219BF5C3003FD73D /* CommentViewController.m in Sources */,
 				0AFEE76120BD2F50004FA8FC /* HttpRequest.m in Sources */,
 				0AD2DEC020CA5F3200E53B43 /* CraftsmanTypeVC.m in Sources */,
 				0A5A7B2C20C7DB9300153E9A /* SDLoadingView.m in Sources */,

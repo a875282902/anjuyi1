@@ -27,6 +27,8 @@
 
 #import <UMShare/UMShare.h>
 
+#import <MeiQiaSDK/MeiQiaSDK.h>
+
 #import "LaunchADView.h"
 
 #import "ShowWebViewController.h"
@@ -41,6 +43,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //百度
     BMKMapManager *man = [[BMKMapManager alloc]init];
     BOOL ret = [man start:MAPKEY generalDelegate:nil];
     if (!ret) {
@@ -49,14 +53,22 @@
     else{
         NSLog(@"success");
     }
-
+    //极光推送
     [self registJGPush:launchOptions];
-    
+    //u友盟分享
     [self umShare];
-    
+    //u友盟y统计
     [self umCommnont];
-    
+    //debug
     [self testinDataConfig:launchOptions];
+    //美洽聊天
+    [MQManager initWithAppkey:MQKEY completion:^(NSString *clientId, NSError *error) {
+        if (!error) {
+            NSLog(@"美洽 SDK：初始化成功");
+        } else {
+            NSLog(@"error:%@",error);
+        }
+    }];
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
@@ -123,6 +135,9 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [JPUSHService setTags:[NSSet setWithObject:JPUSHService.registrationID] completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
         
     } seq:100034];
+    
+    //美恰集成第四步: 上传设备deviceToken
+    [MQManager registerDeviceToken:deviceToken];
 }
 
 #pragma mark- JPUSHRegisterDelegate
@@ -234,11 +249,15 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    //集成第三步: 进入后台 关闭美洽服务
+    [MQManager closeMeiqiaService];
 }
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    //集成第二步: 进入前台 打开meiqia服务
+    [MQManager openMeiqiaService];
 }
 
 

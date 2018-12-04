@@ -176,6 +176,14 @@
     [self.mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
     
     [self getPowerStationData:userLocation.location.coordinate];
+    
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    
+    [geocoder reverseGeocodeLocation:userLocation.location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        
+        CLPlacemark *placemark = [placemarks firstObject];
+        NSLog(@"%@",placemark.addressDictionary[@"City"]);
+    }];
 
     [self.locService stopUserLocationService];
 }

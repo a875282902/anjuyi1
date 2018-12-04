@@ -19,6 +19,7 @@
 #import "PhotoDetailsViewController.h"//图片详情
 #import "HouseDetailsViewController.h"//整屋详情
 #import "PhotoListViewController.h"//图片列表
+#import "CommentViewController.h"//评论列表
 #import "AnswerListViewController.h"//回答列表
 
 
@@ -498,8 +499,15 @@
             break;
         case 2:
         {
-            MyCommentViewController *VC = [[MyCommentViewController alloc] init];
-            [self.navigationController pushViewController:VC animated:YES];
+            
+            if ([self.type isEqualToString:@"1"]) {
+                MyCommentViewController *VC = [[MyCommentViewController alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
+            }else{
+                CommentViewController *VC = [[CommentViewController alloc] init];
+                VC.user_id = self.user_id;
+                [self.navigationController pushViewController:VC animated:YES];
+            }
         }
             break;
         case 3:

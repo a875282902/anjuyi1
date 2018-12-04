@@ -49,7 +49,7 @@
     [self baseForDefaultLeftNavButton];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
-    if (self.dataArr.count != 0) {
+    if ([self.houseInfo.allKeys count] != 0) {
         [self getHouseInfo];
     }
     

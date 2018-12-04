@@ -28,6 +28,8 @@
 
 #import "CollectShopViewController.h"//收藏商品
 #import "CustomerServiceViewController.h"//在线客服
+#import <MeiQiaSDK/MeiQiaSDK.h>//在线客服
+#import <MQChatViewManager.h>
 #import "MyOrderViewController.h"//我的订单
 #import "MyCouponsViewController.h"//我的优惠券
 
@@ -364,8 +366,10 @@
             break;
         case 10:
         {
-            CustomerServiceViewController *controller = [[CustomerServiceViewController alloc] init];
-            [self.navigationController pushViewController:controller animated:YES];
+//            CustomerServiceViewController *controller = [[CustomerServiceViewController alloc] init];
+//            [self.navigationController pushViewController:controller animated:YES];
+            
+            [self creatCustomerService];
             
         }
             break;
@@ -415,6 +419,14 @@
         default:
             break;
     }
+}
+
+//在线服务
+- (void)creatCustomerService{
+    
+    MQChatViewManager *chatViewManager = [[MQChatViewManager alloc] init];
+    [chatViewManager setoutgoingDefaultAvatarImage:[UIImage imageNamed:@"meiqia-icon"]];
+    [chatViewManager pushMQChatViewControllerInViewController:self];
 }
 
 - (void)selectLineProject:(UITapGestureRecognizer *)sender{

@@ -22,7 +22,11 @@
     
     [self.nameLabel setAttributedText:[self stringToAttribute:dic[@"username"]]];
     [self.titleLabel setAttributedText:[self stringToAttribute:dic[@"title"]]];
-    [self.areaLabel setText:[NSString stringWithFormat:@"%@m²",dic[@"proportion"]]];
+    if (dic[@"proportion"]) {
+        [self.areaLabel setHidden:NO];
+        [self.areaLabel setText:[NSString stringWithFormat:@"%@m²",dic[@"proportion"]]];
+    }
+    
     [self.coverImage sd_setImageWithURL:[NSURL URLWithString:dic[@"img"]]];
 }
 - (NSMutableAttributedString *)stringToAttribute:(NSString *)str{
@@ -46,6 +50,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [self.areaLabel setHidden:YES];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

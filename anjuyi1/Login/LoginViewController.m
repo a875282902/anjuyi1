@@ -220,12 +220,13 @@
     NSString *path = [NSString stringWithFormat:@"%@/login/three_login",KURL];
     
     NSString * stype =  (type == UMSocialPlatformType_QQ?@"3":@"1");
+    NSString * open_id =  (type == UMSocialPlatformType_QQ?resp.openid:resp.unionId);
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
 
-    [HttpRequest POST:path parameters:@{@"open_id":resp.openid,@"type":stype} success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:@{@"open_id":open_id,@"type":stype} success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -235,7 +236,7 @@
         else if ([responseObject[@"code"] integerValue] == 202) {
             
             ThirdLoginViewController *vc = [[ThirdLoginViewController alloc] init];
-            vc.userInfo = [NSMutableDictionary dictionaryWithDictionary:@{@"open_id":resp.openid,@"type":stype,@"head":resp.iconurl,@"nickname":resp.name}];
+            vc.userInfo = [NSMutableDictionary dictionaryWithDictionary:@{@"open_id":open_id,@"type":stype,@"head":resp.iconurl,@"nickname":resp.name}];
             [self.navigationController pushViewController:vc animated:YES];
         }
         else{

@@ -7,29 +7,28 @@
 //
 //  评论
 
-#import "MyCommentViewController.h"
+#import "CommentViewController.h"
 #import "CommentTableViewCell.h"
-#import "MyCommentDetailsVC.h"
 #import "CommentDetalisViewController.h"
 
-@interface MyCommentViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface CommentViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView    * tmpTableView;
 
 @property (nonatomic,strong) NSMutableArray * dataArr;
 @end
 
-@implementation MyCommentViewController
+@implementation CommentViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     [self baseForDefaultLeftNavButton];
-    [self setTitle:@"我的评论"];
+    [self setTitle:@"评论"];
     
     self.dataArr = [NSMutableArray array];
-
+    
     
     [self.view addSubview:self.tmpTableView];
     
@@ -40,15 +39,15 @@
 
 - (void)getCommentData{
     
-    NSString *path = [NSString stringWithFormat:@"%@/member/my_evaluate",KURL];
+    NSString *path = [NSString stringWithFormat:@"%@/person/user_evaluate",KURL];
     
-    NSDictionary *header = @{@"token":UTOKEN};
+    NSDictionary *dic = @{@"user_id":self.user_id};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POSTWithHeader:header url:path parameters:nil success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:dic success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -75,7 +74,7 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [RequestSever showMsgWithError:error];
     }];
-
+    
 }
 
 - (NSDictionary *)addAttributeToDic:(NSDictionary *)dic{
@@ -137,7 +136,7 @@
     CGFloat wid = [dic[@"titleWidth"] floatValue] -  MDXFrom6(290) *h;
     
     if (wid > MDXFrom6(240)) {
-  
+        
         return [dic[@"titleHight"] floatValue]+MDXFrom6(47)+31;
     }
     else{
@@ -158,7 +157,7 @@
     if (type == 3) type =4;
     CommentDetalisViewController *controller = [[CommentDetalisViewController alloc] init];
     controller.eva_id = dic[@"id"];
-
+    
     controller.type = type;
     [self.navigationController pushViewController:controller animated:YES];
     
@@ -171,13 +170,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
