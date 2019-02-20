@@ -14,6 +14,7 @@
 #import "KBTabbar.h"
 #import "BaseNaviViewController.h"
 #import "PushViewController.h"
+#import "MallWebViewController.h"
 #import "UIColor+Category.h"
 #import "PushView.h"
 
@@ -40,7 +41,7 @@
     [self addChildController:dvc title:@"装修" imageName:@"nav_decorate" selectedImageName:@"nav_decorate_xz" navVc:[UINavigationController class]];
     
     
-    MallViewController *mvc = [[MallViewController alloc] init];
+    MallWebViewController *mvc = [[MallWebViewController alloc] init];
     [self addChildController:mvc title:@"商城" imageName:@"nav_shop_xz" selectedImageName:@"nav_shop" navVc:[UINavigationController class]];
     
     MyViewController *myvc = [[MyViewController alloc] init];
@@ -122,8 +123,10 @@
     // 设置一下选中tabbar文字颜色
     [childController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithHexString:@"#666666"] }forState:UIControlStateNormal];
     [childController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithHexString:@"#47BABA"] }forState:UIControlStateSelected];
-    
-    BaseNaviViewController* nav = [[BaseNaviViewController alloc] initWithRootViewController:childController];
+    id nav = childController;
+    if (![title isEqualToString:@"商城"]) {
+        nav = [[BaseNaviViewController alloc] initWithRootViewController:childController];
+    }
     
     [self addChildViewController:nav];
 }

@@ -30,6 +30,7 @@
 #import "CustomerServiceViewController.h"//在线客服
 #import <MeiQiaSDK/MeiQiaSDK.h>//在线客服
 #import <MQChatViewManager.h>
+#import "MyOrderWebViewController.h"
 #import "MyOrderViewController.h"//我的订单
 #import "MyCouponsViewController.h"//我的优惠券
 
@@ -375,7 +376,7 @@
             break;
         case 11:
         {
-            MyOrderViewController *controller = [[MyOrderViewController alloc] init];
+            MyOrderWebViewController *controller = [[MyOrderWebViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             
         }

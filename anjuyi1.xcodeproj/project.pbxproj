@@ -290,8 +290,10 @@
 		185CC11E215DDDC6005D21B1 /* UIButton+Caregory.m in Sources */ = {isa = PBXBuildFile; fileRef = 185CC11D215DDDC6005D21B1 /* UIButton+Caregory.m */; };
 		185CC121215DFF51005D21B1 /* DesignerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185CC120215DFF51005D21B1 /* DesignerListViewController.m */; };
 		1862840D20F7314B0038A7AC /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862840C20F7314A0038A7AC /* BannerModel.m */; };
+		186AB84422125EF30013FF53 /* MallWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AB84322125EF30013FF53 /* MallWebViewController.m */; };
 		187C11ED20D0A8E400E8DDC7 /* UIColor+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C11EC20D0A8E400E8DDC7 /* UIColor+Category.m */; };
 		187C11F420D0E42600E8DDC7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C11F320D0E42600E8DDC7 /* LoginViewController.m */; };
+		18801DEA221556FD00434731 /* MyOrderWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18801DE9221556FC00434731 /* MyOrderWebViewController.m */; };
 		188950CC217430F3001AA8BD /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188950CB217430F3001AA8BD /* CoreMotion.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		188950CE217430F8001AA8BD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188950CD217430F8001AA8BD /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		188950D0217430FD001AA8BD /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188950CF217430FC001AA8BD /* ImageIO.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -888,10 +890,14 @@
 		185CC120215DFF51005D21B1 /* DesignerListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DesignerListViewController.m; sourceTree = "<group>"; };
 		1862840B20F7314A0038A7AC /* BannerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerModel.h; sourceTree = "<group>"; };
 		1862840C20F7314A0038A7AC /* BannerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerModel.m; sourceTree = "<group>"; };
+		186AB84222125EF30013FF53 /* MallWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallWebViewController.h; sourceTree = "<group>"; };
+		186AB84322125EF30013FF53 /* MallWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallWebViewController.m; sourceTree = "<group>"; };
 		187C11EB20D0A8E400E8DDC7 /* UIColor+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Category.h"; sourceTree = "<group>"; };
 		187C11EC20D0A8E400E8DDC7 /* UIColor+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Category.m"; sourceTree = "<group>"; };
 		187C11F220D0E42600E8DDC7 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		187C11F320D0E42600E8DDC7 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		18801DE8221556FC00434731 /* MyOrderWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyOrderWebViewController.h; sourceTree = "<group>"; };
+		18801DE9221556FC00434731 /* MyOrderWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyOrderWebViewController.m; sourceTree = "<group>"; };
 		188950CB217430F3001AA8BD /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		188950CD217430F8001AA8BD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		188950CF217430FC001AA8BD /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -1372,6 +1378,8 @@
 				0A38FEF920C6D65300B45CCD /* Views */,
 				0A5CD81F20C592C70028F82D /* MyOrderViewController.h */,
 				0A5CD82020C592C70028F82D /* MyOrderViewController.m */,
+				18801DE8221556FC00434731 /* MyOrderWebViewController.h */,
+				18801DE9221556FC00434731 /* MyOrderWebViewController.m */,
 				0A5CD83220C621430028F82D /* OrderDetailsVC.h */,
 				0A5CD83320C621430028F82D /* OrderDetailsVC.m */,
 			);
@@ -1787,6 +1795,8 @@
 				0AD0C61420BEB33C001A20C4 /* Views */,
 				0AFEE72C20BD2F4F004FA8FC /* MallViewController.h */,
 				0AFEE72D20BD2F4F004FA8FC /* MallViewController.m */,
+				186AB84222125EF30013FF53 /* MallWebViewController.h */,
+				186AB84322125EF30013FF53 /* MallWebViewController.m */,
 			);
 			path = Mall;
 			sourceTree = "<group>";
@@ -2856,6 +2866,7 @@
 				18386BDC219BF5C3003FD73D /* CommentViewController.m in Sources */,
 				0AFEE76120BD2F50004FA8FC /* HttpRequest.m in Sources */,
 				0AD2DEC020CA5F3200E53B43 /* CraftsmanTypeVC.m in Sources */,
+				186AB84422125EF30013FF53 /* MallWebViewController.m in Sources */,
 				0A5A7B2C20C7DB9300153E9A /* SDLoadingView.m in Sources */,
 				18F5B7D520EB1D0700B76A73 /* PushProjectViewController.m in Sources */,
 				182CDAAC2109ACAC00F28F4C /* MyPhotoModel.m in Sources */,
@@ -3066,6 +3077,7 @@
 				180F19C9211943A90018F1CD /* ActivityTableViewCell.m in Sources */,
 				182D5A0A216B01B200391D06 /* MasterListViewController.m in Sources */,
 				188ABC1E214F441B00F4C910 /* MasterModel.m in Sources */,
+				18801DEA221556FD00434731 /* MyOrderWebViewController.m in Sources */,
 				0A5582AA20C1339800759E6B /* ProjectDetailsVC.m in Sources */,
 				0AFEE75F20BD2F50004FA8FC /* UIImage+Category.m in Sources */,
 				184D07D920D11C8D00653D81 /* NSString+Predicate.m in Sources */,

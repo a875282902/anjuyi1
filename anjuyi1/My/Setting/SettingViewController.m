@@ -188,12 +188,12 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:(UIAlertControllerStyleAlert)];
     
     [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
-  
+        [self.navigationController popToRootViewControllerAnimated:YES];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UTOKEN"];
         
-        LoginViewController *vc = [[LoginViewController alloc] init];
-        BaseNaviViewController *navvc = [[BaseNaviViewController alloc] initWithRootViewController:vc];
-        [self presentViewController:navvc animated:YES completion:nil];
+//        LoginViewController *vc = [[LoginViewController alloc] init];
+//        BaseNaviViewController *navvc = [[BaseNaviViewController alloc] initWithRootViewController:vc];
+//        [self presentViewController:navvc animated:YES completion:nil];
         
     }]];
     
