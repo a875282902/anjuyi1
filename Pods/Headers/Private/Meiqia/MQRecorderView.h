@@ -1,0 +1,1 @@
+../../../Meiqia/Meiqia-SDK-files/MQChatViewController/Views/MQInputBar/FunctionView/MQRecorderView.h
