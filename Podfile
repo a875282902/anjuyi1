@@ -1,4 +1,5 @@
 platform :ios,'8.0'
+inhibit_all_warnings!
 target 'anjuyi1' do
 pod 'AFNetworking', '~> 3.2.1'
 pod 'MBProgressHUD', '~> 1.1.0'
@@ -33,6 +34,10 @@ pod 'UMCShare/Social/Sina'
 pod 'UMCShare/Social/AlipayShare'
 
 pod 'Meiqia'
+
+pod 'JPush'
+
+pod 'WechatOpenSDK'
 
 end
 

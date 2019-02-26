@@ -89,7 +89,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [self.houseDic setValue:[NSString stringWithFormat:@"%ld",indexPath.row] forKey:@"designer"];
+    [self.houseDic setValue:[NSString stringWithFormat:@"%ld",(long)indexPath.row] forKey:@"designer"];
     
     [self pushHouseInfo];
 }

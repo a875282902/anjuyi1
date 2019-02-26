@@ -422,7 +422,7 @@
         [backBtn setImage:[UIImage imageNamed:@"my_back"] forState:(UIControlStateNormal)];
     }
     
-    CGPoint point = scrollView.contentOffset;
+//    CGPoint point = scrollView.contentOffset;
     
 //    if (point.y < 0) {
 //        CGRect rect = headerBackImage.frame;

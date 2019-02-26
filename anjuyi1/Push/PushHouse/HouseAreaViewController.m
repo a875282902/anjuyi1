@@ -96,16 +96,16 @@
     if (sender.tag <= 8) {
         
         if ([areaStr floatValue] > 0) {
-            areaStr = [NSString stringWithFormat:@"%@%ld",areaStr,sender.tag+1];
+            areaStr = [NSString stringWithFormat:@"%@%ld",areaStr,(long)(sender.tag+1)];
         }
         else{
             
             if (![areaStr containsString:@"."]) {
                 
-                areaStr = [NSString stringWithFormat:@"%ld",sender.tag+1];
+                areaStr = [NSString stringWithFormat:@"%ld",(long)(sender.tag+1)];
             }
             else{
-                areaStr = [NSString stringWithFormat:@"%@%ld",areaStr,sender.tag+1];
+                areaStr = [NSString stringWithFormat:@"%@%ld",areaStr,(long)(sender.tag+1)];
             }
         }
 

@@ -232,7 +232,7 @@
     NSDictionary *header = @{@"token":UTOKEN};
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
-    [HttpRequest POSTWithHeader:header url:path parameters:@{@"type":[NSString stringWithFormat:@"%ld",type]} success:^(id  _Nullable responseObject) {
+    [HttpRequest POSTWithHeader:header url:path parameters:@{@"type":[NSString stringWithFormat:@"%ld",(long)type]} success:^(id  _Nullable responseObject) {
 
         [MBProgressHUD hideHUDForView:self.view animated:YES];
 

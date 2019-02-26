@@ -100,7 +100,7 @@
        
         MessageListVIew *messageList = [[MessageListVIew alloc] initWithFrame:CGRectMake(KScreenWidth *i, 0, KScreenWidth, self.tmpScrollView.frame.size.height)];
         [messageList setDelegate:self];
-        [messageList setType:[NSString stringWithFormat:@"%ld",i]];
+        [messageList setType:[NSString stringWithFormat:@"%ld",(long)i]];
         [self.tmpScrollView addSubview:messageList];
     }
 }

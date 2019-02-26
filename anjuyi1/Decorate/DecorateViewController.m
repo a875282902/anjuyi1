@@ -334,7 +334,7 @@
             break;
     }
     
-    NSLog(@"%ld",sender.view.tag);
+    NSLog(@"%ld",(long)sender.view.tag);
 }
 
 #pragma mark -- delegate

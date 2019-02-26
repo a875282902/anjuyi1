@@ -88,7 +88,7 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/designer/get_designer_list",KURL];
 
-    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __weak typeof(self) weakSelf = self;
     
@@ -134,7 +134,7 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/designer/get_designer_list",KURL];
     
-    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     

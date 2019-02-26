@@ -120,7 +120,7 @@
                     [weakSelf.dataArr addObject:model];
                 }
             }
-            [weakSelf.numLabel setText:[NSString stringWithFormat:@"%ld条评论",weakSelf.dataArr.count]];
+            [weakSelf.numLabel setText:[NSString stringWithFormat:@"%ld条评论",(long)weakSelf.dataArr.count]];
         }
         else{
             

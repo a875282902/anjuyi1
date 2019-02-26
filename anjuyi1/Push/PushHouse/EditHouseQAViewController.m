@@ -147,7 +147,7 @@
             _content = self.data[@"text"];
             [_personPlace setHidden:YES];
             [textView setText:_content];
-            [self.numLabel setText:[NSString stringWithFormat:@"%ld/300",[_content length]]];
+            [self.numLabel setText:[NSString stringWithFormat:@"%ld/300",(long)[_content length]]];
         }
     }
     
@@ -169,7 +169,7 @@
         
         [textView setText:[textView.text substringToIndex:300]];
     }
-    [self.numLabel setText:[NSString stringWithFormat:@"%ld/300",textView.text.length]];
+    [self.numLabel setText:[NSString stringWithFormat:@"%ld/300",(long)textView.text.length]];
     _content = textView.text;
 }
 

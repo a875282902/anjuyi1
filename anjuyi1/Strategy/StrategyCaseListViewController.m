@@ -131,7 +131,7 @@
     }
     else{
         
-        _order = [NSString stringWithFormat:@"%ld",index +1];
+        _order = [NSString stringWithFormat:@"%ld",(long)(index +1)];
         if ([_asc isEqualToString:@"1"]) {
             _asc = @"0";
         }
@@ -199,7 +199,7 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/strategy_info/get_strate_list",KURL];
     
-    NSDictionary *parameter = @{@"page":[NSString stringWithFormat:@"%ld",self.page],
+    NSDictionary *parameter = @{@"page":[NSString stringWithFormat:@"%ld",(long)self.page],
                                 @"keyword":_keyword,
                                 @"door":[NSString stringWithFormat:@"%@",_door],
                                 @"cate_id":[NSString stringWithFormat:@"%@",_cate],
@@ -248,7 +248,7 @@
 - (void)pullUpLoadMore{
     NSString *path = [NSString stringWithFormat:@"%@/strategy_info/get_strate_list",KURL];
     
-    NSDictionary *parameter = @{@"page":[NSString stringWithFormat:@"%ld",self.page],
+    NSDictionary *parameter = @{@"page":[NSString stringWithFormat:@"%ld",(long)self.page],
                                 @"keyword":_keyword,
                                 @"door":[NSString stringWithFormat:@"%@",_door],
                                 @"cate_id":[NSString stringWithFormat:@"%@",_cate],

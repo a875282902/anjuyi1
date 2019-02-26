@@ -59,7 +59,7 @@
     NSString *path = [NSString stringWithFormat:@"%@/message/index",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
-    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",self.page],
+    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",(long)self.page],
                           @"type":self.type};
     __weak typeof(self) weakSelf = self;
     
@@ -96,7 +96,7 @@
     NSString *path = [NSString stringWithFormat:@"%@/message/index",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
-    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",self.page],
+    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",(long)self.page],
                           @"type":self.type};
     __weak typeof(self) weakSelf = self;
     

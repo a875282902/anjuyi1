@@ -73,7 +73,7 @@
     
     if (!_bannerScroll) {
         _bannerScroll = [[IanScrollView alloc] initWithFrame:CGRectMake(MDXFrom6(10), MDXFrom6(10), KScreenWidth - MDXFrom6(20), MDXFrom6(147))];
-        [_bannerScroll setSlideImagesArray:@[@{@"images":@""},@{@"images":@""},@{@"images":@""}]];
+        [_bannerScroll setSlideImagesArray:[NSMutableArray arrayWithArray:@[@{@"images":@""},@{@"images":@""},@{@"images":@""}]]];
         [_bannerScroll setPageControlPageIndicatorTintColor:[UIColor whiteColor]];
         [_bannerScroll setPageControlCurrentPageIndicatorTintColor:[UIColor colorWithHexString:@"#3b3b3b"]];
     }

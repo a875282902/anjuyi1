@@ -66,7 +66,7 @@
 
 - (void)selectIndex:(NSInteger)index{
     
-    NSLog(@"%ld",index);
+    NSLog(@"%ld",(long)index);
     
     if (index == 3) {
         

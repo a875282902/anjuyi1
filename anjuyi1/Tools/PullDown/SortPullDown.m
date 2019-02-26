@@ -78,7 +78,7 @@ static NSString * const ID = @"cell";
     SortCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     // 更新菜单标题
-    [[NSNotificationCenter defaultCenter] postNotificationName:YZUpdateMenuTitleNote object:self userInfo:@{@"title":cell.textLabel.text,@"index":[NSString stringWithFormat:@"%ld",indexPath.row]}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:YZUpdateMenuTitleNote object:self userInfo:@{@"title":cell.textLabel.text,@"index":[NSString stringWithFormat:@"%ld",(long)indexPath.row]}];
     
     
 }

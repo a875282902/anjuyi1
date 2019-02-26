@@ -190,7 +190,7 @@
     
     for (NSInteger i = 0 ; i < self.imageArr.count; i++) {
         
-        [dic setValue:self.imageArr[i] forKey:[NSString stringWithFormat:@"image_list[%ld]",i]];
+        [dic setValue:self.imageArr[i] forKey:[NSString stringWithFormat:@"image_list[%ld]",(long)i]];
     }
     
     

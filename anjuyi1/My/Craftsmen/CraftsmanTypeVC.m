@@ -68,7 +68,7 @@
 - (void)selectCraftsmanType:(UITapGestureRecognizer *)sender{
     
     CraftSmenDetailsVC *vc = [[CraftSmenDetailsVC alloc] init];
-    vc.craftsmenType = [NSString stringWithFormat:@"%ld",sender.view.tag+1];
+    vc.craftsmenType = [NSString stringWithFormat:@"%ld",(long)(sender.view.tag+1)];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

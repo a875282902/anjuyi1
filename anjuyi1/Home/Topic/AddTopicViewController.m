@@ -111,7 +111,7 @@
     if (!_SelectView) {
         
         _SelectView = [[SelectView alloc] initWithFrame:CGRectMake(0, 0 , KScreenWidth, KViewHeight)];
-        [_SelectView setDataArr:self.cateArr];
+        [_SelectView setDataArr:[NSMutableArray arrayWithArray:self.cateArr]];
         [_SelectView setDelegate:self];
     }
     return _SelectView;
@@ -121,7 +121,7 @@
         
         [sender setText:[sender.text substringToIndex:15]];
     }
-    [_titleNum setText:[NSString stringWithFormat:@"%ld/15",sender.text.length]];
+    [_titleNum setText:[NSString stringWithFormat:@"%ld/15",(long)sender.text.length]];
     _titie = sender.text;
 }
 
@@ -137,7 +137,7 @@
         
         [textView setText:[textView.text substringToIndex:100]];
     }
-    [_contentNum setText:[NSString stringWithFormat:@"%ld/100",textView.text.length]];
+    [_contentNum setText:[NSString stringWithFormat:@"%ld/100",(long)textView.text.length]];
     _content = textView.text;
     
 }
@@ -147,7 +147,7 @@
     [self.SelectView show];
 }
 
-- (void)SelectViewWithInfo:(NSDictionary *)info view:(SelectView *)SelectView{
+- (void)selectViewWithInfo:(NSDictionary *)info view:(SelectView *)selectView{
     
     [_tagLabel setText:info[@"name"]];
     

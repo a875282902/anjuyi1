@@ -175,7 +175,7 @@
     }
     [((UIImageView *)self.stautsArr[sender.view.tag]) setImage:[UIImage imageNamed:@"project_process_xz"]];
     
-    [self getProjectNodeData:[NSString stringWithFormat:@"%ld",sender.view.tag+1]];
+    [self getProjectNodeData:[NSString stringWithFormat:@"%i",sender.view.tag+1]];
 }
 
 - (void)addProject{

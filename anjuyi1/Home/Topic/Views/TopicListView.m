@@ -68,7 +68,7 @@
 
     NSString *path = [NSString stringWithFormat:@"%@/topic_info/topic_list",KURL];
     
-    NSDictionary *dci = @{@"cate_id":self.cate_id,@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    NSDictionary *dci = @{@"cate_id":self.cate_id,@"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
     __weak typeof(self) weakSelf = self;
     
     [HttpRequest POST:path parameters:dci success:^(id  _Nullable responseObject) {
@@ -105,7 +105,7 @@
 - (void)pullUpLoadMore{
     NSString *path = [NSString stringWithFormat:@"%@/topic_info/topic_list",KURL];
     
-    NSDictionary *dci = @{@"cate_id":self.cate_id,@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    NSDictionary *dci = @{@"cate_id":self.cate_id,@"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
     __weak typeof(self) weakSelf = self;
     
     [HttpRequest POST:path parameters:dci success:^(id  _Nullable responseObject) {

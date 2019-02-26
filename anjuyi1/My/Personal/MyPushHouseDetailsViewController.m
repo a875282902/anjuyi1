@@ -628,11 +628,11 @@
         
         if ([responseObject[@"code"] integerValue] == 200) {
             [ViewHelps showHUDWithText:@"收藏成功"];
-            [sender setTitle:[NSString stringWithFormat:@" %ld",[sender.titleLabel.text integerValue] + 1] forState:(UIControlStateNormal)];
+            [sender setTitle:[NSString stringWithFormat:@" %ld",(long)([sender.titleLabel.text intValue] + 1)] forState:(UIControlStateNormal)];
             [sender setSelected:YES];
         }
         else if ([responseObject[@"code"] integerValue] == 201){
-            [sender setTitle:[NSString stringWithFormat:@" %ld",[sender.titleLabel.text integerValue] - 1] forState:(UIControlStateNormal)];
+            [sender setTitle:[NSString stringWithFormat:@" %ld",(long)([sender.titleLabel.text intValue] - 1)] forState:(UIControlStateNormal)];
             [sender setSelected:NO];
         }
         else{
@@ -665,11 +665,11 @@
         
         if ([responseObject[@"code"] integerValue] == 200) {
             [ViewHelps showHUDWithText:@"点赞成功"];
-            [sender setTitle:[NSString stringWithFormat:@" %ld",[sender.titleLabel.text integerValue] + 1] forState:(UIControlStateNormal)];
+            [sender setTitle:[NSString stringWithFormat:@" %ld",(long)([sender.titleLabel.text intValue] + 1)] forState:(UIControlStateNormal)];
             [sender setSelected:YES];
         }
         else if ([responseObject[@"code"] integerValue] == 201){
-            [sender setTitle:[NSString stringWithFormat:@" %ld",[sender.titleLabel.text integerValue] - 1] forState:(UIControlStateNormal)];
+            [sender setTitle:[NSString stringWithFormat:@" %ld",(long)([sender.titleLabel.text intValue] - 1)] forState:(UIControlStateNormal)];
             [sender setSelected:NO];
         }
         else{

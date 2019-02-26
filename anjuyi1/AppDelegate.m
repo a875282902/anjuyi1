@@ -37,7 +37,9 @@
 
 #import <AlipaySDK/AlipaySDK.h>
 
-@interface AppDelegate ()<JPUSHRegisterDelegate>
+#import <WechatOpenSDK/WXApi.h>
+
+@interface AppDelegate ()<JPUSHRegisterDelegate,WXApiDelegate>
 
 @end
 
@@ -204,9 +206,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         // 其他如支付等SDK的回调
         if ([url.host isEqualToString:@"safepay"]) {
             //跳转支付宝钱包进行支付，处理支付结果
-            [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-                NSLog(@"result = %@",resultDic);
-            }];
+           [self ZFBPaySuceess:url];
+        }else if ([url.scheme isEqualToString:@"wxecdea0abc012d83a"]){
+            
+            return [WXApi handleOpenURL:url delegate:self];
         }
     }
     
@@ -219,9 +222,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         // 其他如支付等SDK的回调
         if ([url.host isEqualToString:@"safepay"]) {
             //跳转支付宝钱包进行支付，处理支付结果
-            [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-                NSLog(@"result = %@",resultDic);
-            }];
+            [self ZFBPaySuceess:url];
+        }else if ([url.scheme isEqualToString:@"wxecdea0abc012d83a"]){
+            
+            return [WXApi handleOpenURL:url delegate:self];
         }
     }
     
@@ -232,9 +236,91 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];
     if (!result) {
         // 其他如支付等SDK的回调
+        if ([url.host isEqualToString:@"safepay"]) {
+            [self ZFBPaySuceess:url];
+        }
+        else if ([url.scheme isEqualToString:@"wxecdea0abc012d83a"]){
+            
+            return [WXApi handleOpenURL:url delegate:self];
+        }
     }
     
     return YES;
+}
+
+/**
+ 支付成功
+ */
+- (void)ZFBPaySuceess:(NSURL *)url{
+    //跳转支付宝钱包进行支付，处理支付结果
+    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"ZFB_PaySuccess" object:nil userInfo:resultDic];
+    }];
+    
+}
+#pragma mark --  wxapi
+-(void)onResp:(BaseResp*)resp{
+    
+    if ([resp isKindOfClass:[PayResp class]]) {
+        PayResp*response=(PayResp*)resp;  // 微信终端返回给第三方的关于支付结果的结构体
+        switch (response.errCode) {
+            case WXSuccess:
+            {// 支付成功，向后台发送消息
+                NSLog(@"支付成功");
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"WX_PaySuccess" object:nil];
+                [ViewHelps showHUDWithText:@"支付成功"];
+            }
+                break;
+            case WXErrCodeCommon:
+            { //签名错误、未注册APPID、项目设置APPID不正确、注册的APPID与设置的不匹配、其他异常等
+                [ViewHelps showHUDWithText:@"支付失败"];
+            }
+                break;
+            case WXErrCodeUserCancel:
+            { //用户点击取消并返回
+
+                [ViewHelps showHUDWithText:@"取消支付"];
+            }
+                break;
+            case WXErrCodeSentFail:
+            { //发送失败
+    
+                [ViewHelps showHUDWithText:@"发送失败"];
+            }
+                break;
+            case WXErrCodeUnsupport:
+            { //微信不支持
+    
+                [ViewHelps showHUDWithText:@"微信不支持"];
+            }
+                break;
+            case WXErrCodeAuthDeny:
+            { //授权失败
+                [ViewHelps showHUDWithText:@"授权失败"];
+            }
+                break;
+            default:
+                break;
+        }
+    }
+    //判断是否是微信认证的处理结果
+    if ([resp isKindOfClass:[SendAuthResp class]]) {
+        SendAuthResp *temp = (SendAuthResp *)resp;
+        //如果你点击了取消，这里的temp.code 就是空值
+        if (temp.code != NULL) {
+            //此处判断下返回来的code值是否为错误码
+            /*此处接口地址为微信官方提供，我们只需要将返回来的code值传入再配合appId和appSecret即可获取到accessToken，openId和refreshToken */
+            //https://api.weixin.qq.com/sns  /oauth2/access_token
+            NSString *accessUrlStr = [NSString stringWithFormat:@"%@/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code", @"https://api.weixin.qq.com/sns", WXID, WXSECRET, temp.code];
+        
+            [HttpRequest GET:accessUrlStr parameters:nil success:^(id responseObject) {
+                
+            } failure:^(NSError *error) {
+                
+            }];
+        }
+    }
+    
 }
 #pragma mark -- 友盟统计
 - (void)umCommnont{
@@ -291,7 +377,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
 @synthesize persistentContainer = _persistentContainer;
 
-- (NSPersistentContainer *)persistentContainer  {
+- (NSPersistentContainer *)persistentContainer   API_AVAILABLE(ios(10.0)){
     // The persistent container for the application. This implementation creates and returns a container, having loaded the store for the application to it.
     @synchronized (self) {
         if (_persistentContainer == nil) {

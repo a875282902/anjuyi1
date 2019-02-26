@@ -131,7 +131,7 @@
     }
     else{
         
-        _order = [NSString stringWithFormat:@"%ld",index +1];
+        _order = [NSString stringWithFormat:@"%ld",(long)(index +1)];
         if ([_asc isEqualToString:@"1"]) {
             _asc = @"0";
         }
@@ -206,7 +206,7 @@
 //                                @"order":_order,
 //                                @"asc":_asc};
     
-    NSDictionary *parameter = @{@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    NSDictionary *parameter = @{@"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -258,7 +258,7 @@
 //                                @"order":_order,
 //                                @"asc":_asc};
 
-    NSDictionary *parameter = @{@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    NSDictionary *parameter = @{@"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
     
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];

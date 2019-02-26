@@ -247,8 +247,6 @@
 		18399C3A21206FA5007CAD58 /* AddTopicCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C3921206FA5007CAD58 /* AddTopicCommentViewController.m */; };
 		18399C3D21207177007CAD58 /* AddTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C3C21207177007CAD58 /* AddTopicViewController.m */; };
 		18399C402120824C007CAD58 /* SelectCategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 18399C3F2120824C007CAD58 /* SelectCategy.m */; };
-		18399C4821215ADC007CAD58 /* jpush-ios-3.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C4421215ADB007CAD58 /* jpush-ios-3.1.0.a */; settings = {ATTRIBUTES = (Required, ); }; };
-		18399C4A21215ADC007CAD58 /* jcore-ios-1.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C4621215ADC007CAD58 /* jcore-ios-1.2.1.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		18399C4C21215B1E007CAD58 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C4B21215B1D007CAD58 /* CFNetwork.framework */; };
 		18399C4E21215B35007CAD58 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C4D21215B34007CAD58 /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		18399C5021215B4C007CAD58 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18399C4F21215B4C007CAD58 /* Foundation.framework */; };
@@ -837,9 +835,6 @@
 		18399C3E2120824C007CAD58 /* SelectCategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCategy.h; sourceTree = "<group>"; };
 		18399C3F2120824C007CAD58 /* SelectCategy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCategy.m; sourceTree = "<group>"; };
 		18399C4121215A0D007CAD58 /* anjuyi1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = anjuyi1.entitlements; sourceTree = "<group>"; };
-		18399C4321215ADB007CAD58 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
-		18399C4421215ADB007CAD58 /* jpush-ios-3.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.1.0.a"; sourceTree = "<group>"; };
-		18399C4621215ADC007CAD58 /* jcore-ios-1.2.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jcore-ios-1.2.1.a"; sourceTree = "<group>"; };
 		18399C4B21215B1D007CAD58 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		18399C4D21215B34007CAD58 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		18399C4F21215B4C007CAD58 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1112,10 +1107,8 @@
 				18ED88442100D4DE00B38548 /* BaiduMapAPI_Location.framework in Frameworks */,
 				18ED88492100D4DE00B38548 /* BaiduMapAPI_Base.framework in Frameworks */,
 				18ED88462100D4DE00B38548 /* libcrypto.a in Frameworks */,
-				18399C4A21215ADC007CAD58 /* jcore-ios-1.2.1.a in Frameworks */,
 				18ED884B2100D4DE00B38548 /* BaiduMapAPI_Radar.framework in Frameworks */,
 				18ED88452100D4DE00B38548 /* BaiduMapAPI_Map.framework in Frameworks */,
-				18399C4821215ADC007CAD58 /* jpush-ios-3.1.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1792,7 +1785,6 @@
 			children = (
 				1898F0DB2223F1FA007E95DB /* Alipay */,
 				1898F0C6221D23FE007E95DB /* AliyunNlsSdk.framework */,
-				18399C4221215A3F007CAD58 /* JGPush */,
 				18399C4121215A0D007CAD58 /* anjuyi1.entitlements */,
 				182CDA9E21097D4800F28F4C /* resource */,
 				18ED884D2100D4F700B38548 /* mapapi.bundle */,
@@ -2324,16 +2316,6 @@
 				18382649215CAA16004C40CA /* PushStrategyViewController.m */,
 			);
 			path = PushStrategy;
-			sourceTree = "<group>";
-		};
-		18399C4221215A3F007CAD58 /* JGPush */ = {
-			isa = PBXGroup;
-			children = (
-				18399C4621215ADC007CAD58 /* jcore-ios-1.2.1.a */,
-				18399C4421215ADB007CAD58 /* jpush-ios-3.1.0.a */,
-				18399C4321215ADB007CAD58 /* JPUSHService.h */,
-			);
-			path = JGPush;
 			sourceTree = "<group>";
 		};
 		1845C5AA213F721200EC84F3 /* Model */ = {
@@ -3216,7 +3198,7 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -3275,7 +3257,7 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -3324,9 +3306,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/anjuyi1/BaiduMapAPI",
-					"$(PROJECT_DIR)/anjuyi1/U-App",
 					"$(PROJECT_DIR)/Pods/TestinDataAnalysis/TestinDataAnalysis",
-					"$(PROJECT_DIR)/anjuyi1/QQ",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/anjuyi1",
 					"$(PROJECT_DIR)/anjuyi1/Alipay",
@@ -3342,7 +3322,6 @@
 					"\"${PODS_ROOT}/Headers/Public/MBProgressHUD\"",
 					"\"${PODS_ROOT}/Headers/Public/MJRefresh\"",
 					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
-					"\"$(SRCROOT)/JGPush\"",
 					"\"$(SRCROOT)/Alipay\"",
 					"\"$(SRCROOT)/anjuyi1\"",
 				);
@@ -3355,7 +3334,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/anjuyi1/BaiduMapAPI/thirdlibs",
-					"$(PROJECT_DIR)/anjuyi1/JGPush",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -3404,9 +3382,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/anjuyi1/BaiduMapAPI",
-					"$(PROJECT_DIR)/anjuyi1/U-App",
 					"$(PROJECT_DIR)/Pods/TestinDataAnalysis/TestinDataAnalysis",
-					"$(PROJECT_DIR)/anjuyi1/QQ",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/anjuyi1",
 					"$(PROJECT_DIR)/anjuyi1/Alipay",
@@ -3422,7 +3398,6 @@
 					"\"${PODS_ROOT}/Headers/Public/MBProgressHUD\"",
 					"\"${PODS_ROOT}/Headers/Public/MJRefresh\"",
 					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
-					"\"$(SRCROOT)/JGPush\"",
 					"\"$(SRCROOT)/Alipay\"",
 					"\"$(SRCROOT)/anjuyi1\"",
 				);
@@ -3435,7 +3410,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/anjuyi1/BaiduMapAPI/thirdlibs",
-					"$(PROJECT_DIR)/anjuyi1/JGPush",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

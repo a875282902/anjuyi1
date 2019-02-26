@@ -10,8 +10,9 @@
 #import <WebKit/WebKit.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 #import <AlipaySDK/AlipaySDK.h>
+#import <WechatOpenSDK/WXApi.h>
 
-@interface MallWebViewController ()<WKNavigationDelegate,WKScriptMessageHandler>
+@interface MallWebViewController ()<WKNavigationDelegate,WKScriptMessageHandler,WXApiDelegate>
 {
     NSString * _curUrlStr;
     BOOL _isRefre;
@@ -58,6 +59,8 @@
     _isRefre = NO;
     [self.view addSubview:self.tmpWeView];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ZFBPaySuceess:) name:@"ZFB_PaySuccess" object:nil];
 }
 
 #pragma mark - tmpWeView
@@ -108,7 +111,6 @@
 
 - (void)payOrder:(NSDictionary *)order{
     
-  
     NSString *path = @"http://shopapp.anjuyi.com.cn/home/pay/pay_order";
     
     NSDictionary *header = @{@"token":UTOKEN};
@@ -123,10 +125,11 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
         if ([responseObject[@"code"] integerValue] == 200) {
-            
-            [[AlipaySDK defaultService] payOrder:responseObject[@"datas"][@"code"] fromScheme:@"anjuyi" callback:^(NSDictionary *resultDic) {
-                NSLog(@"%@",resultDic);
-            }];
+            if ([order[@"pay_type"] isEqualToString:@"ali"]) {
+                [weakSelf payInfoWithZhifubao:responseObject];
+            }else if ([order[@"pay_type"] isEqualToString:@"wx"]) {
+                [weakSelf payInfoWithWinxin:responseObject];
+            }
         }
         else{
             
@@ -140,6 +143,53 @@
         [RequestSever showMsgWithError:error];
     }];
 
+}
+
+#pragma mark -- 支付宝支付
+- (void)payInfoWithZhifubao:(NSDictionary *)orderDic{
+    
+    [[AlipaySDK defaultService] payOrder:orderDic[@"datas"][@"code"] fromScheme:@"anjuyi" callback:^(NSDictionary *resultDic) {
+        [self ZFBPaySuceess:[[NSNotification alloc] initWithName:@"ZFB_PaySuccess" object:nil userInfo:resultDic]];
+    }];
+}
+
+- (void)ZFBPaySuceess:(NSNotification *)sender{
+    
+    NSDictionary *resultDic = sender.userInfo;
+    
+    if([resultDic[@"resultStatus"] intValue] == 9000){ //成功付款
+        [ViewHelps showHUDWithText:@"支付成功"];
+        
+    }else if([resultDic[@"resultStatus"] intValue] == 6001){ //中途取消订单了
+        
+        [ViewHelps showHUDWithText:@"中途取消订单了"];
+        
+    }else if([resultDic[@"resultStatus"] intValue] == 4000){ //订单支付失败
+        [ViewHelps showHUDWithText:@"订单支付失败"];
+        
+    }else if([resultDic[@"resultStatus"] intValue] == 5000){ //重复请求
+        [ViewHelps showHUDWithText:@"重复请求"];
+    }else if([resultDic[@"resultStatus"] intValue] == 6000){ //网络连接出错
+        [ViewHelps showHUDWithText:@"网络连接出错"];
+    }
+    
+}
+
+#pragma mark -- 微信支付
+- (void)payInfoWithWinxin:(NSDictionary *)orderDic{
+    NSDictionary *dic = orderDic[@"datas"][@"prepay_order"];
+    PayReq *request = [[PayReq alloc] init];
+    request.openID = dic[@"appid"];
+    request.partnerId = dic[@"partnerid"];
+    request.prepayId= dic[@"prepayid"];
+    request.package = @"Sign=WXPay";
+    request.nonceStr= dic[@"noncestr"];
+    
+    UInt32 timeStamp = [dic[@"timestamp"] intValue];
+    request.timeStamp = timeStamp ;
+    request.sign=dic[@"sign"];
+    // 调用微信
+    [WXApi sendReq:request];
 }
 
 

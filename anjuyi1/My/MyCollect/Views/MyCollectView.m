@@ -77,8 +77,8 @@
     NSString *path = [NSString stringWithFormat:@"%@/member/my_collect",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
-    NSDictionary *dic = @{@"type":[NSString stringWithFormat:@"%ld",self.index+1],
-                          @"page":[NSString stringWithFormat:@"%ld",self.page]};
+    NSDictionary *dic = @{@"type":[NSString stringWithFormat:@"%ld",(long)(self.index+1)],
+                          @"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
     
     __weak typeof(self) weakSelf = self;
     
@@ -116,7 +116,7 @@
     NSString *path = [NSString stringWithFormat:@"%@/member/my_collect",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
-    NSDictionary *dic = @{@"type":[NSString stringWithFormat:@"%ld",self.index+1]};
+    NSDictionary *dic = @{@"type":[NSString stringWithFormat:@"%ld",(long)(self.index+1)]};
     
     __weak typeof(self) weakSelf = self;
     

@@ -226,7 +226,7 @@
         
         [sender setSelected:YES];
         
-        [self.sureArr replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%ld",j]];
+        [self.sureArr replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%ld",(long)j]];
         
         NSArray *arr = self.dataArr[i];
         

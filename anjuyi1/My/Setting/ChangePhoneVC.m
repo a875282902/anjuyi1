@@ -243,7 +243,7 @@
         
     }
     else{
-        [oldBtn setTitle:[NSString stringWithFormat:@"%ld S",oldTime] forState:(UIControlStateNormal)];
+        [oldBtn setTitle:[NSString stringWithFormat:@"%ld S",(long)oldTime] forState:(UIControlStateNormal)];
     }
     
     if (newTime<1) {
@@ -254,7 +254,7 @@
         }
     }
     else{
-        [newBtn setTitle:[NSString stringWithFormat:@"%ld S",newTime] forState:(UIControlStateNormal)];
+        [newBtn setTitle:[NSString stringWithFormat:@"%ld S",(long)newTime] forState:(UIControlStateNormal)];
     }
     
     

@@ -99,7 +99,7 @@
                           @"level":_level,
                           @"min":_min,
                           @"max":_max,
-                          @"page":[NSString stringWithFormat:@"%ld",self.page]};
+                          @"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
     
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -153,7 +153,7 @@
                           @"level":_level,
                           @"min":_min,
                           @"max":_max,
-                          @"page":[NSString stringWithFormat:@"%ld",self.page]};
+                          @"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
     
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -257,7 +257,7 @@
 
 - (void)selectIndex:(NSInteger)index{
     
-    NSLog(@"%ld",index);
+    NSLog(@"%ld",(long)index);
     
     if (index == 3) {
         [self.screeningView show];

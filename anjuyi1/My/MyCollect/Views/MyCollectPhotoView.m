@@ -72,8 +72,8 @@
     NSString *path = [NSString stringWithFormat:@"%@/member/my_collect",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
-    NSDictionary *dic = @{@"type":[NSString stringWithFormat:@"%ld",self.index+1],
-                          @"page":[NSString stringWithFormat:@"%ld",self.page]};
+    NSDictionary *dic = @{@"type":[NSString stringWithFormat:@"%ld",(long)(self.index+1)],
+                          @"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
     
     __weak typeof(self) weakSelf = self;
     
@@ -112,7 +112,7 @@
     NSString *path = [NSString stringWithFormat:@"%@/member/my_collect",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
-    NSDictionary *dic = @{@"type":[NSString stringWithFormat:@"%ld",self.index+1]};
+    NSDictionary *dic = @{@"type":[NSString stringWithFormat:@"%ld",(long)(self.index+1)]};
     
     __weak typeof(self) weakSelf = self;
     
@@ -207,11 +207,11 @@
         
         if ([responseObject[@"code"] integerValue] == 200) {
             [ViewHelps showHUDWithText:@"收藏成功"];
-            [sender setTitle:[NSString stringWithFormat:@" %ld",[sender.titleLabel.text integerValue] + 1] forState:(UIControlStateNormal)];
+            [sender setTitle:[NSString stringWithFormat:@" %ld",(long)([sender.titleLabel.text integerValue] + 1)] forState:(UIControlStateNormal)];
             [sender setSelected:YES];
         }
         else if ([responseObject[@"code"] integerValue] == 201){
-            [sender setTitle:[NSString stringWithFormat:@" %ld",[sender.titleLabel.text integerValue] - 1] forState:(UIControlStateNormal)];
+            [sender setTitle:[NSString stringWithFormat:@" %ld",(long)([sender.titleLabel.text integerValue] - 1)] forState:(UIControlStateNormal)];
             [sender setSelected:NO];
         }
         else{

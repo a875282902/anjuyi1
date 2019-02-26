@@ -184,6 +184,9 @@
     return height + 45 ;
 }
 
+- (void)tap:(UITapGestureRecognizer *)sender{
+}
+
 // 添加图片
 - (CGFloat)createImageView:(CGFloat)height{
     

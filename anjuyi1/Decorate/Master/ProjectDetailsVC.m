@@ -138,7 +138,7 @@
     
     [((UIImageView *)self.stautsArr[sender.view.tag]) setImage:[UIImage imageNamed:@"project_process_xz"]];
     
-    [self getProjectNodeData:[NSString stringWithFormat:@"%ld",sender.view.tag+1]];
+    [self getProjectNodeData:[NSString stringWithFormat:@"%ld",(long)(sender.view.tag+1)]];
 }
 #pragma mark -- scrollVIew 协议 、、 数据刷新
 - (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{

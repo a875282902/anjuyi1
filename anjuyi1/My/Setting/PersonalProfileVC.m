@@ -64,7 +64,7 @@
         [textView setText:[textView.text substringToIndex:45]];
     }
     
-    [_numLabel setText:[NSString stringWithFormat:@"%ld/45",textView.text.length]];
+    [_numLabel setText:[NSString stringWithFormat:@"%ld/45",(long)textView.text.length]];
     
     _content = textView.text;
 }

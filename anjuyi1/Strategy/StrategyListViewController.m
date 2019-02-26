@@ -64,7 +64,7 @@
     
     NSString *path = [NSString stringWithFormat:@"%@/strategy_info/strategy_list_by_id",KURL];
     
-    NSDictionary *parameter = @{@"page":[NSString stringWithFormat:@"%ld",self.page],
+    NSDictionary *parameter = @{@"page":[NSString stringWithFormat:@"%ld",(long)self.page],
                                 @"user_id":self.user_id};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -110,7 +110,7 @@
 - (void)pullUpLoadMore{
     NSString *path = [NSString stringWithFormat:@"%@/strategy_info/strategy_list_by_id",KURL];
     
-    NSDictionary *parameter = @{@"page":[NSString stringWithFormat:@"%ld",self.page],
+    NSDictionary *parameter = @{@"page":[NSString stringWithFormat:@"%ld",(long)self.page],
                                 @"user_id":self.user_id};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];

@@ -74,7 +74,7 @@
     NSString *path = [NSString stringWithFormat:@"%@/activity/index",KURL];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",_page]};
+    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",(long)_page]};
     
     __weak typeof(self) weakSelf = self;
     
@@ -113,7 +113,7 @@
     NSString *path = [NSString stringWithFormat:@"%@/activity/index",KURL];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",_page]};
+    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",(long)_page]};
     
     __weak typeof(self) weakSelf = self;
     

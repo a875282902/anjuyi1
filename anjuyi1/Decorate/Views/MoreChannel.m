@@ -44,7 +44,7 @@
         W = rext.size.width;
         
         
-        NSLog(@"W ====%.1f   %ld ➖之前X====%.1f",W,i,X);
+        NSLog(@"W ====%.1f   %ld ➖之前X====%.1f",W,(long)i,X);
         
         if (X+W > width) {
             X = 20.0f;

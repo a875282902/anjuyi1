@@ -136,7 +136,7 @@
     
     
     NSString *path = [NSString stringWithFormat:@"%@/whole_house_info/house_list",KURL];
-    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",_page],
+    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",(long)_page],
                           @"type":[NSString stringWithFormat:@"%@",_type],
                           @"room":[NSString stringWithFormat:@"%@",_room],
                           @"source":[NSString stringWithFormat:@"%@",_source]};
@@ -184,7 +184,7 @@
 - (void)pullUpLoadMore{
     NSString *path = [NSString stringWithFormat:@"%@/whole_house_info/house_list",KURL];
 
-    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",_page],
+    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",(long)_page],
                           @"type":[NSString stringWithFormat:@"%@",_type],
                           @"room":[NSString stringWithFormat:@"%@",_room],
                           @"source":[NSString stringWithFormat:@"%@",_source]};

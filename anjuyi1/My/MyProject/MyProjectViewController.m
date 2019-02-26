@@ -123,6 +123,11 @@
     return cell;
 }
 
+
+- (void)subscribeVisitWithCell:(UITableViewCell *)cell{
+    NSLog(@"class name>> %@ %s",NSStringFromClass([self class]),__func__);
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return 355;

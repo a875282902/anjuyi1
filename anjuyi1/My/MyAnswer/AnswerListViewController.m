@@ -63,7 +63,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POST:path parameters:@{@"page":[NSString stringWithFormat:@"%ld",self.page],@"user_id":self.user_id} success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:@{@"page":[NSString stringWithFormat:@"%ld",(long)self.page],@"user_id":self.user_id} success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -103,7 +103,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    [HttpRequest POST:path parameters:@{@"page":[NSString stringWithFormat:@"%ld",self.page],@"user_id":self.user_id} success:^(id  _Nullable responseObject) {
+    [HttpRequest POST:path parameters:@{@"page":[NSString stringWithFormat:@"%ld",(long)self.page],@"user_id":self.user_id} success:^(id  _Nullable responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         

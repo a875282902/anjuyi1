@@ -83,7 +83,7 @@
     
     [self.powerStationList setSelectStaionListType:^(NSInteger index) {
         
-        weakSlef-> _stationListType = [NSString stringWithFormat:@"%ld",(1-index)];
+        weakSlef-> _stationListType = [NSString stringWithFormat:@"%ld",(long)(1-index)];
         
         [weakSlef getPowerStationData:weakSlef->_myLocation];
     }];

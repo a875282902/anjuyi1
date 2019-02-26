@@ -301,7 +301,7 @@
         
     }
     else{
-        [codeBtn setTitle:[NSString stringWithFormat:@"%ld S",time] forState:(UIControlStateNormal)];
+        [codeBtn setTitle:[NSString stringWithFormat:@"%ld S",(long)time] forState:(UIControlStateNormal)];
     }
 }
 

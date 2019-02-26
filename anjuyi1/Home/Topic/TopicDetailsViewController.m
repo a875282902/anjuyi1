@@ -108,7 +108,7 @@
 - (void)pullDownRefresh{
     NSString *path = [NSString stringWithFormat:@"%@/topic_info/topic_detail_evaluate",KURL];
     
-    NSDictionary *dic = @{@"topic_id":self.topic_id,@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    NSDictionary *dic = @{@"topic_id":self.topic_id,@"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -163,7 +163,7 @@
     NSString *path = [NSString stringWithFormat:@"%@/topic_info/topic_detail_evaluate",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
-    NSDictionary *dic = @{@"topic_id":self.topic_id,@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    NSDictionary *dic = @{@"topic_id":self.topic_id,@"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -354,10 +354,10 @@
             
             if ([model.is_zan integerValue]==0) {
                 
-                model.zan_num = [NSString stringWithFormat:@"%ld",[model.zan_num integerValue]+1];
+                model.zan_num = [NSString stringWithFormat:@"%ld",(long)([model.zan_num intValue]+1)];
             }else{
                 
-                model.zan_num = [NSString stringWithFormat:@"%ld",[model.zan_num integerValue]-1];
+                model.zan_num = [NSString stringWithFormat:@"%ld",(long)([model.zan_num intValue]-1)];
             }
             
             model.is_zan = [model.is_zan integerValue]==0?@"1":@"0";
@@ -406,10 +406,10 @@
             
             if ([model.is_collect integerValue]==0) {
                 
-                model.collect_num = [NSString stringWithFormat:@"%ld",[model.collect_num integerValue]+1];
+                model.collect_num = [NSString stringWithFormat:@"%ld",(long)([model.collect_num intValue]+1)];
             }else{
                 
-                model.collect_num = [NSString stringWithFormat:@"%ld",[model.collect_num integerValue]-1];
+                model.collect_num = [NSString stringWithFormat:@"%ld",(long)([model.collect_num intValue]-1)];
             }
             
             model.is_collect = [model.is_collect integerValue]==0?@"1":@"0";

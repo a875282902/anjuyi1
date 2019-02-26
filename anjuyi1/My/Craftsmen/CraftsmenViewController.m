@@ -187,7 +187,7 @@
         }
     }
     else{
-        [codeBtn setTitle:[NSString stringWithFormat:@"%ld S",time] forState:(UIControlStateNormal)];
+        [codeBtn setTitle:[NSString stringWithFormat:@"%zi S",time] forState:(UIControlStateNormal)];
     }
 }
 

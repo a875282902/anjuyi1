@@ -8,12 +8,12 @@
 
 #import "AlbumSelectController.h"
 
-#define KScreenHeight [[UIScreen mainScreen] bounds].size.height
-#define KScreenWidth [[UIScreen mainScreen] bounds].size.width
-#define KStatusBarHeight [[UIApplication sharedApplication]statusBarFrame].size.height //状态栏高度
-#define KNavBarHeight 44.0
-#define KTopHeight (KStatusBarHeight + KNavBarHeight)
-#define KViewHeight (KScreenHeight - KTopHeight)//视图的高
+//#define KScreenHeight [[UIScreen mainScreen] bounds].size.height
+//#define KScreenWidth [[UIScreen mainScreen] bounds].size.width
+//#define KStatusBarHeight [[UIApplication sharedApplication]statusBarFrame].size.height //状态栏高度
+//#define KNavBarHeight 44.0
+//#define KTopHeight (KStatusBarHeight + KNavBarHeight)
+//#define KViewHeight (KScreenHeight - KTopHeight)//视图的高
 
 static NSString *const CellId = @"AlbumTableViewCell";
 
@@ -87,7 +87,7 @@ static NSString *const CellId = @"AlbumTableViewCell";
     if (indexPath.row < self.dataArr.count) {
         PHAssetCollection * collection = self.dataArr[indexPath.row];
         
-        [cell.textLabel setText:[NSString stringWithFormat:@"%@(%ld)",collection.localizedTitle,[[PHAsset fetchAssetsInAssetCollection:collection options:nil] count]]];
+        [cell.textLabel setText:[NSString stringWithFormat:@"%@(%ld)",collection.localizedTitle,(long)[[PHAsset fetchAssetsInAssetCollection:collection options:nil] count]]];
     }
 
     return cell;

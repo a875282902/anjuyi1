@@ -152,7 +152,7 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    __weak typeof(self) weakSelf = self;
+//    __weak typeof(self) weakSelf = self;
     
     [HttpRequest POSTWithHeader:header url:path parameters:dic success:^(id  _Nullable responseObject) {
         

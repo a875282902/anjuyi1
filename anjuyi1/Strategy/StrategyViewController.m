@@ -74,7 +74,7 @@
 - (void)pullDownRefresh{
     NSString *path = [NSString stringWithFormat:@"%@/Strategy_info/ajax_strategy_tui",KURL];
     
-    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -116,7 +116,7 @@
 - (void)pullUpLoadMore{
     NSString *path = [NSString stringWithFormat:@"%@/Strategy_info/ajax_strategy_tui",KURL];
     
-    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    NSDictionary *dic = @{@"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -244,7 +244,7 @@
         [back setTag:i];
         [_headerView addSubview:back];
         
-        [back addSubview:[Tools creatImage:CGRectMake((KScreenWidth/4 - 25)/2, 23, 25, 25) image:[NSString stringWithFormat:@"zxgl_ico%ld",i+1]]];
+        [back addSubview:[Tools creatImage:CGRectMake((KScreenWidth/4 - 25)/2, 23, 25, 25) image:[NSString stringWithFormat:@"zxgl_ico%ld",(long)(i+1)]]];
         
         [back addSubview:[Tools creatLabel:CGRectMake(0, 50, KScreenWidth/4, 12) font:[UIFont systemFontOfSize:12] color:[UIColor colorWithHexString:@"#3b3b3b"] alignment:(NSTextAlignmentCenter) title:tArr[i]]];
         

@@ -63,7 +63,7 @@
     NSString *path = [NSString stringWithFormat:@"%@/member/my_image",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
-    NSDictionary *parameter = @{@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    NSDictionary *parameter = @{@"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -81,7 +81,7 @@
                     [weakSelf.dataArr addObject:model];
                 }
                 
-                [weakSelf.navTwoTitle refreNum:[NSString stringWithFormat:@"%ld张",weakSelf.dataArr.count]];
+                [weakSelf.navTwoTitle refreNum:[NSString stringWithFormat:@"%ld张",(long)weakSelf.dataArr.count]];
             }
             
         }
@@ -110,7 +110,7 @@
     NSString *path = [NSString stringWithFormat:@"%@/member/my_image",KURL];
     
     NSDictionary *header = @{@"token":UTOKEN};
-    NSDictionary *parameter = @{@"page":[NSString stringWithFormat:@"%ld",self.page]};
+    NSDictionary *parameter = @{@"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -128,7 +128,7 @@
                     [weakSelf.dataArr addObject:model];
                 }
                 
-                [weakSelf.navTwoTitle refreNum:[NSString stringWithFormat:@"%ld张",weakSelf.dataArr.count]];
+                [weakSelf.navTwoTitle refreNum:[NSString stringWithFormat:@"%ld张",(long)weakSelf.dataArr.count]];
                 [weakSelf.tmpCollertionView.mj_footer endRefreshing];
             }
             
@@ -187,7 +187,7 @@
             
             [ViewHelps showHUDWithText:responseObject[@"message"]];
         }
-        [weakSelf.navTwoTitle refreNum:[NSString stringWithFormat:@"%ld张",weakSelf.dataArr.count]];
+        [weakSelf.navTwoTitle refreNum:[NSString stringWithFormat:@"%ld张",(long)weakSelf.dataArr.count]];
         [weakSelf.tmpCollertionView reloadData];
         
     } failure:^(NSError * _Nullable error) {
@@ -256,11 +256,11 @@
         
         if ([responseObject[@"code"] integerValue] == 200) {
             [ViewHelps showHUDWithText:@"收藏成功"];
-            [sender setTitle:[NSString stringWithFormat:@" %ld",[sender.titleLabel.text integerValue] + 1] forState:(UIControlStateNormal)];
+            [sender setTitle:[NSString stringWithFormat:@" %ld",(long)([sender.titleLabel.text integerValue] + 1)] forState:(UIControlStateNormal)];
             [sender setSelected:YES];
         }
         else if ([responseObject[@"code"] integerValue] == 201){
-            [sender setTitle:[NSString stringWithFormat:@" %ld",[sender.titleLabel.text integerValue] - 1] forState:(UIControlStateNormal)];
+            [sender setTitle:[NSString stringWithFormat:@" %ld",(long)([sender.titleLabel.text integerValue] - 1)] forState:(UIControlStateNormal)];
             [sender setSelected:NO];
         }
         else{

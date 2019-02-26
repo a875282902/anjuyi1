@@ -494,10 +494,10 @@
     
     NSDictionary *header = @{@"token":UTOKEN};
     
-    NSMutableDictionary * parameter = [NSMutableDictionary dictionaryWithDictionary:@{@"province":_province[@"key"],@"city":_city[@"key"],@"area":_area[@"key"],@"room":self.selectRoomArr[0],@"hall":self.selectRoomArr[1],@"proportion":self.textArr[0],@"budget":self.textArr[1],@"mobile":self.textArr[2],@"name":self.textArr[3],@"code":self.textArr[4],@"requirements":self.textArr[5],@"type":[NSString stringWithFormat:@"%ld",_selectTypeBtn.tag+1]}];
+    NSMutableDictionary * parameter = [NSMutableDictionary dictionaryWithDictionary:@{@"province":_province[@"key"],@"city":_city[@"key"],@"area":_area[@"key"],@"room":self.selectRoomArr[0],@"hall":self.selectRoomArr[1],@"proportion":self.textArr[0],@"budget":self.textArr[1],@"mobile":self.textArr[2],@"name":self.textArr[3],@"code":self.textArr[4],@"requirements":self.textArr[5],@"type":[NSString stringWithFormat:@"%ld",(long)(_selectTypeBtn.tag+1)]}];
 
     for (NSInteger i =1; i < self.modelImageArr.count; i++) {
-        [parameter setValue:self.modelImageArr[i] forKey:[NSString stringWithFormat:@"image_list[%ld]",i-1]];
+        [parameter setValue:self.modelImageArr[i] forKey:[NSString stringWithFormat:@"image_list[%ld]",(long)(i-1)]];
     }
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -586,7 +586,7 @@
         
     }
     else{
-        [codeBtn setTitle:[NSString stringWithFormat:@"%ld S",time] forState:(UIControlStateNormal)];
+        [codeBtn setTitle:[NSString stringWithFormat:@"%zi S",time] forState:(UIControlStateNormal)];
     }
 }
 #pragma mark -- 封面

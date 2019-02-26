@@ -27,7 +27,7 @@
 - (IBAction)subtractShopNumber:(UIButton *)sender {
     
     if ([self.numTextField.text integerValue] > 1) {
-        [self.numTextField setText:[NSString stringWithFormat:@"%ld",[self.numTextField.text integerValue]-1]];
+        [self.numTextField setText:[NSString stringWithFormat:@"%ld",(long)([self.numTextField.text intValue]-1)]];
     }
     
     
@@ -35,7 +35,7 @@
 }
 - (IBAction)addShopNumber:(UIButton *)sender {
     
-     [self.numTextField setText:[NSString stringWithFormat:@"%ld",[self.numTextField.text integerValue]+1]];
+     [self.numTextField setText:[NSString stringWithFormat:@"%ld",(long)([self.numTextField.text intValue]+1)]];
 }
 
 - (void)awakeFromNib {

@@ -86,7 +86,6 @@
 - (UITableView *)tmpTableView{
     
     if (!_tmpTableView) {
-        NSLog(@"KViewHeight === %f   KPlaceHeight === %f",KViewHeight,KPlaceHeight);
         _tmpTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KViewHeight) style:(UITableViewStylePlain)];
         [_tmpTableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
         if (@available(iOS 11.0, *)) {

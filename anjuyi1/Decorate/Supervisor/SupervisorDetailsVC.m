@@ -178,7 +178,7 @@
     
     if (!_bannerScroll) {
         _bannerScroll = [[IanScrollView alloc] initWithFrame:CGRectMake(MDXFrom6(0), 0, KScreenWidth , MDXFrom6(340))];
-        [_bannerScroll setSlideImagesArray:@[@{@"images":@""},@{@"images":@""},@{@"images":@""}]];
+        [_bannerScroll setSlideImagesArray:[NSMutableArray arrayWithArray:@[@{@"images":@""},@{@"images":@""},@{@"images":@""}]]];
         [_bannerScroll setWithoutPageControl:YES];
         [_bannerScroll setWithoutAutoScroll:YES];
         [_bannerScroll setPageControlPageIndicatorTintColor:[UIColor whiteColor]];
@@ -206,7 +206,7 @@
 // 服务流程 和 评价
 - (void)showService:(UISegmentedControl *)sender{
     
-    NSLog(@"%ld",sender.selectedSegmentIndex);
+    NSLog(@"%ld",(long)sender.selectedSegmentIndex);
 }
 
 //客服

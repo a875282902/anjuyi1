@@ -85,7 +85,7 @@
                     [weakSelf.dataArr addObject:model];
                 }
                 
-                [weakSelf.navView refreNum:[NSString stringWithFormat:@"%ld篇",weakSelf.dataArr.count]];
+                [weakSelf.navView refreNum:[NSString stringWithFormat:@"%ld篇",(long)weakSelf.dataArr.count]];
             }
         }
         else{
