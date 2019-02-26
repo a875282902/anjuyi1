@@ -24,6 +24,7 @@
 - (void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     if( [self isKindOfClass:[HomeViewController class]] ||
        [self isKindOfClass:[DecorateViewController class]] ||
        [self isKindOfClass:[MallViewController class]] ||

@@ -35,6 +35,8 @@
 
 #define QQscheme @"tencent1104651968"
 
+#import <AlipaySDK/AlipaySDK.h>
+
 @interface AppDelegate ()<JPUSHRegisterDelegate>
 
 @end
@@ -200,6 +202,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     if (!result) {
         // 其他如支付等SDK的回调
+        if ([url.host isEqualToString:@"safepay"]) {
+            //跳转支付宝钱包进行支付，处理支付结果
+            [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+                NSLog(@"result = %@",resultDic);
+            }];
+        }
     }
     
     return YES;
@@ -209,6 +217,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url options:options];
     if (!result) {
         // 其他如支付等SDK的回调
+        if ([url.host isEqualToString:@"safepay"]) {
+            //跳转支付宝钱包进行支付，处理支付结果
+            [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+                NSLog(@"result = %@",resultDic);
+            }];
+        }
     }
     
     return YES;

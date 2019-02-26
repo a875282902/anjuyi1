@@ -10,12 +10,21 @@
 #import <IQKeyboardManager.h>
 #import "SearchResultsViewController.h"
 #import "SearchPromptTableViewController.h"
+#import "RecognizerView.h"
+#import "RecognizerShowView.h"
 
-@interface SearchViewController ()<UIScrollViewDelegate,UITextFieldDelegate>
+@interface SearchViewController ()<UIScrollViewDelegate,UITextFieldDelegate,RecognizerViewDelegate>
+{
+    UITextField * _textField;
+}
 
 @property (nonatomic,strong)NSMutableArray                    * dataArr;
 @property (nonatomic,strong)UIScrollView                      * tmpScrollView;
 @property (nonatomic,strong)SearchPromptTableViewController   * promptController;
+
+/*--------- 语音识别 ---------*/
+@property (nonatomic,strong)RecognizerShowView    *recognizerShowView;
+@property (nonatomic,strong)RecognizerView                            * speechView;
 
 @end
 
@@ -34,6 +43,10 @@
     [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
 }
 
+-  (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+    return NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -49,9 +62,12 @@
     
     self.promptController = [[SearchPromptTableViewController alloc] init];
     [self addChildViewController:self.promptController];
-
+    
+    /* ----  语音识别  ----- */
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
-
+//获取数据
 - (void)getData{
     
     
@@ -91,14 +107,14 @@
 }
 
 - (void)setNavSearch{
-    UITextField *textFeild = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 30)];
-    [textFeild setBorderStyle:(UITextBorderStyleRoundedRect)];
-    [textFeild setFont:[UIFont systemFontOfSize:15]];
-    [textFeild setDelegate:self];
-    [textFeild setReturnKeyType:(UIReturnKeySearch)];
-    [textFeild setPlaceholder:@"请输入搜索内容"];
-    [textFeild addTarget:self action:@selector(textValueChange:) forControlEvents:(UIControlEventEditingChanged)];
-    [self.navigationItem setTitleView:textFeild];
+    _textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 30)];
+    [_textField setBorderStyle:(UITextBorderStyleRoundedRect)];
+    [_textField setFont:[UIFont systemFontOfSize:15]];
+    [_textField setDelegate:self];
+    [_textField setReturnKeyType:(UIReturnKeySearch)];
+    [_textField setPlaceholder:@"请输入搜索内容"];
+    [_textField addTarget:self action:@selector(textValueChange:) forControlEvents:(UIControlEventEditingChanged)];
+    [self.navigationItem setTitleView:_textField];
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
@@ -287,21 +303,84 @@
     [self setUpUI];
 }
 
+#pragma mark -- 语音识别
 
+- (RecognizerView *)speechView{
+    
+    if (!_speechView) {
+        _speechView = [[RecognizerView alloc] initWithFrame:CGRectMake(0, KScreenHeight, KScreenWidth, 60)];
+        [_speechView setDelegate:self];
+        [_speechView setBackgroundColor:[UIColor whiteColor]];
+        [self.view addSubview:_speechView];
+    }
+    return _speechView;
+}
+
+- (RecognizerShowView *)recognizerShowView{
+    
+    if (!_recognizerShowView) {
+        _recognizerShowView = [[RecognizerShowView alloc] init];
+        [_recognizerShowView setBackgroundColor:[UIColor whiteColor]];
+        [_recognizerShowView setHidden:YES];
+        [self.view addSubview:_recognizerShowView];
+    }
+    return _recognizerShowView;
+}
+/**
+ 语音识别转换
+ *
+ *  @param isSuccess  是否成功
+ *  @param result  转换结果
+ */
+- (void)speechRecognitionWithSuccess:(BOOL)isSuccess withString:(NSString *)result{
+    if (isSuccess) {
+        [_textField setText:result];
+        [self textValueChange:_textField];
+    }
+    else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // UI更新代码
+            [ViewHelps showHUDWithText:result];
+        });
+        
+    }
+}
+/**
+ 获取语音页面
+ *
+ *  @param isShow  是否显示
+ */
+- (void)speechRecognitionIsShow:(BOOL)isShow{
+    
+    if (isShow) {
+        [self.recognizerShowView setHidden:NO];
+        [self.recognizerShowView start];
+    }
+    else{
+        [self.recognizerShowView setHidden:YES];
+        [self.recognizerShowView stop];
+    }
+}
+
+- (void)keyboardWillShow:(NSNotification *)aNotification{
+    //获取键盘的高度
+    NSDictionary *userInfo = [aNotification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    [self.speechView setHidden:NO];
+    [self.speechView setFrame:CGRectMake(0, keyboardRect.origin.y-60-KTopHeight, KScreenWidth, 60)];
+    [self.recognizerShowView setFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - KTopHeight -keyboardRect.size.height - 60 )];
+}
+
+// 键盘消失不用做什么
+- (void)keyboardWillHide:(NSNotification *)aNotification{
+    [self.speechView setHidden:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end
